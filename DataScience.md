@@ -215,7 +215,29 @@ for x, y in zip(df['x'], df['y']):
 
 ### Pandas
 
+提供了高性能、易用的資料結構及資料分析工具。
+
 ### Numpy
+
+必用的科學計算基礎包，底層由C實現，計算速度快。
+
+### NLTK
+
+自然語言工具包，集成了很多自然語言相關的演算法和資源。
+
+### Standford CoreNLP
+
+Stanford的自然語言工具包，可以通過NLTK調用。
+
+### Gensim
+
+主題模型工具包，可用于訓練詞向量，讀取預訓練好的詞向量。
+
+### scikit-learn
+
+機器學習Python包 ，包含了大部分的機器學習演算法。
+
+
 
 ### Matplotlib
 
@@ -612,7 +634,7 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 
 
 
-## 探索性資料分析(EDA)
+## 數據分析(Data Exploration)
 
 - 初步透過視覺化/統計⼯具進⾏分析，達到三個主要⽬的
   - 了解資料：獲取資料所包含的資訊、結構和特點
@@ -622,19 +644,19 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
   - 可以在模型建立之前，先發現潛在的錯誤
   - 也可以根據 EDA 的結果來調整分析的⽅向
 
+- 思考問題
+  - 資料應該怎麼清洗和處理才是合理的？
+  2.	根據資料的類型可以挖掘怎樣的特徵？
+  3.	資料中的哪些特徵會對標籤的預測有幫助？
+
 ### 資料類型
 
-- 離散變數: 只能⽤整數單位計算的變數，如房⼦的房間數量、性別、國家
-  - bool
-  - int
-  - object
-
-- 連續變數: 在⼀定區間內可以任意取值的變數，如測量的⾝⾼、⾶機起⾶到降落所花費的時間、⾞速
-  - float64 ： 浮點數，可表⽰離散或連續變數
+- 離散變數
+  - 只能⽤整數單位計算的變數，如房⼦的房間數量、性別、國家
+- 連續變數
+  - 在⼀定區間內可以任意取值的變數，如測量的⾝⾼、⾶機起⾶到降落所花費的時間、⾞速
 
 ### 資料分佈
-
-> 了解如何通過基本的統計數值以及畫圖來了解資料
 
 - 以單變量分析來說，量化的分析⽅式可包含
 
@@ -673,9 +695,14 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 
       ![](https://lh3.googleusercontent.com/N-1nRtfzQQeEcCPhB2BsDKPxbe_aeJlbTJoC505odQ17jlKGSJsJa6r5YX6dpXHGnq2fp2FWeaX9TSMvg1TnFo_9e-zkOBOuEQIlQN1BGeyiDEvmTZSs0pNHjkNvsqK5luViqDP1ynIsulYMipiU-okEvH7scYkov9JVPXRmDu0pKVT2lGckVD7QWEASrVSmh_kN7DOQii2_TQZ2h7nPDVbW0lyU_wlLWU8WvzglHFLh85whTee_lQ7WpiT1SJHRc0689kW9TjDch2m_TsWkpENZMTXGB3bXkdsWwZ-mIEuc-KVlW0SBrZqqjPnAsDQyAUIXzx8sbHsWZu8cPCRekKXmxX0VjCMNkACgwTkIIxIUDv0PQ1iB2w8UIqC-dIUGuKUnfvFP2l5HXMysm5_fZjr8qxcm8KSY9t9cvsk6mHkbFZTP7AOEelgtcfrrFdKIJkKsqC2nOMPuv78Pmec7KxwryQrF97bVAx7ns0nwBDBcwNOP_nmgg24eqasI_hi5gwfKwYryswSZ0nVTWjHNeb8el05No6L66O8lQ7Aux7i6cdMfvd1kT56mn8wSy5O8PGitRkHjupyiqEWkX9NCgEeMkPnaM__Ztg2_r2Dq3HL6QfE1zK2tAHpaTCkwyA836NlEjpb617IA3dL3C-Jty_9iCGY-YYvs6RvQbXrtoYMs_vpzORSn1CAqel4tF6x_OVSLpn0PfN_OT0fnR9rh9hj7=w742-h326-no)
 
+- 參考資料
+  - [Standard Statistical Distributions (e.g. Normal, Poisson, Binomial) and their uses](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/statistical-distributions)
+  - [List of probability distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions)
+  - [Guess The Correlation](http://guessthecorrelation.com/)
+
 ### 視覺化
 
-> 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
+- 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
 
 - Pandas-Profiling
   
@@ -777,15 +804,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 
 [使用pandas-profiling生成数据的详细报告](https://zhuanlan.zhihu.com/p/47548106)
 
-### 參考資料
-
-- 資料分佈
-  - [Standard Statistical Distributions (e.g. Normal, Poisson, Binomial) and their uses](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/statistical-distributions)
-  - [List of probability distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions)
-
-  - [Guess The Correlation](http://guessthecorrelation.com/)
-
-- 視覺化
+- 參考資料
   - [matplotlib](https://matplotlib.org/gallery/index.html)
   - [seaborn](https://seaborn.pydata.org/examples/index.html)
   - [Python Gallery](https://python-graph-gallery.com/)
@@ -805,11 +824,19 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
   - [Pariplot](https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166)
   - [Gridplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
 
-## 資料前處理
 
-### 簡介
 
-> 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
+## 資料預處理(Data Preprocessing)
+
+剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。針對不同類型的變數，會有不同的清洗和處理方法：
+
+1. 對於數值型變數(Numerical Variable)，需要處理離群點，缺失值，異常值等情況。
+2. 對於類別型變數(Categorical Variable)，可以轉化為one-hot編碼。
+3. 文本資料是較難處理的資料類型，文本中會有垃圾字元，錯別字(詞)，數學公式，不統一單位和日期格式等。我們還需要處理標點符號，分詞，去停用詞，對於英文文本可能還要詞性還原(lemmatize)，抽取詞幹(stem)等等。
+
+ 
+
+- 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
 
 - 大多數的參數統計數值，如均值、標準差、相關係數等，以及基於這些參數的統計分析，均對離群值高度敏感。
 
@@ -862,15 +889,6 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
     - Regression model：有差
     - Tree-based model：沒有太⼤關係
 
-- 特徵選擇簡介
-  - 特徵選擇是特徵工程裡的一個重要問題，其目標是尋找最優特徵子集。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
-  - 特徵需要適當的增加與減少，以提升精確度並減少計算時間
-    - 增加特徵 : 特徵組合，群聚編碼
-    - 減少特徵 : 特徵選擇
-  - 特徵選擇有三⼤類⽅法
-    - 過濾法 (Filter) : 選定統計數值與設定⾨檻，刪除低於⾨檻的特徵
-    - 包裝法 (Wrapper) : 根據⽬標函數，逐步加入特徵或刪除特徵
-    - 嵌入法 (Embedded) : 使⽤機器學習模型，根據擬合後的係數，刪除係數低於⾨檻的特徵
 
 ### 遺漏值處理
 
@@ -1220,6 +1238,24 @@ sc_X.inverse_transform()
 
 
 
+## 特徵工程(Feature Engineering)
+
+**都說特徵為王，特徵是決定效果最關鍵的一環。**我們需要通過探索資料，利用人為先驗知識，從資料中總結出特徵。
+
+### 特征抽取(Feature Extraction)
+
+**我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。**特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
+
+那問題來了，怎麼去發現特徵呢？光盯著資料集肯定是不行的。如果你是新手，可以先耗費一些時間在Forum上，看看別人是怎麼做Feature Extraction的，並且多思考。雖然Feature Extraction特別講究經驗，但其實還是有章可循的：
+
+1. 對於Numerical Variable，可以通過**線性組合、多項式組合**來發現新的Feature。
+
+2. 對於文本資料，有一些常規的Feature。比如，文本長度，Embeddings，TF-IDF，LDA，LSI等，你甚至可以用深度學習提取文本特徵（隱藏層）。
+
+3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
+
+4. 通過**錯誤分析**也可以發現新的特徵。
+
 ### 特徵組合
 
 - 數值與數值組合
@@ -1257,13 +1293,25 @@ sc_X.inverse_transform()
 
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
-### 特徵選擇
+### 特徵選擇(Feature Selection)
 
-由於我們通常會設定許多解釋變數來建模並預測目標變數，但當中難免會包含許多雜訊。為了避免雜訊干擾到模型的解釋效果(Garbage In Garbage Out)並基於 [奥卡姆剃刀原理](https://zhuanlan.zhihu.com/p/45321953) 讓後續解釋更簡單，我們會需要設法將雜訊從資料中排除。常用的方法有以下幾種，其中
+在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
+
+- Garbage In Garbage Out
+- [奥卡姆剃刀原理](https://zhuanlan.zhihu.com/p/45321953)
+- 讓後續解釋更簡單
+
+特徵選擇有三⼤類⽅法
+
+- 過濾法 (Filter) : 選定統計數值與設定⾨檻，刪除低於⾨檻的特徵
+- 包裝法 (Wrapper) : 根據⽬標函數，逐步加入特徵或刪除特徵
+- 嵌入法 (Embedded) : 使⽤機器學習模型，根據擬合後的係數，刪除係數低於⾨檻的特徵
 
 - All-in
 
   基於 Domain Knowledge，或設計過的調查資料時會使用此方法。此外通常在建置模型是也會出於與其他模型做比較的考量，建置一個這類的模型，藉以檢視後續其他模型的效度。
+
+
 
 #### 過濾法(Filter)
 
@@ -1576,7 +1624,7 @@ https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-a
   - [為什麼特徵工程很重要](https://ithelp.ithome.com.tw/articles/10200041?sc=iThelpR)
   - [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
 
-## 建置機器學習模型
+## 建置模型(Modeling)
 
 ### 簡介
 
@@ -1649,72 +1697,6 @@ https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-a
 - 在不清楚資料特性、問題定義、沒有標記的情況下，非監督式學習技術可以幫助我們理清資料脈絡
 - 特徵數太龐⼤的情況下，非監督式學習可以幫助概念抽象化，⽤更簡潔的特徵描述資料
 - 非監督式學習以聚類算法及降低維度算法爲主，本課程也以這兩⾨技術進⾏探究
-
-
-
-### 切分訓練/測試集
-
-- 簡單切分
-
-  - 直接將資料按照70/30或80/20進行切分
-
-  ```python
-  from sklearn.model_selection import train_test_split
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-  ```
-
-- K-fold Cross-validation
-  - 根據切分的方法不同，交叉驗證分為下面三種：　　　
-
-    - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
-
-    - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
-
-      $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
-
-      每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
-
-    - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
-
-    ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
-
-    ```python
-    sklearn.model_selection.KFold()
-    ```
-
-- 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
-  
-  - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
-
-
-
-- 過擬合 (Over-fitting)
-  - 模型的訓練⽬標是將損失函數的損失降⾄最低
-
-  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
-  
-- 如何知道模型已經過擬合了?
-
-    - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
-
-- **如何解決過擬合或⽋擬合**
-
-  - 過擬合
-  - 增加資料量
-      - 降低模型複雜度
-  - 使⽤正規化 (Regularization)
-  - ⽋擬合
-  - 增加模型複雜度
-    - 減輕或不使⽤正規化
-
-  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
-
-
-
-- 切分完訓練測試資料需要比較兩者是否有差異
-
-  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
-  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
 
 
 
@@ -1905,7 +1887,84 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 #### Dimension Reduction
 
-### 模型選擇與重要參數
+### 模型驗證(Validation)
+
+在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
+
+- 簡單切分
+
+  - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
+
+  ```python
+  from sklearn.model_selection import train_test_split
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+  ```
+
+- Cross-validation
+
+  - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
+
+    如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
+
+     
+
+  - 根據切分的方法不同，交叉驗證分為下面三種：　　　
+
+    - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
+
+    - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
+
+      $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
+
+      每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
+
+    - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
+
+    ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
+
+    ```python
+    sklearn.model_selection.KFold()
+    ```
+
+- 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
+
+  - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
+
+
+
+- 過擬合 (Over-fitting)
+
+  - 模型的訓練⽬標是將損失函數的損失降⾄最低
+
+  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
+
+- 如何知道模型已經過擬合了?
+
+  - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
+
+- **如何解決過擬合或⽋擬合**
+
+  - 過擬合
+  - 增加資料量
+    - 降低模型複雜度
+  - 使⽤正規化 (Regularization)
+  - ⽋擬合
+  - 增加模型複雜度
+    - 減輕或不使⽤正規化
+
+  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
+
+
+
+- 切分完訓練測試資料需要比較兩者是否有差異
+
+  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
+  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
+
+### 模型
+
+- 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
+- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
 
 #### 摘要
 
@@ -1957,6 +2016,8 @@ $$
   - Multivariate normality：資料要呈現多元正態分佈
   - Independence of errors：各個維度上的誤差相互獨立
   - Lack of Multicollinearity：沒有一個自變數和另外的自變數存線上性關係
+
+- 要特別注意的是Coefficients代表的是在**固定**其他變數後，每單位變數對依變數的影響程度，只有在變數同單位同級距時，才能比較哪一個對依變數造成的量較大。
 
 - Scikit-learn 中的 linear regression
 
@@ -2642,6 +2703,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
 #### PCA
 
 - Feature Extraction technique
+
 - 目的
   - Identify patterns in data
   - Detect the correlation between variables
@@ -2706,6 +2768,10 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
 
   - Elbow
   - 累積的解釋變異量達85%
+
+- 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
+
+- 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
 
 - 注意事項
 
@@ -2820,16 +2886,38 @@ t-Distributed Stochastic Neighbor Embedding
   - 流形還原就是在⾼維度到低維度的對應中，盡量保持資料點之間的遠近關係，沒有資料點的地⽅，就不列入考量範圍
   - 除了 t-sne 外，較常⾒的流形還原還有 Isomap 與 LLE (Locally Linear Embedding) 等⼯具
 
-  
+- 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
 
-### 重要知識點複習
+### 模型集成(Ensemble)
 
-- PCA
-  - 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
-  - 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
-- t-SNE
-  - 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting
-  - t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
+曾經聽過一句話，”Feature為主，Ensemble為後”。Feature決定了模型效果的上限，而Ensemble就是讓你更接近這個上限。Ensemble講究“好而不同”，不同是指模型的學習到的側重面不一樣。
+
+常見的Ensemble方法有Bagging、Boosting、Stacking、Blending。
+
+- Bagging
+
+  - Bagging是將多個模型（**基學習器**）的預測結果簡單地**加權平均或者投票**。Bagging的好處在於可以並行地訓練基學習器，其中Random Forest就用到了Bagging的思想。
+  - Bagging通常是沒有一個明確的優化目標的，但是有一種叫[Bagging Ensemble Selection](http://link.zhihu.com/?target=http%3A//www.cs.cornell.edu/~alexn/papers/shotgun.icml04.revised.rev2.pdf)的方法，它通過貪婪演算法來Bagging多個模型來優化目標值。
+
+- Boosting
+
+  - Boosting的思想有點像**知錯能改**，每訓練一個基學習器，是為了彌補上一個基學習器所犯的錯誤。其中著名的演算法有AdaBoost，Gradient Boost。Gradient Boost Tree就用到了這種思想。
+
+    在前面的錯誤分析中提到Boosting，錯誤分析->抽取特徵->訓練模型->錯誤分析，這個過程就跟Boosting很相似。
+
+- Stacking
+
+  - Stacking是用新的模型（**次學習器**）去**學習怎麼組合**那些**基學習器**，它的思想源自於[Stacked Generalization](http://link.zhihu.com/?target=http%3A//www.machine-learning.martinsewell.com/ensembles/stacking/Wolpert1992.pdf)這篇論文。如果把Bagging看作是多個基分類器的線性組合，那麼Stacking就是多個基分類器的非線性組合。Stacking可以很靈活，它可以將學習器一層一層地堆砌起來，形成一個網狀的結構
+
+- Blending
+
+  - Blending與Stacking很類似，它們的區別可以參考[這裡](http://link.zhihu.com/?target=https%3A//mlwave.com/kaggle-ensembling-guide/)
+
+### 後處理
+
+有些時候在確認沒有過擬合的情況下，驗證集上做校驗時效果挺好，但是將測試結果提交後的分數卻不如人意，這時候就有可能是訓練集的分佈與測試集的分佈不一樣而導致的。這時候為了提高LeaderBoard的分數，還需要對測試結果進行分佈調整。
+
+比如這次比賽，訓練資料中正類的占比為0.37，那麼預測結果中正類的比例也在0.37左右，然後Kernel上有人通過測試知道了測試資料中正類的占比為0.165，所以我們也對預測結果進行了調整，得到了更好的分數。具體可以看[這裡](http://link.zhihu.com/?target=https%3A//www.kaggle.com/davidthaler/how-many-1-s-are-in-the-public-lb)。
 
 ### 參考資料
 
@@ -2962,6 +3050,28 @@ print("Best Parameters:", best_parameters)
 
 
 https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitting-machine-learning/
+
+### 错误分析
+
+- 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
+- 舉個例子，這次比賽中，我們在錯誤分析時發現，某些樣本的兩個問句表面上很相似，但是句子最後提到的地點不一樣，所以其實它們是語義不相似的，但我們的模型卻把它誤判為相似的。比如這個樣本：
+  - Question1: Which is the best digital marketing institution in banglore?
+  - Question2: Which is the best digital marketing institute in Pune?
+- 為了讓模型可以處理這種樣本，我們將兩個問句的最長公共子串(Longest Common Sequence)去掉，用剩餘部分訓練一個新的深度學習模型，相當於告訴模型看到這種情況的時候就不要判斷為相似的了。因此，在加入這個特徵後，我們的效果得到了一些提升。
+
+### 調參
+
+在訓練模型前，我們需要預設一些參數來確定**模型結構**（比如樹的深度）和**優化過程**（比如學習率），這種參數被稱為超參（Hyper-parameter），不同的參數會得到的模型效果也會不同。總是說調參就像是在“煉丹”，像一門“玄學”，但是根據經驗，還是可以找到一些章法的：
+
+1. 根據經驗，選出對模型效果**影響較大的超參**。
+
+2. 按照經驗設置超參的**搜索空間**，比如學習率的搜索空間為[0.001，0.1]。
+
+3. 選擇**搜索演算法**，比如Random Search、Grid Search和一些啟發式搜索的方法。
+
+4. **驗證模型**的泛化能力
+
+ 
 
 ## 模型儲存
 
