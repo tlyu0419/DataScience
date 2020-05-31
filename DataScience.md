@@ -5496,17 +5496,67 @@ https://zhuanlan.zhihu.com/p/25928551
   python -m spacy download en
   ```
 
-  
+- Sample Code
+
+  - [Spacy-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
 
 ## Tokenizations
 
+- Tokenization is the process of breaking up the original text into component pieces(tokens).
+
+  - Prefix: Character(s) at the beginning
+    - ex: $ / ( / "
+  - Suffix: Character(s) at the end
+    - ex: km / ) / . / , / !
+  - Infix：Character(s) in between
+    - ex: - / -- / ...
+  - Exception: Special-case rule to split a string into serveral tokens or prevent a token from being split when punctuation rules are applied
+    - ex: let's / U.S.
+
+  ![](https://lh3.googleusercontent.com/pw/ACtC-3fah2pChHTiJvetIOpadWl7DPyn6QdjGvbnyJJ4xMvYnE2X52Vjr4cOzSwmfukGJmqCIXCqkujLF9J4kJ0_f9S3Ff9Su3TFhUIzSDpTUKU838gRVoNIGkrlkUJ_6efFG_J7GnTD1ZK6JJvqYcQFBRe3=w979-h585-no?authuser=1)
+
+- Named Entities
+  
+  - The language model recognizes that certain words are organizational names while others are locations, and still other combinations relate to money, dates, etc. Named entities are accessible through the ents property of a Doc object.
+- Sample Code
+  
+  - [Tokenization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/01-Tokenization.ipynb)
+
 ## Stemming
+
+- Often when we searching text for a certain keyword, it help if the search returns variations of the word.
+- For instance, searching for "boat" might also return "boats" and "boating". Here, "boat" would be the stem for [boat, boater, boating, boats].
+- Stemming is a somewhat crude method for cataloging related words; it essentially chops off letters from the end until the stem is reach.
+- This works fairly well in most cases, but unfortunately English has many exceptions where a more sophisticated process is required.
+- Sample Code
+  - [Stemming.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/02-Stemming.ipynb)
+
+
 
 ## Lemmatizations
 
+- In contrast stemming, lemmatization looks beyong word reduction, and considers a language's full vocabulary to apply a morphological analysis to words.
+- The lemma of 'was' is 'be' and the lemma of 'mice' is 'mouse'. Further, the lemma of 'meeting' might be 'meet' or 'meeting' depending on its use in a sentence.
+- Lemmatization is typically seen as much more informative than simple stemming, which is whySpacy has opted to only have Lemmatization avaliable instead of stemming.
+
+- Lemmatization looks at surrounding text to determine a given word's part of speech, it does not categorize phrases.
+- Sample Code
+  - [Lemmatization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/03-Lemmatization.ipynb)
+
 ## StopWords
 
+- Words like 'a' and 'the' appear so frequently that they don't require tagging as thoroughly as nouns, verbs and modifiers.
+- We call these stop words and they can be filtered from the text to be processed.
+- Spacy holds a built-in list of smoe 305 English stop words.
+- Stop Words
+  - [Stop-Words.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/04-Stop-Words.ipynb)
+
 ## Vocubulary and Phrase Matching
+
+Identify and label specific phrases that match patterns we can define ourselves.
+
+- Rule-based Matching
+- PhraseMatcher
 
 
 
