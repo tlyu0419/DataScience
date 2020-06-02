@@ -5548,21 +5548,36 @@ https://zhuanlan.zhihu.com/p/25928551
 - Words like 'a' and 'the' appear so frequently that they don't require tagging as thoroughly as nouns, verbs and modifiers.
 - We call these stop words and they can be filtered from the text to be processed.
 - Spacy holds a built-in list of smoe 305 English stop words.
-- Stop Words
+- Sample Code
   - [Stop-Words.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/04-Stop-Words.ipynb)
 
 ## Vocubulary and Phrase Matching
 
 Identify and label specific phrases that match patterns we can define ourselves.
 
+We can think of this as a powerful version of Regular Expression where we actually take parts of speech into account for our pattern search.
+
 - Rule-based Matching
 - PhraseMatcher
 
+- Sample Code
+  - [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
 
+- 參考資料
+  - https://spacy.io/usage/linguistic-features#section-rule-based-matching
 
 ## Speech Tagging
 
 ### Parts-of-Speech(POS)
+
+- Most words are rare, and it's common for words that look completely different to mean almost the same thing. 
+- The same words in a different order can mean something completely different. 
+- Even splitting text into useful word-like units can be difficult in many languages.
+- While it's possible to solve some problems starting from only the raw characters, it's usually better to use linguistic knowledge to add useful information.
+- That's exactly what spaCy is designed to do: you put in raw text, and get back a **Doc** object, that comes with a variety of annotations.
+- In this lecture we'll take a closer look at coarse POS tags (noun, verb, adjective) and fine-grained tags (plural noun, past-tense verb, superlative adjective).
+- Ref
+  - [POS-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
 
 ### Named Entity Recognition
 
