@@ -5500,6 +5500,8 @@ https://zhuanlan.zhihu.com/p/25928551
 
   - [Spacy-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
 
+- [Chinese_models_for_SpaCy](https://github.com/howl-anderson/Chinese_models_for_SpaCy)
+
 ## Tokenizations
 
 - Tokenization is the process of breaking up the original text into component pieces(tokens).
@@ -5581,9 +5583,22 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 ### Named Entity Recognition
 
+- Named-entity recognition (NER) seeks to locate and classify named entity mentions in unstructured text into pre-defined categories such as the person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc.
+- what if we have several terms to add as possible NERs?
+- In this continued lecture, we will go over how to add in multiple phrases as NERs.
+- For example, if we are working with a vacuum company, we might want to add both **vacuum cleaner** and **vacuum-cleaner** as PROD (product) NERs.
+- Ref
+  - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
+
 ### Sentence Segmentation with Spacy
 
-### Visualization of POS and NER
+- In Spacy Basics we saw briefly how Doc objects are divided into sentences.
+- In this lecture we'll learn how sentence segmentation works, and how to set our own segmentation rules to break up docs into sentences based on our own rules.
+
+- Ref
+  - [Sentence-Segmentation.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/04-Sentence-Segmentation.ipynb)
+  - [POS-Assessment-Solutions.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/06-POS-Assessment-Solutions.ipynb)
+  - [POS-Challenge.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/07-POS-Challenge (optional).ipynb)
 
 ## Text Classification
 
