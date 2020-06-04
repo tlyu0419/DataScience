@@ -1764,6 +1764,8 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
   - 橫軸為正確答案
   - 可以清楚看出每個 Class 間預測的準確率，完美的模型就會在對⾓線上呈現 100 % 的準確率
   - 多分類問題，則可使⽤ top-k accuracy，k 代表模型預測前 k 個類別有包含正確類別即為正確 (ImageNet 競賽通常都是比 Top-5 Accuracy)
+  - Type I error: False Positive
+  - Type II error: false negative
 
   ```python
   from sklearn.metrics import confusion_matrix, accuracy_score
@@ -1778,21 +1780,42 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
   - Accuracy：
 
-    - (TP + TN) / Total Sample
+    - Accuracy in classification problems is the **number of correct predictions** made by the model divided by the **total number of predictions.**
+
+      $\frac{(TP + TN)}{Total Sample}$
+      
     - Accuracy Paradox
       - 樣本極度不平衡時，直接將所有樣本預測成多數的類別即可獲得高 Accuracy rate
       - 優點：直觀；缺點：沒有考量不同類型犯錯的成本差異
 
   - Precision： 則是針對某類別進⾏評估
 
+    - Ability of a classification model to identify **only** the relevant data points.
+    - Precision is defined as the number of **true positives divided by the number of true positives plus the number of false positives.** 
     - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
     
   - Recall
 
+    - Ability of a model to find **all** the relevant cases within a dataset. 
+    - The precise definition of recall is the **number of true positives divided by the number of true positives plus the number of false negatives.** 
     - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
       (以瑕疵檢測為例，若為 recall=1 則代表所有瑕疵都被找到)
+    - Often you have a trade-off between Recall and Precision.
+    - While recall expresses the ability to find all relevant instances in a dataset, precision expresses the proportion of the data points our model says was relevant actually were relevant.
 
   - F1 - Score (Precision, Recall), 範圍: [0, 1]
+
+    - In cases where we want to find an optimal blend of precision and recall we can combine the two metrics using what is called the F1 score.
+
+    - The F1 score is the harmonic mean of precision and recall taking both metrics into account in the following equation:
+
+      $F_1=2*\frac{precision*recall}{precision+recall}$
+
+    - We use the harmonic mean instead of a simple average because it punishes extreme values. 
+
+    - A classifier with a precision of 1.0 and a recall of 0.0 has a simple average of 0.5 but an F1 score of 0. 
+
+    - Precision and Recall typically make more sense in the context of a confusion matrix.
 
     - F1 是 Precision, Recall 的調和平均數
 
@@ -3051,7 +3074,7 @@ print("Best Parameters:", best_parameters)
 
 https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitting-machine-learning/
 
-### 错误分析
+### 錯誤分析
 
 - 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
 - 舉個例子，這次比賽中，我們在錯誤分析時發現，某些樣本的兩個問句表面上很相似，但是句子最後提到的地點不一樣，所以其實它們是語義不相似的，但我們的模型卻把它誤判為相似的。比如這個樣本：
@@ -5602,12 +5625,26 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 ## Text Classification
 
+- Ref:
+  - [An Introduction to Statistical Learning](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR Seventh Printing.pdf)
+
 ### ML model
 
 ### Text Feature Extraction
 
+- Most classic machine learning algorithms can’t take in raw text. 
+- Instead we need to perform a feature “extraction” from the raw text in order to pass numerical features to the machine learning algorithm.
+
 - Count Vectorization
+  - count the occurence of each word to map text to a number.
 - TF-IDF Vectorizations
+  - calculates term frequency-inverse document frequency value for each word(TF-IDF). 
+  - Term frequency **tf(t,d)**: is the raw count of a term in a document, i.e. the number of times that term t occurs in document d.
+  - However, Term Frequency alone isn’t enough for a thorough feature analysis of the text!Let’s imagine very common terms, like “a” or “the”...
+  - Because the term "the" is so common, term frequency will tend to incorrectly emphasize documents which happen to use the word "the" more frequently, without giving enough weight to the more meaningful terms "red" and "dogs". 
+  - An inverse document frequency factor is incorporated which diminishes the weight of terms that occur very frequently in the document set and increases the weight of terms that occur rarely.
+  -  It is the logarithmically scaled inverse fraction of the documents that contain the word (obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient)
+  - TF-IDF allows us to understand the context of words across an entire corpus of documents, instead of just its relative importance in a single document.
 
 ### Text Classification Projects
 
