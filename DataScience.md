@@ -6307,6 +6307,19 @@ We can think of this as a powerful version of Regular Expression where we actual
 
   - Others
 
+- 場景
+  - 犯罪嫌疑人資料梳理
+  - 銀行異常金流
+  - 擔保品分析
+  - 上網行為異常
+  - 商品推薦
+  - 社交關係
+  - 廣告推播
+  - MOMO把折價券當廣告再發，aroung
+- note: 拿到資料本身就是結構化的資料了
+- 233萬的node，是請人
+- 底層資料是文本還是用NER的技術從文本抽取
+
 https://snap.stanford.edu/data/egonets-Facebook.html
 
 http://www.csie.ntnu.edu.tw/~u91029/Graph.html
