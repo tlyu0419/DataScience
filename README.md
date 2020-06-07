@@ -208,6 +208,7 @@ for x, y in zip(df['x'], df['y']):
   - ^:以...開頭
   - $：以...結尾
 - Sample Code
+  
   - [Regular Expressions](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/00-Python-Text-Basics/02-Regular-Expressions.ipynb)
 - functions
   - re.search:在一個字符串中搜索匹配正則表達式的第一個位置，返回match對象
@@ -1727,7 +1728,7 @@ https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-a
 
 
 
-### 選定評估指標
+### Evaluation Method
 
 https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
 
@@ -3121,7 +3122,9 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 4. **驗證模型**的泛化能力
 
- 
+### 建立
+
+## pipeline
 
 ## 模型儲存
 
@@ -5552,7 +5555,9 @@ https://zhuanlan.zhihu.com/p/25928551
 
 - [Chinese_models_for_SpaCy](https://github.com/howl-anderson/Chinese_models_for_SpaCy)
 
-## Tokenizations
+## Process
+
+### Tokenizations
 
 - Tokenization is the process of breaking up the original text into component pieces(tokens).
 
@@ -5574,7 +5579,7 @@ https://zhuanlan.zhihu.com/p/25928551
   
   - [Tokenization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/01-Tokenization.ipynb)
 
-## Stemming
+### Stemming
 
 - Often when we searching text for a certain keyword, it help if the search returns variations of the word.
 - For instance, searching for "boat" might also return "boats" and "boating". Here, "boat" would be the stem for [boat, boater, boating, boats].
@@ -5585,7 +5590,7 @@ https://zhuanlan.zhihu.com/p/25928551
 
 
 
-## Lemmatizations
+### Lemmatizations
 
 - In contrast stemming, lemmatization looks beyong word reduction, and considers a language's full vocabulary to apply a morphological analysis to words.
 - The lemma of 'was' is 'be' and the lemma of 'mice' is 'mouse'. Further, the lemma of 'meeting' might be 'meet' or 'meeting' depending on its use in a sentence.
@@ -5595,7 +5600,7 @@ https://zhuanlan.zhihu.com/p/25928551
 - Sample Code
   - [Lemmatization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/03-Lemmatization.ipynb)
 
-## StopWords
+### StopWords
 
 - Words like 'a' and 'the' appear so frequently that they don't require tagging as thoroughly as nouns, verbs and modifiers.
 - We call these stop words and they can be filtered from the text to be processed.
@@ -5603,7 +5608,7 @@ https://zhuanlan.zhihu.com/p/25928551
 - Sample Code
   - [Stop-Words.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/04-Stop-Words.ipynb)
 
-## Vocubulary and Phrase Matching
+### Vocubulary and Phrase Matching
 
 Identify and label specific phrases that match patterns we can define ourselves.
 
@@ -5618,16 +5623,15 @@ We can think of this as a powerful version of Regular Expression where we actual
 - 參考資料
   - https://spacy.io/usage/linguistic-features#section-rule-based-matching
 
-## Speech Tagging
+### Speech Tagging
 
-### Parts-of-Speech(POS)
-
-- Most words are rare, and it's common for words that look completely different to mean almost the same thing. 
-- The same words in a different order can mean something completely different. 
-- Even splitting text into useful word-like units can be difficult in many languages.
-- While it's possible to solve some problems starting from only the raw characters, it's usually better to use linguistic knowledge to add useful information.
-- That's exactly what spaCy is designed to do: you put in raw text, and get back a **Doc** object, that comes with a variety of annotations.
-- In this lecture we'll take a closer look at coarse POS tags (noun, verb, adjective) and fine-grained tags (plural noun, past-tense verb, superlative adjective).
+- Parts-of-Speech(POS)
+  - Most words are rare, and it's common for words that look completely different to mean almost the same thing. 
+  - The same words in a different order can mean something completely different. 
+  - Even splitting text into useful word-like units can be difficult in many languages.
+  - While it's possible to solve some problems starting from only the raw characters, it's usually better to use linguistic knowledge to add useful information.
+  - That's exactly what spaCy is designed to do: you put in raw text, and get back a **Doc** object, that comes with a variety of annotations.
+  - In this lecture we'll take a closer look at coarse POS tags (noun, verb, adjective) and fine-grained tags (plural noun, past-tense verb, superlative adjective).
 - Ref
   - [POS-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
 
@@ -5655,7 +5659,8 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Ref:
   - [An Introduction to Statistical Learning](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR Seventh Printing.pdf)
 
-### ML model
+- Modeling process and evaluation method are equal to the Normal Machine Learning  project.
+- The difference is the Feature Extraction method.
 
 ### Text Feature Extraction
 
@@ -5673,15 +5678,66 @@ We can think of this as a powerful version of Regular Expression where we actual
   -  It is the logarithmically scaled inverse fraction of the documents that contain the word (obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient)
   - TF-IDF allows us to understand the context of words across an entire corpus of documents, instead of just its relative importance in a single document.
 
-### Text Classification Projects
+- Ref
+  - [SciKit-Learn-Primer.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/00-SciKit-Learn-Primer.ipynb)
+  - [Feature-Extraction-from-Text.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/01-Feature-Extraction-from-Text.ipynb)
+  - [Text-Classification-Assessment-Solution.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/04-Text-Classification-Assessment-Solution.ipynb)
 
-## Semantics and Sentiment Analysis
+## Sentiment Analysis
 
-### Semantics
+- In order to use Spacy’s embedded word vectors, we must download the **larger** spacy english models.
+- Full details can be found at:**https://spacy.io/usage/models**
+- At the command line download the medium or large spacy english models:
+  - **python -m spacy download en_core_web_md**
+  - **python -m spacy download en_core_web_lg**
+
+- Now that you have the larger models that contain the word vectors, let’s discuss how word vectors are created.
 
 ### word Vectors
 
+- Word2vec is a two-layer neural net that processes text. 
+- Its input is a text corpus and its output is a set of vectors: feature vectors for words in that corpus.
+- The purpose and usefulness of Word2vec is to group the vectors of similar words together in vectorspace. 
+- That is, it detects similarities mathematically. 
+- Word2vec creates vectors that are distributed numerical representations of word features, features such as the context of individual words. 
+- It does so without human intervention.
+
+- Given enough data, usage and contexts, Word2vec can make highly accurate guesses about a word’s meaning based on past appearances. 
+- Those guesses can be used to establish a word’s association with other words (e.g. “man” is to “boy” what “woman” is to “girl”)
+
+- Word2vec trains words against other words that neighbor them in the input corpus.
+
+- It does so in one of two ways, either using context to predict a target word (a method known as continuous bag of words, or CBOW), or using a word to predict a target context, which is called skip-gram
+
+  ![](https://lh3.googleusercontent.com/pw/ACtC-3eeadPlSIldCNAgA1ZE1dmwf-WHYU6A9UxFEt7NSZpkX6OuYfed8DxVxQzYX-beqq75SDlYN6m3VBXDGltBr0qIGPydAuaJYjgkr3ib4xaKKvbPrrYTD9QNZkQFJ-ZH0fGQCQUE0uIZ4GcBci8ITCgx=w833-h485-no?authuser=1)
+
+- Recall that each word is now represented by a **vector.**
+- In spacy each of these vectors has 300 dimensions. 
+- This means we can use Cosine Similarity to measure how similar word vectors are to each other.
+- This means we can also perform vector arithmetic with the word vectors.
+  - **new_vector = king - man + woman**
+- This creates new vectors (not directly associated with a word) that we can then attempt to find most similar vectors to.
+  - **new_vector closest to vector for queen**
+
+- Interesting relationships can also be established between the word vectors
+
 ### Sentiment Analysis
+
+- We’ve already explored text classification and using it to predict sentiment labels on pre-labeled movie reviews.
+- But what if we don’t already have those labels?
+- Are there methods of attempting to discern sentiment on raw unlabeled text?
+- VADER (Valence Aware Dictionary for sEntiment Reasoning) is a model used for text sentiment analysis that is sensitive to both polarity (positive/negative) and intensity (strength) of emotion.
+- It is available in the NLTK package and can be applied directly to unlabeled text data.
+- Primarily, VADER sentiment analysis relies on a dictionary which maps lexical features to emotion intensities called sentiment scores. 
+- The sentiment score of a text can be obtained by summing up the intensity of each word in the text.
+- For example, words like “love”, “like”, “enjoy”, “happy” all convey a **positive** sentiment.
+- VADER is intelligent enough to understand basic context of these words, such as “**did not love**” as a negative sentiment.
+- It also understands capitalization and punctuation, such as “**LOVE!!!!**”
+- Sentiment Analysis on raw text is always challenging however, due to a variety of possible factors:
+  - Positive and Negative sentiment in the same text data.
+  - Sarcasm using positive words in a negative way.
+
+- Let’s explore using VADER sentiment analysis with NLTK and Python!
 
 ## Topic Modeling
 
