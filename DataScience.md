@@ -204,13 +204,40 @@ for x, y in zip(df['x'], df['y']):
 - Regular expressions allow for pattern searching in a text document.
 - The syntax for regular expressions can be very intimidating at first.
 - For special code, you need to use backslash allow python to understand that it is a special code.
-
 - special code
   - ^:以...開頭
   - $：以...結尾
 - Sample Code
-  - ![Regular Expressions](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/00-Python-Text-Basics/02-Regular-Expressions.ipynb)
+  - [Regular Expressions](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/00-Python-Text-Basics/02-Regular-Expressions.ipynb)
+- functions
+  - re.search:在一個字符串中搜索匹配正則表達式的第一個位置，返回match對象
+  - re.match：從一個字符串的開始位置起匹配正則表達式，返回match對象
+  - re.findall：搜索字符串，以列表類型返回全部能匹配的字串
+  - re.split：將一個字符串按照正則表達式匹配結果進行分割，返回列表類型
+  - re.finditer：搜索字符串，返回一個匹配結果的迭代類型，每個迭代元素是match對象
+  - re.sub：在一個字符串中替換所有匹配正則表達式的字串，返回替換後的字符串
+
+- 用法
+
+  - 函數式用法(一次性操作)
+
+    ```python
+    rst = re.search(r'[1-9]\d{5}', 'BIT 100081')
+    ```
+
+  - 物件式用法(多次操作)
+
+    將正則表達式的字符形式編譯成正則表達式對象
+
+    ```python
+    pat = re.compile(r'[1-9]\d{5}')
+    rst = pat.search('BIT 100081')
+    ```
+
+    
+
 - 參考資料
+  
   - [Regular expression operations](https://docs.python.org/3.9/library/re.html)
 
 ### Pandas
@@ -6524,9 +6551,23 @@ https://pycrawler.cupoy.com/
 
   「HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺 服器之間溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如 何傳輸資料。」
 
+  - get: 請求獲取url位置的資源
+
+  - head：請求獲取URL位置資源的響應消息報告，即獲取資源的頭部信息
+
+    > 網站很大，或只想快速取得重要訊息時使用
+
+  - post：請求向URL位置的資源後附加新的數據
+
+  - put：請求向URL位置存儲一個資源，覆蓋原URL位置的資源
+
+  - patch：請求局部更新URL位置的資源，及改變該處資源的部分內容
+
+  - delete：請求刪除URL位置存儲的資源
+
 - Request & Response
 
-  HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請 求」，伺服器端根據請求回傳⼀個「Response 回覆」
+  HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根據請求回傳⼀個「Response 回覆」
 
 - Request 可以分成幾種⽅法
 
@@ -6907,6 +6948,12 @@ https://pycrawler.cupoy.com/
 
 ## Scrapy爬蟲框架
 
+Scrapy 是為了持續運行設計的專業爬蟲框架
+
+簡單&一次性的任務：requests
+
+大量&重複性的任務：Scrapy
+
 ### 多網頁爬蟲實作策略介紹
 
 - 多網⾴爬蟲概念
@@ -6960,6 +7007,15 @@ https://pycrawler.cupoy.com/
     - Google 對於 robots.txt 的解釋，包含⽤途與限制 
   - [google/robotstxt](https://github.com/google)
     - Google 在 2019.07 開放 robots.txt 的解析器，該程式⼀直被 ⽤於 Google engine 服務，後來甚⾄發展成 Robots Exclusion Protocol (REP) 標準
+
+### Scrapy常用命令
+
+- startproject：創建一個新工程
+- genspider：創建一個爬蟲
+- settings：獲得爬蟲配置信息
+- crawl：運行一個爬蟲
+- list：列出工程中所有爬蟲
+- shell：啟動URL調試命令行
 
 ### 建立流程 + 送出請求
 
@@ -7182,6 +7238,27 @@ https://pycrawler.cupoy.com/
     - [Python爬蟲系统學習⼗⼀：常⾒反爬蟲機制與應對⽅法](https://blog.csdn.net/guangyinglanshan/article/details/79043612)
     - [Python爬蟲筆記（六）— 應對反爬策略](https://blog.csdn.net/dhaiuda/article/details/81410535)
 
+### 編碼
+
+```python
+import requests
+resp = requests.get('http://www.baidu.com')
+resp.status_code
+>>>200
+resp.text
+>>># 這裡會出現許多亂碼看不懂
+# 修正編碼
+r.encoding
+>>> 'ISO-8859-1'
+r.apparent_encoding
+>>>'utf-8'
+r.encoding = 'uf-8'
+r.text
+>>> # 正常顯示內容
+```
+
+
+
 ### 反爬：瀏覽器標頭與基本資訊
 
 - 檢查 HTTP 的發送請求⽅是否合法
@@ -7229,6 +7306,11 @@ https://pycrawler.cupoy.com/
      'user-agent': '...'
     } 
     ```
+
+### Robots協議
+
+- Https://www.jd.com/robots.txt
+- 網頁允許/不允許的爬蟲權限與內容
 
 ### 反爬：驗證碼處理
 
