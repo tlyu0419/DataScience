@@ -5715,11 +5715,17 @@ We can think of this as a powerful version of Regular Expression where we actual
 - In spacy each of these vectors has 300 dimensions. 
 - This means we can use Cosine Similarity to measure how similar word vectors are to each other.
 - This means we can also perform vector arithmetic with the word vectors.
+  
   - **new_vector = king - man + woman**
 - This creates new vectors (not directly associated with a word) that we can then attempt to find most similar vectors to.
-  - **new_vector closest to vector for queen**
-
+  
+- **new_vector closest to vector for queen**
+  
 - Interesting relationships can also be established between the word vectors
+
+- Ref
+  - [Semantics-and-Word-Vectors.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/04-Semantics-and-Sentiment-Analysis/00-Semantics-and-Word-Vectors.ipynb)
+  - 
 
 ### Sentiment Analysis
 
@@ -5738,6 +5744,9 @@ We can think of this as a powerful version of Regular Expression where we actual
   - Sarcasm using positive words in a negative way.
 
 - Let’s explore using VADER sentiment analysis with NLTK and Python!
+
+- Ref
+  - [Sentiment-Analysis.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/04-Semantics-and-Sentiment-Analysis/01-Sentiment-Analysis.ipynb)
 
 ## Topic Modeling
 
