@@ -2293,18 +2293,18 @@ $$
   regressor = DecisionTreeRegressor(random_state = 0)
   regressor.fit(X, y)
   
+  from sklearn.tree import DecisionTreeClassifier
+    classifier = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+    classifier.fit(X_train, y_train)
   ```
 
-from sklearn.tree import DecisionTreeClassifier
-  classifier = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
-  classifier.fit(X_train, y_train)
-  ```
-  
   - Criterion: 衡量資料相似程度的 metric
     - clf：gini，entropy
   - Max_depth: 樹能⽣長的最深限制
   - Min_samples_split: ⾄少要多少樣本以上才進⾏切分
   - Min_samples_lear: 最終的葉⼦ (節點) 上⾄少要有多少樣本
+
+
 
 #### Random Forest
 
@@ -2344,24 +2344,20 @@ from sklearn.tree import DecisionTreeClassifier
 - 使⽤ Sklearn 中的隨機森林
 
   ```python
-  from sklearn.ensemble import RandomForestRegressor
-  reg = RandomForestRegressor()
+from sklearn.ensemble import RandomForestRegressor
+reg = RandomForestRegressor()
   
-  from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
-  clf.fit(X_train, y_train)
+clf.fit(X_train, y_train)
   ```
 
   - n_estimators:決策樹的數量
   - max_features:如何選取 features
 
-
+[隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
 
 #### Gradient Boosting
-
-> - 了解梯度提升機的基本原理與架構
-> - 梯度提升機與決策樹/隨機森林的差異
-> - 梯度提升機的梯度從何⽽來，⼜是怎麼計算的
 
 - 隨機森林使⽤的集成⽅法稱為 Bagging (Bootstrap aggregating)，⽤抽樣的資料與 features ⽣成每⼀棵樹，最後再取平均
 
@@ -2377,9 +2373,8 @@ clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_s
 
 - 要怎麼修正前⾯學錯的地⽅呢？計算 Gradient!
 
-- 每次⽣成樹都是要修正前⾯樹預測的錯誤，並乘上 learning rate 讓後⾯的樹能有更多學習的空間，緩解原本決策樹容易過擬和的問題，實務上的結果通常也會比
-  決策樹來得好
-
+- 每次⽣成樹都是要修正前⾯樹預測的錯誤，並乘上 learning rate 讓後⾯的樹能有更多學習的空間，緩解原本決策樹容易過擬和的問題，實務上的結果通常也會比決策樹來得好
+  
 - Bagging 與 Boosting 的差別
 
   - 樣本選擇上
