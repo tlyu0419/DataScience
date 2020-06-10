@@ -786,8 +786,6 @@ plt.style.use('default') # 不需設定就會使⽤預設
     - Gaussian (Normal dist)
     - Cosine
 
-    ![](https://lh3.googleusercontent.com/n2zOyNKlVfUkdhQPjOhQy8zfsAAVJQHuHp4vz7BxWlts7nfeG4Zoq-tJlSx6RM2om16prSokqtql85PYq2NLCtLbHtX4AN6ijwyC43vNEyC5C84RnMpSDMHjGLBF_EK0ZbaTEnOH-ci2ZdBeJ8lWxcQPLXZh7ROJWdE4rJIy6LiW-hrrrhCXo7f1kiqSWtZ7QdjRf70bZ2KHL6LMe6o9VwZ96ur7yGS4M-WAOF81FIADIvVS1vrl0U-_LwlksM5QfQMfYIgqJ9rkpGKIUw2UoLy0GZnezP7MGv3L_7wRlmbqNLl46qVi2RZIdEBoZwLZljAboj4UnjDGIWWnIZ9lS0D8a0n__xUJGx4zQsWKIqb8GPX2cEF796eUqhxQqFaR_vkzJOTe9pgOYDwQLY8beZX6cfyJGx0-o3fl3-v_GwnxKnGZceXEdZMLIT_Ovo2ADi7jXiU4GXVhy-NCITPH6gxy87H0j7wLK7cwv_ez7C0XhWlmem9iQ9UymitpbrqBClSfoqXNJmJCZ7H4wg9-wPU19AkqsXp9ZdEr1hBktawqVt7tu6EBl4uIjmWqKzmnLbCBO9UVGFax66hTFtnRTfGWI48rg0My1aRoYuNyrHWK-hH5BF5hRqNXL7vvQZf_S4R01NHoukwMbIIjZ7gKvE51kAzEY7QRo_wr5mbU1jkeSzB9aBBhxrOjgPjQCnxWGz6JP6VnaZ-_HyjpfUUDzLHE=w703-h521-no)
-
 - **Subplots**
 
   - 有很多相似的資訊要呈現時 (如不同組別的比較)
