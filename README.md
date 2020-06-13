@@ -5544,11 +5544,11 @@ https://zhuanlan.zhihu.com/p/25928551
   python -m spacy download en
   ```
 
-- Sample Code
+- Ref
 
-  - [Spacy-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
+  - [Spacy-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural Language Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
 
-- [Chinese_models_for_SpaCy](https://github.com/howl-anderson/Chinese_models_for_SpaCy)
+  - [Chinese_models_for_SpaCy](https://github.com/howl-anderson/Chinese_models_for_SpaCy)
 
 ## Process
 
@@ -5570,9 +5570,9 @@ https://zhuanlan.zhihu.com/p/25928551
 - Named Entities
   
   - The language model recognizes that certain words are organizational names while others are locations, and still other combinations relate to money, dates, etc. Named entities are accessible through the ents property of a Doc object.
-- Sample Code
+- Ref
   
-  - [Tokenization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/01-Tokenization.ipynb)
+  - [Tokenization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/01-Tokenization.ipynb)
 
 ### Stemming
 
@@ -5580,8 +5580,8 @@ https://zhuanlan.zhihu.com/p/25928551
 - For instance, searching for "boat" might also return "boats" and "boating". Here, "boat" would be the stem for [boat, boater, boating, boats].
 - Stemming is a somewhat crude method for cataloging related words; it essentially chops off letters from the end until the stem is reach.
 - This works fairly well in most cases, but unfortunately English has many exceptions where a more sophisticated process is required.
-- Sample Code
-  - [Stemming.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/02-Stemming.ipynb)
+- Ref
+  - [Stemming.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/02-Stemming.ipynb)
 
 
 
@@ -5592,8 +5592,8 @@ https://zhuanlan.zhihu.com/p/25928551
 - Lemmatization is typically seen as much more informative than simple stemming, which is whySpacy has opted to only have Lemmatization avaliable instead of stemming.
 
 - Lemmatization looks at surrounding text to determine a given word's part of speech, it does not categorize phrases.
-- Sample Code
-  - [Lemmatization.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/03-Lemmatization.ipynb)
+- Ref
+  - [Lemmatization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/03-Lemmatization.ipynb)
 
 ### StopWords
 
@@ -5601,7 +5601,7 @@ https://zhuanlan.zhihu.com/p/25928551
 - We call these stop words and they can be filtered from the text to be processed.
 - Spacy holds a built-in list of smoe 305 English stop words.
 - Sample Code
-  - [Stop-Words.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/04-Stop-Words.ipynb)
+  - [Stop-Words.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/04-Stop-Words.ipynb)
 
 ### Vocubulary and Phrase Matching
 
@@ -5610,13 +5610,15 @@ Identify and label specific phrases that match patterns we can define ourselves.
 We can think of this as a powerful version of Regular Expression where we actually take parts of speech into account for our pattern search.
 
 - Rule-based Matching
+
 - PhraseMatcher
 
-- Sample Code
-  - [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
-
-- 參考資料
+- Ref
+  
+- [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
+  
   - https://spacy.io/usage/linguistic-features#section-rule-based-matching
+  
 
 ### Speech Tagging
 
@@ -5628,7 +5630,7 @@ We can think of this as a powerful version of Regular Expression where we actual
   - That's exactly what spaCy is designed to do: you put in raw text, and get back a **Doc** object, that comes with a variety of annotations.
   - In this lecture we'll take a closer look at coarse POS tags (noun, verb, adjective) and fine-grained tags (plural noun, past-tense verb, superlative adjective).
 - Ref
-  - [POS-Basics.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
+  - [POS-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
 
 ### Named Entity Recognition
 
@@ -5637,15 +5639,15 @@ We can think of this as a powerful version of Regular Expression where we actual
 - In this continued lecture, we will go over how to add in multiple phrases as NERs.
 - For example, if we are working with a vacuum company, we might want to add both **vacuum cleaner** and **vacuum-cleaner** as PROD (product) NERs.
 - Ref
-  - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
+  - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
 
-### Sentence Segmentation with Spacy
+### Sentence Segmentation
 
 - In Spacy Basics we saw briefly how Doc objects are divided into sentences.
 - In this lecture we'll learn how sentence segmentation works, and how to set our own segmentation rules to break up docs into sentences based on our own rules.
 
 - Ref
-  - [Sentence-Segmentation.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/04-Sentence-Segmentation.ipynb)
+  - [Sentence-Segmentation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/04-Sentence-Segmentation.ipynb)
   - [POS-Assessment-Solutions.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/06-POS-Assessment-Solutions.ipynb)
   - [POS-Challenge.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/07-POS-Challenge (optional).ipynb)
 
@@ -5675,7 +5677,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - Ref
   - [SciKit-Learn-Primer.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/00-SciKit-Learn-Primer.ipynb)
-  - [Feature-Extraction-from-Text.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/01-Feature-Extraction-from-Text.ipynb)
+  - [Feature-Extraction-from-Text.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/03-Text-Classification/01-Feature-Extraction-from-Text.ipynb)
   - [Text-Classification-Assessment-Solution.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/04-Text-Classification-Assessment-Solution.ipynb)
 
 ## Sentiment Analysis
@@ -5685,8 +5687,11 @@ We can think of this as a powerful version of Regular Expression where we actual
 - At the command line download the medium or large spacy english models:
   - **python -m spacy download en_core_web_md**
   - **python -m spacy download en_core_web_lg**
-
 - Now that you have the larger models that contain the word vectors, let’s discuss how word vectors are created.
+- Many of the reviews had positive things to say about a movie reserving final judgment to just the very last sentence. So even a negative review can highlight positive things.
+- Maybe saying oh the actors were really good in this movie but the script was horrible leading to a bad movie.
+- That sort of dichotomy within a single review can be really hard for something like Vader to the text.
+- And sometimes it takes something more robust like TFA IDF in order to create your own sort of classification
 
 ### word Vectors
 
