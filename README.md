@@ -5546,7 +5546,7 @@ https://zhuanlan.zhihu.com/p/25928551
 
 - Ref
 
-  - [Spacy-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural Language Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
+  - [Spacy-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/00-Spacy-Basics.ipynb)
 
   - [Chinese_models_for_SpaCy](https://github.com/howl-anderson/Chinese_models_for_SpaCy)
 
@@ -5572,7 +5572,7 @@ https://zhuanlan.zhihu.com/p/25928551
   - The language model recognizes that certain words are organizational names while others are locations, and still other combinations relate to money, dates, etc. Named entities are accessible through the ents property of a Doc object.
 - Ref
   
-  - [Tokenization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/01-Tokenization.ipynb)
+  - [Tokenization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/01-Tokenization.ipynb)
 
 ### Stemming
 
@@ -5581,7 +5581,7 @@ https://zhuanlan.zhihu.com/p/25928551
 - Stemming is a somewhat crude method for cataloging related words; it essentially chops off letters from the end until the stem is reach.
 - This works fairly well in most cases, but unfortunately English has many exceptions where a more sophisticated process is required.
 - Ref
-  - [Stemming.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/02-Stemming.ipynb)
+  - [Stemming.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/02-Stemming.ipynb)
 
 
 
@@ -5593,7 +5593,7 @@ https://zhuanlan.zhihu.com/p/25928551
 
 - Lemmatization looks at surrounding text to determine a given word's part of speech, it does not categorize phrases.
 - Ref
-  - [Lemmatization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/03-Lemmatization.ipynb)
+  - [Lemmatization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/03-Lemmatization.ipynb)
 
 ### StopWords
 
@@ -5601,7 +5601,7 @@ https://zhuanlan.zhihu.com/p/25928551
 - We call these stop words and they can be filtered from the text to be processed.
 - Spacy holds a built-in list of smoe 305 English stop words.
 - Sample Code
-  - [Stop-Words.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/04-Stop-Words.ipynb)
+  - [Stop-Words.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/04-Stop-Words.ipynb)
 
 ### Vocubulary and Phrase Matching
 
@@ -5615,7 +5615,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - Ref
   
-- [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
+- [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
   
   - https://spacy.io/usage/linguistic-features#section-rule-based-matching
   
@@ -5630,7 +5630,7 @@ We can think of this as a powerful version of Regular Expression where we actual
   - That's exactly what spaCy is designed to do: you put in raw text, and get back a **Doc** object, that comes with a variety of annotations.
   - In this lecture we'll take a closer look at coarse POS tags (noun, verb, adjective) and fine-grained tags (plural noun, past-tense verb, superlative adjective).
 - Ref
-  - [POS-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
+  - [POS-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/00-POS-Basics.ipynb)
 
 ### Named Entity Recognition
 
@@ -5639,7 +5639,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 - In this continued lecture, we will go over how to add in multiple phrases as NERs.
 - For example, if we are working with a vacuum company, we might want to add both **vacuum cleaner** and **vacuum-cleaner** as PROD (product) NERs.
 - Ref
-  - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
+  - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
 
 ### Sentence Segmentation
 
@@ -5647,9 +5647,9 @@ We can think of this as a powerful version of Regular Expression where we actual
 - In this lecture we'll learn how sentence segmentation works, and how to set our own segmentation rules to break up docs into sentences based on our own rules.
 
 - Ref
-  - [Sentence-Segmentation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/04-Sentence-Segmentation.ipynb)
-  - [POS-Assessment-Solutions.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/06-POS-Assessment-Solutions.ipynb)
-  - [POS-Challenge.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/02-Parts-of-Speech-Tagging/07-POS-Challenge (optional).ipynb)
+  - [Sentence-Segmentation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/04-Sentence-Segmentation.ipynb)
+  - [POS-Assessment-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/06-POS-Assessment-Solutions.ipynb)
+  - [POS-Challenge.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/07-POS-Challenge%20(optional).ipynbb)
 
 ## Text Classification
 
@@ -5676,9 +5676,9 @@ We can think of this as a powerful version of Regular Expression where we actual
   - TF-IDF allows us to understand the context of words across an entire corpus of documents, instead of just its relative importance in a single document.
 
 - Ref
-  - [SciKit-Learn-Primer.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/00-SciKit-Learn-Primer.ipynb)
-  - [Feature-Extraction-from-Text.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural%20Language%20Processing/Natural_Language_Processing_with_Python/03-Text-Classification/01-Feature-Extraction-from-Text.ipynb)
-  - [Text-Classification-Assessment-Solution.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/03-Text-Classification/04-Text-Classification-Assessment-Solution.ipynb)
+  - [SciKit-Learn-Primer.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/03-Text-Classification/00-SciKit-Learn-Primer.ipynb)
+  - [Feature-Extraction-from-Text.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/03-Text-Classification/01-Feature-Extraction-from-Text.ipynb)
+  - [Text-Classification-Assessment-Solution.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/03-Text-Classification/04-Text-Classification-Assessment-Solution.ipynb)
 
 ## Sentiment Analysis
 
@@ -5725,7 +5725,6 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - Ref
   - [Semantics-and-Word-Vectors.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/04-Semantics-and-Sentiment-Analysis/00-Semantics-and-Word-Vectors.ipynb)
-  - 
 
 ### Sentiment Analysis
 
@@ -5746,13 +5745,98 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Let’s explore using VADER sentiment analysis with NLTK and Python!
 
 - Ref
-  - [Sentiment-Analysis.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/04-Semantics-and-Sentiment-Analysis/01-Sentiment-Analysis.ipynb)
+  - [Sentiment-Analysis.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/04-Semantics-and-Sentiment-Analysis/01-Sentiment-Analysis.ipynb)
+  - [Sentiment-Analysis-Project.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/04-Semantics-and-Sentiment-Analysis/02-Sentiment-Analysis-Project.ipynb)
+  - [Sentiment-Analysis-Assessment-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/04-Semantics-and-Sentiment-Analysis/04-Sentiment-Analysis-Assessment-Solutions.ipynb)
 
 ## Topic Modeling
 
+- Understand Topic Modeling
+- Learn Latent Dirichlet Allocation
+- Implement LDA
+- Understand Non-Negative Matrix Factorization
+- Implement NMF
+- Apply LDA and NMF with a project
+
+### Overview
+
+- Topic Modeling allows for us to efficiently analyze large volumes of text by clustering documents into topics.
+- A large amount of text data is **unlabeled** meaning we won’t be able to apply our previous supervised learning approaches to create machine learning models for the data!
+- If we have **unlabeled** data, then we can attempt to “discover” labels.
+- In the case of text data, this means attempting to discover clusters of documents, grouped together by topic.
+- A very important idea to keep in mind here is that we don’t know the “correct” topic or “right answer”!
+- All we know is that the documents clustered together share similar topic ideas.
+- It is up to the user to identify what these topics represent.
+- We will begin by examining how Latent Dirichlet Allocation can attempt to discover topics for a corpus of documents!
+
 ### Latent Dirichlet Allocation
 
+- Johann Peter Gustav Lejeune Dirichlet was a German mathmatician in the 1800s who contributed widely to the field of modern mathematics.
+- There is a probability distribution named after him “Dirichlet Distribution”.
+- Latent Dirichlet Allocation is based off this probability distribution.
+- In 2003 LDA was first published as a graphical model for topic discovery in *Journal of Machine Learning Research* by David Blei, Andrew Ng and Michael I. Jordan.
+- Assumptions of LDA for Topic Modeling
+  - Documents with similar topics use similar groups of words
+  - Latent topics can then be found by searching for groups of words that frequently occur together in documents across the corpus.
+  - Documents are probability distributions over latent topics.
+  - Topics themselves are probability distributions over words.
+- LDA represents documents as mixtures of topics that split out words with certain probabilities. 
+- It assumes that documents are produced in the following fashion:
+  - Decide on the number of words N the document will have.
+  - Choose a topic mixture for the document (according to a Dirichlet distribution over a fixed set of K topics). 
+  - e.g. 60% business, 20% politics, 10% food
+- Generate each word in the document by:
+  - First picking a topic according to the multinomial distribution that you sampled previously (60% business, 20% politics, 10% food)
+  - Using the topic to generate the word itself (according to the topic’s multinomial distribution). 
+  - For example, if we selected the food topic, we might generate the word “apple” with 60% probability, “home” with 30% probability, and so on.
+- Assuming this generative model for a collection of documents, LDA then tries to backtrack from the documents to find a set of topics that are likely to have generated the collection.
+- Now imagine we have a set of documents. 
+- We’ve chosen some fixed number of K topics to discover, and want to use LDA to learn the topic representation of each document and the words associated to each topic. 
+- Go through each document, and randomly assign each word in the document to one of the K topics.
+- This random assignment already gives you both topic representations of all the documents and word distributions of all the topics (note, these initial random topics won’t make sense).
+- Now we iterate over every word in every document to improve these topics.
+- For every word in every document and for each topic **t** we calculate:
+  - p(topic **t** | document **d**) = the proportion of words in document **d** that are currently assigned to topic **t**
+  - p(word **w** | topic **t**) = the proportion of assignments to topic **t** over all documents that come from this word **w**
+
+- Reassign w a new topic, where we choose topic t with probability **p(topic t | document d)** * **p(word w | topic t)** 
+- This is essentially the probability that topic t generated word w
+- After repeating the previous step a large number of times, we eventually reach a roughly steady state where the assignments are acceptable.
+- At the end we have each document assigned to a topic.
+- We also can search for the words that have the highest probability of being assigned to a topic
+- We end up with an output such as:
+  - Document assigned to Topic #4
+  - Most common words (highest probability) for Topic #4:
+    - [‘cat’,’vet’,’birds’,’dog’,...,’food’,’home’]
+  - It is up to the user to interpret these topics.
+- Two important notes:
+  - The user must decide on the amount of topics present in the document.
+  - The user must interpret what the topics are.
+
 ### Non-negative Matrix Factorization
+
+- Non-negative Matrix Factorization is an unsupervised algorithm that simultaneously performs dimensionality reduction and clustering.
+- We can use it in conjunction with TF-IDF to model topics across documents.
+- Given a non-negative matrix A, find k-dimension approximation in terms of non-negative factors W and H 
+- Approximate each object (i.e. column of A) by a linear combination of k reduced dimensions or “basis vectors” in W.
+- Each basis vector can be interpreted as a cluster. The memberships of objects in these clusters encoded by H.
+- Input: Non-negative data matrix (**A**), number of basis vectors (**k**), initial values for factors W and H (e.g. random matrices).
+- Objective Function: Some measure of reconstruction error between A and the approximation WH
+- Expectation–maximization optimisation to refine W and H in order to minimise the objective function. Common approach is to iterate between two multiplicative update rules until convergence
+- Step
+  1. Construct vector space model for documents (after stopword filtering), resulting in a term-document matrix A.
+  2. Apply TF-IDF term weight normalisation to A
+  3. Normalize TF-IDF vectors to unit length.
+  4. Initialise factors using NNDSVD on A.
+  5. Apply Projected Gradient NMF to A.
+
+- Basis vectors: the topics (clusters) in the data.Coefficient matrix: the membership weights for documents relative to each topic (cluster).
+- Just like LDA, we will need to select the number of expected topics beforehand (the value of **k**)!
+- Also just like with LDA, we will have to interpret the topics based off the coefficient values of the words per topic.
+- Ref
+  - [Latent-Dirichlet-Allocation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/00-Latent-Dirichlet-Allocation.ipynb)
+  - [Non-Negative-Matrix-Factorization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/01-Non-Negative-Matrix-Factorization.ipynb)
+  - [LDA-NMF-Assessment-Project-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/03-LDA-NMF-Assessment-Project-Solutions.ipynb)
 
 ### Topic Modeling Projects with LDA and NMF
 
