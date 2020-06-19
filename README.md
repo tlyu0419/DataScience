@@ -5638,6 +5638,8 @@ We can think of this as a powerful version of Regular Expression where we actual
 - what if we have several terms to add as possible NERs?
 - In this continued lecture, we will go over how to add in multiple phrases as NERs.
 - For example, if we are working with a vacuum company, we might want to add both **vacuum cleaner** and **vacuum-cleaner** as PROD (product) NERs.
+- 無需提前設定關鍵字，利用人工智能技術自動識別文本中出現的公司名/機構名、人名、職位、時間、地點、品牌、產品及各種自定義實體資訊。
+- 應用場景：信息提取，關係抽取，句法分析，機器翻譯，語義理解，知識圖譜，輿情分析，問答系統Chatbot等。
 - Ref
   - [Named-Entity-Recognition.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/02-Parts-of-Speech-Tagging/02-NER-Named-Entity-Recognition.ipynb)
 
@@ -5693,6 +5695,14 @@ We can think of this as a powerful version of Regular Expression where we actual
 - That sort of dichotomy within a single review can be really hard for something like Vader to the text.
 - And sometimes it takes something more robust like TFA IDF in order to create your own sort of classification
 
+- 通過機器學習、深度學習、和自然語言處理等技術自動識別文本所表達的情緒，幫助用戶即時獲取預警情報和洞悉重要資訊。
+- 應用場景：
+  - 口碑分析、營銷評估與市場調查：自動分析海量媒體數據中用戶所表達的情感傾向，洞察客戶相關品牌、產品或競品的運營效果與口碑優劣，了解用戶偏好及行業趨勢，為市場推廣、產品研發、商業分析和決策提供指導。
+
+  - 全媒體監測與危機公關服務：可結合慧科的熱點話題及事件檢測與追蹤技術檢測負面情緒與事件，進行近乎實時的情報監測、突發事件預警、品牌危機跟蹤，幫助用戶及時發現並了解所關注話題/事件的發展動態，為下一步決策提供有效的指引。
+
+  - 金融市場洞察與風險管控：自動偵探全媒體負面財經報導，結合社交媒體分析大眾投資心理，第一時間掌握金融市場動態、發掘投資良機、或偵測信貸風險。
+
 ### word Vectors
 
 - Word2vec is a two-layer neural net that processes text. 
@@ -5724,6 +5734,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Interesting relationships can also be established between the word vectors
 
 - Ref
+  
   - [Semantics-and-Word-Vectors.ipynb](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/04-Semantics-and-Sentiment-Analysis/00-Semantics-and-Word-Vectors.ipynb)
 
 ### Sentiment Analysis
@@ -5775,6 +5786,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 - There is a probability distribution named after him “Dirichlet Distribution”.
 - Latent Dirichlet Allocation is based off this probability distribution.
 - In 2003 LDA was first published as a graphical model for topic discovery in *Journal of Machine Learning Research* by David Blei, Andrew Ng and Michael I. Jordan.
+  - [Latent Dirichlet Allocation](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
 - Assumptions of LDA for Topic Modeling
   - Documents with similar topics use similar groups of words
   - Latent topics can then be found by searching for groups of words that frequently occur together in documents across the corpus.
@@ -5798,7 +5810,6 @@ We can think of this as a powerful version of Regular Expression where we actual
 - For every word in every document and for each topic **t** we calculate:
   - p(topic **t** | document **d**) = the proportion of words in document **d** that are currently assigned to topic **t**
   - p(word **w** | topic **t**) = the proportion of assignments to topic **t** over all documents that come from this word **w**
-
 - Reassign w a new topic, where we choose topic t with probability **p(topic t | document d)** * **p(word w | topic t)** 
 - This is essentially the probability that topic t generated word w
 - After repeating the previous step a large number of times, we eventually reach a roughly steady state where the assignments are acceptable.
@@ -5920,95 +5931,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 - 自动标注客户问询
 - 将新闻文章按主题分类
 
-## 單篇文本處理
 
-> 利用自然語言處理與人工智能，實現針對單篇文本的全自動處理、分析與洞察
-
-### 命名實體識別 NER
-
-> 無需提前設定關鍵字，利用人工智能技術自動識別文本中出現的公司名/機構名、人名、職位、時間、地點、品牌、產品及各種自定義實體資訊。
-
-#### 特色與優勢
-
-- 支持中、英文跨語言實體識別
-- 內置9種實體類別, 亦可根據客戶需求定製
-- 基於專業編輯高品質海量訓練集加20年積累行業詞典
-- 結合具有複雜語言學特徵的機器學習模型和最先進的深度學習模型
-- 基於反饋的在線學習機制，不斷優化模型準確率
-- 開放領域數據集取得優越的識別效果，業界領先
-
-#### 應用場景
-
-命名實體識別是文本信息分析和理解的一個重要基礎工具。命名實體識別可以支持以下的應用：信息提取，關係抽取，句法分析，機器翻譯，語義理解，知識圖譜，輿情分析，問答系統Chatbot等。
-
-
-
-### 情感分析
-
-> 通過機器學習、深度學習、和自然語言處理等技術自動識別文本所表達的情緒，幫助用戶即時獲取預警情報和洞悉重要資訊。慧科專有技術在判斷文章整體情感傾向之外，亦支持基於主體或實體的情感分析。
-
-#### **特色與優勢**
-
-- 跨平台、跨行業、跨語言多樣情感分析模型
-- 基於全文、主體及實體的多維度關聯分析
-- 採用語言學特徵、機器學習、深度學習相結合的技術
-- 靈活的客製化服務，滿足客戶不同業務需求
-- 分析可靠性備受資深媒體信賴 ，成功助力
-  - 《每日經濟新聞》中國上市公司口碑榜
-  - 《21財經搜索》中國P2P行業全媒體金口碑榜
-  - 《第一財經週刊》金字招牌榜
-
-#### **應用場景**
-
-- 口碑分析、營銷評估與市場調查：自動分析海量媒體數據中用戶所表達的情感傾向，洞察客戶相關品牌、產品或競品的運營效果與口碑優劣，了解用戶偏好及行業趨勢，為市場推廣、產品研發、商業分析和決策提供指導。
-
-- 全媒體監測與危機公關服務：可結合慧科的熱點話題及事件檢測與追蹤技術檢測負面情緒與事件，進行近乎實時的情報監測、突發事件預警、品牌危機跟蹤，幫助用戶及時發現並了解所關注話題/事件的發展動態，為下一步決策提供有效的指引。
-
-- 金融市場洞察與風險管控：自動偵探全媒體負面財經報導，結合社交媒體分析大眾投資心理，第一時間掌握金融市場動態、發掘投資良機、或偵測信貸風險。
-
-### 話題分類
-
-> 依據文本內容自動打上相應話題標籤。支持14個新聞版塊類別（如財經、體育、科技等），10個行業分類（如汽車、奢侈品、飲食等），以及近400個細分子話題標籤（如自然災害、食品安全、條例違規、高管變動等）。同時支持快速添加並識別各種定製話題。
-
-#### **特色與優勢**
-
-- 多維度中英文文本話題自動分類
-- 語義向量模型與深度學習相結合的半監督學習技術
-- 高效定制化工具，支持快速話題擴展
-- 經過實際產品檢驗的優越分類效果
-
-#### **應用場景**
-
-文本話題標籤分類是文本信息分析和理解的一個重要基礎功能，可以用於支持信息檢索、用戶畫像、情感分析、知識圖譜、輿情分析、事件預警、自動問答系統Chatbot等多種應用.
-
-### 文章過濾
-
-> 即時有效過濾文本中違法違規或有害資訊及惡意行銷廣告、廢文段落等無用資訊，幫助提升產品使用者體驗，降低企業運營風險，保護業務健康發展。
-
-#### **特色與優勢**
-
-- 提供色情、涉政、廣告等不同類別過濾
-- 支持多種細分類別廣告過濾
-- 提供篇章和段落級不同顆粒度文本過濾
-- 基於專業編輯高品質訓練樣本和語意向量模型的深度學習
-- 穩定可靠的精準分析、高效即時的處理性能
-
-#### **應用場景**
-
-- 自動化內容審核：可應用於社交媒體、網站論壇和APP的各種內容場景，包括發帖、評論、彈幕、聊天等。可自動準確識別和過濾這些場景的惡意文字和違規資訊，節省人力開支，有效降低運行成本及運行風險。
-- 有效市場訊息收集：文章過濾可幫助使用者排除惡意行銷廣告、色情、垃圾信息等噪音，更有效的收集互聯網上具商業價值的文本資訊以進行商業分析及決策。
-
-### 自動摘要
-
-> 基於自然語言處理技術，自動歸納文本大意，快速瞭解文本的核心要點，節省大量閱讀時間。國際自然語言處理及中文計算大會NLPCC2018評測第1名。
-
-#### 特色與優勢
-
-- 支持中英文跨語言自動文章摘要
-- 無監督式摘要生成技術，不依賴於訓練數據，勝任任何開放領域文本的自動摘要
-- 自主設計的算法流程，確保摘要覆蓋原文核心內容並流暢可讀，最大化摘要價值
-- 自動摘要準確性及可讀性經慧科專業編輯團隊驗證，業界領先
-- 國際自然語言處理及中文計算大會NLPCC2018評測第1名
 
 ### 關係抽取
 
@@ -6025,6 +5948,8 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - 客戶背景調查 (Know Your Customer)：通常的客戶背景調查解決方案缺乏從海量非結構化全媒體數據中提取目標客戶資料構建關係圖的手段。通過開放式關係抽取技術可以自動分析媒體報道，提取目標客戶的相關資訊，探尋關聯關係。
 - 知識圖譜構建與擴充：透過開放式關係抽取可從各式非結構化文本來源（如新聞、社群、年報等）找出更多結構化數據庫中缺乏的實體關係三元組，以最快的速度及豐富的資料更新知識圖譜。
+
+
 
 ## 多篇文本處理
 
