@@ -290,9 +290,6 @@ print(f'{today: %B %d, %Y}')
 
 ## 常用的 DataFrame 操作
 
-> 熟悉 python 常⽤套件 pandas 的操作⽅式，如排序、合
-> 併、分組操作、Indexing 等
-
 ### 轉換與合併 dataframe
 
 - pd.melt(df)
@@ -852,7 +849,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 
 
 
-## 資料預處理(Data Preprocessing)
+## Data Preprocessing
 
 剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。針對不同類型的變數，會有不同的清洗和處理方法：
 
