@@ -836,18 +836,16 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
   - [D3.js](https://d3js.org/)
   - [核密度估计基础-Part I](https://blog.csdn.net/david830_wu/article/details/66974189)
   - [核密度估计 Kernel Density Estimation(KDE)](https://blog.csdn.net/unixtch/article/details/78556499)
-
-  - [Subplots](https://matplotlib.org/examples/pylab_examples/subplots_demo.html)
+- [Subplots](https://matplotlib.org/examples/pylab_examples/subplots_demo.html)
   - [Multiple Subplots](https://jakevdp.github.io/PythonDataScienceHandbook/04.08-multiple-subplots.html)
   - [seaborn.jointplot](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
-
   - [heatmaps](https://matplotlib.org/gallery/images_contours_and_fields/image_annotated_heatmap.html)
-  - [Python可视化：Seaborn库热力图使用进阶](https://www.jianshu.com/p/363bbf6ec335)
+- [Python可视化：Seaborn库热力图使用进阶](https://www.jianshu.com/p/363bbf6ec335)
   - [Visualizing Data with Pairs Plots in Python](https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166)
   - [Pariplot](https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166)
   - [Gridplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
-
-
+  - [解決Python 3 Matplotlib與Seaborn視覺化套件中文顯示問題](https://medium.com/marketingdatascience/解決python-3-matplotlib與seaborn視覺化套件中文顯示問題-f7b3773a889b)
+  - [样式美化matplotlib.pyplot.style.use定制画布风格](https://zhuanlan.zhihu.com/p/37891729)
 
 ## Data Preprocessing
 
@@ -2742,6 +2740,10 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
   - [Multi-Armed Bandit: UCB (Upper Bound Confidence)](https://zhuanlan.zhihu.com/p/32356077)
   - [人工智慧與增強學習-2：多臂吃角子老虎機理論](https://taweihuang.hpd.io/2016/10/17/人工智慧與增強學習-2：多臂式吃角子老虎機理論/)
   - [什么是汤普森采样（Thompson sampling）？](https://www.zhihu.com/question/37212823)
+
+#### CA
+
+https://www.princexml.com/doc/troubleshooting/
 
 #### PCA
 
