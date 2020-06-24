@@ -5823,6 +5823,9 @@ We can think of this as a powerful version of Regular Expression where we actual
   - The user must decide on the amount of topics present in the document.
   - The user must interpret what the topics are.
 
+- Ref
+  - [Latent-Dirichlet-Allocation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/00-Latent-Dirichlet-Allocation.ipynb)
+
 ### Non-negative Matrix Factorization
 
 - Non-negative Matrix Factorization is an unsupervised algorithm that simultaneously performs dimensionality reduction and clustering.
@@ -5844,13 +5847,146 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Just like LDA, we will need to select the number of expected topics beforehand (the value of **k**)!
 - Also just like with LDA, we will have to interpret the topics based off the coefficient values of the words per topic.
 - Ref
-  - [Latent-Dirichlet-Allocation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/00-Latent-Dirichlet-Allocation.ipynb)
   - [Non-Negative-Matrix-Factorization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/01-Non-Negative-Matrix-Factorization.ipynb)
   - [LDA-NMF-Assessment-Project-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/03-LDA-NMF-Assessment-Project-Solutions.ipynb)
 
-### Topic Modeling Projects with LDA and NMF
+## Deep Learning for NLP
 
+- Understand basic overview of Deep Learning
+- Understand basics of LSTM and RNN
+- Use LSTM to generate text from source corpus
+- Create QA Chat Bots with Python
 
+### Introduction to Neural Networks
+
+- We’ve seen how a single perceptron behaves, now let’s expand this concept to the idea of a neural network!
+- Let’s see how to connect many perceptrons together and then how to represent this mathematically!
+
+- Multiple Perceptrons Network
+  - Input Layers
+    - Real values from the data
+  - Hidden Layers
+    - Layers in between input and output3 or more layers is “deep network”
+  - Output Layer
+    - Final estimate of the output
+- As you go forwards through more layers, the level of abstraction increases.
+- Let’s now discuss the activation function in a little more detail!
+  - sigmoid 
+  - tanh
+  - ReLU: ReLu tends to have the best performance in many situations.
+- Deep Learning libraries have these built in for us, so we don’t need to worry about having to implement them manually!
+- Now that we understand the basics of neural network theory, let’s move on to implementing and building our own neural network models with Keras!
+
+### Keras Basics
+
+- Let’s learn how to create a very simple neural network for classifying the famous Iris data set!
+- The iris data set contains measurements of flower petals and sepals and has corresponding labels to one of three classes (3 flower species).
+
+### Recurrent Neural Networks Theory
+
+- Examples of Sequences
+  - Time Series Data (Sales)
+  - Sentences
+  - Audio
+  - Car Trajectories
+  - Music
+- Cells that are a function of inputs from previous time steps are also known as *memory cells.*
+- RNN are also flexible in their inputs and outputs, for both sequences and single vector values.
+- We can also create entire layers of Recurrent Neurons...
+- RNN are also very flexible in their inputs and outputs.
+  - Sequence to Sequence
+  - Sequence to Vector
+  - Vector to Sequence
+- Now that we understand basic RNNs we’ll move on to understanding a particular cell structure known as LSTM (Long Short Term Memory Units).
+
+### LSTM and GRU
+
+- An issue RNN face is that after a while the network will begin to “forget” the first inputs, as information is lost at each step going through the RNN.
+- We need some sort of “long-term memory” for our networks.
+- The LSTM (Long Short-Term Memory) cell was created to help address these RNN issues.
+- Let’s go through how an LSTM cell works!
+- Keep in mind, there will be a lot of Math here! Check out the resource link for a full breakdown!
+- Fortunately Keras has a really nice API that makes LSTM and RNN easy to work with.
+- Coming up next, we’ll learn how to format data for RNNs and then how to use LSTM for text generation.
+
+### Text Generation With Python and Keras
+
+- Process Text
+- Clean Text
+- Tokenize the Text and create Sequences with Keras
+- Create the LSTM Based Model
+- Split the Data into Features and Labels
+  - X Features (First n words of Sequence)
+  - Y Label (Next Word after the sequence)
+- Fit the Model
+- Generate New Text Based off a Seed
+
+### Deep Learning QA Bot
+
+- We will be implementing a chat bot that can answer questions based on a “story” given to the bot.
+- We will use the BaBi dataset released by Facebook research.
+  - https://research.fb.com/downloads/babi/
+
+- Story
+
+  - Jane went to the store. Mike ran to the bedroom.
+
+- Question
+
+  - Is Mike in the store?
+
+- Answer
+
+  - No
+
+- End-to-End Memory Networks
+
+  - Sainbayar Sukhbaatar
+  - Arthur Szlam
+  - Jason Weston
+  - Rob Fergus
+
+- **You must read the paper to understand this network!**
+
+- How the QA Bot Network Works
+
+  - Model takes a discrete set of inputs **x1, ..., xn** that are to be stored in the memory, a query **q**, and outputs an answer **a**
+  - Each of the **x** , **q**, and **a** contains symbols coming from a dictionary with **V** words.
+  - The model writes all **x** to the memory up to a fixed buffer size, and then finds a continuous representation for the **x** and **q**.
+  - End to End Network:
+    - Input Memory Representation
+    - Output Memory Representation
+    - Generating Final Prediction
+  - Create a full model with RNN and Multiple Layers
+    - Input Memory Representation of stories.
+    - Use Keras for Embedding to convert sentences **x**
+    - **Encoders C and M**
+    - **Question Encoder**
+    - Output Memory Representation
+    - Each **x** has a corresponding output vector **c**
+    - In the single layer case, the sum of the output vector **o** and the input embedding u is then passed through a final weight matrix W (of size V × d) and a softmax to produce the predicted label:
+
+- Understand the steps on how to Vectorize the DataCreate a function that can vectorize data for us.
+
+- Make sure to read the paper before continuing to this lecture!
+
+- Build the Neural Network
+
+  - Input Encoder M
+  - Input Encoder C
+  - Question Encoder
+
+- Complete the Network
+
+- Fit/Train the network
+
+  - (We will load a pre-trained network)
+
+- Plot out Training History
+
+- Evaluate on Test Set
+
+- Create our Own Stories and Questions
 
 - [HarvestText](https://github.com/blmoistawinde/HarvestText)
 
