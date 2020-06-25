@@ -2339,18 +2339,17 @@ $$
   ```python
 from sklearn.ensemble import RandomForestRegressor
 reg = RandomForestRegressor()
+  from sklearn.ensemble import RandomForestClassifier
+  clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
+  clf.fit(X_train, y_train)
+  ```
   
-  ```
-
-from sklearn.ensemble import RandomForestClassifier
-clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
-clf.fit(X_train, y_train)
-  ```
-
   - n_estimators:決策樹的數量
-  - max_features:如何選取 features
+    - max_features:如何選取 features
+  
+- Ref:
 
-[隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
+  - [隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
 
 #### Gradient Boosting
 
@@ -2389,17 +2388,20 @@ clf.fit(X_train, y_train)
     - Boosting：降低bias
   - 平行計算： Bagging：各個預測函數可以並行生成。 Boosting：各個預測函數只能順序生成，因為後一個模型參數需要前一輪模型的結果。
 
-- 使⽤ Sklearn 中的梯度提升機
+  - 使⽤ Sklearn 中的梯度提升機
 
-  ```python
-  from sklearn.ensemble import GradientBoostingClassifier
-  from sklearn.ensemble import GradientBoostingRegressor
-  clf = GradientBoostingClassifier()
-  ```
+    ```python
+    from sklearn.ensemble import GradientBoostingClassifier
+    from sklearn.ensemble import GradientBoostingRegressor
+    clf = GradientBoostingClassifier()
+    ```
 
   - 可決定要⽣成數的數量，越多越不容易過擬和，但是運算時間會變長
+
   - Loss 的選擇，若改為 exponential 則會變成Adaboosting 演算法，概念相同但實作稍微不同
+
   - learning_rate是每棵樹對最終結果的影響，應與，n_estimators 成反比
+
   - n_estimators: 決策樹的數量
 
 [純乾貨｜機器學習中梯度下降法的分類及對比分析（附源碼）](https://kknews.cc/tech/mmr8kag.html)
@@ -5925,8 +5927,9 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - We will be implementing a chat bot that can answer questions based on a “story” given to the bot.
 - We will use the BaBi dataset released by Facebook research.
-  - https://research.fb.com/downloads/babi/
-
+  
+- https://research.fb.com/downloads/babi/
+  
 - Story
 
   - Jane went to the store. Mike ran to the bedroom.
