@@ -40,7 +40,10 @@ https://kknews.cc/zh-tw/digital/zyvega3.html
 
 - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
 
-
+- Ref
+  - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
+  - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
+  - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
 
 ## 資料類型
 
@@ -2074,6 +2077,10 @@ $$
 
 - 雖然線性模型相較其他模型不容易有overfitinng的問題，但當參數一多時仍然會有overfit的問題
 
+- Ref
+  
+  - [Linear Regression With Gradient Descent From Scratch.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Machine_Learning/Linear Regression With Gradient Descent From Scratch.ipynb)
+
 #### Logistics Regression
 
 - 雖然有回歸兩個字，但 Logsitics 是分類模型
@@ -3459,13 +3466,20 @@ https://cvdl.cupoy.com/
   | 代表組件 | Layers/Model | Tensor / Session / Placeholder |
 
 - 安裝方法
-  - 安裝 Keras ⼤致上分為四個步驟 : 依序安裝 CUDA / cuDNN / TensorFlow / Keras，只要注意四個程式間的版本問題以及虛擬環境問題，基本上應該能順利安裝完成
-  - [新手初体验：Tensorflow-gpu1.8环境搭建与CPU比较（Win10+虚拟环境+实测结果）](https://zhuanlan.zhihu.com/p/38223869)
-  - [windows 10 64bit下安装Tensorflow+Keras+VS2015+CUDA8.0 GPU加速](https://www.jianshu.com/p/c245d46d43f0)
-
-- 參考資料
+  - 由於 Anaconda 已經會自動幫忙安裝 CUDA / cuDNN 因此我們只需要創造一個 tensorflow 的虛擬環境，啟動 jupyter 後輸入直接安裝 gpu 版的 tensorflow 即可!
+  
+  - 安裝完後，建議重新啟動電腦 / restart kernel 後再跑相關語法!
+  
+    ```python
+    conda create --name tensorflow
+    activate tensorflow
+    jupyter lab
+    conda install tensorflow-gpu
+    conda install keras
+    ```
+- Ref
   - [Keras: The Python Deep Learning library](https://keras.io/)
-  - [keras安装和配置指南](https://blog.csdn.net/luoming1994130/article/details/52103645)
+  - [别再使用pip安装TensorFlow了！用conda吧](https://zhuanlan.zhihu.com/p/46579831)
 
 
 
@@ -5883,6 +5897,8 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - Let’s learn how to create a very simple neural network for classifying the famous Iris data set!
 - The iris data set contains measurements of flower petals and sepals and has corresponding labels to one of three classes (3 flower species).
+- Ref
+  - [Keras-Basics.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/06-Deep-Learning/00-Keras-Basics.ipynb)
 
 ### Recurrent Neural Networks Theory
 
@@ -5892,24 +5908,39 @@ We can think of this as a powerful version of Regular Expression where we actual
   - Audio
   - Car Trajectories
   - Music
+  
 - Cells that are a function of inputs from previous time steps are also known as *memory cells.*
+
 - RNN are also flexible in their inputs and outputs, for both sequences and single vector values.
+
+  ![](https://lh3.googleusercontent.com/pw/ACtC-3dlW8z6aZRkm3X-XPOP7NjKJczeuZE-Y5d5_MNQ-dlRdpNSrar0dH8PojCpmcC4m8HH1KhD9zqNJ0fu277x3GMYh_Iyo9wU7bfbcBMAMeTO2o0a2kQzu44Iv3TzxR9Yl4SLLTpsj37kNzeyT7icgh_P=w1196-h510-no?authuser=1)
+
 - We can also create entire layers of Recurrent Neurons...
+
 - RNN are also very flexible in their inputs and outputs.
   - Sequence to Sequence
   - Sequence to Vector
   - Vector to Sequence
+  
 - Now that we understand basic RNNs we’ll move on to understanding a particular cell structure known as LSTM (Long Short Term Memory Units).
 
 ### LSTM and GRU
 
 - An issue RNN face is that after a while the network will begin to “forget” the first inputs, as information is lost at each step going through the RNN.
+
 - We need some sort of “long-term memory” for our networks.
+
 - The LSTM (Long Short-Term Memory) cell was created to help address these RNN issues.
+
 - Let’s go through how an LSTM cell works!
+
 - Keep in mind, there will be a lot of Math here! Check out the resource link for a full breakdown!
+
 - Fortunately Keras has a really nice API that makes LSTM and RNN easy to work with.
+
 - Coming up next, we’ll learn how to format data for RNNs and then how to use LSTM for text generation.
+
+  
 
 ### Text Generation With Python and Keras
 
@@ -5922,10 +5953,13 @@ We can think of this as a powerful version of Regular Expression where we actual
   - Y Label (Next Word after the sequence)
 - Fit the Model
 - Generate New Text Based off a Seed
+- Ref：
+  - [Text-Generation-with-Neural-Networks.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/06-Deep-Learning/01-Text-Generation-with-Neural-Networks.ipynb)
 
-### Deep Learning QA Bot
+### QA Bot
 
 - We will be implementing a chat bot that can answer questions based on a “story” given to the bot.
+
 - We will use the BaBi dataset released by Facebook research.
   
 - https://research.fb.com/downloads/babi/
@@ -5990,6 +6024,11 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Evaluate on Test Set
 
 - Create our Own Stories and Questions
+
+- Ref
+
+  - [End-To-End Memory Networks](https://arxiv.org/pdf/1503.08895.pdf)
+  - [Chat-Bots.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/06-Deep-Learning/02-Chat-Bots.ipynb)
 
 - [HarvestText](https://github.com/blmoistawinde/HarvestText)
 
@@ -6174,6 +6213,8 @@ We can think of this as a powerful version of Regular Expression where we actual
 - 口碑分析與營銷評估：結合話題分類與情感分析，深入了解相關品牌、產品的運營效果，口碑優劣，為進一步分析決策提供指導。
 
 # Social Network Analysis
+
+In SNA， We focus on relations and structures.
 
 - 緣起：從圖形理論(Graph Theory)發展的量化技巧
   - 量化演算法
