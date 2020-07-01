@@ -10,8 +10,6 @@
 
 https://zhuanlan.zhihu.com/p/59870808
 
-https://kknews.cc/zh-tw/digital/zyvega3.html
-
 ## 安裝
 
 - Anaconda
@@ -6212,7 +6210,234 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - 口碑分析與營銷評估：結合話題分類與情感分析，深入了解相關品牌、產品的運營效果，口碑優劣，為進一步分析決策提供指導。
 
-# Social Network Analysis
+# Graph Theory
+
+> Graphs are mathematical structures used to model pairwise relations between objects. 
+
+
+
+## Graphs
+
+- Graphs
+
+  - Verticles / Nodes
+
+    Vertex is a fundamental unit of graphs, usually labeled and denoted by a circle
+
+  - Edge
+
+    Edge is the connecting link between two vertces
+
+  - Degree
+
+    Degree is the number of edges connected to that vertex
+
+  - Graph Order 
+
+    Graph Order is the number of vertices
+
+  - Graph Size
+
+    Graph Size is the number of edges
+
+  - Degree Sequence is the degree sequence written in an increasing order
+
+- Subgraphs
+
+  - Vertex Set
+
+    Vertex Set is the set of all vertices
+
+  - Edge Set
+
+    Edge Set is the set of all edges
+
+  - Subgraph G of graph P, is a graph that is constructed from the subset of the vertices and edges
+
+- Graph Isomorphism
+  - Graphs Isomorphism occurs when two graphs contain the same amount of vertices connected in the same way(being alike)
+
+- Complement Graph
+  - The Complement of Graph G is Graph P such that two vertices that weren't adjacent in G are adjacent in P.
+  - adjacent: Two verices are adjacent if they are connected by an edge
+  - Self Complementary Graphs are graphs that are isomorphic to their complemrnt graphs
+
+- Multigraphs
+  - Multigraph is a graph with vertices connected with more than one edge.
+  - ex. More than one way connected two cities.
+
+- Matrix Representation
+  - Two vertices are adjacent if they are connected by an edge
+  - Two edges are incident if they share a vertex
+  - Matrix Type
+    - Adjacency Matrix (Edge table)
+    - Incidence Matrix ( node and edge relation in matrix，but it not intuition! )
+
+- Walks, Trails and Paths
+  - Walk is a way of getting from one vertex to another and it consists of an alternating sequence of vertices and edges.
+  - A walk is said to be open if the starting and ending vertices are different, and is called closed if the starting and ending vertices are the same
+  - Trail is a walk such that all the edges are distinct
+  - a trail that is closed is called a tour
+  - Path is a walk such that all the edges and vertices are distinct
+  - We can have Path such that it starts and ends at the same vertices and it is called a cycle
+  - Self Avoiding Walk (SAW) is a sequence of moves that doesn't visit the same point twice
+  - Length of a Walk, Trail or a Path is the number of edges of the Walk, Trail or the Path.
+
+- Distance
+  - Distance between one vertex and another is the number of edges in the shortest path.
+  - Diameter is the greatest distance(path) between any pair of vertices.
+
+- Connectedness
+  - A graph is said to be connected if there is a path between every pair of vertices, otherwise, it is disconnected.
+  - Cut is partition of the vertices into two disjoint sets.
+    - Cut-Edge is the edge(s) whose removal results in disconnection
+    - Cut-vertex is the vertex(s) whose removal results in disconnection
+  - For any two vertices U&V, U-V Separating Set is the set of verices, whose removal results in disconnection between U & V.
+  - Minimum U-V Separating Sets is a separating set with minimum cardinality.
+
+-  Menger's theorem
+  - the minimum separating set is a subset of the separating set of the separating set
+  - Internally Disjoint Paths are that have the same starting and ending vertices, and don't share any vertices in between
+  - Menger'sTheorem the minimum number of vertices in a u-v separating set quuals the maximum number of internally disjoint u-v paths in G.
+  - Basically says the minimum of vertices in a separate thing set equals the maximum number of internally distrain pass. And it can be used as a tool in order for us to find maximum number of intelli disjoint paths for a minimum separating set or to find a minimum separating set from maximum number of internally disjoint path for grads that are coplicated.
+
+- Sum of Degrees of Vertices Theorem
+  - Sum of Degrees of Vertices Theorem states that for any graph, the sum of the degrees of the vertices equals twice the number of edges.
+  - the degree of a vertex is how many edges connected to that particular vertex.
+
+## Graph Types
+
+Trivial, Null and Simple Graphs
+
+Regular, Complete and Weighted Graphs
+
+Directed, Undirected and Mixed Graphs
+
+Cycle, Path, Wheel and Lolipop Graphs
+
+Planar, Cubic and Random Graphs
+
+Ladder and Prism Graphs
+
+Web and Signed Graphs
+
+Peterson Graphs
+
+Bipartile Graphs
+
+Platonic Graphs
+
+## Graph Operations
+
+Introduction
+
+Vertex Addition and Deletion
+
+Edge Addittion and Deletion
+
+Vertex Contraction and Edge Contraction
+
+Graph Minor and Graph Transpose
+
+Line Graphs
+
+Dual Graphs
+
+Graph Power
+
+Y - $\Delta$Transform
+
+Graph Join and Graph Product
+
+Hajos Construction
+
+Graph Union and Graph Intersection
+
+Series - Parallel Composition
+
+## Graph Coloring
+
+Introduction
+
+Vertex Coloring
+
+Edge Coloring
+
+Chromatic Polynomial
+
+Total and List Coloring
+
+Rainbow Coloring
+
+Vizing's Theorem
+
+Four Color Theorem
+
+
+
+## Paths
+
+Introduction
+
+The Konigsberg Bridge Problem
+
+Euler Paths and Circuits
+
+Flwury's Algorithm
+
+Hamiltoniann Paths and Circuits
+
+Hamitonian Decomposition
+
+Ore's Theorem
+
+Dirac's Theorem
+
+Shortest Path Problem
+
+Five Room Puzzle
+
+Knight's Tour
+
+## Trees
+
+Introduction
+
+Trees
+
+Tree Types
+
+Rooted Trees
+
+Tree Structures
+
+Binary Trees
+
+Spanning Trees
+
+Binary Expression Trees
+
+Tree Traversal
+
+Forests
+
+## Graph Match
+
+Introduction
+
+Graph Match
+
+Hosoya Index
+
+Berge's Lemma
+
+Vertex and Edge Cover
+
+Konig Theorem
+
+
+
+
 
 In SNA， We focus on relations and structures.
 
