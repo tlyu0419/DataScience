@@ -6307,25 +6307,49 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 ## Graph Types
 
-Trivial, Null and Simple Graphs
+- Trivial, Null and Simple Graphs
+  - Null Graph is a graph with no edges.
+  - Trivial Graph is a graph with only one vertex.
+  - Simple Graph is a graph with no loops and no parallel edges.
+    - loop is a an edge that connects a vertex to itself.
+    - Parallel Edges are two or more edges that connect two vertices.
+    - In a Simple Graph with n vertices, the degree of every vertex is at most n-1
 
-Regular, Complete and Weighted Graphs
+- Regular, Complete and Weighted Graphs
+  - Regular Graph is a graph in which each vertex have the same degree.
+  - Complete Graph is a graph in whichvertices have edges with all the other vertices(except themselves)
+  - Weighted Graph is a graph such that its edges and vertices are given numerical value
 
-Directed, Undirected and Mixed Graphs
+- Directed, Undirected and Mixed Graphs
+  - Directed Graph(digraph) is a graph with edges having directions.
+    - Indegree(deg-) is the number of head(s) adjacent to a vertex
+    - Outdegree(deg+) is the number of tails adjacent to a vertex
+    - A vertex with deg- = 0 is called a source
+    - A vertex with deg+ = 0 is called a Sink
+    - If for every vertex deg+ = deg- then the graph is called a balanced graph
+  - Undirected Graph is a graph with edges having no directions.
+  - Mixed Graph is a graph with directed and undirected edges.
 
-Cycle, Path, Wheel and Lolipop Graphs
+- Cycle, Path, Wheel and Lolipop Graphs
+  - Cycle Graph($C_n$) is a graph such that each vertex is degree two.
+  - Cycle in a Graph is a closed path
+  - Girth of a graph is the length of a shortest cycle
+  - Path Graph is a graph with two vertices having drgree 1, and the rest having degree 2.
+  - Wheel Graph is a graph formed by connecting a single vertex to all the vertices of a cycle graph.
+  - The number of the cycles in a wheel graphs is given by $n^2 - 3n + 3$
+  - Lollipop Graph is graph constructed form joining a complete graph with a path graph
+- Planar, Cubic and Random Graphs
+  - 
 
-Planar, Cubic and Random Graphs
+- Ladder and Prism Graphs
 
-Ladder and Prism Graphs
+- Web and Signed Graphs
 
-Web and Signed Graphs
+- Peterson Graphs
 
-Peterson Graphs
+- Bipartile Graphs
 
-Bipartile Graphs
-
-Platonic Graphs
+- Platonic Graphs
 
 ## Graph Operations
 
