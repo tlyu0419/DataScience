@@ -753,8 +753,8 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 
 ```python
 plt.style.use('default') # 不需設定就會使⽤預設
-  plt.style.use('ggplot')
-  plt.style.use('seaborn') # 或採⽤ seaborn 套件繪圖
+plt.style.use('ggplot')
+plt.style.use('seaborn') # 或採⽤ seaborn 套件繪圖
 ```
 
 
@@ -2464,7 +2464,7 @@ https://zhuanlan.zhihu.com/p/31182879
 
   7. learning_rate， 這時候要調小測試
 
-### lightgbm
+#### lightgbm
 
 https://zhuanlan.zhihu.com/p/52583923
 
@@ -2902,7 +2902,7 @@ X_test = kpca.transform(X_test)
 
   
 
-### t-SNE
+#### t-SNE
 
 t-Distributed Stochastic Neighbor Embedding
 
@@ -6255,8 +6255,9 @@ We can think of this as a powerful version of Regular Expression where we actual
   - Subgraph G of graph P, is a graph that is constructed from the subset of the vertices and edges
 
 - Graph Isomorphism
-  - Graphs Isomorphism occurs when two graphs contain the same amount of vertices connected in the same way(being alike)
-
+  
+- Graphs Isomorphism occurs when two graphs contain the same amount of vertices connected in the same way(being alike)
+  
 - Complement Graph
   - The Complement of Graph G is Graph P such that two vertices that weren't adjacent in G are adjacent in P.
   - adjacent: Two verices are adjacent if they are connected by an edge
@@ -6461,7 +6462,9 @@ Konig Theorem
 
 
 
-
+- Ref
+  - [用python分析《三国演义》中的社交网络.ipynb](https://github.com/blmoistawinde/hello_world/blob/master/sanguo_network/用python分析《三国演义》中的社交网络.ipynb)
+  - [PageRank 簡介](http://jpndbs.lib.ntu.edu.tw/DB/PageRank.pdf)
 
 In SNA， We focus on relations and structures.
 
