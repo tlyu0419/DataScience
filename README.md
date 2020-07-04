@@ -6465,6 +6465,15 @@ Konig Theorem
 - Ref
   - [用python分析《三国演义》中的社交网络.ipynb](https://github.com/blmoistawinde/hello_world/blob/master/sanguo_network/用python分析《三国演义》中的社交网络.ipynb)
   - [PageRank 簡介](http://jpndbs.lib.ntu.edu.tw/DB/PageRank.pdf)
+  - [python与图论的桥梁——igraph](https://zhuanlan.zhihu.com/p/97135627)
+  - [社区网络分析学习笔记 —— 算法实现及 igraph 介绍](https://zhuanlan.zhihu.com/p/40227203)
+  - [PageRank算法原理与实现](https://zhuanlan.zhihu.com/p/86004363)
+  - [基于社交网络分析算法（SNA）的反欺诈（一）](https://zhuanlan.zhihu.com/p/34405766)
+  - [基于社交网络分析算法（SNA）的反欺诈（二）](https://zhuanlan.zhihu.com/p/34433105)
+  - [基于社交网络分析算法（SNA）的反欺诈（三）](https://zhuanlan.zhihu.com/p/34436303)
+  - [扒完社交网络关系才明白，《权力的游戏》凭什么是神作](https://zhuanlan.zhihu.com/p/28880958)
+  - [谁是社会网络中最重要的人？](https://zhuanlan.zhihu.com/p/31198752)
+  - [如何简单地理解中心度，什么是closeness、betweenness和degree？](https://www.zhihu.com/question/22610633/answer/493452601)
 
 In SNA， We focus on relations and structures.
 
