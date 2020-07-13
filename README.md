@@ -2748,197 +2748,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
   - [人工智慧與增強學習-2：多臂吃角子老虎機理論](https://taweihuang.hpd.io/2016/10/17/人工智慧與增強學習-2：多臂式吃角子老虎機理論/)
   - [什么是汤普森采样（Thompson sampling）？](https://www.zhihu.com/question/37212823)
 
-#### CA
-
-https://www.princexml.com/doc/troubleshooting/
-
-#### PCA
-
-- Feature Extraction technique
-
-- 目的
-  - Identify patterns in data
-  - Detect the correlation between variables
-  - Reduce the dimensions of a d-dimensional dataset by projecting into a (k)-dimensional subspace(where k < d) 
-  - form the m independent variables of your dataset, PCA extracts p<= m new independent variables that explain the most the variance of the dataset.
-
-- 流程
-
-  - Standardize the data.
-  - Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
-  - Sort eigenvalues in descending order and choose the $k$ eigenvectors that correspond to the $k$ largest eigenvalues where $k$ is the number of dimensions of the new feature subspace ($k<=d$).
-  - Construct the projection matrix $W$ from the selected $k$ eigenvectors.
-  - Transform the original dataset $X$ via $W$ to obtain a $k$-dimensional feature subspace $Y$.
-
-- 參考資料
-
-  - [Principal Component Analysis in Python/v3](https://plotly.com/python/v3/ipython-notebooks/principal-component-analysis/)
-  
-- 說明
-
-  - 實務上我們經常遇到資料有非常多的 features, 有些 features 可能⾼度相關，有什麼⽅法能夠把⾼度相關的 features 去除？
-  - PCA 透過計算 eigen value, eigen vector, 可以將原本的 features 降維⾄特定的維度
-    - 原本資料有 100 個 features，透過 PCA，可以將這 100 個 features 降成 2 個features
-    - 新 features 為舊 features 的線性組合
-    - 新 features 之間彼此不相關
-
-- 爲什麼需要降低維度 ? 
-
-  降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、視覺化⾼維數據。常⽤的算法爲主成分分析。
-
-  - 壓縮資料
-
-    - 有助於使⽤較少的 RAM 或 disk space，也有助於加速 learning algorithms
-
-    - 影像壓縮
-
-      - 原始影像維度爲 512, 在降低維度到 16 的情況下 , 圖片雖然有些許模糊 ,但依然保有明顯的輪廓和特徵
-
-        ![](https://lh3.googleusercontent.com/p7w41bPYhLPENoIaH7t_xqsPB1IMINSe918mSI3GELa3uNbzxHBSS66Th8ahXaYIuU9fpEAzsZRyKNuD4hZd9On0axuGqgU3cXimCeJtA_STghhJKa-oZZYYTPah9NqQ5oLj5AuhGPpzmMxA1VmNDSZ5PYAEy5u-GBhFupbLJD5XtcrSTnHm7hTuDj3Fatv8BmCJXUJ3QWeB2L2P4wJduMs7rNt9dI9GE-_v2e5fcay0sBWNa9eCGadZbyemHZZd5FPpaCFpbN-s-NsdUuBCVQ7tN6rgpTgIIiCf0DXyf22oi1gPj3or-dAHXlX4aFHZQC97NvbW3rVYCAIEFZW3tXN5zLdqs5wV_EESqp6AXrGsObv0xbbYp4MlbbabsqcPlbQoRmq9niu9leNi3p2l5bKLE9encAsGTDXE4cm3I57bDlNIjZeTsCtBfL_e0g6WDrdJ_A4NnNy_8LrJpZ0ckX5bAbfTpPxGTvGMK91CcNrMkerRHeBz2tbBD8mpmHrqBYkwUUPFjW2gPlK317vpOb9GHep-TEh6BsZ29ldVvanmbd6zcQtrRiit08cScFQcXcRnQirzfzs5Rn5VRFos7FcIqezZfMPWxpKGXrQCuyWnhX5gQuR00xyUjPNsF-wWVS1pJloFyPJIc7D38vsY-bjbXYWS2xeq_bSMhaMGnDavuimr3dN6qWG5XUXI-zmneS8uTq0Vt7BEvdZGnHFWTygi3oAjaQ6cjYE94jMlOqS3LFA=w646-h514-no)
-
-  - 特徵組合及抽象化
-
-    - 壓縮資料可進⽽組合出新的、抽象化的特徵，減少冗餘的資訊。
-
-    - 左下圖的 x1 和 x2 ⾼度相關 , 因此可以合併成 1 個特徵 (右下圖)。
-
-      - 把 x(i) 投影到藍⾊線 , 從 2 維降低爲 1 維。
-
-      ![](https://lh3.googleusercontent.com/mgqelyYL1QQbGhn9eJhmlb2b0zl72fOr3QzCuK6Kqz0tcva4jR_sBYCgYPtq8VJ0VFTQbgWExqcaVCxHpn9h_dNwCaxx1hIyxFVRk2WP2crTOkqh0l3YT36e_Ckao-_zQSfBBmBPA3spWswzmE_AN5a52iAtH0GTZqx7LrleVS5KFyt2Ih0grm7PNWiBi_9-rHpG5gdyAH0fYYf2sJ04kQyQEEvDLLwaLIHvBbUUTkhV-gNlpdASvhAefrj1LSaGULQSPtn2F1SpQ5D4r9n741OrX9pjuaQvd1I99ZZxGjpCMAlY4IX1K4wQTC9VggxhcqbRmOTzsob7dIexz1u5o8SykSr1AJ7o6VcJFzxogH5h3bKDyZlY6Z2fUs9VwTDgOpGKnw_fjYs5PuBApXCgPiDYbbSD5og9GWu_onWDEB2xWUxbKJJIVukO-w0px7NJZ_uGGQUAw26A2jJWgYbJBKAcsT7vyPitfi287zGMXTyP5ECxoXAJk2ejXmjhxQ-XyoIstOMf4BVGtFJVos3DrhaKN97wv-TI8J63LlbmCtVFu70uOAtxc7QX_miA6JSvCYgwM61eAht292akoFg_xzb7go6IqB4Ev5uRLt5x2TGwQErRxcr7nY-ytEGcAQe7WdrB3aydLaJkG7n7jKjUbeh5OsuKF8eMOfBoi4Yr4oBpgOeI2yLynBGDHVJmZ1RD1PUzLepAi37FZC31CvIFZeZYVuDdvNTf1mdiPH-d4Rt4xKM=w793-h372-no)
-
-  - 資料視覺化
-
-    - 特徵太多時，很難 visualize data, 不容易觀察資料。
-    - 把資料維度 (特徵) 降到 2 到 3 個 , 則能夠⽤⼀般的 2D 或 3D 圖表呈現資料
-
-- 應⽤
-
-  - 組合出來的這些新的 features 可以進⽽⽤來做 supervised learning 預測模型
-  - 以判斷⼈臉爲例 , 最重要的特徵是眼睛、⿐⼦、嘴巴，膚⾊和頭髮等都可捨棄，將這些不必要的資訊捨棄除了可以加速 learning , 也可以避免⼀點overfitting。
-
-- 如何決定要選多少個主成分?
-
-  - Elbow
-  - 累積的解釋變異量達85%
-
-- 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
-
-- 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
-
-- 注意事項
-
-  - 不建議在早期時做 , 否則可能會丟失重要的 features ⽽ underfitting。
-  - 可以在 optimization 階段時 , 考慮 PCA, 並觀察運⽤了 PCA 後對準確度的影響
-  - PCA是透過距離來進行運算，因此在跑PCA之前需要對資料做標準化。避免PCA的結果因為測量範圍的不一致，導致只反映其中範圍較大的變量。
-  - [https://medium.com/@jimmywu0621/dimension-reduction-%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3pca%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-f0ce2dd28660](https://medium.com/@jimmywu0621/dimension-reduction-快速了解pca的原理及使用方法-f0ce2dd28660)
-  
-
-```python
-from sklearn.decomposition import PCA
-pca = PCA(n_components = 2)
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-explained_variance = pca.explained_variance_ratio_
-```
-
-#### Kernel PCA
-
-```python
-from sklearn.decomposition import KernelPCA
-kpca = KernelPCA(n_components = 2, kernel = 'rbf')
-X_train = kpca.fit_transform(X_train)
-X_test = kpca.transform(X_test)
-```
-
-
-
-#### Linear Discriminant Analysis
-
-- Used as a dimensionality reduction technique
-
-- Used in the pre-processing step for pattern classification
-
-- Has the goal to project a dataset onto a lower-dimensional space
-
-- LDA differs because in addition to finding the component axises with LDA we are interested in the axes that maximize the separation between multiple aclsses.
-
-- Breaking it down further:
-
-  The goal of LDA is to project a feature space (a dataset n-dimensional
-
-  samples) onto a small subspace subspace k(where ksn-1) while
-
-  maintaining the class-discriminatory information.
-
-  Both PCA and LDA are linear transformation techniques used for
-
-  dimensional reduction. PCA is described as unsupervised but LDA is
-
-  supervised because of the relation to the dependent variable.
-
-- From the n independent variables of your dataset, LDA extracts p <= n new independent variables that separate the most the classes of the dependent variable.
-
-  - The fact that the DV is considered makes LDA a supervised model.
-
-- Difference with PCA
-
-  - PCA: component axes that maximize the variance.
-  - LDA: maximizing the component axes for class-separation.
-
-- Step
-
-  1. Compute the $d$-dimensional mean vectors for the different classes from the dataset.
-  2. Compute the scatter matrices (in-between=class and within -class scatter matrix).
-  3. Compute the eigenvectors($e_1$, $e_2$,...$e_d$) and corresponging eigenvalues($\lambda_1$, $\lambda_2$, ..., $\lambda_d$) for the scatter matrices.
-  4. Sort the eigenvectors by decreasing eigrnvalues and choose $k$ eigenvectors with the largest eigenvalues to form a $d * k$ dimensional matrix $W$ (where every column represents an eigenvector).
-  5. Use this $d*k$ eigenvector matrix to transform the samples onto the new subspace. This can be summarized by the matrix multiplication: $Y = X * W$(where $X$ is a $n*d$-dimensional matrix representing the $n$ samples, and $y$ are the transformed $n*k$-dimensional samples in the new subspace).  
-
-  ```python
-  from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-  lda = LinearDiscriminantAnalysis(n_components = 2)
-  X_train = lda.fit_transform(X_train, y_train)
-  X_test = lda.transform(X_test)
-  ```
-
-  
-
-#### t-SNE
-
-t-Distributed Stochastic Neighbor Embedding
-
-> - 瞭解 PCA 的限制
-> - t-SNE 概念簡介，及其優劣
-
-- PCA 的問題
-
-  - 求共變異數矩陣進⾏奇異值分解，因此會被資料的差異性影響，無法很好的表現相似性及分佈。
-  - PCA 是⼀種線性降維⽅式，因此若特徵間是非線性關係，會有
-    underfitting 的問題。
-
-- t-SNE
-
-  - t-SNE 也是⼀種降維⽅式，但它⽤了更複雜的公式來表達⾼維和低維之間的關係。
-  - 主要是將⾼維的資料⽤ gaussian distribution 的機率密度函數近似，⽽低維資料的部分⽤ t 分佈來近似，在⽤ KL divergence 計算相似度，再以梯度下降 (gradient descent) 求最佳解。
-
-- t-SNE 優劣
-
-  - 優點
-    - 當特徵數量過多時，使⽤ PCA 可能會造成降維後的 underfitting，這時可以考慮使⽤t-SNE 來降維
-  - 缺點
-    - t-SNE 的需要比較多的時間執⾏
-
-- 計算量太大了，通常不會直接對原始資料做TSNE,例如有100維的資料，通常會先用PCA降成50維，再用TSNE降成2維
-
-- 如果有新的點加入，如果直接套用既有模型。因此TSNE不是用來做traing testing，而是用來做視覺化
-
-- 流形還原
-
-  - 流形還原就是將⾼維度上相近的點，對應到低維度上相近的點，沒有資料點的地⽅不列入考量範圍
-  - 簡單的說，如果資料結構像瑞⼠捲⼀樣，那麼流形還原就是把它攤開鋪平 (流形還原資料集的其中⼀種，就是叫做瑞⼠捲-Swiss Roll)
-  - 流形還原就是在⾼維度到低維度的對應中，盡量保持資料點之間的遠近關係，沒有資料點的地⽅，就不列入考量範圍
-  - 除了 t-sne 外，較常⾒的流形還原還有 Isomap 與 LLE (Locally Linear Embedding) 等⼯具
-
-- 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
+- 
 
 ### 模型集成(Ensemble)
 
@@ -3186,12 +2996,211 @@ print(clf2.predict(X[0:1]))
   - [StatsLearning Lect12d](https://www.youtube.com/watch?v=Tuuc9Y06tAc)
   - [StatsLearning Lect12e](https://www.youtube.com/watch?v=yUJcTpWNY_o)
 
+### 常見問題與處理
+
+- Overfiting
+  - 模型捕捉到太細節的特徵，導致在訓練資料的預測效果很好，但在測試資料就完全壞掉
+  - 處理方式
+    - 將解釋變數與目標變數的分佈畫出來，逐一檢視解釋變數對於目標變數的區辨效度
+    - 確認目標變數的資料是否存在離群值
+    - 將複雜模型替換為簡單的模型，降低模型的複雜度
+
 ## Dimension reduction
 
 > - 降低維度的好處，及其應⽤領域
 > - 主成分分析 (PCA) 概念簡介
 
-- - 
+### CA
+
+https://www.princexml.com/doc/troubleshooting/
+
+### PCA
+
+- Feature Extraction technique
+
+- 目的
+
+  - Identify patterns in data
+  - Detect the correlation between variables
+  - Reduce the dimensions of a d-dimensional dataset by projecting into a (k)-dimensional subspace(where k < d) 
+  - form the m independent variables of your dataset, PCA extracts p<= m new independent variables that explain the most the variance of the dataset.
+
+- 流程
+
+  - Standardize the data.
+  - Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
+  - Sort eigenvalues in descending order and choose the $k$ eigenvectors that correspond to the $k$ largest eigenvalues where $k$ is the number of dimensions of the new feature subspace ($k<=d$).
+  - Construct the projection matrix $W$ from the selected $k$ eigenvectors.
+  - Transform the original dataset $X$ via $W$ to obtain a $k$-dimensional feature subspace $Y$.
+
+- 參考資料
+
+  - [Principal Component Analysis in Python/v3](https://plotly.com/python/v3/ipython-notebooks/principal-component-analysis/)
+
+- 說明
+
+  - 實務上我們經常遇到資料有非常多的 features, 有些 features 可能⾼度相關，有什麼⽅法能夠把⾼度相關的 features 去除？
+  - PCA 透過計算 eigen value, eigen vector, 可以將原本的 features 降維⾄特定的維度
+    - 原本資料有 100 個 features，透過 PCA，可以將這 100 個 features 降成 2 個features
+    - 新 features 為舊 features 的線性組合
+    - 新 features 之間彼此不相關
+
+- 爲什麼需要降低維度 ? 
+
+  降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、視覺化⾼維數據。常⽤的算法爲主成分分析。
+
+  - 壓縮資料
+
+    - 有助於使⽤較少的 RAM 或 disk space，也有助於加速 learning algorithms
+
+    - 影像壓縮
+
+      - 原始影像維度爲 512, 在降低維度到 16 的情況下 , 圖片雖然有些許模糊 ,但依然保有明顯的輪廓和特徵
+
+        ![](https://lh3.googleusercontent.com/p7w41bPYhLPENoIaH7t_xqsPB1IMINSe918mSI3GELa3uNbzxHBSS66Th8ahXaYIuU9fpEAzsZRyKNuD4hZd9On0axuGqgU3cXimCeJtA_STghhJKa-oZZYYTPah9NqQ5oLj5AuhGPpzmMxA1VmNDSZ5PYAEy5u-GBhFupbLJD5XtcrSTnHm7hTuDj3Fatv8BmCJXUJ3QWeB2L2P4wJduMs7rNt9dI9GE-_v2e5fcay0sBWNa9eCGadZbyemHZZd5FPpaCFpbN-s-NsdUuBCVQ7tN6rgpTgIIiCf0DXyf22oi1gPj3or-dAHXlX4aFHZQC97NvbW3rVYCAIEFZW3tXN5zLdqs5wV_EESqp6AXrGsObv0xbbYp4MlbbabsqcPlbQoRmq9niu9leNi3p2l5bKLE9encAsGTDXE4cm3I57bDlNIjZeTsCtBfL_e0g6WDrdJ_A4NnNy_8LrJpZ0ckX5bAbfTpPxGTvGMK91CcNrMkerRHeBz2tbBD8mpmHrqBYkwUUPFjW2gPlK317vpOb9GHep-TEh6BsZ29ldVvanmbd6zcQtrRiit08cScFQcXcRnQirzfzs5Rn5VRFos7FcIqezZfMPWxpKGXrQCuyWnhX5gQuR00xyUjPNsF-wWVS1pJloFyPJIc7D38vsY-bjbXYWS2xeq_bSMhaMGnDavuimr3dN6qWG5XUXI-zmneS8uTq0Vt7BEvdZGnHFWTygi3oAjaQ6cjYE94jMlOqS3LFA=w646-h514-no)
+
+  - 特徵組合及抽象化
+
+    - 壓縮資料可進⽽組合出新的、抽象化的特徵，減少冗餘的資訊。
+
+    - 左下圖的 x1 和 x2 ⾼度相關 , 因此可以合併成 1 個特徵 (右下圖)。
+
+      - 把 x(i) 投影到藍⾊線 , 從 2 維降低爲 1 維。
+
+      ![](https://lh3.googleusercontent.com/mgqelyYL1QQbGhn9eJhmlb2b0zl72fOr3QzCuK6Kqz0tcva4jR_sBYCgYPtq8VJ0VFTQbgWExqcaVCxHpn9h_dNwCaxx1hIyxFVRk2WP2crTOkqh0l3YT36e_Ckao-_zQSfBBmBPA3spWswzmE_AN5a52iAtH0GTZqx7LrleVS5KFyt2Ih0grm7PNWiBi_9-rHpG5gdyAH0fYYf2sJ04kQyQEEvDLLwaLIHvBbUUTkhV-gNlpdASvhAefrj1LSaGULQSPtn2F1SpQ5D4r9n741OrX9pjuaQvd1I99ZZxGjpCMAlY4IX1K4wQTC9VggxhcqbRmOTzsob7dIexz1u5o8SykSr1AJ7o6VcJFzxogH5h3bKDyZlY6Z2fUs9VwTDgOpGKnw_fjYs5PuBApXCgPiDYbbSD5og9GWu_onWDEB2xWUxbKJJIVukO-w0px7NJZ_uGGQUAw26A2jJWgYbJBKAcsT7vyPitfi287zGMXTyP5ECxoXAJk2ejXmjhxQ-XyoIstOMf4BVGtFJVos3DrhaKN97wv-TI8J63LlbmCtVFu70uOAtxc7QX_miA6JSvCYgwM61eAht292akoFg_xzb7go6IqB4Ev5uRLt5x2TGwQErRxcr7nY-ytEGcAQe7WdrB3aydLaJkG7n7jKjUbeh5OsuKF8eMOfBoi4Yr4oBpgOeI2yLynBGDHVJmZ1RD1PUzLepAi37FZC31CvIFZeZYVuDdvNTf1mdiPH-d4Rt4xKM=w793-h372-no)
+
+  - 資料視覺化
+
+    - 特徵太多時，很難 visualize data, 不容易觀察資料。
+    - 把資料維度 (特徵) 降到 2 到 3 個 , 則能夠⽤⼀般的 2D 或 3D 圖表呈現資料
+
+- 應⽤
+
+  - 組合出來的這些新的 features 可以進⽽⽤來做 supervised learning 預測模型
+  - 以判斷⼈臉爲例 , 最重要的特徵是眼睛、⿐⼦、嘴巴，膚⾊和頭髮等都可捨棄，將這些不必要的資訊捨棄除了可以加速 learning , 也可以避免⼀點overfitting。
+
+- 如何決定要選多少個主成分?
+
+  - Elbow
+  - 累積的解釋變異量達85%
+
+- 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
+
+- 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
+
+- 注意事項
+
+  - 不建議在早期時做 , 否則可能會丟失重要的 features ⽽ underfitting。
+  - 可以在 optimization 階段時 , 考慮 PCA, 並觀察運⽤了 PCA 後對準確度的影響
+  - PCA是透過距離來進行運算，因此在跑PCA之前需要對資料做標準化。避免PCA的結果因為測量範圍的不一致，導致只反映其中範圍較大的變量。
+  - [https://medium.com/@jimmywu0621/dimension-reduction-%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3pca%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-f0ce2dd28660](https://medium.com/@jimmywu0621/dimension-reduction-快速了解pca的原理及使用方法-f0ce2dd28660)
+
+```python
+from sklearn.decomposition import PCA
+pca = PCA(n_components = 2)
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+explained_variance = pca.explained_variance_ratio_
+```
+
+#### Kernel PCA
+
+```python
+from sklearn.decomposition import KernelPCA
+kpca = KernelPCA(n_components = 2, kernel = 'rbf')
+X_train = kpca.fit_transform(X_train)
+X_test = kpca.transform(X_test)
+```
+
+
+
+#### Linear Discriminant Analysis
+
+- Used as a dimensionality reduction technique
+
+- Used in the pre-processing step for pattern classification
+
+- Has the goal to project a dataset onto a lower-dimensional space
+
+- LDA differs because in addition to finding the component axises with LDA we are interested in the axes that maximize the separation between multiple aclsses.
+
+- Breaking it down further:
+
+  The goal of LDA is to project a feature space (a dataset n-dimensional
+
+  samples) onto a small subspace subspace k(where ksn-1) while
+
+  maintaining the class-discriminatory information.
+
+  Both PCA and LDA are linear transformation techniques used for
+
+  dimensional reduction. PCA is described as unsupervised but LDA is
+
+  supervised because of the relation to the dependent variable.
+
+- From the n independent variables of your dataset, LDA extracts p <= n new independent variables that separate the most the classes of the dependent variable.
+
+  - The fact that the DV is considered makes LDA a supervised model.
+
+- Difference with PCA
+
+  - PCA: component axes that maximize the variance.
+  - LDA: maximizing the component axes for class-separation.
+
+- Step
+
+  1. Compute the $d$-dimensional mean vectors for the different classes from the dataset.
+  2. Compute the scatter matrices (in-between=class and within -class scatter matrix).
+  3. Compute the eigenvectors($e_1$, $e_2$,...$e_d$) and corresponging eigenvalues($\lambda_1$, $\lambda_2$, ..., $\lambda_d$) for the scatter matrices.
+  4. Sort the eigenvectors by decreasing eigrnvalues and choose $k$ eigenvectors with the largest eigenvalues to form a $d * k$ dimensional matrix $W$ (where every column represents an eigenvector).
+  5. Use this $d*k$ eigenvector matrix to transform the samples onto the new subspace. This can be summarized by the matrix multiplication: $Y = X * W$(where $X$ is a $n*d$-dimensional matrix representing the $n$ samples, and $y$ are the transformed $n*k$-dimensional samples in the new subspace).  
+
+  ```python
+  from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+  lda = LinearDiscriminantAnalysis(n_components = 2)
+  X_train = lda.fit_transform(X_train, y_train)
+  X_test = lda.transform(X_test)
+  ```
+
+  
+
+#### t-SNE
+
+t-Distributed Stochastic Neighbor Embedding
+
+> - 瞭解 PCA 的限制
+> - t-SNE 概念簡介，及其優劣
+
+- PCA 的問題
+
+  - 求共變異數矩陣進⾏奇異值分解，因此會被資料的差異性影響，無法很好的表現相似性及分佈。
+  - PCA 是⼀種線性降維⽅式，因此若特徵間是非線性關係，會有
+    underfitting 的問題。
+
+- t-SNE
+
+  - t-SNE 也是⼀種降維⽅式，但它⽤了更複雜的公式來表達⾼維和低維之間的關係。
+  - 主要是將⾼維的資料⽤ gaussian distribution 的機率密度函數近似，⽽低維資料的部分⽤ t 分佈來近似，在⽤ KL divergence 計算相似度，再以梯度下降 (gradient descent) 求最佳解。
+
+- t-SNE 優劣
+
+  - 優點
+    - 當特徵數量過多時，使⽤ PCA 可能會造成降維後的 underfitting，這時可以考慮使⽤t-SNE 來降維
+  - 缺點
+    - t-SNE 的需要比較多的時間執⾏
+
+- 計算量太大了，通常不會直接對原始資料做TSNE,例如有100維的資料，通常會先用PCA降成50維，再用TSNE降成2維
+
+- 如果有新的點加入，如果直接套用既有模型。因此TSNE不是用來做traing testing，而是用來做視覺化
+
+- 流形還原
+
+  - 流形還原就是將⾼維度上相近的點，對應到低維度上相近的點，沒有資料點的地⽅不列入考量範圍
+  - 簡單的說，如果資料結構像瑞⼠捲⼀樣，那麼流形還原就是把它攤開鋪平 (流形還原資料集的其中⼀種，就是叫做瑞⼠捲-Swiss Roll)
+  - 流形還原就是在⾼維度到低維度的對應中，盡量保持資料點之間的遠近關係，沒有資料點的地⽅，就不列入考量範圍
+  - 除了 t-sne 外，較常⾒的流形還原還有 Isomap 與 LLE (Locally Linear Embedding) 等⼯具
+
+- 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
 
 ### 參考資料
 
@@ -6460,7 +6469,217 @@ Vertex and Edge Cover
 
 Konig Theorem
 
+## Networks
 
+## Centrality
+
+A large volume of research on networks has been devoted to the concept of **centrality**. This research addresses the question: *Which are the most important or central vertices in a network?* There are of course many possible definitions of importance, and correspondingly many centrality measures for nodes in a network.
+
+Once the centrality of nodes have been determined, it is possible to make a ranking of the nodes according to their centrality scores. For instance, one might want to obtain the most important Web pages about a certain topic or the most important academic papers covering a given issue. Moreover, one might be interested to know which are the nodes whose removal from the networks would have the most important consequences in the network structure. A network property that is directly influenced by the removal of nodes is connectivity. For instance, which are the Internet routers whose failure would mostly damage the network connectivity?
+
+### Degree Centrality
+
+- Degree is a simple centrality measure that counts how many neighbors a node has. If the network is directed, we have two versions of the measure: in-degree is the number of in-coming links, or the number of predecessor nodes; out-degree is the number of out-going links, or the number of successor nodes. 
+
+- Typically, we are interested in in-degree, since in-links are given by other nodes in the network, while out-links are determined by the node itself. Degree centrality thesis reads as follows:
+
+  > *A node is important if it has many neighbors, or, in the directed case, if there are many other nodes that link to it, or if it links to many other nodes.*
+
+### Eigenvector Centrality
+
+- A natural extension of degree centrality is **eigenvector centrality**. In-degree centrality awards one centrality point for every link a node receives. But not all vertices are equivalent: some are more relevant than others, and, reasonably, endorsements from important nodes count more. The eigenvector centrality thesis reads:
+
+  > *A node is important if it is linked to by other important nodes.*
+
+- Eigenvector centrality differs from in-degree centrality: a node receiving many links does not necessarily have a high eigenvector centrality (it might be that all linkers have low or null eigenvector centrality). Moreover, a node with high eigenvector centrality is not necessarily highly linked (the node might have few but important linkers).
+
+- Eigenvector centrality, regarded as a ranking measure, is a remarkably old method. Early pioneers of this technique are Wassily W. Leontief (The Structure of American Economy, 1919-1929. Harvard University Press, 1941) and John R. Seeley (The net of reciprocal influence: A problem in treating sociometric data. The Canadian Journal of Psychology, 1949).
+
+### Katz Centrality
+
+- A practical problem with eigenvector centrality is that it works well only if the graph is (strongly) connected. Real undirected networks typically have a large connected component, of size proportional to the network size. However, real directed networks do not. If a directed network is not strongly connected, only vertices that are in strongly connected components or in the out-component of such components can have non-zero eigenvector centrality. The other vertices, such as those in the in-components of strongly connected components, all have, with little justification, null centrality. This happens because nodes with no incoming edges have, by definition, a null eigenvector centrality score, and so have nodes that are pointed to by only nodes with a null centrality score.
+
+- A way to work around this problem is to give each node a small amount of centrality for free, regardless of the position of the vertex in the network. Hence, each node has a minimum, positive amount of centrality that it can transfer to other nodes by referring to them. In particular, the centrality of nodes that are never referred to is exactly this minimum positive amount, while linked nodes have higher centrality. It follows that highly linked nodes have high centrality, regardless of the centrality of the linkers. However, nodes that receive few links may still have high centrality if the linkers have large centrality. This method has been proposed by Leo Katz (A new status index derived from sociometric analysis. Psychometrika, 1953) and later refined by Charles H. Hubbell (An input-output approach to clique identification. Sociometry, 1965). The Katz centrality thesis is then:
+
+  > *A node is important if it is linked from other important nodes or if it is highly linked.*
+
+### PageRank
+
+- A potential problem with Katz centrality is the following: if a node with high centrality links many others then all those others get high centrality. In many cases, however, it means less if a node is only one among many to be linked. The centrality gained by virtue of receiving a link from an important node should be diluted if the important vertex is very magnanimous with endorsements.
+
+- PageRank is an adjustment of Katz centrality that takes into consideration this issue. There are three distinct factors that determine the PageRank of a node: (i) the number of links it receives, (ii) the link propensity of the linkers, and (iii) the centrality of the linkers. The first factor is not surprising: the more links a node attracts, the more important it is perceived. Reasonably, the value of the endorsement depreciates proportionally to the number of links given out by the endorsing node: links coming from parsimonious nodes are worthier than those emanated by spendthrift ones. Finally, not all nodes are created equal: links from important vertices are more valuable than those from obscure ones. This method has been coined (and patented) by Sergey Brin and Larry Page (The anatomy of a large-scale hypertextual web search engine. Computer networks and ISDN systems, 1998). The PageRank thesis might be summarized as follows:
+
+  > *A node is important if it linked from other important and link parsimonious nodes or if it is highly linked.*
+
+### Kleinberg Centrality
+
+- So far, a node is important if it contains valuable content and hence receives many links from other important sources. Nodes with no incoming links cumulate, in the best case, only a minimum amount of centrality, regardless of how many other useful information sources they reference. One can argue that a node is important also because it links to other important vertices. For instance, a review paper may refer to other authoritative sources: it is important because it tells us where to find trustworthy information. Thus, there are now two types of central nodes: authorities, that contain reliable information on the topic of interest, and hubs, that tell us where to find authoritative information. A node may be both an authority and a hub: for instance, a review paper may be highly cited because it contains useful content and it may as well cite other useful sources. This method has been conceived by Jon M. Kleinberg (Authoritative sources in a hyperlinked environment. In ACM-SIAM Symposium on Discrete Algorithms, 1998). The Kleinberg centrality thesis reads:
+
+  > *A node is an authority if it is linked to by hubs; it is a hub if it links to authorities.*
+
+- Kleinberg centrality is an elegant way to avoid the problem of ordinary eigenvector centrality on directed networks, that nodes outside strongly connected components or their out-components get null centrality. However, we can still add to Kleinberg centrality an exogenous, possibly personalized, factor (as in the Katz method) or normalize vertex centralities by the out-degrees of vertices that point to them (as in the PageRank method).
+
+### Closeness Centrality
+
+- The average distance from a given starting node to all other nodes in the network.
+
+- Closeness centrality differs from either degree or eigenvector centrality. For instance, consider a node A connected to a single other node B. Imagine that node B is very close to the other nodes in the graph, hence it has a large closeness score. It follows that node A has a relatively large closeness as well, since A can reach all the nodes that B reaches in only one additional step with respect to B. However, A has degree only 1, and its eigenvector score might not be impressive.
+
+- The largest possible value for the mean geodesic distance occurs for a root of a **chain graph**, a graph where the $n$ nodes form a linear sequence or chain, where the roots are the two ends of the chain. Using $n-1$ at the denominator of the mean, the mean distance from one root to the other vertices is
+
+  > $\displaystyle{\frac{1}{n-1} \sum_{i=1}^{n-1} i = \frac{(n-1) n}{2 (n-1)} = \frac{n}{2}}$
+
+- The minimum possible value for the mean geodesic distance occurs for the central node of a **star graph**, a network composed of a vertex attached to $n-1$ other vertices, whose only connection is with the central node. The central node reaches all other nodes in one step and it reaches itself in zero steps, hence the mean distance is $(n-1)/ (n-1) = 1$.
+
+- There are some issue that deserve to be discussed about closeness centrality. One issue is that its values tend to span a rather **small dynamic range** from smallest to largest. Indeed, geodesic distances between vertices in most networks tend to be small, the typical and largest geodesic distances increasing only **logarithmically** with the size of the network. Hence the dynamic range of values of $l_i$ (and hence of $C_i$) is small.
+
+- This means that in practice it is difficult to distinguish between central and less central vertices using this measure. Moreover, even small fluctuations in the structure of the network can change the order of the values substantially. For instance, for the actor network, the network of who has appeared in films with who else, constructed from the [Internet Movie Database](http://www.imdb.com/), we find that in the largest component of the network, which includes 98% of all actors, the smallest mean distance $l_i$ of any actor is 2.4138 for the actor Christopher Lee (*The Lord of the Rings*), while the largest is 8.6681 for an Iranian actress named Leia Zanganeh. The ratio of the two is just 3.6 and about half a million actors lie in between. The second best centrality score belongs to Donald Pleasence, who scores 2.4164, very close to the winner. Other centrality measures typically don't suffer from this problem because they have a wider dynamic range and the centrality values, in particular those of the leaders, are widely separated.
+
+- A second issue about closeness centrality is that geodesic distance between two vertices is infinite if the vertices are not reachable through a path, hence $l_i$ is **infinite** and $C_i$ is zero for all vertices $i$ that do not reach all other vertices in the graph. The most common solution is to average the distance over only the reachable nodes. This gives us a finite measure, but distances tend to be smaller, hence closeness centrality scores tend to be larger, for nodes in small components. This is usually undesirable, since in most cases vertices in small components are considered less important than those in large components.
+
+- A second solution is to assign a distance equal to the number of nodes of the graph to pairs of vertices that are not connected by a path. This again will give a finite value for the closeness formula. Notice that the longest path in a graph with $n$ nodes has length $n-1$ edges, hence the assigned distance to unreachable nodes is one plus the maximum possible distance in the network.
+
+- A third solution is to compute closeness centrality only for those vertices in the largest connected component of the network. This is a good solution when the largest component is a giant one that covers the majority of the nodes.
+
+- A fourth (and last) solution is to redefine closeness centrality in terms of the **harmonic mean distance** between vertices, that is the average of the inverse distances:
+
+  > $\displaystyle{C_i = \frac{1}{n-1} \sum_{j \neq i} \frac{1}{d_{i,j}}}$
+
+- Notice that we excluded from the sum the case $j = i$ since $d_{i,i} = 0$ and this would make the sum infinite. Moreover, if $d_{i,j} = \infty$ because $i$ and $j$ are not reachable, then the corresponding term of the sum is simply zero and drops out.
+  $$
+  C(x) = -\frac{N}{\sum_y d(x,y)}
+  $$
+
+- 定義：該節點到所有節點之最短距離總和之倒數，值越大代表越容易觸及其他節點
+
+- 意涵：該節點觸及網絡內所有節點的程度
+
+- 如人際關係，接近中心性越高，個性越合群
+
+- 病毒傳播，接近中心性越高，越容易感染
+
+### Betweeness Centrality
+
+- Measure how often a node appears on shortest paths between nodes in the network.
+
+- 在節點對之間的最短途徑通過單一節點的頻率，即多數節點須通過該節點以觸及其他節點
+
+- $$
+  C_B(i) = \sum_{j<k}g_{jk}(i)/g_{jk}
+  $$
+
+  - $g_{jk}(i)$ = jk兩節點之間通過$i$的最短捷徑次數
+  - $g_{jk}$ = 連結 j k兩節點的最短捷徑個數
+
+- 意涵：節點的中心程度或在網絡的重要性+該節點與其他節點的關係
+
+  - 掌握較多的資源
+  - 掌握較大的權力，可以過濾資訊
+  - 控制網絡流動，影響節點彼此的連結，或阻礙網絡運作
+  - 表明这个节点在网络中的重要程度，他是不是一个交流枢纽，例如紧密中心性里面。7和8就具有很高的介数中心性。如果把7或者8从图中拿走，会造成图的分裂。
+
+- - 
+
+- Harmonic Centrality
+
+  - 整體概念與接近中心性相同
+  - 節點不相連，距離無限大->接近中心性=0
+  - 故先取倒數再相加
+
+- - 
+
+- Prestige
+
+  - measure the direction is important property of the relation
+
+  - for directed network only
+
+  - prestigious actor is the object of extensive ties as a recipient(has input degrees)
+
+  - 如很多人會想跟女神成為朋友，但女神不一定想和每個人都成為朋友
+
+  - 凸顯actor本身的重要性而非中心性
+
+    - Indegree prestige
+
+      - number of directly connected neighbours considering indegrees
+
+      - $$
+        P_{ID}(i) = \frac{d_I(i)}{n-1}
+        $$
+
+      - 其他節點指向i節點的次數 
+
+    - Domain Prestige
+
+      - Share of total nodes which can reach a node.
+
+      - $$
+        P_D(i)=\frac{ \mid I_i \mid}{(n-1)}
+        $$
+
+        網絡內哪一些節點可以直接或間接地指到v節點
+
+    - Proximity Prestige
+
+      - Considers directly and indirectly linked nodes and path-lengths
+      - 路徑長度用來加權，越短路徑越有價值
+
+    - Rank Prestige
+
+      - Considers specified prominesce value from in-degree nodes.
+
+- - 
+
+- Average Cluster Coefficient(AvgCC)
+
+  - the tendency for who share connection in a social network to become connected
+  - How can we measure the prevalence of triadic closure in a network?
+    - Local Clustering coefficient of a node
+    - Global Cluster Coefficient
+    - 
+
+- Eccentricity
+
+  - The distance from a given starting node to the farthest node from it in the network.
+  - 離網絡中最遠的點的距離，數字越小表示越處在網絡中心
+
+## Similarity
+
+## Communties
+
+### Edge betweenness
+
+- 是一种层次分解过程，其中边缘以其边缘中介度分数（即通过给定边缘的最短路径的数量）的递减顺序被移除。这是因为连接不同组的边缘更可能包含在多个最短路径中，这仅仅是因为在许多情况下它们是从一个组到另一个组的唯一选择。这种方法产生了良好的结果，但由于边缘中介性计算的计算复杂性，并且因为在每次去除边缘之后必须重新计算中间性得分，所以该方法非常慢。具有~700个顶点和~3500个边缘的图形大约是可以使用此方法分析的图形的上限大小。另一个缺点是`Edge.betweenness.community`构建了一个完整的树形图，并没有给出任何关于在何处削减树形图以获得最终组的指导，因此您将不得不使用其他一些措施来决定（例如，分区的模块化分数）在树形图的每个级别）
+- This algorithm was introduced by Girvan & Newman. To find which edges in a network exist most frequently between other pairs of nodes, the authors generalised Freeman’s betweenness centrality to edges betweenness. The edges connecting communities are then expected to have high edge betweenness. The underlying community structure of the network will be much clear after removing edges with high edge betweenness. For the removal of each edge, the calculation of edge betweenness is $O(EN)$ ; therefore, this algorithm’s time complexity is $O(E^2N)^2$
+
+### Fastgreedy
+
+是另一种分层方法，但它是自下而上而不是自上而下。它试图以贪婪的方式优化称为模块化的质量功能。最初，每个顶点属于一个单独的社区，并且迭代地合并社区，使得每个合并是局部最优的（即，产生模块化的当前值的最大增加）。当不可能再增加模块性时，算法停止，因此它为您提供分组和树形图。该方法很快，并且它通常作为第一近似尝试的方法，因为它没有要调整的参数。然而，已知具有分辨率限制，即低于给定大小阈值的社区（取决于节点和边缘的数量，如果我没记错的话）将始终与邻近社区合并。
+
+### Infomap
+
+### Label propagation
+
+### Leading eigenvector
+
+是一种自上而下的分层方法，可以再次优化模块化功能。在每个步骤中，图表被分成两部分，分离本身会使模块性显着增加。通过评估所谓的模块化矩阵的前导特征向量来确定分裂，并且还存在阻止紧密连接的组进一步分裂的停止条件。由于涉及特征向量计算，它可能不适用于ARPACK特征向量求解器不稳定的退化图。在非简并图上，它可能比快速贪婪方法产生更高的模块性分数，尽管它有点慢。
+
+### Multilevel
+
+### Spinglass
+
+是统计物理学的一种方法，基于所谓的波茨模型。在这个模型中，每个粒子（即顶点）可以处于其中一个 *c* 自旋状态，并且粒子之间的相互作用（即图的边缘）指定哪些顶点对将更喜欢保持在同一旋转中状态和哪些更喜欢具有不同的自旋状态。然后针对给定数量的步骤模拟模型，并且最终粒子的自旋状态定义社区。结果如下：1）最终永远不会超过 *c* 社区，尽管你可以将 *c* 设置为高达200，这可能足以达到你的目的。 2）最终可能会有少于 *c* 社区，因为一些自旋状态可能变空。 3）不能保证网络中完全远程（或不连接）部分的节点具有不同的自旋状态。对于断开连接的图形，这更可能是一个问题，所以我不担心这一点。该方法不是特别快且不具有确定性（因为模拟本身），但具有可调整的分辨率参数，用于确定簇大小。 spinglass方法的变体还可以考虑负链接（即，其端点更喜欢在不同社区中的链接）。
+
+### Walktrap
+
+是一种基于随机游走的方法。一般的想法是，如果您在图表上执行随机游走，那么步行更有可能保持在同一社区内，因为在给定社区之外只有少数边缘。 Walktrap运行3-4-5步骤的短随机游走（取决于其中一个参数），并使用这些随机游走的结果以自下而上的方式合并单独的社区，如`fastgreedy.community`。同样，您可以使用模块化分数来选择剪切树形图的位置。它比快速贪婪方法慢一点，但也更准确一些（根据原始出版物）。
+
+### Label propagation
+
+是一种简单的方法，其中每个节点都分配了一个 *k* labels。该方法然后迭代地进行并且以每个节点以同步方式获取其邻居的最频繁标签的方式将标签重新分配给节点。当每个节点的标签是其邻域中最频繁的标签之一时，该方法停止。它非常快，但根据初始配置（随机决定）产生不同的结果，因此应该多次运行该方法（例如，图表的1000次），然后建立共识标签，这可能是乏味。
+
+## Structure
 
 - Ref
   - [用python分析《三国演义》中的社交网络.ipynb](https://github.com/blmoistawinde/hello_world/blob/master/sanguo_network/用python分析《三国演义》中的社交网络.ipynb)
@@ -6474,6 +6693,7 @@ Konig Theorem
   - [扒完社交网络关系才明白，《权力的游戏》凭什么是神作](https://zhuanlan.zhihu.com/p/28880958)
   - [谁是社会网络中最重要的人？](https://zhuanlan.zhihu.com/p/31198752)
   - [如何简单地理解中心度，什么是closeness、betweenness和degree？](https://www.zhihu.com/question/22610633/answer/493452601)
+  - [Network Science](https://www.sci.unich.it/~francesc/teaching/network/)
 
 In SNA， We focus on relations and structures.
 
@@ -6554,151 +6774,36 @@ In SNA， We focus on relations and structures.
     - degree = indegree + outdegree
     - weugthed degree： edge*weight
 
-  - 節點中心性
-
-    - Betweeness Centrality
-
-      - Measure how often a node appears on shortest paths between nodes in the network.
-
-      - 在節點對之間的最短途徑通過單一節點的頻率，即多數節點須通過該節點以觸及其他節點
-
-      - $$
-        C_B(i) = \sum_{j<k}g_{jk}(i)/g_{jk}
-        $$
-
-        - $g_{jk}(i)$ = jk兩節點之間通過$i$的最短捷徑次數
-        - $g_{jk}$ = 連結 j k兩節點的最短捷徑個數
-
-      - 意涵：節點的中心程度或在網絡的重要性+該節點與其他節點的關係
-
-        - 掌握較多的資源
-        - 掌握較大的權力，可以過濾資訊
-        - 控制網絡流動，影響節點彼此的連結，或阻礙網絡運作
-
-    - Closeness Centrality
-
-      - The average distance from a given starting node to all other nodes in the network.
-
-      - $$
-        C(x) = -\frac{N}{\sum_y d(x,y)}
-        $$
-
-      - 定義：該節點到所有節點之最短距離總和之倒數，值越大代表越容易觸及其他節點
-
-      - 意涵：該節點觸及網絡內所有節點的程度
-
-      - 如人際關係，接近中心性越高，個性越合群
-
-      - 病毒傳播，接近中心性越高，越容易感染
-
-    - Harmonic Centrality
-
-      - 整體概念與接近中心性相同
-      - 節點不相連，距離無限大->接近中心性=0
-      - 故先取倒數再相加
-
-    - Degree Centrality
-
-      - 用來了解節點在網絡的位置
-
-      - $C_{D}(i) = \sum_jX_{ij}$
-
-      - $X_{ij}$：(i,j)的矩陣
-
-      - 以上是無向圖的算法，有向圖可分解計算節點的Indegree centrality/outdegree centrality
-
-        ![](https://lh3.googleusercontent.com/pw/ACtC-3eqpe_lm1LEaAXPo6NUXJtXG_yARXioB4ewR5sKltihMjRHwVL3e9SvXgIOgCPjUSzntbQr2WGopZ0iEPnN5S6HgLHR8T5k2bKmt8wC0kCTu0peDtzt4Dx_WQdhnDDHmkF93OmmBXe1vWXMYV6erWgq=w556-h243-no?authuser=1)
-
-    - Eigenvector Centrality
-
-    - Prestige
-
-      - measure the direction is important property of the relation
-
-      - for directed network only
-
-      - prestigious actor is the object of extensive ties as a recipient(has input degrees)
-
-      - 如很多人會想跟女神成為朋友，但女神不一定想和每個人都成為朋友
-
-      - 凸顯actor本身的重要性而非中心性
-
-        - Indegree prestige
-
-          - number of directly connected neighbours considering indegrees
-
-          - $$
-            P_{ID}(i) = \frac{d_I(i)}{n-1}
-            $$
-
-          - 其他節點指向i節點的次數 
-
-        - Domain Prestige
-
-          - Share of total nodes which can reach a node.
-
-          - $$
-            P_D(i)=\frac{ \mid I_i \mid}{(n-1)}
-            $$
-
-            網絡內哪一些節點可以直接或間接地指到v節點
-
-        - Proximity Prestige
-
-          - Considers directly and indirectly linked nodes and path-lengths
-          - 路徑長度用來加權，越短路徑越有價值
-
-        - Rank Prestige
-
-          - Considers specified prominesce value from in-degree nodes.
-
-    - PageRank
-
-      - link analysis algorithm
-      - 根據節點在網絡內的重要性進行排序
-      - 透過非隨機圖像尋訪方式，計算網絡內其他節點連結到該節點的可能性(likehood)
-
-    - Average Cluster Coefficient(AvgCC)
-
-      - the tendency for who share connection in a social network to become connected
-      - How can we measure the prevalence of triadic closure in a network?
-        - Local Clustering coefficient of a node
-        - Global Cluster Coefficient
-        - 
-
-    - Eccentricity
-
-      - The distance from a given starting node to the farthest node from it in the network.
-      - 離網絡中最遠的點的距離，數字越小表示越處在網絡中心
+  - - - 
 
     - Radius 半徑
 
       - minimum of eccentricity
-      - eccentricity = radius -> central vertex
-
-    - Diameter 直徑
-
+  - eccentricity = radius -> central vertex
+    
+- Diameter 直徑
+    
       - maximum of eccentricity
       - eccentricity = diameter -> periphery vertex
-      - weigthed graph diameter the hops of a vertex to the farthest vertex 
+  - weigthed graph diameter the hops of a vertex to the farthest vertex 
       - if the network is disconnected-> the diameter is infinite(無限大)
-
-    - Average path length
-
-      - the average number of steps along the shortest paths for all possible pairs of nodes.
-
+    
+- Average path length
+    
+  - the average number of steps along the shortest paths for all possible pairs of nodes.
+    
         網絡内所有可能連結最短路徑加總的平均步數(連結最短路徑長度總和/連結數)
-
-      It is a measure of the efficiency of information or mass transport on a network.
-
-  - Graph Density
-
-    the total number of edges present in graph/the total numberof edges possible the graph
-
     
-
+  It is a measure of the efficiency of information or mass transport on a network.
     
-
+- Graph Density
+  
+  the total number of edges present in graph/the total numberof edges possible the graph
+  
+    
+  
+  
+  
 - 網絡與分群
 
   - Modularity(Louvain Modularity Detection)
