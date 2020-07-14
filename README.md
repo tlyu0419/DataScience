@@ -6477,7 +6477,7 @@ A large volume of research on networks has been devoted to the concept of **cent
 
 Once the centrality of nodes have been determined, it is possible to make a ranking of the nodes according to their centrality scores. For instance, one might want to obtain the most important Web pages about a certain topic or the most important academic papers covering a given issue. Moreover, one might be interested to know which are the nodes whose removal from the networks would have the most important consequences in the network structure. A network property that is directly influenced by the removal of nodes is connectivity. For instance, which are the Internet routers whose failure would mostly damage the network connectivity?
 
-### Degree Centrality
+### Degree
 
 - Degree is a simple centrality measure that counts how many neighbors a node has. If the network is directed, we have two versions of the measure: in-degree is the number of in-coming links, or the number of predecessor nodes; out-degree is the number of out-going links, or the number of successor nodes. 
 
@@ -6485,7 +6485,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
   > *A node is important if it has many neighbors, or, in the directed case, if there are many other nodes that link to it, or if it links to many other nodes.*
 
-### Eigenvector Centrality
+### Eigenvector
 
 - A natural extension of degree centrality is **eigenvector centrality**. In-degree centrality awards one centrality point for every link a node receives. But not all vertices are equivalent: some are more relevant than others, and, reasonably, endorsements from important nodes count more. The eigenvector centrality thesis reads:
 
@@ -6495,7 +6495,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
 - Eigenvector centrality, regarded as a ranking measure, is a remarkably old method. Early pioneers of this technique are Wassily W. Leontief (The Structure of American Economy, 1919-1929. Harvard University Press, 1941) and John R. Seeley (The net of reciprocal influence: A problem in treating sociometric data. The Canadian Journal of Psychology, 1949).
 
-### Katz Centrality
+### Katz
 
 - A practical problem with eigenvector centrality is that it works well only if the graph is (strongly) connected. Real undirected networks typically have a large connected component, of size proportional to the network size. However, real directed networks do not. If a directed network is not strongly connected, only vertices that are in strongly connected components or in the out-component of such components can have non-zero eigenvector centrality. The other vertices, such as those in the in-components of strongly connected components, all have, with little justification, null centrality. This happens because nodes with no incoming edges have, by definition, a null eigenvector centrality score, and so have nodes that are pointed to by only nodes with a null centrality score.
 
@@ -6511,7 +6511,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
   > *A node is important if it linked from other important and link parsimonious nodes or if it is highly linked.*
 
-### Kleinberg Centrality
+### Kleinberg
 
 - So far, a node is important if it contains valuable content and hence receives many links from other important sources. Nodes with no incoming links cumulate, in the best case, only a minimum amount of centrality, regardless of how many other useful information sources they reference. One can argue that a node is important also because it links to other important vertices. For instance, a review paper may refer to other authoritative sources: it is important because it tells us where to find trustworthy information. Thus, there are now two types of central nodes: authorities, that contain reliable information on the topic of interest, and hubs, that tell us where to find authoritative information. A node may be both an authority and a hub: for instance, a review paper may be highly cited because it contains useful content and it may as well cite other useful sources. This method has been conceived by Jon M. Kleinberg (Authoritative sources in a hyperlinked environment. In ACM-SIAM Symposium on Discrete Algorithms, 1998). The Kleinberg centrality thesis reads:
 
@@ -6519,7 +6519,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
 - Kleinberg centrality is an elegant way to avoid the problem of ordinary eigenvector centrality on directed networks, that nodes outside strongly connected components or their out-components get null centrality. However, we can still add to Kleinberg centrality an exogenous, possibly personalized, factor (as in the Katz method) or normalize vertex centralities by the out-degrees of vertices that point to them (as in the PageRank method).
 
-### Closeness Centrality
+### Closeness
 
 - The average distance from a given starting node to all other nodes in the network.
 
@@ -6558,7 +6558,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
 - 病毒傳播，接近中心性越高，越容易感染
 
-### Betweeness Centrality
+### Betweeness
 
 - Measure how often a node appears on shortest paths between nodes in the network.
 
@@ -6648,38 +6648,245 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
 ## Communties
 
+- For directed graph: go with **Info Map**. Else, pls continue to read.
+- If compuational resources is not a big problem, and the graph is < 700 vertices & 3500 edges, go with **Edge Betweenness**; it yields the best result.
+- If cares about modularity, any of the remaining algorithms will apply;
+  - If the graph is particularly small: < 100 vertices, then go with **optimal modularity**;
+  - If you want a first try-on algorithm, go with **fast greedy** or **walktrap**
+  - If the graph is bigger than 100 vertices and not a de-generated graph, and you want something more accurate than fast greedy or walktrap, go with **leading eigenvectors**
+  - If you are looking for a solution that is similar to K-means clustering, then go for **Spinglass**
+
 ### Edge betweenness
 
+- **Definition of edge betweenness**:
+
+  > Number of shortest path that passes the edge.
+
+  - It’s not difficult to imagin that, if there is an edge that connects two different groups, then that edge will has to be passed through multiple times when we count the shortest path. Therefore, by removing the edge that contains with the highest number of shortest path, we are disconnecting two groups.
+
+- **Methodology**
+
+  - Top down hierarchical decomposition process.
+
+- **Evalution**
+
+  - Generally this approach gives the most satisfying results from my experience.
+  - Pretty slow method. The computation for edge betweenness is pretty complex, and it will have to be computed again after removing each edge. Suitable for graph with less than 700 vertices and 3500 edges.
+  - It produces a dendrogram with no reminder to choose the appropriate number of communities. (But for IGraph it does a function that output the optimal count for a dendrogram).
+
 - 是一种层次分解过程，其中边缘以其边缘中介度分数（即通过给定边缘的最短路径的数量）的递减顺序被移除。这是因为连接不同组的边缘更可能包含在多个最短路径中，这仅仅是因为在许多情况下它们是从一个组到另一个组的唯一选择。这种方法产生了良好的结果，但由于边缘中介性计算的计算复杂性，并且因为在每次去除边缘之后必须重新计算中间性得分，所以该方法非常慢。具有~700个顶点和~3500个边缘的图形大约是可以使用此方法分析的图形的上限大小。另一个缺点是`Edge.betweenness.community`构建了一个完整的树形图，并没有给出任何关于在何处削减树形图以获得最终组的指导，因此您将不得不使用其他一些措施来决定（例如，分区的模块化分数）在树形图的每个级别）
-- This algorithm was introduced by Girvan & Newman. To find which edges in a network exist most frequently between other pairs of nodes, the authors generalised Freeman’s betweenness centrality to edges betweenness. The edges connecting communities are then expected to have high edge betweenness. The underlying community structure of the network will be much clear after removing edges with high edge betweenness. For the removal of each edge, the calculation of edge betweenness is $O(EN)$ ; therefore, this algorithm’s time complexity is $O(E^2N)^2$
+
+- The edge betweenness score of an edge measures the number of shortest paths through it, see edge_betweenness for details. The idea of the edge betweenness based community structure detection is that it is likely that edges connecting separate modules have high edge betweenness as all the shortest paths from one module to another must traverse through them. So if we gradually remove the edge with the highest edge betweenness score we will get a hierarchical map, a rooted tree, called a dendrogram of the graph. The leafs of the tree are the individual vertices and the root of the tree represents the whole graph. 
+
+- cluster_edge_betweenness performs this algorithm by calculating the edge betweenness of the graph, removing the edge with the highest edge betweenness score, then recalculating edge betweenness of the edges and again removing the one with the highest score, etc. 
+
+- edge.betweeness.community returns various information collected throught the run of the algorithm. See the return value down here.
 
 ### Fastgreedy
+
+- **Methodology**:
+  - Bottom up hierarchical decomposition process. It will merge two current communities iteratively, with the goal to achieve the maximum modularity gain at local optimal.
+- **Evaluation**:
+  - Pretty fast, can merge a sparse graph at linear time.
+  - Resolution limit: when the network is large enough, small communities tend to be combined even if they are well-shaped.
+- This function tries to find dense subgraph, also called communities in graphs via directly optimizing a modularity score.
+- This function implements the fast greedy modularity optimization algorithm for finding community structure, see A Clauset, MEJ Newman, C Moore: Finding community structure in very large networks.
 
 是另一种分层方法，但它是自下而上而不是自上而下。它试图以贪婪的方式优化称为模块化的质量功能。最初，每个顶点属于一个单独的社区，并且迭代地合并社区，使得每个合并是局部最优的（即，产生模块化的当前值的最大增加）。当不可能再增加模块性时，算法停止，因此它为您提供分组和树形图。该方法很快，并且它通常作为第一近似尝试的方法，因为它没有要调整的参数。然而，已知具有分辨率限制，即低于给定大小阈值的社区（取决于节点和边缘的数量，如果我没记错的话）将始终与邻近社区合并。
 
 ### Infomap
 
+- **Methodology**:
+
+  > It is based on information theoretic principles; it tries to build a grouping which provides the shortest description length for a random walk on the graph, where the description length is measured by the expected number of bits per vertex required to encode the path of a random walk.
+
+- **Evaluation**:
+
+  - Used for directed graph analytics
+
+- Find community structure that minimizes the expected description length of a random walker trajectory
+
+- The original paper: M. Rosvall and C. T. Bergstrom, Maps of information flow reveal community structure in complex networks, PNAS 105, 1118 (2008) http://dx.doi.org/10.1073/pnas. 0706851105, http://arxiv.org/abs/0707.0609 A more detailed paper: M. Rosvall, D. Axelsson, and C. T. Bergstrom, The map equation, Eur. Phys. J. Special Topics 178, 13 (2009). http://dx.doi.org/10.1140/epjst/e2010-01179-1, http://arxiv.org/abs/0906.1405.
+
 ### Label propagation
+
+- **Methodology**
+  - A bit like k-clustering, with initialization k different points. It uses an iterative method (again just like k-means): the target label will be assigned with the most “vote” of the lables from its neighbors; until the current label is the most frequent label.
+- **Evaluation**
+  - Very fast
+  - Like K-Means, random initialization yields different results. Therefore have to run multiple times (suggested 1000+) to achieve a consensus clustering.
+- This is a fast, nearly linear time algorithm for detecting community structure in networks. In works by labeling the vertices with unique labels and then updating the labels by majority voting in the neighborhood of the vertex.
+- This function implements the community detection method described in: Raghavan, U.N. and Albert, R. and Kumara, S.: Near linear time algorithm to detect community structures in large-scale networks. Phys Rev E 76, 036106. (2007). This version extends the original method by the ability to take edge weights into consideration and also by allowing some labels to be fixed. 
+- From the abstract of the paper: “In our algorithm every node is initialized with a unique label and at every step each node adopts the label that most of its neighbors currently have. In this iterative process densely connected groups of nodes form a consensus on a unique label to form communities.”
+- 是一种简单的方法，其中每个节点都分配了一个 *k* labels。该方法然后迭代地进行并且以每个节点以同步方式获取其邻居的最频繁标签的方式将标签重新分配给节点。当每个节点的标签是其邻域中最频繁的标签之一时，该方法停止。它非常快，但根据初始配置（随机决定）产生不同的结果，因此应该多次运行该方法（例如，图表的1000次），然后建立共识标签，这可能是乏味。
 
 ### Leading eigenvector
 
-是一种自上而下的分层方法，可以再次优化模块化功能。在每个步骤中，图表被分成两部分，分离本身会使模块性显着增加。通过评估所谓的模块化矩阵的前导特征向量来确定分裂，并且还存在阻止紧密连接的组进一步分裂的停止条件。由于涉及特征向量计算，它可能不适用于ARPACK特征向量求解器不稳定的退化图。在非简并图上，它可能比快速贪婪方法产生更高的模块性分数，尽管它有点慢。
+- This function tries to find densely connected subgraphs in a graph by calculating the leading nonnegative eigenvector of the modularity matrix of the graph.
+- The function documented in these section implements the ‘leading eigenvector’ method developed by Mark Newman, see the reference below. The heart of the method is the definition of the modularity matrix, B, which is B=A-P, A being the adjacency matrix of the (undirected) network, and P contains the probability that certain edges are present according to the ‘configuration model’. In other words, a P[i,j] element of P is the probability that there is an edge between vertices i and j in a random network in which the degrees of all vertices are the same as in the input graph. 
+- The leading eigenvector method works by calculating the eigenvector of the modularity matrix for the largest positive eigenvalue and then separating vertices into two community based on the sign of the corresponding element in the eigenvector. If all elements in the eigenvector are of the same sign that means that the network has no underlying comuunity structure. Check Newman’s paper to understand why this is a good method for detecting community structure.
 
-### Multilevel
+### Multi-level(Louvain)
+
+- **Methodology**
+  - Similar to fast greedy, just that nodes are not combined, they move around communities to make dicision if they will contribute to the modularity score if they stay.
+- This function implements the multi-level modularity optimization algorithm for finding community structure, see references below. It is based on the modularity measure and a hierarchial approach.
+- This function implements the multi-level modularity optimization algorithm for finding community structure, see VD Blondel, J-L Guillaume, R Lambiotte and E Lefebvre: Fast unfolding of community hierarchies in large networks, http://arxiv.org/abs/arXiv:0803.0476 for the details. 
+- It is based on the modularity measure and a hierarchial approach. Initially, each vertex is assigned to a community on its own. In every step, vertices are re-assigned to communities in a local, greedy way: each vertex is moved to the community with which it achieves the highest contribution to modularity. When no vertices can be reassigned, each community is considered a vertex on its own, and the process starts again with the merged communities. The process stops when there is only a single vertex left or when the modularity cannot be increased any more in a step.
+
+### Optimal
+
+- **Definition of modularity**
+  - Modularity compares the number of edges inside a cluster with the expected number of edges that one would find in the cluster if the network were a random network with the same number of nodes and where each node keeps its degree, but edges are otherwise randomly attached.
+  - Modularity is a measure of the segmentation of a network into partitions. The higher the modularity, the denser in-group connections are and the sparser the inter-group connections are.
+- **Methodology**
+  - GNU linear programming kit.
+- **Evaluation**:
+  - Better for smaller communities with less than 100 vertices for the reasons of implementation choice.
+  - Resolution limit: when the network is large enough, small communities tend to be combined even if they are well-shaped.
+- This function calculates the optimal community structure of a graph, by maximizing the modularity measure over all possible partitions.
+- This function calculates the optimal community structure for a graph, in terms of maximal modularity score. 
+- The calculation is done by transforming the modularity maximization into an integer programming problem, and then calling the GLPK library to solve that. Please the reference below for details. Note that modularity optimization is an NP-complete problem, and all known algorithms for it have exponential time complexity. This means that you probably don’t want to run this function on larger graphs. Graphs with up to fifty vertices should be fine, graphs with a couple of hundred vertices might be possible.
 
 ### Spinglass
 
-是统计物理学的一种方法，基于所谓的波茨模型。在这个模型中，每个粒子（即顶点）可以处于其中一个 *c* 自旋状态，并且粒子之间的相互作用（即图的边缘）指定哪些顶点对将更喜欢保持在同一旋转中状态和哪些更喜欢具有不同的自旋状态。然后针对给定数量的步骤模拟模型，并且最终粒子的自旋状态定义社区。结果如下：1）最终永远不会超过 *c* 社区，尽管你可以将 *c* 设置为高达200，这可能足以达到你的目的。 2）最终可能会有少于 *c* 社区，因为一些自旋状态可能变空。 3）不能保证网络中完全远程（或不连接）部分的节点具有不同的自旋状态。对于断开连接的图形，这更可能是一个问题，所以我不担心这一点。该方法不是特别快且不具有确定性（因为模拟本身），但具有可调整的分辨率参数，用于确定簇大小。 spinglass方法的变体还可以考虑负链接（即，其端点更喜欢在不同社区中的链接）。
+- This function tries to find communities in graphs via a spin-glass model and simulated annealing.
+- This function tries to find communities in a graph. A community is a set of nodes with many edges inside the community and few edges between outside it (i.e. between the community itself and the rest of the graph.) 
+- This idea is reversed for edges having a negative weight, ie. few negative edges inside a community and many negative edges between communities. Note that only the ‘neg’ implementation supports negative edge weights. 
+- The spinglass.cummunity function can solve two problems related to community detection. If the vertex argument is not given (or it is NULL), then the regular community detection problem is solved (approximately), i.e. partitioning the vertices into communities, by optimizing the an energy function. 
+- If the vertex argument is given and it is not NULL, then it must be a vertex id, and the same energy function is used to find the community of the the given vertex. 
+
+
 
 ### Walktrap
 
+- **Methodology**
+  - Similar to fast greedy. It is believed that when we walk some random steps, it is large likely that we are still in the same community as where we were before. This method firstly performs a random walk 3-4-5, and merge using modularity with methods similar to fast greedy.
+- **Evaluation**:
+  - A bit slower than fast greedy;
+  - A bit more accurate than fast greedy.
+- This function tries to find densely connected subgraphs, also called communities in a graph via random walks. The idea is that short random walks tend to stay in the same community.
+- This function is the implementation of the Walktrap community finding algorithm, see Pascal Pons, Matthieu Latapy: Computing communities in large networks using random walks, http://arxiv.org/abs/physics/0512106
+
 是一种基于随机游走的方法。一般的想法是，如果您在图表上执行随机游走，那么步行更有可能保持在同一社区内，因为在给定社区之外只有少数边缘。 Walktrap运行3-4-5步骤的短随机游走（取决于其中一个参数），并使用这些随机游走的结果以自下而上的方式合并单独的社区，如`fastgreedy.community`。同样，您可以使用模块化分数来选择剪切树形图的位置。它比快速贪婪方法慢一点，但也更准确一些（根据原始出版物）。
 
-### Label propagation
+### Eigenvectors
 
-是一种简单的方法，其中每个节点都分配了一个 *k* labels。该方法然后迭代地进行并且以每个节点以同步方式获取其邻居的最频繁标签的方式将标签重新分配给节点。当每个节点的标签是其邻域中最频繁的标签之一时，该方法停止。它非常快，但根据初始配置（随机决定）产生不同的结果，因此应该多次运行该方法（例如，图表的1000次），然后建立共识标签，这可能是乏味。
+- **Methodology**
+  - A top down approach that seeks to maximize modularity. It concerns decomposing a modularity matrix.
+- **Evaluation**
+  - More accurate than fast greedy
+  - Slower than fast greedy
+  - Limitation: not stable on degenerated graphs (might not work!)
+
+## Layout
+
+### bipartite
+
+- Minimize edge-crossings in a simple two-row (or column) layout for bipartite graphs
+- The layout is created by first placing the vertices in two rows, according to their types. Then the positions within the rows are optimized to minimize edge crossings, using the Sugiyama algorithm (see layout_with_sugiyama).
+
+### star
+
+- A simple layout generator, that places one vertex in the center of a circle and the rest of the vertices equidistantly on the perimeter.
+- It is possible to choose the vertex that will be in the center, and the order of the vertices can be also given.
+
+### tree
+
+- A tree-like layout, it is perfect for trees, acceptable for graphs with not too many cycles.
+- Arranges the nodes in a tree where the given node is used as the root. The tree is directed downwards and the parents are centered above its children. For the exact algorithm, the refernce below. If the given graph is not a tree, a breadth-first search is executed first to obtain a possible spanning tree.
+
+### circle
+
+- Place vertices on a circle, in the order of their vertex ids.
+- If you want to order the vertices differently, then permute them using the permute function.
+
+### nicely
+
+- This function tries to choose an appropriate graph layout algorithm for the graph, automatically, based on a simple algorithm. See details below.
+- layout_nicely tries to choose an appropriate layout function for the supplied graph, and uses that to generate the layout. The current implementation works like this: 
+  1. If the graph has a graph attribute called ‘layout’, then this is used. If this attribute is an R function, then it is called, with the graph and any other extra arguments. 
+  2. Otherwise, if the graph has vertex attributes called ‘x’ and ‘y’, then these are used as coordinates. If the graph has an additional ‘z’ vertex attribute, that is also used. 
+  3. Otherwise, if the graph is connected and has less than 1000 vertices, the Fruchterman-Reingold layout is used, by calling layout_with_fr. 
+  4. Otherwise the DrL layout is used, layout_with_drl is called.
+
+### grid
+
+- This layout places vertices on a rectangulat grid, in two or three dimensions.
+- The function places the vertices on a simple rectangular grid, one after the other. If you want to change the order of the vertices, then see the permute function.
+
+### sphere
+
+- Place vertices on a sphere, approximately uniformly, in the order of their vertex id.
+- layout_on_sphere places the vertices (approximately) uniformly on the surface of a sphere, this is thus a 3d layout. It is not clear however what “uniformly on a sphere” means. If you want to order the vertices differently, then permute them using the permute function
+
+### randomly
+
+- This function uniformly randomly places the vertices of the graph in two or three dimensions.
+- Randomly places vertices on a [-1,1] square (in 2d) or in a cube (in 3d). It is probably a useless layout, but it can use as a starting point for other layout generators.
+
+### Davidson-Harel layout
+
+- Place vertices of a graph on the plane, according to the simulated annealing algorithm by Davidson and Harel.
+
+### DrL
+
+- DrL is a force-directed graph layout toolbox focused on real-world large-scale graphs, developed by Shawn Martin and colleagues at Sandia National Laboratories.
+
+### Fruchterman-Reingold layout
+
+- Place vertices on the plane using the force-directed layout algorithm by Fruchterman and Reingold.
+- See the referenced paper below for the details of the algorithm. 
+- Ref
+  - Fruchterman, T.M.J. and Reingold, E.M. (1991). Graph Drawing by Force-directed Placement. Software - Practice and Experience, 21(11):1129-1164.
+
+### GEM
+
+- Place vertices on the plane using the GEM force-directed layout algorithm
+- Ref
+  - Arne Frick, Andreas Ludwig, Heiko Mehldau: A Fast Adaptive Layout Algorithm for Undirected Graphs, Proc. Graph Drawing 1994, LNCS 894, pp. 388-403, 1995.
+
+### graphopt
+
+- A force-directed layout algorithm, that scales relatively well to large graphs.
+- layout_with_graphopt is a port of the graphopt layout algorithm by Michael Schmuhl. graphopt version 0.4.1 was rewritten in C and the support for layers was removed (might be added later) and a code was a bit reorganized to avoid some unneccessary steps is the node charge (see below) is zero. 
+- graphopt uses physical analogies for defining attracting and repelling forces among the vertices and then the physical system is simulated until it reaches an equilibrium. (There is no simulated annealing or anything like that, so a stable fixed point is not guaranteed.) 
+- See also http://www.schmuhl.org/graphopt/ for the original graphopt
+
+### Kamada-Kawai
+
+- Place the vertices on the plane, or in the 3d space, based on a phyisical model of springs.
+- Ref
+  - Kamada, T. and Kawai, S.: An Algorithm for Drawing General Undirected Graphs. Information Processing Letters, 31/1, 7–15, 1989.
+
+### Large Graph
+
+- A layout generator for larger graphs.
+
+### multidimensional scaling
+
+- Multidimensional scaling of some distance matrix defined on the vertices of a graph.
+- layout_with_mds uses metric multidimensional scaling for generating the coordinates. Multidimensional scaling aims to place points from a higher dimensional space in a (typically) 2 dimensional plane, so that the distance between the points are kept as much as this is possible. 
+- By default igraph uses the shortest path matrix as the distances between the nodes, but the user can override this via the dist argument. 
+- This function generates the layout separately for each graph component and then merges them via merge_coords.
+
+### Sugiyama graph
+
+- Sugiyama layout algorithm for layered directed acyclic graphs. The algorithm minimized edge crossings.
+- This layout algorithm is designed for directed acyclic graphs where each vertex is assigned to a layer. Layers are indexed from zero, and vertices of the same layer will be placed on the same horizontal line. The X coordinates of vertices within each layer are decided by the heuristic proposed by Sugiyama et al. to minimize edge crossings. 
+- You can also try to lay out undirected graphs, graphs containing cycles, or graphs without an a priori layered assignment with this algorithm. igraph will try to eliminate cycles and assign vertices to layers, but there is no guarantee on the quality of the layout in such cases. 
+- The Sugiyama layout may introduce “bends” on the edges in order to obtain a visually more pleasing layout. This is achieved by adding dummy nodes to edges spanning more than one layer. The resulting layout assigns coordinates not only to the nodes of the original graph but also to the dummy nodes. The layout algorithm will also return the extended graph with the dummy nodes.
+
+- Ref
+  - K. Sugiyama, S. Tagawa and M. Toda, "Methods for Visual Understanding of Hierarchical Systems". IEEE Transactions on Systems, Man and Cybernetics 11(2):109-125, 1981.
 
 ## Structure
+
+## Packages
+
+- NetworkX
+- igraph
+- [graph-tool](https://graph-tool.skewed.de/performance)
 
 - Ref
   - [用python分析《三国演义》中的社交网络.ipynb](https://github.com/blmoistawinde/hello_world/blob/master/sanguo_network/用python分析《三国演义》中的社交网络.ipynb)
@@ -6780,22 +6987,23 @@ In SNA， We focus on relations and structures.
 
       - minimum of eccentricity
   - eccentricity = radius -> central vertex
-    
+  
 - Diameter 直徑
-    
+  
       - maximum of eccentricity
       - eccentricity = diameter -> periphery vertex
   - weigthed graph diameter the hops of a vertex to the farthest vertex 
       - if the network is disconnected-> the diameter is infinite(無限大)
-    
+  
 - Average path length
-    
+  
   - the average number of steps along the shortest paths for all possible pairs of nodes.
     
         網絡内所有可能連結最短路徑加總的平均步數(連結最短路徑長度總和/連結數)
     
+  
   It is a measure of the efficiency of information or mass transport on a network.
-    
+  
 - Graph Density
   
   the total number of edges present in graph/the total numberof edges possible the graph
