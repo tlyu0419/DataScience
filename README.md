@@ -6552,11 +6552,13 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 
 - 定義：該節點到所有節點之最短距離總和之倒數，值越大代表越容易觸及其他節點
 
+  - 強調點在網絡的價值，值越大表示越位在中心
+
 - 意涵：該節點觸及網絡內所有節點的程度
 
-- 如人際關係，接近中心性越高，個性越合群
+  - 如人際關係，接近中心性越高，個性越合群
 
-- 病毒傳播，接近中心性越高，越容易感染
+  - 病毒傳播，接近中心性越高，越容易感染
 
 ### Betweeness
 
@@ -6577,72 +6579,68 @@ Once the centrality of nodes have been determined, it is possible to make a rank
   - 掌握較大的權力，可以過濾資訊
   - 控制網絡流動，影響節點彼此的連結，或阻礙網絡運作
   - 表明这个节点在网络中的重要程度，他是不是一个交流枢纽，例如紧密中心性里面。7和8就具有很高的介数中心性。如果把7或者8从图中拿走，会造成图的分裂。
+  - 強調點在其他點之間的調節能力，控制能力指數
 
-- - 
+### Harmonic Centrality
 
-- Harmonic Centrality
+- 整體概念與接近中心性相同
+- 節點不相連，距離無限大->接近中心性=0
+- 故先取倒數再相加
 
-  - 整體概念與接近中心性相同
-  - 節點不相連，距離無限大->接近中心性=0
-  - 故先取倒數再相加
+### Prestige
 
-- - 
+- measure the direction is important property of the relation
 
-- Prestige
+- for directed network only
 
-  - measure the direction is important property of the relation
+- prestigious actor is the object of extensive ties as a recipient(has input degrees)
 
-  - for directed network only
+- 如很多人會想跟女神成為朋友，但女神不一定想和每個人都成為朋友
 
-  - prestigious actor is the object of extensive ties as a recipient(has input degrees)
+- 凸顯actor本身的重要性而非中心性
 
-  - 如很多人會想跟女神成為朋友，但女神不一定想和每個人都成為朋友
+  - Indegree prestige
 
-  - 凸顯actor本身的重要性而非中心性
+    - number of directly connected neighbours considering indegrees
 
-    - Indegree prestige
+    - $$
+      P_{ID}(i) = \frac{d_I(i)}{n-1}
+      $$
 
-      - number of directly connected neighbours considering indegrees
+    - 其他節點指向i節點的次數 
 
-      - $$
-        P_{ID}(i) = \frac{d_I(i)}{n-1}
-        $$
+  - Domain Prestige
 
-      - 其他節點指向i節點的次數 
+    - Share of total nodes which can reach a node.
 
-    - Domain Prestige
+    - $$
+      P_D(i)=\frac{ \mid I_i \mid}{(n-1)}
+      $$
 
-      - Share of total nodes which can reach a node.
+      網絡內哪一些節點可以直接或間接地指到v節點
 
-      - $$
-        P_D(i)=\frac{ \mid I_i \mid}{(n-1)}
-        $$
+  - Proximity Prestige
 
-        網絡內哪一些節點可以直接或間接地指到v節點
+    - Considers directly and indirectly linked nodes and path-lengths
+    - 路徑長度用來加權，越短路徑越有價值
 
-    - Proximity Prestige
+  - Rank Prestige
 
-      - Considers directly and indirectly linked nodes and path-lengths
-      - 路徑長度用來加權，越短路徑越有價值
+    - Considers specified prominesce value from in-degree nodes.
 
-    - Rank Prestige
 
-      - Considers specified prominesce value from in-degree nodes.
 
-- - 
+### Average Cluster Coefficient(AvgCC)
 
-- Average Cluster Coefficient(AvgCC)
+- the tendency for who share connection in a social network to become connected
+- How can we measure the prevalence of triadic closure in a network?
+  - Local Clustering coefficient of a node
+  - Global Cluster Coefficient
 
-  - the tendency for who share connection in a social network to become connected
-  - How can we measure the prevalence of triadic closure in a network?
-    - Local Clustering coefficient of a node
-    - Global Cluster Coefficient
-    - 
+### Eccentricity
 
-- Eccentricity
-
-  - The distance from a given starting node to the farthest node from it in the network.
-  - 離網絡中最遠的點的距離，數字越小表示越處在網絡中心
+- The distance from a given starting node to the farthest node from it in the network.
+- 離網絡中最遠的點的距離，數字越小表示越處在網絡中心
 
 ## Similarity
 
