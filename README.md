@@ -1,6 +1,10 @@
 [TOC]
 
+# Database
 
+- MySQL
+  - [MySQL Insert](https://www.mysqltutorial.org/mysql-insert-statement.aspx)
+  - [Python之使用Pandas庫實現MySQL資料庫的讀寫](https://codertw.com/資料庫/16156/)
 
 # Python Basics
 
@@ -8369,6 +8373,48 @@ r.text
 
 - 從D1開始
 - https://cvdl.cupoy.com/mission/D1
+
+# 建立虛擬環境
+
+在開發 Python 專案時，很常遇見的問題是不同專案會需要不同的 Python 版本與不同的 package ，因此這時候就會需要建立出不同的環境進行開發，避免彼此在使用時收到影響。
+
+- 確認目前有哪些虛擬環境
+
+  ```python
+  conda env list
+  ```
+
+- 建立虛擬環境
+
+  以建置 python 3.5版本的環境，並將環境命名為myenv為例
+
+  ```python
+  conda create --name myenv python=3.5
+  ```
+
+- 啟動虛擬環境
+
+  ```python
+  activate myenv
+  ```
+
+  
+
+- 離開虛擬環境
+
+  ```python
+  deactivate
+  ```
+
+  
+
+- 刪除虛擬環境
+
+  ```python
+  conda env remove --name myenv
+  ```
+
+  
 
 # 使用套件
 
