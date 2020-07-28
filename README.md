@@ -99,6 +99,17 @@ myfile.readlines()
   myfile.close
   ```
 
+  - 將 list 寫成txt
+
+    若遇到中文在encoding的部分很容易出錯，需要在open時加上encoding='utf-8'的參數!
+    
+    ```python
+    with open("stop_words.txt", "w", encoding="utf-8") as outfile:
+        outfile.write("\n".join(stopwords))
+    ```
+    
+    
+
 - append
 
   ```python
@@ -5869,10 +5880,27 @@ We can think of this as a powerful version of Regular Expression where we actual
   3. Normalize TF-IDF vectors to unit length.
   4. Initialise factors using NNDSVD on A.
   5. Apply Projected Gradient NMF to A.
-
 - Basis vectors: the topics (clusters) in the data.Coefficient matrix: the membership weights for documents relative to each topic (cluster).
 - Just like LDA, we will need to select the number of expected topics beforehand (the value of **k**)!
 - Also just like with LDA, we will have to interpret the topics based off the coefficient values of the words per topic.
+- 應用
+  - 新聞文本聚類
+    - 背景
+      - 單一事件的裁罰造成業者全年獲利縮水20%以上(美國裁罰兆豐)
+      - 雖然有KYC的甄審流程，但即時性不如外部的新聞資訊
+      - 雖然新聞能夠更及時偵測風險，但是資料量太大，沒辦法逐條新聞瀏覽，因此需要針對新聞做文本聚類
+    - 目標
+      - 透過新聞文本聚類，降低甄審人員的工作量
+      - 協助做姓名檢核，降低67%新聞閱讀量
+    - Package
+      - spacy：處理英文
+      - ckiptagger：處理繁中
+      - nltk：詞幹提取
+    - 由平均側影係數找出最佳分群組數，中信的專案約 0.62
+    - 將新聞依照風險類型做文本聚類，讓甄審人員進一步瀏覽新聞確認是不是自己的客戶
+      - 還可以在系統中將關鍵字標註顏色，方便找出風險詞彙
+    - 中信有投稿IJCAI，獲得許多獎項
+    - 
 - Ref
   - [Non-Negative-Matrix-Factorization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/01-Non-Negative-Matrix-Factorization.ipynb)
   - [LDA-NMF-Assessment-Project-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/03-LDA-NMF-Assessment-Project-Solutions.ipynb)
@@ -8367,7 +8395,14 @@ r.text
    		time.sleep(1) 
   ```
 
-  
+
+## 搜尋引擎
+
+當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
+
+- Google
+- Yahoo
+- Bing
 
 # 影像辨識
 
