@@ -477,6 +477,15 @@ SELECT * FROM table
 
 
 
+## STRTOK
+
+```teradata
+-- 用底線切割字串，並取第一個值
+select strtok('HiHi_Tony', '_', 1)
+```
+
+
+
 # 表格變更
 
 
