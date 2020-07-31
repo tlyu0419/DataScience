@@ -5537,6 +5537,8 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
 
 # Natural Language Precessing
 
+- [Python 文本数据分析初学指南](https://datartisan.gitbooks.io/begining-text-mining-with-python/content/)
+
 - Often when performing analysis, lot of data is numerical, such as sales numbers, physical measuremets, quantifiable categories.Computers are very good at handling direct numerical information.
 - As humans we can tell there is a plethora of information inside of text documents.But a computer needs specialized processing techniques in order to "understand" raw text data.
   - email / message / website...
