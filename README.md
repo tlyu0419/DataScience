@@ -6933,6 +6933,7 @@ Once the centrality of nodes have been determined, it is possible to make a rank
   - [谁是社会网络中最重要的人？](https://zhuanlan.zhihu.com/p/31198752)
   - [如何简单地理解中心度，什么是closeness、betweenness和degree？](https://www.zhihu.com/question/22610633/answer/493452601)
   - [Network Science](https://www.sci.unich.it/~francesc/teaching/network/)
+  - [Why Social Network Analysis Is Important](https://blog.f-secure.com/why-social-network-analysis-is-important/)
 
 In SNA， We focus on relations and structures.
 
