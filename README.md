@@ -2479,6 +2479,8 @@ https://zhuanlan.zhihu.com/p/31182879
 
   7. learning_rate， 這時候要調小測試
 
+
+
 #### lightgbm
 
 https://zhuanlan.zhihu.com/p/52583923
@@ -5865,6 +5867,12 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - Ref
   - [Latent-Dirichlet-Allocation.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/00-Latent-Dirichlet-Allocation.ipynb)
+  - [怎么确定LDA的topic个数？](https://www.zhihu.com/question/32286630)
+  - [一文详解LDA主题模型](https://zhuanlan.zhihu.com/p/31470216)
+  - [LDA主题模型详解（面试的问题都在里面）](https://zhuanlan.zhihu.com/p/105937136)
+  - [文本挖掘从小白到精通（五）---主题模型的主题数确定和可视化](https://zhuanlan.zhihu.com/p/75484791)
+  - [LDA(Latent Dirichlet Allocation)主题模型](https://zhuanlan.zhihu.com/p/36394491)
+  - [20181012 lda explanation-allen-lee](https://www.slideshare.net/ssuser7414b2/20181012-lda-explanationallenlee)
 
 ### Non-negative Matrix Factorization
 
@@ -8275,7 +8283,7 @@ r.text
 
 ### 反爬：代理 IP
 
-- 當爬蟲程式⼤量存取特定網站時，網站⽅可以採⽤最直接的防護機制 - 封鎖 IP，直接透過底層的⽅式做屏蔽。
+- 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
 
 - 代理伺服器
 
@@ -8289,6 +8297,10 @@ r.text
    proxies={'http': 'http://' + ip}) 
   ```
 
+- Ref
+
+  - [USProxy.ipynb](https://github.com/TLYu0419/DataScience/blob/master/WebCrawler/USProxy/USProxy.ipynb)
+  
 - 哪裡有第三⽅的代理伺服器可以⽤？
 
   - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 
