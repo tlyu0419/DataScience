@@ -5559,6 +5559,23 @@ https://zhuanlan.zhihu.com/p/25928551
 
 [【干货】文本分类算法集锦，从小白到大牛，附代码注释和训练语料](https://zhuanlan.zhihu.com/p/64602471)
 
+## 應用
+
+- 偵測詐騙郵件
+- 情感分析
+- 搜尋建議更正
+- 詞類標識
+- 機器翻譯
+- 語音辨識
+- 人名識別辨識
+- 文本摘要
+- 文本生成
+- 句法分析
+- [https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/671246/](https://codertw.com/程式語言/671246/)
+- https://oosga.com/nlp/
+- https://zhuanlan.zhihu.com/p/100985227
+- https://zhuanlan.zhihu.com/p/38318074
+
 ## Libraries
 
 ### NLTK
@@ -6214,8 +6231,6 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 相似文章聚類是一個應對信息量爆炸的底層大數據技術，通過自動聚合重複或相似內容，提供更便捷的信息閱讀與檢索。除了可用於文章抄襲檢測、新聞轉載侵權檢測等直接應用外，對提升後續自然語言處理或機器學習分析的準確性與處理速度也有重要意義。
 
-### 
-
 ### 熱點話題發現
 
 > 熱門話題發現 (Hot Topic Discovery) 旨在從目標媒體數據中自動識別、快速聚合出在固定時間範圍內熱度較高的話題，幫助用戶迅速了解熱點議題。
@@ -6548,8 +6563,14 @@ Once the centrality of nodes have been determined, it is possible to make a rank
 ### PageRank
 
 - A potential problem with Katz centrality is the following: if a node with high centrality links many others then all those others get high centrality. In many cases, however, it means less if a node is only one among many to be linked. The centrality gained by virtue of receiving a link from an important node should be diluted if the important vertex is very magnanimous with endorsements.
+- PageRank is an adjustment of Katz centrality that takes into consideration this issue. There are three distinct factors that determine the PageRank of a node: 
+- (i) the number of links it receives, 
+  - (ii) the link propensity of the linkers, and 
+  - (iii) the centrality of the linkers. 
 
-- PageRank is an adjustment of Katz centrality that takes into consideration this issue. There are three distinct factors that determine the PageRank of a node: (i) the number of links it receives, (ii) the link propensity of the linkers, and (iii) the centrality of the linkers. The first factor is not surprising: the more links a node attracts, the more important it is perceived. Reasonably, the value of the endorsement depreciates proportionally to the number of links given out by the endorsing node: links coming from parsimonious nodes are worthier than those emanated by spendthrift ones. Finally, not all nodes are created equal: links from important vertices are more valuable than those from obscure ones. This method has been coined (and patented) by Sergey Brin and Larry Page (The anatomy of a large-scale hypertextual web search engine. Computer networks and ISDN systems, 1998). The PageRank thesis might be summarized as follows:
+- The first factor is not surprising: the more links a node attracts, the more important it is perceived. Reasonably, the value of the endorsement depreciates proportionally to the number of links given out by the endorsing node: links coming from parsimonious nodes are worthier than those emanated by spendthrift ones. 
+
+- Finally, not all nodes are created equal: links from important vertices are more valuable than those from obscure ones. This method has been coined (and patented) by Sergey Brin and Larry Page (The anatomy of a large-scale hypertextual web search engine. Computer networks and ISDN systems, 1998). The PageRank thesis might be summarized as follows:
 
   > *A node is important if it linked from other important and link parsimonious nodes or if it is highly linked.*
 
