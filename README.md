@@ -5890,6 +5890,7 @@ We can think of this as a powerful version of Regular Expression where we actual
   - [文本挖掘从小白到精通（五）---主题模型的主题数确定和可视化](https://zhuanlan.zhihu.com/p/75484791)
   - [LDA(Latent Dirichlet Allocation)主题模型](https://zhuanlan.zhihu.com/p/36394491)
   - [20181012 lda explanation-allen-lee](https://www.slideshare.net/ssuser7414b2/20181012-lda-explanationallenlee)
+  - [LDA in Python – How to grid search best topic models?](https://www.machinelearningplus.com/nlp/topic-modeling-python-sklearn-examples/)
 
 ### Non-negative Matrix Factorization
 
