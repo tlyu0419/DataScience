@@ -5088,8 +5088,6 @@ ImageNet Challenge 是電腦視覺的競賽，需要對影像進⾏ 1000 個類�
 - 其實是透過資料學習⽽來的! 這也就是 CNN 模型中的參數 (或叫權重weights)
 - CNN 會⾃動從訓練資料中學習出適合的濾波器來完成你的任務 (分類、偵測等)
 
-### 濾波器 (Filter) 視覺化
-
 - 透過⼀層⼜⼀層的神經網路疊加，可以看到底層的濾波器再找線條與顏⾊的特徵，中層則是輪廓與形狀 (輪胎)，⾼層的則是相對完整的特徵 (如⾞窗、後照鏡等)
 
   ![](https://lh3.googleusercontent.com/TL-Uar2ZnG9ksRMP1ujhOzs4A8nM0vVaNypSOdcg9N-Ktc2N2gZa8M79gkcTM95bnOmYrsw3MMCi50bTP4U2dVcISYVlofD_AuXAEEEBk3NHzjLS15kyHLI9IMe4BwDf2_gea0eBYfavSs4aAsIY14f6iQ6cmQ9EGxxUVB6REbUrQAklxkzUnIUeMxjbUpFKF4BmHWIudo1y6fi2TJ39oNQphWg8lz6WXY9ymKkoG7p2iJewOR5SX7kh-qDUjGC4UXXkA4HcOoreX4Ik7VQmVPO6b2o07TbhyA_j8tmNH1GvxJQUZLkDaAHVPUBGRtmssZZ5kc0t5wQOfalFqseGIAmEI_q8dAWjH848NkhtqthMhymzGZRprtxiRwh-pV6iJp0yaq3LNywhjTHzJCTu9uAv6j6abgbbHDkjLEZVEqlaMpp9DlO10ze1wpQUVSjwIgCB4OUc5YE4Gw0NZ7QKD5Az-VGIy9zOS389SvH9MoGM2ssMlcqPgeLo3Sd-ac_eL3SuBI6BMeuOzY_6bkqt5yJcxEAJZeWcNAF4AgJLabU_UzXwjEHbrxTb6jF6_ai0-cB7GXTdkZJtbUQClxiKvgyMSWB3XmDBhUJj74-03mCve60pfbpze4_BpV4erdOG3bVfxz7ArudyNUdAUTV6GP8hJCJxTL5eVy-tBakYizy3iNoM_WLFTTaG3fhGEjWEeSmp_9ZsNHUbPYyPV14B8EsE=w667-h432-no)
@@ -5575,6 +5573,50 @@ https://zhuanlan.zhihu.com/p/25928551
 - https://oosga.com/nlp/
 - https://zhuanlan.zhihu.com/p/100985227
 - https://zhuanlan.zhihu.com/p/38318074
+
+## 流程
+
+1. 獲取語料
+   - 語料，NLP任務研究的內容
+   - 通常用一個文本集合作為語料庫(Corpus)
+   - 來源，如小說、文本、或可以自行開發爬蟲程式在網路上抓取資料
+2. 預料預處理
+   - 語料清洗
+     - 留下有用的，刪除噪音數據
+     - 常見的數據清洗方式有人工去除重複、對齊、刪除和標註等、或者規則提取內容、正則表達式匹配、根據詞性或命名實體識別提取、邊寫腳本或者代碼批處理等。
+   - 分詞
+     - 將文本分成詞語
+     - 常見的分詞方法有基於字符串匹配的分詞方法、基於理解的分詞方法、基於統計分詞方法和基於規則的分詞方法
+   - 詞性標註
+     - 給詞語打詞類標籤，如動詞、形容詞、名詞等等。通常用在情感分析、知識推理等任務中
+     - 常見的詞性標註方法有基於規則、基於統計等方式，如基於最大熵的詞性標註、基於統計最大機率輸出詞性和基於HMM的詞性標註。
+   - 去除停用詞
+     - 去掉對文本特徵沒有任何貢獻作用的詞性，比如標點符號、語氣、人稱等等。
+3. 特徵工程
+   - 把分詞表示成電腦能夠計算的類型，一般為向量
+   - 常用的表示模型有詞袋模型(Bag of Word)、TF-IDF；詞向量則是wordvec
+4. 特征選擇
+   - 選擇合適、表達能力強的特徵
+   - 常見的特徵選擇方式有DF，MI，IG，CHI，WLLR， WFO
+5. 模型訓練
+   - 機器學習模型有KNN、SVM、Naive Bayes、決策樹、GBDT、K-means等
+   - 深度學習模型有CNN、RNN、LSTM、SeqSeq、FastText、TextCNN
+   - 需注意欠擬合、過擬合的問題
+     - 過擬合為在訓練資料表現很好，但是在測試集上表現很差
+       - 解決方式有增大數據的訓練量
+       - 增加正則化想，如L1正則和L2正則
+       - 特徵選取不合理，人工篩選特徵和使用特徵選擇算法
+       - 採用DropOut方式
+     - 欠擬合是模型不能夠很好的擬合數據，解決方式有
+       - 增加其他特徵項
+       - 增加模型複雜度，比如神經網絡加更多層、線性模型通過添加多項式使模型的泛化能力更強
+       - 減少正則化參數，正則化的目的是用來防止過擬合的，但是當模型出現欠擬合的情形時，可以適度減少正則化參數
+6. 評價指標
+   - 錯誤率、精度、準確度、精確度、召回率、F1-Score
+   - ROC曲線、AUC曲線
+7. 模型上線應用
+   - 第一就是線下訓練模型，然後將模型做線上部署
+   - 第二種就是在線上訓練，在線訓練完成後把模型pickle持久化
 
 ## Libraries
 
