@@ -350,7 +350,21 @@ SELECT CAST ('20191201' as date format 'yyyymmdd') as yyyymmdd -- 轉為日期�
 		, extract(day from yyyymmdd2) -- 萃取日的資訊
 ```
 
+- 將時間轉為timestamp format
 
+  ```teradata
+  SELECT CAST(KEYIN_DATE||' '||KEYIN_TIME AS TIMESTAMP(0) FORMAT 'YYYY-MM-DDbHH:MI:SS')
+  FROM TABLEA
+  ```
+
+- 計算兩個timeformat的時間差距
+
+  ```TERADATA
+  SELECT (MAX_TIME - MIN_TIME) HOUR(4) TO SECOND AS DIFF_SEC AS DIFF_SEC -- 計算兩個時間差了幾個小時、分鐘與秒
+  		, EXTRACT(HOUR FROM DIFF_SEC) * 3600 + EXTRACT(MINUTE FROM DIFF_SEC) * 60 + EXTRACT(SECOND FROM DIFF_SEC) AS USAGE_TIME
+  ```
+
+  
 
 
 
