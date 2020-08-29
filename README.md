@@ -1,10 +1,28 @@
 [TOC]
 
-# Database
+# 機器學習概論
 
-- MySQL
-  - [MySQL Insert](https://www.mysqltutorial.org/mysql-insert-statement.aspx)
-  - [Python之使用Pandas庫實現MySQL資料庫的讀寫](https://codertw.com/資料庫/16156/)
+- 機器學習是甚麼? 
+  - 讓機器從資料中找尋規律與趨勢⽽不需要給定特殊規則
+  - 給定⽬標函數與訓練資料，學習出能讓⽬標函數最佳的模型參數
+- ⼀個機器學習模型中會有許多參數(parameters)，例如線性回歸中的 w (weights)跟 b (bias) 就是線性回歸模型的參數
+- 當我們輸入⼀個 x 進到模型中，不同參數的模型就會產⽣不同的 ŷ 
+  - 希望模型產⽣的 ŷ 跟真實答案的 y 越接近越好
+  - 找出⼀組參數，讓模型產⽣的 ŷ 與真正的 y 很接近，這個步驟就有點像學習的概念
+
+- 機器學習的組成及應用
+  - 監督式學習 (Supervised Learning)
+    - 會有⼀組成對的 (x, y) 資料，且 x 與 y 之間具有某種關係，如圖像分類，每⼀張圖都有對應到的標記 (y)，讓模型學習到 x 與 y 之間的對應關係
+    - ⽬前主流且有⾼準確率的機器學習應⽤多以此類型為主，但缺點是必須要蒐集標註資料。應用在圖像分類、詐騙偵測領域。
+
+  - 非監督式學習(Unsupervised Learning) 
+    - 僅有 x 資料⽽沒有標註的 y，例如僅有圖像資料但沒有標記。
+      非監督式學習通常透過降維 (Dimension Reduction)、分群 (Clustering) 的⽅式實現
+    - 非監督式的準確率通常都低於監督式學習，但如果資料收集非常困難時，可應⽤此⽅法。應用在維度縮減、分群、壓縮等。
+
+  - 強化學習
+    - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
+    - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
 
 # Python Basics
 
@@ -261,6 +279,32 @@ for x, y in zip(df['x'], df['y']):
 
 提供了高性能、易用的資料結構及資料分析工具
 
+- pd.melt(df)
+
+  將 column 轉為 row 
+
+- pd.pivot(columns='var', values='val')
+
+  將 row 轉為 column
+
+- pd.concat([df1,df2])
+
+  沿 row 合併兩個 dataframe
+
+- pd.concat([df1,df2],axis=1)
+
+  沿columns合併兩個 dataframe
+
+- pd.merge(df1, df2, on='id', how='outer')
+
+  將df1, df2 以'id'欄位做全合併
+
+- pd.merge(df1, df2, on='id', how='inner')
+
+  將df1，df2 以'id'欄位做部分合併
+
+![](https://lh3.googleusercontent.com/2Dk-QkxFMvRnnqDda85yaTly_MCzcGyBzgcRHJ6gBthtHXxGIGNT_UzSfrEVM8KZ_brrf1YJAai7DELuKTq70UGLgHa0gjRLvKrAiYXAwl8jVdjNjIqleOywTLAMDhjq5wH_adxFQELXfAIkNpQHzWy5GC8H9PRP9X18JAQB5_ObHrtJIsvhDFtA6B67ar1p-V1OVEm9esfLB0uOOgof70nijGEzGY4d-JMTuCxcV_4Hbb8WkNDzxK9IT6g8DQhaaXfn0rx8gmZtW3sd1kMYPpOQbLxY8RFBruq0OPrlIhJ0QqTJGv492W3nrNdRIpaZB102hWd_dzKnfmPXO0NiyCSPixhhawbOwSrfKJK7sK2zBhQDSc5X7gunYwbrBA0uXJm35mCeGcAD2TUf_N8dG3AcwJemwiEHoX1xx3JLwyOVeuzqqO9i68KroURkRBWOdldeKg2aamEeIq7kDLfPPa2ecs6-B-sK_YeLdVpYLiqJsHtDDBp0a5VNa5Es0B8e-PJbSou9-wgdi_rpUzOyMOMbY8qYPnnSZteKkijRrWKGlCIPno6A2qV_90bBwvEUvKrDwXGoaUa0T66xPIVJ5iKgN-YISROCG2MoHxxaX4ZlQqPX0F7q81kXpmjfWWuBnpHo4RqCqvJmbECDer2YhhtCdCqHWXGKZWPHu1LbZ6st7uzWhndpxQO7dKAR15TTYkSuOcFJ-YqzBopWrxpx-gIk=w698-h575-no)
+
 ### Numpy
 
 必用的科學計算基礎包，底層由C實現，計算速度快。
@@ -298,41 +342,10 @@ print(f'{today: %B %d, %Y}')
 
   - [Python's `strftime` directives](https://strftime.org/)
 
-  
+
+- 
 
 
-
-
-
-## 常用的 DataFrame 操作
-
-### 轉換與合併 dataframe
-
-- pd.melt(df)
-
-  將 column 轉為 row 
-
-- pd.pivot(columns='var', values='val')
-
-  將 row 轉為 column
-
-- pd.concat([df1,df2])
-
-  沿 row 合併兩個 dataframe
-
-- pd.concat([df1,df2],axis=1)
-
-  沿columns合併兩個 dataframe
-
-- pd.merge(df1, df2, on='id', how='outer')
-
-  將df1, df2 以'id'欄位做全合併
-
-- pd.merge(df1, df2, on='id', how='inner')
-
-  將df1，df2 以'id'欄位做部分合併
-
-![](https://lh3.googleusercontent.com/2Dk-QkxFMvRnnqDda85yaTly_MCzcGyBzgcRHJ6gBthtHXxGIGNT_UzSfrEVM8KZ_brrf1YJAai7DELuKTq70UGLgHa0gjRLvKrAiYXAwl8jVdjNjIqleOywTLAMDhjq5wH_adxFQELXfAIkNpQHzWy5GC8H9PRP9X18JAQB5_ObHrtJIsvhDFtA6B67ar1p-V1OVEm9esfLB0uOOgof70nijGEzGY4d-JMTuCxcV_4Hbb8WkNDzxK9IT6g8DQhaaXfn0rx8gmZtW3sd1kMYPpOQbLxY8RFBruq0OPrlIhJ0QqTJGv492W3nrNdRIpaZB102hWd_dzKnfmPXO0NiyCSPixhhawbOwSrfKJK7sK2zBhQDSc5X7gunYwbrBA0uXJm35mCeGcAD2TUf_N8dG3AcwJemwiEHoX1xx3JLwyOVeuzqqO9i68KroURkRBWOdldeKg2aamEeIq7kDLfPPa2ecs6-B-sK_YeLdVpYLiqJsHtDDBp0a5VNa5Es0B8e-PJbSou9-wgdi_rpUzOyMOMbY8qYPnnSZteKkijRrWKGlCIPno6A2qV_90bBwvEUvKrDwXGoaUa0T66xPIVJ5iKgN-YISROCG2MoHxxaX4ZlQqPX0F7q81kXpmjfWWuBnpHo4RqCqvJmbECDer2YhhtCdCqHWXGKZWPHu1LbZ6st7uzWhndpxQO7dKAR15TTYkSuOcFJ-YqzBopWrxpx-gIk=w698-h575-no)
 
 ### Subset
 
@@ -487,7 +500,119 @@ print(f'{today: %B %d, %Y}')
 
 - [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 
+
+
+
+
+# 機器學習
+
+https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
+
+
+
+
+
+# 需求釐清與定義問題
+
+## 首次面對資料時應該思考的問題
+
+### 為什麼這個問題重要？
+
+- 好玩：預測⽣存 (吃雞) 遊戲誰可以活得久, [PUBG](https://www.kaggle.com/c/pubg-finish-placement-prediction)
+- 企業核⼼問題：⽤⼾廣告投放, [ADPC](https://www.kaggle.com/c/avito-demand-prediction)
+- 公眾利益 / 影響政策⽅向：[停⾞⽅針](https://www.kaggle.com/new-york-city/nyc-parking-tickets/home), [計程⾞載客優化](https://www.kaggle.com/c/nyc-taxi-trip-duration)
+- 對世界很有貢獻：[肺炎偵測](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
+
+### 資料從何⽽來？
+
+- 來源與品質息息相關， 根據不同資料源，我們可以合理的推測/懷疑異常資料異常的理由與頻率
+- 資料來源如：網站流量、購物⾞紀錄、網路爬蟲、格式化表單、[Crowdsourcing](https://en.wikipedia.org/wiki/Crowdsourcing)、紙本轉電⼦檔
+
+### 資料的型態是什麼?
+
+- 結構化資料：檢視欄位意義以及名稱，如數值, 表格,...etc 
+- 非結構化資料：需要思考資料轉換與標準化⽅式（如圖像、影片、⽂字、⾳訊…etc）
+
+### 要回答什麼問題?
+
+- 每個問題都應該要可以被評估、被驗證，常⾒的[衡量指標](https://blog.csdn.net/aws3217150/article/details/50479457)如：
+  - 分類：Accuracy, AUC, MAP, F1-score, ...etc
+
+  - 迴歸：MAE, RMSE, R-Square, ...etc
+
+- **範例：我們應該要/可以回答什麼問題？**
+  - ⽣存 (吃雞) 遊戲
+    - 玩家排名：平均絕對誤差 (Mean Absolute Error, MAE)
+    - 怎麼樣的⼈通常活得久/不久 (如加入遊戲的時間、開始地點、單位時間內取得的資源量, ...) → 玩家在⼀場遊戲中的存活時間：迴歸 (Mean Squared Error, MSE)
+  - 廣告投放
+    - 不同時間點的客群樣貌如何 → 廣告點擊預測 → 預測哪些受眾會點擊或⾏動：Accuracy / Receiver Operating Curve, ROC
+    - 哪些素材很好/不好 → 廣告點擊預測 → 預測在版⾯上的哪個廣告會被點擊：ROC / MAP@N (eg. MAP@5, MAP@12)
+
+## 機器學習專案開發流程
+
+- 資料搜集、前處理
+  - 缺失值填補
+  - 離群值處理
+  - 標準化
+
+- 定義⽬標與評估準則：要預測的⽬標是甚麼? 
+  - 回歸問題?
+  - 分類問題?
+- 要⽤什麼資料來進⾏預測? (predictor 或 x)
+- 將資料分為
+  - 訓練集, training set
+  - 驗證集, validation set
+  - 測試集, test set
+- 設定評估準則
+  - 回歸問題 (預測值為實數)
+    - RMSE, Root Mean Square Error
+    - Mean Absolute Error
+    - R-Square
+  - 分類問題 (預測值為類別)
+    - Accuracy
+    - F1-score
+    - AUC, Area Under Curve
+
+- 建立模型並調整參數
+  - 根據設定⽬標建立機器學習模型
+    - Regression, 回歸模型
+    - Tree-based model, 樹模型
+    - Neural network, 神經網路
+  - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
+
+- 導入
+  - 建立資料搜集、前處理等流程
+  - 送進模型進⾏預測
+  - 輸出預測結果
+  - 視專案需求整合前後端
+    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
+  - 如何確立⼀個機器學習模型的可⽤性？
+    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
+
+
+
+
+### 參考資料
+
+- [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
+- [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
+- [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
+- [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
+- [Data Scientist vs Data Engineer](https://www.datacamp.com/community/blog/data-scientist-vs-data-engineer)
+- [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
+- [Why Data Scientists Must Focus on Developing Product Sense](https://www.kdnuggets.com/2018/04/data-scientists-product-sense.html)
+- [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
+
+# 資料收集
+
 ## 資料庫
+
+### MySQL
+
+- [MySQL Insert](https://www.mysqltutorial.org/mysql-insert-statement.aspx)
+- [Python之使用Pandas庫實現MySQL資料庫的讀寫](https://codertw.com/資料庫/16156/)
+
+
 
 ### sqlite3
 
@@ -554,150 +679,1265 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 
 
+## 網路爬蟲
+
+https://pycrawler.cupoy.com/
+
+### 基礎知識
+
+#### 資料來源與檔案存取
+
+- 資料釋出的三個來源
+  1. 檔案 資料會包成檔案提供下載，格式可能包含常⽤的標準格式，例如「CSV」、「JSON」等等通⽤ 的格式。
+  2. 開放接口（API） 提供程式化的連接的接⼝，讓⼯程師/分析師可以選擇資料中要讀取的特定部分，⽽不需要把整 批資料事先完整下載回來 
+  3. 網⾴爬蟲 資料沒有以檔案或 API 提供，但出現在網⾴上。可以利⽤爬蟲爬蟲程式，將網⾴的資料解析所需 的部分。
+- 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁 有者被動公開的。所以需要取得資料的時，通常會先考慮前兩者⽅法，真的無 法才使⽤網⾴爬蟲。
+
+#### 資料格式
+
+- csv
+
+  - CSV（Comma Seperated Values）逗號分隔值，是⼀種常⾒的資料格式，使用逗號將不同欄位做為分隔。可以使⽤⼀般的⽂字編輯器以原始格式開啟，也 可以使⽤ excel 或 number 等試算表軟體以表格⽅式開啟。
+
+  - 優點
+
+    - 結構單純
+    - ⼈機皆可讀
+    - 檔案⼩
+
+  - 缺點
+
+    - 未限定編碼(big5, utf-8 … )
+    - 值內有逗點或換⾏可能造成欄位判斷錯誤
+    - 第⼀⾏不⼀定是欄位名稱
+
+    ```python
+    import csv
+    spamReader = csv.reader(open('egg.csv'), delimiter='',quotechar='|')
+    for row in spamReader:
+        print(','.join(row))
+    ```
+
+    
+
+- json
+
+  - JSON（JSON stands for JavaScript Object Notation）JavaScript 物件格式， 是⼀種延伸⾃ JavaScript 物件來儲存和交換簡單結構的輕量級純⽂字資料交換 格式。⼀般格式如下，每⼀筆資料都會⽤屬性 + 數值的格式紀錄，也可以是巢 狀資料。
+  - 優點
+    - 可以存放結構較複雜的資料
+    - ⼤部份瀏覽器都⽀援 
+  - 缺點
+    - 檔案較⼤（不過比XML⼩）
+    - 不⼀定適合轉換成表格型式
+
+- XML
+
+  - XML（eXtensible Markup Language）可延伸標記式語⾔，是⼀種標記式語 ⾔，利⽤標籤紀錄資料的屬性與數值，常⽤來處理包含各種資訊的資料等。
+
+  - 優點
+
+    - 可以存放結構較複雜的資料
+    - ⼤多瀏覽器可幫忙排版成較易讀格式 
+
+  - 缺點
+
+    - 檔案較⼤
+    - 不⼀定適合轉換成表格型式
+
+  - XML 檔案格式會利⽤ ... 標籤的⽅式記錄資料：
+
+    ```html
+    <標籤名稱 屬性='值'> 內文 </標籤名稱>
+    ```
+
+  - XML⽂件的字元分為標記（Markup）與內容（content）兩類。標記通常以<開頭，以>結尾；每⼀個標籤代表⼀個元素，元素當中有屬性與內容兩種設定。
+
+  - 解析工具
+
+    - xml.dom
+
+      將 XML 資料在記憶體中解析成⼀個樹狀結構，通過對樹的操作來操作。
+
+    - xml.etree
+
+      輕量級的 DOM，具有⽅便友 好的API。程式碼可⽤性好， 速度快，消耗記憶體少。
+
+    - xmltodict(推薦)
+
+      將 XML 轉成 Dict ，可以 利⽤ Dict 的⽅式做操作。
+
+#### 下載檔案
+
+- 在 Python 可以使⽤第三⽅套件「urllib」中的「urlretrieve」⽅法來下載檔案。 
+
+- urllib 是⼀個⽤於網路資源（URL）操作的函式庫（library），例如：檔案下 載就是這⼀類。
+
+  ```python
+  from urllib.request import urlretrieve
+  urlretrieve ("http://www.example.com/songs/mp3.mp3", "mp3.mp3") 
+  ```
+
+#### 路徑的⽤法
+
+- 在 Python 程式當中，有兩種表⽰路徑的⽅法
+
+  - 相對路徑： 
+    - 「 ./data/sample.csv」=> 與程式相同⽬錄下 data 資料夾中的 sample.csv 檔案
+    - 「 ../data/sample.csv」=> 程式的前⼀層⽬錄下 data 資料夾中的 sample.csv 檔案 
+  - 絕對路徑：
+    - 「C:\Users\cupoy\Desktop\sample.csv」=> windows 環境中，桌⾯的 sample.csv 檔案
+    - 「/Users/cupoy/Desktop/sample.csv」=> mac 環境中，桌⾯的 sample.csv 檔案
+
+- 路徑的寫法有可能因為不同的作業系統⽽產⽣歧義，因此我們通常可以搭配 OS 這個內建套件來幫我們處理路徑字串。
+
+  - 例如：windows 環境⽤ 「\」，mac 環境⽤ 「/」
+
+    ```python
+    import os
+    os.path.join('/hello/','good/boy/','doiido')
+    ```
+
+#### Python File I/O
+
+- File I/O 全名叫 File Input and Output，意思是如何在程式當中存取⼀個外部 的檔案。在⼤部分的程式語⾔當中，這是⼀個基本功能，不⽤使⽤額外的套件。
+
+- 在檔案存取時候，依照權限可以分為以下幾種：
+
+  - ‘r’ read，讀取檔案 
+
+  - ‘w’ write，寫入檔案（會覆蓋原本的內容）
+
+  - 'a' append，寫入檔案（會對已存在的的部分增加內容）
+
+    ```python
+    # 讀取檔案
+    fh = open("example.txt", "r")
+    fh.read()
+    fh.close()
+    
+    # 寫入檔案
+    fh = open("example.txt", "w")
+    fh.write("To write or not to write\nthat is the question!\n")
+    fh.close()
+    ```
+
+- 讀取檔案
+
+  - read()：⼀次將整個⽂件讀成⼀個字串
+
+  - readline()：⼀次讀取⽂件中的⼀⾏資料成字串
+
+  - readlines()：將整個⽂件逐⾏存成⼀個列表
+
+    ```python
+    f = open("test.txt", "w")
+    print(f.read())
+    print(f.readline())
+    for line in f.readlines():
+     print(line)
+    f.close()
+    ```
+
+- 寫入檔案
+
+  - write()：將⼀個字串寫進檔案
+
+  - writelines()：將⼀個字串列表寫進檔案
+
+    ```python
+    f = open("test.txt", "w")
+    s = ‘Hello World’
+    f.write( seq )
+    seq = ["Hello", “ ”,"World"]
+    f.writelines( seq )
+    f.close() 
+    ```
+
+- 從檔案中整理資料
+
+  - ⼀個 File 在 Open 之後，如果沒有 Close，則會將檔案的狀態顯⽰為被佔 ⽤，因此可能造成資源的浪費或是其他⼈無法使⽤該檔案。 
+
+  - Python 提出了⼀個 With 的語法，稱為資源管理器，⽤於 File 存取時能夠⾃ 動在使⽤完畢後直接關閉佔⽤。
+
+    ```python
+    with open("example.txt", "w") as fh:
+     fh.write("To write or not to write\nthat is the question!\n")
+    with open("example.txt", "r") as fh:
+     fh.read() 
+    ```
+
+#### 使⽤API 存取網路資料
+
+- HTTP 協定
+
+  「HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺 服器之間溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如 何傳輸資料。」
+
+  - get: 請求獲取url位置的資源
+
+  - head：請求獲取URL位置資源的響應消息報告，即獲取資源的頭部信息
+
+    > 網站很大，或只想快速取得重要訊息時使用
+
+  - post：請求向URL位置的資源後附加新的數據
+
+  - put：請求向URL位置存儲一個資源，覆蓋原URL位置的資源
+
+  - patch：請求局部更新URL位置的資源，及改變該處資源的部分內容
+
+  - delete：請求刪除URL位置存儲的資源
+
+- Request & Response
+
+  HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根據請求回傳⼀個「Response 回覆」
+
+- Request 可以分成幾種⽅法
+
+  HTTP 將請求（Request）依據使⽤情境分成兩種⽅法：GET & POST。GET ⽅法將要傳送的資料以 Query String 的⽅式接在網址後⾯。Query String 是⼀種 Key-Vaule 的組成。POST ⽅法則是將傳送的資料寫在傳送的封包當中，從網址上看不到。
+
+  - GET：將資料帶在網址上，利⽤ ?Key=Value 接在網址之後
+  - POST：⽤ form 的⽅式帶資料
+
+- ⼀般網⾴網⾴會利⽤ HTML 表單來發送請求，可以再傳資料的時候 設置⽅法。
+
+  ![](https://lh3.googleusercontent.com/xDI8p5MtQs3vy5B8SSnBxy5a7xnpm7FgVKxt6qk5WE7VGIQnwAf27Ude4ZBt_vb7uN30imUZwgpsN33RsMeO7H2upP8dQJrI3dQG995XcrRNv5SWsK318XefunFIWrSCUscM3U-66w5OCKCeW66_sUn-JW3PfkkeA8neFqwH1qZ_zv_kwrPHiBfV2kW-Pd4AjyvBrYm5OX7RQOKxheqGKTdTs6C_mB9tNC1QHbG5YuOCe01Co8MhlQmJ7JNevUvL7CHGsQPpbTLfdpJAdDcQ6zj9W0ttAN4uurZapIyKTnGSP-r3Chg3xlOzvo8wytcC8Usjo2yC8YgeEA8Yr1z6iImbsp2xENMIjLE4V43Eo5lSwvSqg2t2WhQ7A2Qw-o6cplG39oRDCgKzxKccdOg41Llox_5jy3m-aILCKuORTmdiDNHmpw0aX_ieVbUH1FqEtYUz6CmokZ1npees9lKo3ybt895ehPyosHJXtVbToX51L7J8QO0xkW1l_hJbaPrYvA2T8XuOjRIHqIAFpI3qLhcw3_uBEguT5FlqWQpdkPnJdE_DMzcYJhp1yLIy5CpXXfsAYLw_HjEtfquOPk5sEGmAbldbW9-5Qm5N8w9fBNECy3XFvrpHuk-5Ma3HphqjU7xa9BGubeBcK5qUObAM8JV0RVJIMskiCyOKuSsujHdCpgV5MgnPhRceTp-AqDHQW5Z1ScN2dn1pqa8dyWXvR5aiyCGmLKtalLfCXNmHtk2kewiLs8gSdGg=w848-h407-no)
+
+- Request 分為 Headers 與 Content
+
+  - Header ⽤來帶「發送⽅」相關的資訊
+
+  - Body 帶需要傳送給伺服器的資料
+
+    ![](https://lh3.googleusercontent.com/8yKYJK3TU8PyKyUsjCZZj6ilVhVVIDObATvJ7yZDUM1RlEjeZlTwTWlZeq0dX9bKmMQIXSugChxxDgA9HopIvp0y534vR0sBwIWLuygFjWWneaVgTWU3TrJBiVXHqxUeLt8OUOm8SlDEA7Ss9a2iOIE_uVny9klSN6hjV9GKu2_Fu-brdILsK02YIi35FdaAtUabuJ-vdAUlFFSV3gMM5ldvIUIRHGyl6Cb-glZ8j-WWFlrSgphCJ8w_jdXh4gcCZQluaHWv4rkOwd3FoGFL1gh6o315CCMj1_rn59B6WMlGuya0VK5vZ8ssgVqma2AE6rCr1lol3nQXNeNNw_jQ0ZM7IG7SLJmx_W9i6796ylk4OhDuQ2VhXFtC4LLSc5OScL1TiLHp3EYKHvRVWY9Ylb7fEmTY6dz3lDCqLFAHR7WlzlMpcqFDCKXH1klFhXjHRp92yXi-NG8XSih-1zP5KYmdHbLRKlmPc_EUPvhOrIirxMUot_qMA_trKDJFHtWaELyXiWmW5WsIYei6pwb8UuvadQfzopzk-knsfLT6e-0QZGh3aZDaRpKjGnL48HGUOANXYf2M3qiZ2WFVem9foMT4MmIi3CE-7atc8ucghE3AoDrbwN20IfiGNT0ekSkI16Psr0PlWOqRM_xO9g2MB6nb2zvWS8ceEtyfvte53tqPh9KV4sr1QbEMzpyRjgP4RCFmQqtEL1-53Fdpin914V50Deb11N6CkEEdrbICjqdJGSPRBNiSnd0=w779-h268-no)
+
+- Response 有幾種⽅式
+
+  HTTP 的回應（Respone）常⾒有兩種格式，API 與 HTML View。兩者的差別 是回傳的 HTTP 內容不同。
+
+  - API 通常會以 JSON 格式⽽成的字串，是提供給程式存取。
+  - HTML View 是包含 JS、CSS、HTML 三種語⾔所組成的網⾴原始碼，會交由瀏覽器進⾏處理。
+
+- Response 分為 Headers 與 Content
+
+  - Header ⽤來帶「發送⽅」相關的資訊
+
+  - Body 則會帶回傳給瀏覽器的資料
+
+    ![](https://lh3.googleusercontent.com/c7pM9jw8F9TlH-ArlAb-D0VQkthRv7-98y_-_NeP6RYrzjK6BPDqxcDMpxJRRiYQtwwI2WlJ6psevvCdxjTWGaRUJ3GNjD-X1xuqdD94eq0UX9OiB14_lGUzqU2nmgEpdWkZYSPqxr1tf9sSRL0_bg_0sDD8Tf63SiYjtNUD4jgQIXQ7KkjNkD9tOPh3b0ebOVmUSuIW9NZnioHrpdiBvT9_AVivaaDON-ZgxFJA0G-yynuvzpfyK6gQWJapJxxdKxtsTXky1R1ThW8jOq1QfbMmsQzi0tmKx3pK6uqgLxK8glBIkv1vNnpgleysamMMFdY1NPy9YtH1jEdZamdepDDu-iW1pff5Rlxw5y7y2bdaOX19zni8o-ov4Hf8RlxZ4_FMt6Cie8v-yz6bzgtIk98AlxEVoMCiPv0q5A7I0RsjcKST-Y6I9vf0te-LiFrCPCv3EzXZK5B5kZXW2sK1_B4Af76fJL1SFwQNzEilQQS8hvXBou9Tg_9xN6LvJrXKgNaLmJY6KtDIZsDGXF12jGyrA63oIQGbi9eXFlSWKCrWyRvVWWECsiRq9pnr0AMhooPDnCOJ3VxFWFI0qvmgpCy1krMnd9ZMcpNAiqhrnbJf3RSHL7iH4o798wUskGVOmNMiGYdlKP-9cwH08mFTnp6KxN-WT8bPfXNnOfY4iMTR9Cl6GKF6s8Ml69VGH3Lj9JX_Bd54GA43z0cLmFNhXxo9S5vuuuiHhWhjgh0N0A2OQ3WxvAxNlhY=w734-h275-no)
+
+- Response 狀態代碼
+
+  - 200 OK 代表請求已成功被伺服器接收、理解、並接受 
+  - 3XX Redirection ⽤來重新導向，後續的請求位址（重新導向⽬標） 
+  - 4XX Error ⽤⼾端看起來可能發⽣了錯誤，妨礙了伺服器的處理。 
+  - 5XX Server Error 伺服器在處理請求的過程中有錯誤或者異常狀態發⽣
+
+- 什麼是 API ？
+
+  - 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁 有者被動公開的。所以需要取得資料的時，通常會先考慮前兩者⽅法，真的無 法才使⽤網⾴爬蟲。
+
+  - 第⼆種資料的發布⽅式是 API 的存取接⼝，API 的全名叫應⽤程式介⾯ （Application Programming Interface），表⽰程式與程式間的溝通⽅式或介 ⾯。換句話說，就是資料⽅寫好⼀組程式，提供你可以⽤程式的⽅式與其串接 資料。
+
+  ```python
+  import requests
+  # 引入函式庫
+  r = requests.get('https://github.com/timeline.json')
+  # 想要爬資料的⽬標網址
+  response = r.text
+  # 模擬發送請求的動作
+  ```
+
+- 加入 headers
+
+  - Headers 是指從這個 API 的哪個部分來來獲知請求中的內容是使⽤用何種編碼⽅方式，需輸入的欄欄位包含了 Key 和 Value 兩部分。通常會包含發送資料⽅方的資訊，例如「時間」、「權限」、「瀏覽器資訊」等等的。
+  - 所以 Headers 可以視為是最基本的檢查機器，可以用來判斷發出 Request 的那⼀⽅是否為⼀個正常的來源。因此我們在這邊可以加上⼀些資訊，讓我們利⽤Python 發出的 Request 更像是⼀個正常的使⽤者行為。
+  - 從瀏覽器的開發者工具中可以在這裡看出瀏覽器帶了⼀堆 Headers 在請求中，我們可以從這裡找到要加入哪些 headers 的參數。在一開始不確定的情況下，會建議把所有參數都加上去！
+
+  ```python
+  import requests
+  # 定義標頭檔內容
+  headers = {'user-agent': 'my-app/0.0.1'}
+  r  = requests.get('https://www.zhihu.com/api/v4/questions/55493026/answers',
+                    headers=headers)
+  response = r.text
+  ```
+
+  
+
+#### 參考資料
+
+- 資料來源與檔案存取
+  - [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
+- 資料格式
+  - [Difference Between XML and HTML](https://techdifferences.com/difference-between-xml-and-html.html)
+- [淺談 HTTP Method：表單中的 GET 與 POST 有什麼差別？](https://blog.toright.com/posts/1203/%E6%B7%BA%E8%AB%87-http-method%EF%BC%9A%E8%A1%A8%E5%96%AE%E4%B8%AD%E7%9A%84-get-%E8%88%87-post-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%EF%BC%9F.html)
+- [[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)
+  - 介紹常見的五種HTTP Method
+
+### 靜態網頁爬蟲
+
+#### HTTP 網⾴架構-靜態網⾴
+
+- HTTP 協定
+
+  - HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺服器之間 溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如何傳輸資料。
+
+- Request & Response
+
+  - HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根 據請求回傳⼀個「Response 回覆」
+  - HTTP Status
+    - 200 伺服器回應Data成功。
+    - 206 取得片段資料，Http Request 中有的 Range 屬性，可以指定要取得那一段Bytes數。
+    - 301 目標網頁移到新網址(永久轉址)。
+    - 302 暫時轉址
+    - 304 已讀取過的圖片或網頁，由瀏覽器緩存 (cache) 中讀取。
+    - 401 需身分驗證，如 SSL key or htaccess pasword。
+    - 403 沒有權限讀取，可能是 IP 被阻檔或是伺服器限制。
+    - 404 伺服器未找到目標網址，檔案不存在。
+    - 408 Client Request timeout
+    - 411 沒有指定 content-length，使用 POST 傳送參數時，必須指定參數的總長度
+    - 414 URL 太長導致伺服器拒絕處理。
+    - 429 Requests 太多
+    - 500 伺服器發生錯誤 : 可能是 htaccess 有錯
+    - 503 伺服器當掉 : maybe is code dump
+    - 505 不支此 HTTP 版本
+
+- 靜態網⾴運作原理
+
+  - 所謂的靜態網⾴，表⽰網⾴是在 Server-side 就已經產⽣回來的，所以你看的網⾴上的資料是固定的（除非重新要求 Server-side）。這樣時候，我們可以來解析⼀下那資料，網⾴，瀏覽器，是怎麼被串起來的呢？⼀般來說流程是這樣：
+
+    1. 使⽤者（Client-side）發出請求，稱為是 Request。 
+
+    2. 伺服器（Server-side）收到請求，根據請求處理後回應，稱為是 Response。 
+    3. 產⽣的回應如果是純資料的話，屬於 API 的⼀種；如果是網⾴的話，就會回傳⼀個包含 HTML 標籤的網⾴格式。 
+    4. 瀏覽器接收包含 HTML 標籤的網⾴格式，呈現網⾴給使⽤者。
+
+- 網⾴的組成
+
+- 每⼀個 HTTP Request 的回傳形式有兩種，⼀種是 API、⼀種是 HTML 。所謂的 HTML，其實就是現在⼤家所看到「網⾴」的原始碼。在真實的使⽤下，網⾴除了 HTML ，其中還包含了 CSS 與 JavaScript 兩種程式碼。
+
+- HTML
+
+  - HTML（超⽂本標記語⾔，HyperText Markup Language）⽤於結構化網⾴內容。DOM 指的是HTML的分層結構。每個尖括號中的標籤稱為⼀個元素（元素），網⾴瀏覽器通 過解析 DOM 來理解⾴⾯的內容。
+
+    - 三個常⽤來定位的 HTML 屬性：
+
+      - id
+      - class
+      - name
+
+    - HTML 標籤與屬性
+
+      - 對於爬蟲程式⽽⾔，我們不需要非常熟悉 HTML 語法也沒關係，但是我們⾄少要知道幾個屬性：
+        -  id 是 HTML 元素的唯⼀識別碼，⼀個網⾴中是不可重複的。主要是定位與辨識使⽤。 
+        -  name 主要是⽤於獲取提交表單的某表單域信息，同⼀表單內不可重複。 
+        -  class 是設置標籤的類，⽤於指定元素屬於何種樣式的類，允許同⼀樣式元素使⽤重複的類名稱。
+
+      ![](https://lh3.googleusercontent.com/V4moEYC9e7jxHQkH3MtsvdGdFBBobbFtcs76iEhLsupcOJpHEakj9_3vL9451awOZzlyOQBSMgxDf_4RmOL3kd4th6tp3cl7753fgxMLt9jkMedcEjs5uQFHPWnc5YOIvj_jKzjMESjENBzIX0oRUO2OL7FlNjXRFWgydiydWBdKagBu6iMVk1v7xZ4xyKAESwinrZdovDodpP3TAMOn6d_r5kvHW0wAMJsJ5bjOpFQ5Eh0xfBqqxeYGVxYnMCOQ8axc_tLBi1x_2YmwotJCQhgqk3K-EEFSdYumN1a8q7-gnJCFiLnGukWhBnvhDI0CQ3pbHTLUXXXeRHxqp22uvHoxze1ShjS1Ak7BVxrlmguipkgJVhVLxEfs_JDjHtQPdixWITOWHSie06r3ptmwo2IHNbdeY6aYN2LGAzHqhL6WKvkfTbKb2urCEjSSRivKrxKYy2hPXe2JlJaec_YZWypZNXM7dVo-ULTCQ9JR45VKjDBWVUKelCjS_I0cKhNye33_saPVfM9Z4SuBkd4PKQL4GYBvT3OS1wZi4ojCDofzaTQECiMp58s2kTvhLsZ7EPAgcB9rRsn7tDB3uWufsn3FK2DJcRB82bEBO7qTNOv7oEO4O8NvD5J_A8S6RIqUjh_r3kGBKB432dhUakaXvhKOBKeNroo_B1NVYQj10Z3iVnmt83NnVVHCn9N-hjHcxl-6o6lg-he4-UzQgl3cq2xn-LLgRx9gqt4svWzqNr2C6EjzEFR5yNA=w856-h173-no)
+
+- CSS
+
+- 層疊樣式表（Cascading Style Sheets，CSS）⽤於為HTML⾴⾯的圖形表達設 計樣式.CSS樣式包括選擇器（selectors）和規則（rules），規則由屬性跟值組 成
+
+- JavaScript
+
+  - JavaScript的是⼀種動態腳本語⾔，它可以向瀏覽器發送命令，在網⾴加載完 成之後再去修改網⾴內容。腳本可以直接放在HTML中的兩個腳本標籤之間。
+    - HTML DOM/CSS 的操作
+    - HTML 事件函数/監聽
+    - JavaScript 特效與動畫
+    - AJAX 非同步的網⾴溝通
+
+- ⼀般的網⾴通常會包含三種程式碼，負責不同⽤途
+
+  - JavaScript：Behavior
+  - CSS：Presentation
+  - HTML：Content & Structure
+
+- 網⾴運作的流程
+
+  - 從瀏覽器取得網⾴回傳之後，會先載入 HTML 的內容，再把 CSS 的樣式加上 去，最後才會運⾏ JavaScript 的語法。
+
+#### 靜態網⾴的資料爬蟲策略
+
+- 網路爬蟲，簡單來說，就是模擬使⽤者的⾏為，把資料做⼀個攔截的動作。基本上可以簡化為：
+
+  - 模擬 Request 
+  - 攔截 Response 
+  - 從 Response 整理資料
+
+- 靜態爬蟲的處理
+
+  利⽤「request」和「BeautifulSoup」這兩個函式庫進⾏
+
+  1. 模擬 Request & 攔截 Response 
+  2. 從 Response 整理資料
+
+- Requests Library
+
+  - Requests 是⼀個 Python HTTP 庫，該項⽬的⽬標是使 HTTP 請求更簡單，更 ⼈性化。 
+  - 其主要⼯作作為負責網⾴爬蟲中的 HTTP Request & Respone 的部分。
+
+- BeautifulSoup Library
+
+  - Beautiful Soup 是⼀個 Python 包，功能包括解析HTML、XML⽂件、修復含 有未閉合標籤等錯誤的⽂件。這個擴充包為待解析的⾴⾯建立⼀棵樹，以便提 取其中的資料。 
+  - 其主要⼯作作為負責網⾴爬蟲中的 解析資料 的部分。
+
+  ```python
+  soup = BeautifulSoup(html_doc) # => 將原始的 HTML 字串轉成物件
+  # 利⽤標籤
+  soup.title # <dom> => 取出第⼀個 title 標籤的物件
+  soup.title.name # title => 取出第⼀個 title 標籤的物件的標籤名稱
+  soup.title.text # The story => 取出第⼀個 title 標籤的物件的⽂字
+  # 取出屬性
+  soup.p['class'] # [title-class] => 取出第⼀個 p 標籤的物件中的 class 屬性
+  soup.a[‘id’] # title-id => 取出第⼀個 p 標籤的物件中的 id 屬性
+  # 利⽤ find ⽅法
+  soup.find(id='titile-id')#  => 取出第⼀個 id = title-id 的物件
+  soup.find(‘p’, class_=”content”)# => 取出第⼀個 class = content 的 p 標籤物件
+  soup.find_all(‘a’, class_=”link”)# => 取出所有 class = link 的 a 標籤物件
+  ```
+
+#### 圖片下載
+
+- 圖片爬蟲流程
+
+  - 與⼀般爬蟲⽬標是⽂字的過程，圖片爬蟲其實只是要多送⼀次請求
+    - BEAUTIFULSOUP - PARSE + 定位
+    - 透過 SRC 屬性取得圖片位置
+    - 送出請求
+
+  ![](https://lh3.googleusercontent.com/mZ4gu7mlDgdValmMj8PaPhc6BZBiCb2r1B4nT2HYs8APGg1zsJCT8pud5cIr7tQpREKpq6hzqaQoURmCIi_T4p7yH608HamAsSW1qZdjFmU7S7quupM6_ijAS-OJ5D58vGyZCGfKXScGc6LtTcvcFTCllBPop4_FG-76bA1DnTNvjMH0nc3r3UpP8NRYF3YZhj4HEkKb0Ay1P9WJYjDmNtRKlfVj8tBRcXxZ7CzuozTz6lF_0LJrKYajM9mZiQgu61nXUwERbe-UuB6v63nxfzbGhGx_M5-D8yDZlsYtefGKji_0PHEFNGsxDw57D-NbZNvB3U2VHwSpGvlHwKNhY0EhBwz3SPzHSLNsxaCq2qFcQLPk-0L5Nuk_6-P2H6iFw78PSROrQ_RbHuoRFW4lgZUeK-Hl-tVjVHsEpjOff7BDG356PMJVP9rZDVr8xvLi0Y_l2wXA7_TtQZcFl1feD4iILgolwQHJrj_BvJfpMrYhgGQ9do6j3_WZzAh3_9sT3Jb4e3-fJGFtKHj046b--m6GM7W86QP1AjdoRdNvawm91EWEi5pBTyQCGrm3Cq9HC37fAB_rUsowSDStHpN3vXKtCBVk-Uv5tPewPNbewlXXbdb8XUw2fOTxuWBt-bkwRmo3PKXfti9P3BuHyY9voTA34ki0xJc57cbOu6qtoP22SsHyM_XnEv8ki3Fc6Y9icsxPBgvTBTTzdjvO2I9D70-qboRISLqGxq11TPzkRjE_SV4znlS4spI=w910-h315-no)
+
+- 圖片副檔名會造成的問題
+
+  - 副檔名是讓電腦決定要⽤甚麼軟體開啟檔案的提⽰
+  - 更改副檔名不等於轉檔
+  - 副檔名錯誤就無法正確開啟檔案
+
+- 網路上顯⽰的圖片格式不⼀定是正確的
+
+  - 在這個第三⽅服務⽤不同副檔名都可以檢視到同樣的圖片
+  - http://i.imgur.com/Cgb5oo1.jpg
+  - http://i.imgur.com/Cgb5oo1.png
+  - http://i.imgur.com/Cgb5oo1.gif
+
+- 下載圖片並以正確副檔名儲存
+
+  - 為了要⽤正確的副檔名存檔，我們必須下載下來之後先判斷圖片格式這邊可以藉由 PIL.Image 來判斷格式
+
+  ```python
+  from PIL import	Image
+  resp = requests.get(image_url,	stream=True)
+  image = Image.open(resp.raw)
+  print(image.format)	#	e.g.	JPEG
+  # 假設我們重新組合圖片檔名與副檔名 logo.jpeg	之後
+  # 可以⽤ requests 的⽅式也可以⽤ PIL 儲存圖片
+  image.save('logo.jpeg')
+  ```
 
 
-# 機器學習
+#### grab
 
-https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
+- Grab 是⼀類似於 requests 的 HTTP 存取⼯具， ⼀樣可以對⼀個 URL 發送請求跟接收回應。
 
-## 機器學習概論
+- 像 request ⼀樣，Grab 初始化的時候也需要傳入 URL ，接著就可以⽤ body 取回內容
 
-- 機器學習是甚麼? 
-  - 讓機器從資料中找尋規律與趨勢⽽不需要給定特殊規則
-  - 給定⽬標函數與訓練資料，學習出能讓⽬標函數最佳的模型參數
-- ⼀個機器學習模型中會有許多參數(parameters)，例如線性回歸中的 w (weights)跟 b (bias) 就是線性回歸模型的參數
-- 當我們輸入⼀個 x 進到模型中，不同參數的模型就會產⽣不同的 ŷ 
-  - 希望模型產⽣的 ŷ 跟真實答案的 y 越接近越好
-  - 找出⼀組參數，讓模型產⽣的 ŷ 與真正的 y 很接近，這個步驟就有點像學習的概念
+  ```python
+  from grab import Grab
+  g = Grab()
+  resp = g.go('https://google.com')
+  resp.body 
+  ```
 
-### 機器學習的組成及應用
+  
 
-- 監督式學習 (Supervised Learning)
-  - 會有⼀組成對的 (x, y) 資料，且 x 與 y 之間具有某種關係，如圖像分類，每⼀張圖都有對應到的標記 (y)，讓模型學習到 x 與 y 之間的對應關係
-  - ⽬前主流且有⾼準確率的機器學習應⽤多以此類型為主，但缺點是必須要蒐集標註資料。應用在圖像分類、詐騙偵測領域。
+#### PyQuery
 
-- 非監督式學習(Unsupervised Learning) 
-  - 僅有 x 資料⽽沒有標註的 y，例如僅有圖像資料但沒有標記。
-    非監督式學習通常透過降維 (Dimension Reduction)、分群 (Clustering) 的⽅式實現
-  - 非監督式的準確率通常都低於監督式學習，但如果資料收集非常困難時，可應⽤此⽅法。應用在維度縮減、分群、壓縮等。
+- 除了 BeatifulSoup 之外，如果你比較熟悉網⾴運作的話，其實也可以嘗試看看 PyQuery 。PyQuery 是⼀個利⽤ CSS Selector 選取資料 的解析⼯具。
 
-- 強化學習
-  - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
-  - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
+- 像BeautifulSoup⼀樣，PyQuery 初始化的時候也需要傳入HTML 字串來初始 化⼀個操作對象，接著就可以⽤ doc 的⽅式搭配 CSS 選擇器存取資料。
+
+  ```python
+  from pyquery import PyQuery as pq
+  doc = pq("<html><h1>Hello World</h1></html>")
+  h1 = doc('h1')
+  print(type(h1), h1.text())
+  ```
+
+  
+
+#### Regular expression
+
+- 正規表達式是使⽤⼀段語法，來描述符合該語法規則的⼀系列⽂本。常⽤簡稱：regex, regexp。 
+- 正規表達式常⽤來處理⽂本資料。例如搜尋、過濾、新增、移除、隔離等功能。
+
+- 正規表達式運作及基本語法
+  - 正規表達式(regex)由兩種字元所組成：
+    - 詮釋字元(metacharacters)。擁有特殊意義的字元。
+    - 字⾯⽂字(literal)，或稱為⼀般⽂字。 
+  - 可以把 regex 比喻成⼀段句⼦。詮釋字元是語法，字⾯⽂字是單字。 單字+語法=>句⼦，這個句⼦就是⼀種表達式。此表達式可⽤來尋找 匹配(matching)此規則的⼀系列⽂字。 
+  - Regex 檢驗的對象是⽂本中的「⾏」，⽽不是單詞。
+
+- 參考資料
+  - [Regexone](https://regexone.com/)
+    - 這是⼀個互動式學習網站，裡⾯有15道題⽬，讓學員們練習 regex。匹配的結果會即時顯⽰，相當適合練習建構regex。 
+  - [Pythex](https://pythex.org/)
+    - 線上建構regex，並測試結果是否能匹配⽂本。 
+  - [常⽤ Regular Expression 範例](https://note.artchiu.org/2009/09/24/%E5%B8%B8%E7%94%A8-regular-expression-%E7%AF%84%E4%BE%8B/)
+    - 常⽤的regex patterns參考。
+
+### 動態網頁爬蟲
+
+- 動態網⾴有別於靜態網⾴產⽣資料的⽅式。靜態網⾴是透過每⼀次使⽤者請求，後端會產⽣⼀次網⾴回傳，所以請求與回傳是⼀對⼀的， 有些⼈把他們稱為同步。
+  在動態網⾴的話，是透過 Ajax 的技術，來完成非同步的資料傳輸。換句話說，就是在網⾴上，任何時間點都可以發送請求給後端，後端只回傳資料，⽽不是回傳整個網⾴
+
+#### HTTP 動態網頁架構說明與非同步取得資料
+
+- AJAX（Asynchronous JavaScript and XML）
+  - AJAX（Asynchronous JavaScript and XML）是⼀種在瀏覽器中讓⾴ ⾯不會整個重載的情況下發送 HTTP 請求的技術。使⽤ AJAX 來與伺 服器溝通的情況下，不會重新載入整個⾴⾯，⽽只是傳遞最⼩的必要 資料。原⽣的老舊 AJAX 實現標準為 XHR，設計得⼗分粗糙不易使⽤，⽽ jQuery 其中的 AJAX 功能是前端早期相當普及的 AJAX 封裝， 使得 AJAX 使⽤起來容易許多。
+- 非同步載入的優點
+  - 提升使⽤者體驗
+  - 節省流量
+
+- 動態網⾴爬蟲如何進⾏
+  - 動態網⾴與靜態網⾴最⼤的不同是資料是在什麼時間點取得的。動態網⾴是在瀏覽器已經取得 HTML 後，才透過 JavaScript 在需要時動態地取得資料。因此，爬蟲程式也必須要考慮動態取得資料這件事情，才有辦法正確地找到想要的資料。
+
+- 先思考⼀下動態網⾴的運作流程
+  1. 使⽤者（Client-side）發出請求，稱為是 Request。 
+  2. 伺服器（Server-side）收到請求，根據請求處理後回應，稱為是 Response。 
+  3. 產⽣的回應如果是純資料的話，屬於 API 的⼀種；如果是網⾴的話，就會回傳 ⼀個包含 HTML 標籤的網⾴格式。
+  4. 瀏覽器接收包含 HTML 標籤的網⾴格式，呈現網⾴給使⽤者。 
+     => 此時是還沒有資料的！ 
+  5. 當瀏覽器解析 HTML 後，開始運⾏ JavaScript 時會動態的呼叫 API Request 取得資料。
+  6. 瀏覽器中的 JavaScript 會將資料更新到現有的 HTML 上，呈現網⾴給使⽤ 者。
+
+- 動態網⾴的爬蟲問題是什麼？
+  - 動態網⾴必須藉由 JavaScript 在第⼀次 Request 後，再動態載入更多的資料。因此，依據過去傳統的 HTTP ⼀來⼀回的機制，會找不到時機點執⾏動態的 Request 更新。另外單純靠 Python 程式，也無法執⾏ JavaScript。
+
+- 兩種策略
+  - 模擬使⽤者打開瀏覽器
+  - 模擬 JavaScript 取得新資料
+
+- 法⼀：模擬使⽤者打開瀏覽器
+  - 原本靜態爬蟲的策略是模擬 Request，那我們現在可以模擬更多⼀ 點，改為模擬使⽤者從「發出 Request」到「JavaScript 動態載入資 料」的過程。也就是說，這邊的做法是從模擬使⽤者打開瀏覽器的⾏ 為，到模擬器執⾏JavaScript 動態載入 之後。
+
+- 法⼆：模擬 JavaScript 取得新資料
+  - 另外⼀種⽅法是我們知道 Python 無法直接執⾏ JavaScript 的。但本 質上 JavaScript 也是透過呼叫 API 的⽅式拉資料，因此我們只要模 仿 JavaScript 呼叫 API 這個動作，改由 Python 執⾏即可。
+
+#### 瀏覽器開發者工具介紹
+
+- ⼤部分的瀏覽器都會提供開發者⼯具，開發者⼯具主要會包含網⾴的 結構與網⾴資料的溝通兩⼤主要功能。今天我們會教⼤家如何利⽤ Google Chrome 的開發者⼯具。
+- 包含哪些資訊
+  - 打開Chrome 開發者⼯具 在Chrome菜單中選擇 更多⼯具 > 開發者⼯具 在⾴⾯元素上右鍵點擊，選擇 “檢查” 使⽤ 快捷鍵 Ctrl+Shift+I (Windows) 或 Cmd+Opt+I (Mac)
+  - Elements
+    - 元素⾯板（ Elements ）：顯⽰網⾴中的 HTML 元素與佈局，可以在 這裡做簡單的修改。另外注意右⽅會顯⽰選取的 HTML DOM 的 CSS 樣式。
+  - Console
+    - Console 可以⽤來執⾏ JavaScript ，通常我們會在上⾯做簡單的測 試。
+  - Source
+    - Source 會顯⽰這次載入的網⾴所需要所有檔案，像是 CSS、JS 或是 圖片等等
+  - Network
+    - Network 會記錄所有網⾴存取過程中所有的 HTTP 傳輸，⽽每個 HTTP 都會包含 Request 與 Response。
+  - Application
+    - Application 主要會存放的是網⾴在瀏覽器的暫存資料，包含 Cookie 或是 Storate 。
+- 開發者⼯具如何幫助爬蟲？
+  - Elements：觀察需要取得的 DOM 位置與 Selector 定位。 
+  - Network：⽤來觀察存取資料的 API Request（尤其是在動態網⾴ 爬蟲）。 
+  - Application：有⼀種登入機制會把權限狀態存在 Cookie ，可以在 這裡查看。
+
+#### 使用Selenium + BeautifulSoup 模擬瀏覽器執行
+
+- 關於這種利⽤到 JavaScript 的非同步特性載入更多資料的網⾴稱為動 態網⾴。⽽爬蟲程式也會因為沒有執⾏到 JavaScript 導致資料不完全 的現象。 
+
+- 第⼀種解法會採⽤ selenium 這樣的瀏覽器模擬⼯作，從模擬使⽤者打 開瀏覽器的⾏為，到模擬器執⾏JavaScript 動態載資料之後
+
+- 利⽤ Selenium 模擬操作瀏覽器
+
+  - Selenium 是⼀個瀏覽器⾃動化（Browser Automation）⼯具，讓程式 可以直接驅動瀏覽器進⾏各種網站操作。最早的⽬的是⽤來進⾏網⾴ 測試使⽤，這邊我們藉由特性來運⾏ JavaScript 作為爬蟲⽤。
+
+  - 準備 Selenium 環境
+
+    - 安裝 selenium 套件
+
+      ```python
+      $ pip install selenium
+      ```
+
+    - 下載 Chrome 驅動程式
+
+      上⾯第⼀步驟只是安裝 Selenium 模組⽽已，必須要下載對應的瀏覽器 Chrome 的驅動程式（建議放在程式相同⽬錄下）：http://chromedriver.chromium.org/downloads
+
+  - 範例：使⽤ Selenium 進⾏爬蟲
+
+    ```python
+    from selenium import webdriver
+    browser = webdriver.Chrome(executable_path='./chromedriver')
+    browser.get("http://www.google.com")
+    browser.close()
+    browser.page_source
+    ```
+
+    - 執⾏後會真的看到電腦打開⼀個新個瀏覽器，⽽且跳轉到設定的網址上！ 透過 browser.page_source 可以取出，⽬前網⾴上當下的 HTML，不過這是⼀個 HTML 格式的字串，此時就可以再利⽤ BeautifulSoup 進⾏解析。
+
+#### 利用開發者工具，觀察模擬 API 存取
+
+- 關於這種利⽤到 JavaScript 的非同步特性載入更多資料的網⾴稱為動 態網⾴。⽽爬蟲程式也會因為沒有執⾏到 JavaScript 導致資料不完全 的現象。 
+- 第⼆種解法透過利⽤ Python 模仿 JavaScript 呼叫 API 這個動作，也 可以達到動態取得資料的⽬的。
+- 利⽤ 開發者⼯具 觀察 JavaScript ⾏為
+  - 可以從瀏覽器的開發中⼯具中提供的「Network」功能，去查看所有 網⾴中的傳輸⾏為。這種透過 JavaScript 動態載入的請求，就可以從 中觀察到。接著就可以利⽤我們前⾯談到的 API 爬蟲⽅式進⾏。
+    1. 在網⾴上叫出 Console 切換到 Network Tab，中間選 XHR，這裡 會記載所有網⾴中的 API 呼叫
+    2. 此時點選重新整理，會發現網址沒有 動（表⽰沒有發送新的 HTML 網⾴請 求），但畫⾯有新的內容出現，左下 ⾓也多了⼀次新的 API 呼叫。
+    3. 點開就可以得到完整的 API 呼叫 內容，包含網址，Headers 和資 料。
+  - 簡單來說，在⼀個動態網⾴中，我們可以簡單地透過開發者的⼯具的 觀察，知道 JavaScript 發送了哪些請求。換句話說，我們就可以模仿 這部分，改⽤ Python 來發出 API，將原問題簡化為前⾯講過的 API 存取。
+
+### Scrapy爬蟲框架
+
+Scrapy 是為了持續運行設計的專業爬蟲框架
+
+簡單&一次性的任務：requests
+
+大量&重複性的任務：Scrapy
+
+#### 多網頁爬蟲實作策略介紹
+
+- 多網⾴爬蟲概念
+
+  - 多網⾴爬蟲基本上就是逐⼀對網址清單上的網址爬蟲 ⽽根據網址清單型式的不同會有額外的策略
+    - ⾃訂清單列表：透過⽂件或是 List 紀錄⽬標網⾴網址 
+    - HTML 清單列表：\<div>\<li>等 tag 紀錄⽬標網⾴網址
+
+- 單⼀網站多網⾴爬蟲概念
+
+  - 如果是要爬取單⼀網站下的多個網⾴，我們不太可能拿到所有⽬標網⾴的清 單，此時比較適合的策略是階層式搜尋網⾴並爬取
+    1. 了解網站⽂件結構 
+    2. 從網站⾸⾴逐⼀根據超連結 (e.g.  tag) 找到其他網⾴網址
+    3. 爬取網⾴內容並檢查是否有超連結連到其他網⾴
+
+- 跨網站多網⾴爬蟲概念
+
+  - 概念上跟多網⾴爬蟲⼀樣可以列出多個⽬標網站的網址清單 再根據單⼀網站多網⾴爬蟲的概念逐⼀爬取 過程中有可能超連結會連到其他網站上的網⾴ 
+  - 隨著需要搜索的次數愈多，不確定性愈⾼ 需要更謹慎的檢查每次⽬標網址的合法性
+
+- 階層式搜尋的注意事項
+
+  - 紀錄已搜尋過的網址，避免重複爬蟲與無窮回圈 
+
+  - 合法超連結格式為絕對路徑
+
+    - 相對路徑建議可以透過 urllib.parse.urljoin 轉換
+
+  - 建議在處理網址問題時要先了解每個片段的意義 scheme://netloc/path;params?query#fragment	 
+
+    其中比較重要的是判斷網域的 netloc 與路徑的 path
+
+- 超連結的注意事項
+
+  - 超連結可以不是網址格式
+    - \<a>可以是其他非網址格式的型式
+
+- 網址網域的注意事項
+
+  - 超連結網址可以是任何網路位置
+    - 網域建議可以透過 urllib.parse.urlparse 判斷
+    - ⼦網域建議可以透過 tldextract.extract 判斷
+
+- 爬蟲的禮貌運動
+
+  - 網站擁有者有時候會限制爬蟲⾏為 (e.g. 搜尋引擎的爬蟲，可以爬全網站網 ⾴；⼀般爬蟲，只能爬⾸⾴的內容) 
+    - 這些規則通常會放在⾸⾴底下的 robots.txt 
+    - e.g. https://www.facebook.com/robots.txt
+  - 建議開發者根據這些不允許存取的路徑， 讓爬蟲直接忽略
+
+- 參考資料
+
+  - [URL wkik](https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6)
+    - 中⽂版的 wiki 詳細講解網址 URL 的⽂法與其意義 
+  - [W3C 超連結屬性](https://www.w3schools.com/tags/att_a_href.asp)
+    - 本篇有提到  tag 超連結的注意事項，並非所有值都適合 送請求做爬蟲，W3C ⽂件中有定義及範例可以幫助理解 
+  - [關於 robots.txt](https://support.google.com/webmasters/answer/6062608?hl=zh-Hant)
+    - Google 對於 robots.txt 的解釋，包含⽤途與限制 
+  - [google/robotstxt](https://github.com/google)
+    - Google 在 2019.07 開放 robots.txt 的解析器，該程式⼀直被 ⽤於 Google engine 服務，後來甚⾄發展成 Robots Exclusion Protocol (REP) 標準
+
+#### Scrapy常用命令
+
+- startproject：創建一個新工程
+- genspider：創建一個爬蟲
+- settings：獲得爬蟲配置信息
+- crawl：運行一個爬蟲
+- list：列出工程中所有爬蟲
+- shell：啟動URL調試命令行
+
+#### 建立流程 + 送出請求
+
+- Scrapy 框架與套件的差異
+
+  - 前⾯我們⼤多使⽤ requests + BeautifulSoup 套件的組合來實作 但是你必須要⾃⼰額外考慮很多爬蟲的細節（甚⾄你沒想過）
+    - 先對誰送請求 (Scheduling) 
+    - 資料儲存的 pipeline (ETL) 
+    - etc …
+  - 框架基於這些細節都有對應的程式碼，我們可以根據他們定義好的規則去設計 撰寫，細節則可以全部交給框架實作
+
+- 建立 Scrapy 專案
+
+  - Scrapy 並不僅僅是⼀個 Python 套件，⽽是⼀個框架 因此在建立 Scrapy 專案時還要遵循他的專案結構 
+
+  - 除了⼀般 import scrpay 的⽤法以外，也提供了命令列的功能 我們可以透過 scrapy startproject [專案名稱] ⾃動產⽣⼀個符合框架的檔案結構
+
+  - 舉例來說，當我們執⾏ scrapy startproject myproject 會看到 Scrapy ⾃動建立符合框架的檔案結構
+
+    ![](https://lh3.googleusercontent.com/9rmqg6Ui0eCtaExRhUjjGyEYsj9u2qwfVugg0Ni4CEprcnZjPD6WnIToALjRiuQgD5ZASlmsh0jGwc21qYDPggjxCPDZE3IzalmkFh9p8_nV22xUG4p7G80EjCazCwC4n1FA57cufYDtORkiLkEa7MjcVixLIr88_ns6_EWqNMsbtVS0EZKxBUtHB56CaWmKV6zyLLNxV9gB1J7LiDjKaRvK4jQ11DUDsqYAlDJAZ57wOEEI-FmDqwU1I8NIxQmHMlWLWgsf85EqnrMxOuW_PKL-xrXp-Fo5R_QNcOsg7mdn5usNBR8Z6XTtaNHsk_zd0X_tPrzWKotoP_Fi4Irbxtpx6ZMMgCNxTYxx8ikFck22o4NHw6omM7Xk50xixHo6JsQDxyeuStQum0SHWUxrhGHoCtFg58EDCyInT4PQLrFiJM_k6aRojP1k7Qr43BiarXqpPNX8Kt2SUWQNiXdHC-cTWe4Y73yoIpyLqA5tZb73kdeyj5kNqvxcCRzYJh103CYQrr6NQPV69v813qThlL9kT774oqS_ysE6YLsvIF3ISF_VHurK6ti5gbEYsbPM4YU-zlaJ5W1lTKOnDMhQZmppzAN0PM52A0P8LdubuHFfPG3bxf4zWpFltMlyB8RPvqFw-uRVGKOqhrcYJPwrnnY9ygkNLagh4PXtsEyRSjB2mBBXb1CMnZrbDJnJscAfUSbCzVduSos6-lcZtX81JzJFBbSvnJvIrklY95F5P8YE_AKM5WcGat4=w553-h272-no)
+
+- Scrapy 的第⼀隻爬蟲
+
+  - 同樣地，我們也可以透過命令列來產⽣出⼀個符合框架的爬蟲類別 scrapy genspider [爬蟲名稱] [爬蟲⽬標網址]
+
+  - 舉例來說，當我們執⾏ 
+    scrapy genspider PTTCrawler www.ptt.cc
+
+    ![](https://lh3.googleusercontent.com/kRJ0IAFM3RpR12xa7mpzwSsxjc1fhIu5pQHZpzUdXYEiwPv19RB6TI2YXwFkXgo3G_U-EC61SSB8aUNQX39OmdLJfNXncTFqsnOi6z98LwBH6Q7Bj24ixFOpiYo83F2yzLfC36TNjeKb_B4GwyARIYzWQRn3mKJlQta7qB4O3j3D5Jbgv0NmAVgflsaivJtL-Um-ND8udD_Vo6bArLUlLXoBLncB5FVaRa5Y0iHjZU8qunyKLgw4vR11HjFD_F0zGQDJxmuqIj8GTtF_o4ePTU3r_IFSXbZ8GqRoEEIuOkSjDiiLxVe42M8r6IHOqZP3hBNuP-D1y52CJqOBBILuoNvNjFQ1r-pR_dN9hvCDByoQ6GQfix_UMmPBix7Z7SGpp2ugFdc5N6ARajsWzQZgFl-zOUhxW5_GhcsSExyiS7xhNJwL8YCLMASSmBscQjTS6n5I32-Jn2HNUf4ROK09p7zTQwNpYAyRL0oCERAw80bCyMz1ytm5MWxtWR3YNn22t3LxsxATxtDPC8en73OGOjX-EnohEWl0LcgPyfW7JRJm8pw8cSbG77b6CEePYCW9slG-ell_hYCoxQoZarDahvuVb-LAAlRTMAeNeRkTkrhOqRj1iSyVv_JVlOOfvYsSPZrj7rRVgdFPKtYXCy5-_oF9c1tQxSE-Tl5cjcsue4k-qE2P1WrBJMuJmFyV6XrMlByrOa5ch_VkwS4fzrj_SxAJIQFGO44vYRnWKJjKpBV3dm5nJK4RkkY=w1681-h601-no)
+
+- Scrapy 請求過程
+
+  - 此時可透過指令開始爬蟲 scrapy crawl PTTCrawler 參考前⼀⾴的程式，這邊其實是因為 scrapy 在背後會呼叫 start_requests 進 ⾏爬蟲，為了⽅便理解我們將其內容寫下來
+    1. 準備傳送請求
+    2. 實際傳送請求
+    3. 實際收到回應
+    4. 傳送回應
+    5. 解析回應的邏輯
+
+#### XPath + Item Pipeline
+
+- Scrapy 元素定位
+
+  - 爬蟲最重要的兩個部份就是送請求跟定位元素 在介紹 Scrapy 之前我們使⽤的分別是 requests 與 BeautifulSoup 
+  - 上個⼩節我們介紹了 Scrapy.Request 來取代 requests，為了符合框架設定所 以不適合混⽤，但定位元素並不限定 
+  - 這邊為了程式碼的⼀致性，介紹 Scrapy 定位元素的⽅式
+  - Scrapy 定位元素的⽅式分別有 XPath 與 CSS selector 兩種 與之前課程中介紹的概念差不多，只是呼叫的 function 不同
+    - 送出 Scrapy.Request 後取得 Response 物件 
+    - 透過 Response.selector.xpath() 或 Response.selector.css() 定位元素
+  - 如同 BeautifulSoup ⼀樣，搜尋符合條件的元素可以選擇要回傳⼀個或是多個
+    - BeautifulSoup
+      - soup.find()/soup.find_all()
+    - Scrapy.Selector
+      - .get() / .getall()
+
+- 定義資料格式
+
+  - 通常我們爬完資料都會以字典型式傳遞與儲存 當爬蟲愈來愈多，資料的格式也愈來愈多種，將會變得難以管理 
+
+  - 由於字典格式 (dict) 本⾝容易新增欄位與覆蓋 容易在沒有注意到的地⽅改變資料格式與型態
+
+  - Scrapy 透過明確定義資料格式來解決這個問題
+
+    ```python
+    class Product(scrapy.Item):
+        name = scrapy.Field()
+        price = scrapy.Field()
+        last_update = scrapy.Field()
+    ```
+
+    - scrapy.Field() 定義了每個資料屬性的型態 
+    - Product() 定義了資料格式
+
+- 定義資料格式
+
+- 當爬完資料要儲存時，需要決定儲存成哪⼀種格式 (e.g. Product) Scrapy 框架會幫你檢查儲存格式的正確性
+
+- 處理資料流程
+
+  - 前⾯我們定義了資料格式 (Item) 
+  - 框架會接著會進入資料處理的流程 (Itme Pipeline) 
+  - 主要處理資料的⽬的包含 
+    - 檢查爬到的數據是否正確 
+    - 檢查是否重複，是否需要丟棄資料 
+    - 將爬完的資料存到資料庫或是⽂檔
+
+- 處理資料流程範例
+
+  - Scrapy 框架主要處理資料的幾個時機點
+    - process_item
+      - 每個 Item Pipeline 都需要實作，⽤來檢查資料數據與是否丟棄等決定 
+    - open_spider
+      - 當爬蟲開啟時需要處理的流程 (e.g. 檢查資料庫是否可⽤) 
+    - close_spider
+      - 當爬蟲關閉時需要處理的流程 (e.g. 關閉資料庫連線)
+
+- 資料處理的檔案位置
+
+  ![](https://lh3.googleusercontent.com/M93RO5ttUuKmOHEdyydmKav4ubzBI6iVB9gWNjE9kLHeYgBagKz1foBq-8Q_ZU87l0YhjBalGamrR10Wy8m-B5Y_g9h9CqUt7AQsmXARzVY31popMVmWXXRSCJ788X_LzuQRa6r2xXhlZ2jM4Bupm5cw2rD3iw8WsnN4GUuHtu-hdSRRYJzpj1FgmEkvqp_FsfRL5rT7ws9bUTVTQxnpfV6DiebjOGaJoPA0CutD_VOuvORN47WSiwIK1mCMRkbquH25sQNkr2WHjeyHjh0VizQVpbkNXqm9dnbDwyPh9UTCEao2lyerSfJ5x6q9TlQRxfr2Gsq506cwxAHICJ-FipZIrWZFlPs3c6HG2YhmMx5Yqi9-vb4-u5LFEi6Enm-7imN-9fDACcsO3Dgftampm1-gjhuYbD_Fyo1imQ5UX_q3nSWzXjlHGsPWhh08R1sEPrQ3S2JT6-mjCIoCtX9_ECpP7oYk6n36kTqK36stioqkL6ii_mMSY78rVEsnwl7nhAB_3QNoLsJXrS7hAxnEU9VClmNJ0teSQPBj30P_LBleB42obE-Ncd2pR42WIGYXn8r17YGJ7TLzeXW0JmJm4K2eZjKTxV2vcS5G4BAcHVJKMKakTQtXvPF1UJLRBGbNjuG4yreb_k06zQiqlxYlDEq47uxAAUU-Xvdzk5x1-sgdlvcmD5QAEB1RJq03GR9xRJvGFRhPaDQL3peZXTH66EBpoYqoUSEhaQCRobFdvy9PwGR-ZP_cqmw=w840-h305-no)
+
+- 參考資料
+
+- [Srcapy Selector 官⽅⽂件](https://docs.scrapy.org/en/latest/topics/selectors.html)
+
+- [進階功能：Item Loader](https://docs.scrapy.org/en/latest/topics/loaders.html)
+
+  - 在 Scrapy 中定義好如何定位元素，以及該元素應該如何存到 Item 格 式中，爬蟲過程框架可以幫你⾃動爬玩送到 pipeline 處理的功能 
+
+- [進階功能：Scrapy Feed exports](https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports)
+
+  - 我們在 pipline 中寫入 JSON 只是熟悉 pipeline 的操作，實際上如果要 把資料存成某種格式應該參考 feed exports 的⽅式
+
+#### API
+
+- 我們在前⾯介紹如何執⾏ Scrapy 的爬蟲都是透過命令列
+- 但其實框架本⾝有提供 API 讓我們可以從外部去呼叫並執⾏爬蟲甚⾄是其他元件，這樣可以⽅便我們串聯 其他非框架本⾝或是沒有提供的功能
+
+#### 多網頁爬蟲
+
+- 我們⽬前的爬蟲功能是對「所有給予的 PTT ⽂章網址」進⾏爬蟲 實作 PTT 多網⾴爬蟲的實作有兩個⽅向
+- 外部決定網址 + 框架對給予網址進⾏爬蟲
+  - 在外部 (e.g. main.py) 對⽂章列表進⾏爬蟲取得所有⽂章網址
+  - 把所有⽂章網址傳入 scrapy 爬蟲 
+- 框架爬⽂章列表 + ⽂章內容
+- 這兩種⽅式都可以，但是先從外部取得網址的⽅式會比較慢 這邊我們可以更深入了解框架送請求的過程為什麼會比較快
+
+- 原本 requests 的⽅式，程式會送出第⼀個請求後會等到第⼀個 response 傳回 來才會送第⼆個請求
+- ⽽框架內的請求⽅式 yield scrapy.Request
+- 在送出第⼀個請求後會直接送第⼆個請求，並不會卡著等第⼀個 response，⽽ 是等第⼀個 response 送回來的時候再處理
+- 這種⽅式可以縮短因為網路延遲造成的等待，加速整個爬蟲過程
+
+- 參考資料
+  - [【知乎】Scrapy中的scrapy.Spider.parse()如何被調⽤?](https://www.zhihu.com/question/30201428) 
+    - 參考 Scrapy 的架構圖，再透過該篇⽂章可以更加了解 parse 的時 候 yield request 跟 yield item 的差別
+
+#### 框架
+
+![](https://lh3.googleusercontent.com/tEZMTOEI70TFT0p0G3uhWR7qSpl_x6dFwXH0vRMiNMTY-PlIVbW6aGmoAfu7db3knMAnWM4QHTwjPGw8WlREemjm_NBLmbWMeYTqOIukt2uAvy19fxCsoMz_Pgge7--U7FfP3BnvxFlWUZtLbmn5-DoFMm5SPEY31cuVLZLScKXcnR_sFKEQvqmUW5Pux33g36lrDpdQTHuNHjAuDoIl9It-FUgeqizbt6WfTXjLr694UF2cJBw6gI4NiZIzODULHWrv3KnuR83P5czY1bC-DpJ_oB07fi2qN7gEUbfvYCKdWbZiDt1pFTLvc2fzxfyQ-KsIszW32U8rkZ5oCAhM6ikV8FMh8uu-2KkloEws8NNHLXZbGrCOFjM4uod90UynHGDQHloGKdImfVTVprE0ack7HgPF_C5n-DbmRHuBaMUmh2-W3oNPpjkxlNDcacu4E4pmxrseLXpnf8dlhilSHvt-QCbh5PCu3U4ex2G439GLYreuCZKJjtUYmFwsC2hl2JPO2QspAiPm88mMDU5iEao77hvKoEJHAB2vZ226bygu1irKIlgQEyBdl5tssYZU8fJCXfETJkhHuvVccYeqfh3KO-oSm4WLplLnlyjLx3hqPlENCtMm-E1n5_Nn1-7L8V16u7jjvN2yvKVWsPqK8TFHMtZbdrBBxZWBVgKBwwp2kF2O7xM6PfYWJHVA5UU7DzFOXEjx9MCd8nfkhlXFGinc_JgVcn-x-gBgmHk6aWck3WydNDpTVi0=w988-h597-no)
+
+- Scrapy Engine：管理所有資料流程
+- Scheduler：任務調度
+- Downloader：網頁下載
+- Spiders：連結網頁、剖析裡面的資料
+- ItemPipeline：資料的萃取、剖析、篩選、資料儲存
 
 
 
-### 需求釐清與定義問題
+- 任務成功失敗的管理
+- 非同步化：
+  - 多個爬蟲任務時，不用等到一個結束才換下
+  - 一個
 
-- ⾸次⾯對資料，我們應該思考哪些問題？
-  - **為什麼這個問題重要？**
-    - 好玩：預測⽣存 (吃雞) 遊戲誰可以活得久, [PUBG](https://www.kaggle.com/c/pubg-finish-placement-prediction)
-    - 企業核⼼問題：⽤⼾廣告投放, [ADPC](https://www.kaggle.com/c/avito-demand-prediction)
-    - 公眾利益 / 影響政策⽅向：[停⾞⽅針](https://www.kaggle.com/new-york-city/nyc-parking-tickets/home), [計程⾞載客優化](https://www.kaggle.com/c/nyc-taxi-trip-duration)
-    - 對世界很有貢獻：[肺炎偵測](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
+- Selenium
+  - 定位
+  - 操作
+- 反爬蟲機制
 
-  - **資料從何⽽來？**
-    - 來源與品質息息相關， 根據不同資料源，我們可以合理的推測/懷疑異常資料異常的理由與頻率
-    - 資料來源如：網站流量、購物⾞紀錄、網路爬蟲、格式化表單、[Crowdsourcing](https://en.wikipedia.org/wiki/Crowdsourcing)、紙本轉電⼦檔
+#### 流程
 
-  - **資料的型態是什麼?**
-    - 結構化資料：檢視欄位意義以及名稱，如數值, 表格,...etc 
-    - 非結構化資料：需要思考資料轉換與標準化⽅式（如圖像、影片、⽂字、⾳訊…etc）
+1. 啟動專案
 
-  - **要回答什麼問題?**
-    - 每個問題都應該要可以被評估、被驗證，常⾒的[衡量指標](https://blog.csdn.net/aws3217150/article/details/50479457)如：
-      - 分類：Accuracy, AUC, MAP, F1-score, ...etc
-
-      - 迴歸：MAE, RMSE, R-Square, ...etc
-
-  - **範例：我們應該要/可以回答什麼問題？**
-    - ⽣存 (吃雞) 遊戲
-      - 玩家排名：平均絕對誤差 (Mean Absolute Error, MAE)
-      - 怎麼樣的⼈通常活得久/不久 (如加入遊戲的時間、開始地點、單位時間內取得的資源量, ...) → 玩家在⼀場遊戲中的存活時間：迴歸 (Mean Squared Error, MSE)
-    - 廣告投放
-      - 不同時間點的客群樣貌如何 → 廣告點擊預測 → 預測哪些受眾會點擊或⾏動：Accuracy / Receiver Operating Curve, ROC
-      - 哪些素材很好/不好 → 廣告點擊預測 → 預測在版⾯上的哪個廣告會被點擊：ROC / MAP@N (eg. MAP@5, MAP@12)
-
-### 機器學習專案開發流程
-
-- 資料搜集、前處理
-  - 缺失值填補
-  - 離群值處理
-  - 標準化
-
-- 定義⽬標與評估準則：要預測的⽬標是甚麼? 
-  - 回歸問題?
-  - 分類問題?
-- 要⽤什麼資料來進⾏預測? (predictor 或 x)
-- 將資料分為
-  - 訓練集, training set
-  - 驗證集, validation set
-  - 測試集, test set
-- 設定評估準則
-  - 回歸問題 (預測值為實數)
-    - RMSE, Root Mean Square Error
-    - Mean Absolute Error
-    - R-Square
-  - 分類問題 (預測值為類別)
-    - Accuracy
-    - F1-score
-    - AUC, Area Under Curve
-
-- 建立模型並調整參數
-  - 根據設定⽬標建立機器學習模型
-    - Regression, 回歸模型
-    - Tree-based model, 樹模型
-    - Neural network, 神經網路
-  - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
-
-- 導入
-  - 建立資料搜集、前處理等流程
-  - 送進模型進⾏預測
-  - 輸出預測結果
-  - 視專案需求整合前後端
-    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
-  - 如何確立⼀個機器學習模型的可⽤性？
-    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
+   ```prompt
+   scrapy stratproject project_name
+   # scrapy stratproject und
+   ```
 
 
+教學
+
+1. [[Scrapy 爬蟲] 什麼是Scrapy以及為什麼要用Scrapy 爬取網頁?](https://www.youtube.com/watch?v=0pWJHy_fNWA)
+
+   1. conda install scrapy
+
+   2. cd 到工作的資料夾
+
+   3. scrapy startproject projectname
+
+      ex scrapy startproject undnews
+
+2. [[Scrapy 爬蟲] 如何撰寫第一支Scrapy 爬蟲以抓取蘋果即時新聞?](https://www.youtube.com/watch?v=fnwvYAtCFko)
+
+3. [[Scrapy 爬蟲] 如何從蘋果新聞的清單聯結抓取下一層的內容頁面?](https://www.youtube.com/watch?v=w4PPlkJFzCo&t=42s)
+
+4. [[Scrapy 爬蟲] 如何使用items.py整理Scrapy 爬取下來的資料並輸出成JSON檔?](https://www.youtube.com/watch?v=Me9SpR0SE08)
+
+5. [[Scrapy 爬蟲] 如何使用pipelines.py將Scrapy 爬取下來的資料儲存置資料庫之中?](https://www.youtube.com/watch?v=Xq4yRuePSdk)
+
+6. [[Scrapy 爬蟲] 如何使用Scrapy 的CrawlSpider 實現多網頁爬取?](https://www.youtube.com/watch?v=KSA12AKDr_o&t=3s)
+
+   1. from scrapy.spiders import CrawlSpider, Rule
+   2. from scrapy.linkextractors import LinkExtractor
+
+7. [[Scrapy 爬蟲] 如何設置 Job 以分段爬蟲任務?](https://www.youtube.com/watch?v=2xjAArPnOH8)
+
+   1. 當網頁很大，可以將工作分段暫停
+   2. 分段
+      1. scrapy crawl udnnews -s JOBDIR=job1
+      2. 按 Ctrl + C 是暫停
+      3. 再輸入一次一下命令即可繼續
+      4. scrapy crawl undnews -s JOBDIR=job1
+
+### 進階爬蟲技術
+
+#### 爬蟲可能會遇到的問題
+
+- 在前⾯的課程中，我們討論了⼀個網⾴從該如何思考和撰寫。接下來我們要討論的是「爬蟲可以順利拉到資料，然後呢？」我們針對這三個⽅向來做優化：
+  - 反爬
+  - 加速
+  - 自動化更新
+
+- 反爬是什麼？常⾒見的反爬蟲機制有哪些？
+  - 許多網站為了保護資料，避免網頁上的公開資訊被網頁爬蟲給抓取，因此有了了「反爬蟲」的機制出現。爬蟲工程師也發展了出⼀系列「反反爬蟲」的策略！
+    - 檢查 HTTP 標頭檔
+    - 驗證碼機制
+    - 登入權限機制
+    - IP 黑名單
+
+- 如何為爬蟲程式加速？
+  - 第⼆種實務爬蟲需要考慮的問題是加速，當資料量龐⼤或是更新速度較為頻繁 的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤ 程式的⽅法，來思考如何加速爬蟲的處理速度。
+    - 多線程爬蟲加速
+    - 非同步爬蟲
+
+- 利⽤排程⾃動化更新
+  - 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料是最新的。常⾒的做法可以利⽤⼀個排程機制，週期性地重新抓 取資料。
+    - 在迴圈中加上 Sleep
+    - 利⽤ threading 的 Timer
+    - 第三⽅套件 schedule
+  - 參考資料
+    - [Python爬蟲系统學習⼗⼀：常⾒反爬蟲機制與應對⽅法](https://blog.csdn.net/guangyinglanshan/article/details/79043612)
+    - [Python爬蟲筆記（六）— 應對反爬策略](https://blog.csdn.net/dhaiuda/article/details/81410535)
+
+#### 編碼
+
+```python
+import requests
+resp = requests.get('http://www.baidu.com')
+resp.status_code
+>>>200
+resp.text
+>>># 這裡會出現許多亂碼看不懂
+# 修正編碼
+r.encoding
+>>> 'ISO-8859-1'
+r.apparent_encoding
+>>>'utf-8'
+r.encoding = 'uf-8'
+r.text
+>>> # 正常顯示內容
+```
 
 
-### 參考資料
 
-- [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
-- [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
-- [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
-- [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
-- [Data Scientist vs Data Engineer](https://www.datacamp.com/community/blog/data-scientist-vs-data-engineer)
-- [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
-- [Why Data Scientists Must Focus on Developing Product Sense](https://www.kdnuggets.com/2018/04/data-scientists-product-sense.html)
-- [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
+#### 反爬：瀏覽器標頭與基本資訊
+
+- 檢查 HTTP 的發送請求⽅是否合法
+
+  - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
+  - 其中 Request ⼜可以分為幾個部分：
+    - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
+    - Body：網⾴服務真正要傳送的資料
+  - Header 包含發送⽅的資訊
+    - ⼀般來說，Header 可能會包含： 
+      - 發送⽅的位址（Host）
+      - 發送⽅的瀏覽器版本（User-Agent） 
+      - 發送⽅的語⾔/格式 … 等等
+
+- 讓爬蟲程式也加上 Header
+
+  - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
+  - 解法：在爬蟲程式的 Request 加上 Header！
+
+  ```python
+  import requests
+  headers = {'user-agent': 'my-app/0.0.1'}
+  r = requests.get('https://www.zhihu.com/api/v4/questions/55493026/
+  answers',headers=headers)
+  response = r.text 
+  ```
+
+- 怎麼檢查 Request 要帶哪些 Header？
+
+  1. 右鍵點選檢查
+  2. 下方點選 Network
+  3. 找到網址對應的請求
+  4. 切換到 Headers 項目
+  5. 找到 Request 的 Headers
+
+- 在 Request 上加上 Headers
+
+  - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
+
+    ```pythn
+    headers = {
+     'accept': '...',
+     'accept-encoding': '...',
+     'accept-language': '...',
+     ...
+     'user-agent': '...'
+    } 
+    ```
+
+#### Robots協議
+
+- Https://www.jd.com/robots.txt
+- 網頁允許/不允許的爬蟲權限與內容
+
+#### 反爬：驗證碼處理
+
+- 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
+
+- 驗證碼是⼀種圖靈測試
+
+- CAPTCHA 的全名是「Completely Automated Public Turing test to tell Computers and Humans Apart」，或「全⾃動區分電腦與⼈類的圖靈測試」， 實作的⽅式很簡單，就是問⼀個電腦答不出來，但⼈類答得出來的問題。
+
+- 爬蟲該怎麼辦？
+
+- 爬蟲在實作上遇到驗證碼的做法會是這樣，先把圖抓回來， 再搭配圖形識別⼯具找出圖中的內容。
+
+- 環境⼯具準備
+
+  - Tesseract
+
+    - Tesseract 是⼀個OCR庫(OCR是英⽂Optical Character Recognition的縮寫)，它⽤來對⽂ 字資料進⾏掃描，然後對影像檔案進⾏分析處理，獲取⽂字及版⾯資訊的過程 
+    - 安裝⽅式：https://github.com/tesseract-ocr/tesseract/wiki
+
+  - pytesseract
+
+    - 在 Python 中呼叫 Tesseract 的套件
+
+    - 安裝⽅式（利⽤ pip）：https://pypi.org/project/pytesseract/
+
+      ```python
+      import requests
+      import pytesseract
+      from io import BytesIO
+      response = requests.get('https://i0.wp.com/www.embhack.com/wp-content/uploads/
+      2018/06/hello-world.png')
+      img = Image.open(BytesIO(response.content))
+      code = pytesseract.image_to_string(img)
+      print(code)
+      ```
+
+- 參考資料
+
+  - [python識別驗證碼](https://www.cnblogs.com/benpao1314/p/9999283.html)
+  - [Python 實現識別弱圖片驗證碼](https://cloud.tencent.com/developer/article/1187805)
+
+#### 反爬：登入授權模擬
+
+- 權限管理機制
+
+  - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
+
+- 登入有兩種實作⽅法
+
+  在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
+
+  - cookie/ session
+
+    cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
+
+  - tokenbased
+
+    另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
+
+- 利⽤ cookie/session 做登入
+
+  - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
+
+    ```python
+    import requests
+    rs = requests.session()
+    payload={
+     'from':'/bbs/Gossiping/index.html',
+     'yes':'yes'
+    }
+    res = rs.post('https://www.ptt.cc/ask/over18',verify = False, data = payload)
+    res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False)
+    soup = BeautifulSoup(res.text,'html.parser')
+    print(soup.text) 
+    ```
+
+  - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
+
+    ```python
+    import requests
+    res = requests.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False,
+    cookies={'over18': '1'})
+    soup = BeautifulSoup(res.text,'html.parser')
+    print(soup.text) 
+    ```
+
+#### 反爬：代理 IP
+
+- 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
+
+- 代理伺服器
+
+  - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
+
+- 在 Python 中加上 proxy 參數
+
+  ```python
+  proxy_ips = [...]
+  resp = requests.get('http://ip.filefab.com/index.php',
+   proxies={'http': 'http://' + ip}) 
+  ```
+
+- Ref
+
+  - [USProxy.ipynb](https://github.com/TLYu0419/DataScience/blob/master/WebCrawler/USProxy/USProxy.ipynb)
+
+- 哪裡有第三⽅的代理伺服器可以⽤？
+
+  - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 
+  - 中國：http://cn-proxy.com/
+
+#### 加速：多線程爬蟲
+
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+
+- 簡單來說就是時間可貴!
+
+- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
+
+  ```python
+  import _thread
+  import time
+  def print_time( threadName, data):
+      for d in data:
+          time.sleep(2)
+          print(threadName, ' => ', d)
+  _thread.start_new_thread( print_time, ("Thread-1", range(0, 5, 2), ) )
+  _thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
+  ```
+
+- 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
+
+- 參考資料
+
+  - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
+
+#### 加速：非同步爬蟲
+
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+
+- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+
+- Python 中實現非同步
+
+  ```python
+  import aiohttp
+  import asyncio
+  async def fetch(session, url):
+      async with session.get(url) as response:
+          return await response.text()
+  async def main():
+      async with aiohttp.ClientSession() as session:
+          html = await fetch(session, 'http://python.org')
+          print(html)
+  loop = asyncio.get_event_loop()
+  loop.run_until_complete(main()) 
+  ```
+
+- 參考資料
+
+  - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
+
+#### 自動化更新機制(排程)
+
+- 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料部會是錯誤或是假的。
+
+- ⾃動化更新的做法
+
+  - 在迴圈中加上 Sleep
+  - 利⽤ threading 的 Timer
+  - 第三⽅套件 schedule
+
+- 在迴圈中加上 Sleep
+
+  ```python
+  def timer(n):
+  '''''
+  每n秒執⾏⼀次
+  '''
+  	while True:
+  	print time.strftime('%Y-%m-%d %X',time.localtime())
+  	yourTask() # 此處為要執⾏的任務
+  	time.sleep(n) 
+  ```
+
+- 利⽤ threading 的 Timer
+
+  ```python
+  def printHello():
+  	print "Hello World"
+  	t = Timer(2, printHello)
+  	t.start()
+  	if __name__ == "__main__":
+  		printHello() 
+  ```
+
+- 第三⽅套件 schedule
+
+  ```python
+  import schedule
+  import time
+  def job():
+      print("I'm working...")
+  	schedule.every(10).minutes.do(job)
+  	schedule.every().hour.do(job)
+  	schedule.every().day.at("10:30").do(job)
+  	schedule.every(5).to(10).minutes.do(job)
+  	schedule.every().monday.do(job)
+  	schedule.every().wednesday.at("13:15").do(job)
+  	schedule.every().minute.at(":17").do(job)
+  	while True:
+   		schedule.run_pending()
+   		time.sleep(1) 
+  ```
+
+
+#### 反爬：搜尋引擎
+
+當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
+
+- Google
+- Yahoo
+- Bing
 
 
 
-## 數據分析(Data Exploration)
+## Feature Engineering
+
+> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
+
+特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
+
+### 流程
+
+1. 特徵使用方案
+2. 特徵獲取方式
+3. 特徵處理
+4. 特征監控
+
+### Explore Data Analysis
 
 - 初步透過視覺化/統計⼯具進⾏分析，達到三個主要⽬的
+
   - 了解資料：獲取資料所包含的資訊、結構和特點
   - 發現 outliers 或異常數值：檢查資料是否有誤
   - 分析各變數間的關聯性：找出重要的變數
+
 - 從 EDA 的過程中觀察現象，檢查資料是否符合分析前的假設
+
   - 可以在模型建立之前，先發現潛在的錯誤
   - 也可以根據 EDA 的結果來調整分析的⽅向
 
 - 思考問題
+
   - 資料應該怎麼清洗和處理才是合理的？
+
   2.	根據資料的類型可以挖掘怎樣的特徵？
   3.	資料中的哪些特徵會對標籤的預測有幫助？
 
-### 資料類型
+#### 資料類型
 
 - 離散變數
   - 只能⽤整數單位計算的變數，如房⼦的房間數量、性別、國家
 - 連續變數
   - 在⼀定區間內可以任意取值的變數，如測量的⾝⾼、⾶機起⾶到降落所花費的時間、⾞速
 
-### 資料分佈
+#### 資料分佈
 
 - 以單變量分析來說，量化的分析⽅式可包含
 
@@ -737,16 +1977,17 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
       ![](https://lh3.googleusercontent.com/N-1nRtfzQQeEcCPhB2BsDKPxbe_aeJlbTJoC505odQ17jlKGSJsJa6r5YX6dpXHGnq2fp2FWeaX9TSMvg1TnFo_9e-zkOBOuEQIlQN1BGeyiDEvmTZSs0pNHjkNvsqK5luViqDP1ynIsulYMipiU-okEvH7scYkov9JVPXRmDu0pKVT2lGckVD7QWEASrVSmh_kN7DOQii2_TQZ2h7nPDVbW0lyU_wlLWU8WvzglHFLh85whTee_lQ7WpiT1SJHRc0689kW9TjDch2m_TsWkpENZMTXGB3bXkdsWwZ-mIEuc-KVlW0SBrZqqjPnAsDQyAUIXzx8sbHsWZu8cPCRekKXmxX0VjCMNkACgwTkIIxIUDv0PQ1iB2w8UIqC-dIUGuKUnfvFP2l5HXMysm5_fZjr8qxcm8KSY9t9cvsk6mHkbFZTP7AOEelgtcfrrFdKIJkKsqC2nOMPuv78Pmec7KxwryQrF97bVAx7ns0nwBDBcwNOP_nmgg24eqasI_hi5gwfKwYryswSZ0nVTWjHNeb8el05No6L66O8lQ7Aux7i6cdMfvd1kT56mn8wSy5O8PGitRkHjupyiqEWkX9NCgEeMkPnaM__Ztg2_r2Dq3HL6QfE1zK2tAHpaTCkwyA836NlEjpb617IA3dL3C-Jty_9iCGY-YYvs6RvQbXrtoYMs_vpzORSn1CAqel4tF6x_OVSLpn0PfN_OT0fnR9rh9hj7=w742-h326-no)
 
 - 參考資料
+
   - [Standard Statistical Distributions (e.g. Normal, Poisson, Binomial) and their uses](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/statistical-distributions)
   - [List of probability distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions)
   - [Guess The Correlation](http://guessthecorrelation.com/)
 
-### 視覺化
+#### 視覺化
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
 
 - Pandas-Profiling
-  
+
   ```python
   pip install pandas-profiling
   
@@ -759,11 +2000,11 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
   profile = pandas_profiling.ProfileReport(df)
   profile.to_file(outputfile="output.html")  #支援輸出html
   ```
+
   
-  
-  
+
 - **繪圖與樣式**
-  
+
   ⽤已經被設計過的風格,讓觀看者更清楚明瞭，包含⾊彩選擇、線條、樣式等。
 
 ```python
@@ -863,7 +2104,9 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
   - [解決Python 3 Matplotlib與Seaborn視覺化套件中文顯示問題](https://medium.com/marketingdatascience/解決python-3-matplotlib與seaborn視覺化套件中文顯示問題-f7b3773a889b)
   - [样式美化matplotlib.pyplot.style.use定制画布风格](https://zhuanlan.zhihu.com/p/37891729)
 
-## Data Preprocessing
+
+
+### Data Preprocessing
 
 剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。針對不同類型的變數，會有不同的清洗和處理方法：
 
@@ -880,6 +2123,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 - 因此，離群值的存在會對資料分析造成極大影響在對各欄位進行歸一化之前，需要先將各欄位中的離群值進行處理，否則在歸一化後「非離群值」之間的差距反而無法呈現，影響模型的精準度與穩定性。
 
 - 遺漏值處理
+
   - 刪除樣本
   - 刪除特徵
   - 填補指定值
@@ -891,8 +2135,9 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
   - 填補預測值
     - 透過其他欄位建置預測模型，對該欄位填補預測結果
   - 不處理
-  
+
 - 離群值
+
   - 離群值是與正常數值偏離較遠的數值群，如果不處理則特徵縮放(標準化 / 最⼩最⼤化)就會出現很⼤的問題
   - 處理離群值之後，好處是剩餘資料中模型較為單純且準確，壞處是有可能刪除掉重要資訊，因此刪除前最好能先了解該數值會離群的可能原因
   - 當離群資料比例太⾼，或者平均值沒有代表性時，可以考慮去除偏態，包含
@@ -914,7 +2159,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
     - 新增欄位⽤以紀錄異常與否
     - 填補 (取代)
     - 視情況以中位數, Min, Max 或平均數填補(有時會⽤ NA)
-  
+
 - 常態化
 
   - 改變⼀單位的 x2 對 y 的影響完全不同
@@ -927,7 +2172,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
     - Tree-based model：沒有太⼤關係
 
 
-### 遺漏值處理
+#### 遺漏值處理
 
 - **刪除樣本**
   - 設定閾值並計算每個「樣本」有幾個遺漏值，當超過閾值時將該「樣本」刪除
@@ -962,7 +2207,7 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 
 
 
-### 離群值處理
+#### 離群值處理
 
 - **檢測方式**
 
@@ -987,60 +2232,68 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
       將mean ± 9 * MAD外的值視為離群值。
 
 - **刪除樣本**
-  
+
 - 當離群值的數量相當少時，可以使用此方法
-  
+
 - **刪除欄位**
-  
+
 - 若是題目設計的問題導致某欄位中存在許多離群值，可以考慮刪除該欄位。
-  
+
 - **整併至「其他」類別**
-  
+
 - 適用於類別型變數
-  
+
 - **縮尾**
-  
+
 - 將超出變數特定百分位元範圍的數值替換為其特定百分位數值的方法。    
-  
+
 - **截尾**
-  
+
 - 將超出變數特定百分位元範圍的數值予以**刪除**的方法。
-  
+
 - **插值**
-  
+
 - 應用原有資料資訊對離群值賦予一個相對合理的新值的方法
-  
+
 - **對數去偏(log1p)** 
+
   - 對數去偏就是使⽤⾃然對數去除偏態，常⾒於計數 / 價格這類非負且可能為 0 的欄位
   - 因為需要將 0 對應到 0，所以先加1 (plus one) 再取對數 (log)，還原時使⽤ expm1，也就是先取指數 (exp) 後再減⼀ (minus one)
 
 - **⽅根去偏(sqrt)**
-  
+
 - 就是將數值減去最⼩值後開根號，最⼤值有限時適⽤ (例 : 成績轉換) 
-  
+
 - **分布去偏(boxcox)** 
-  
+
   - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
 
-### Feature Scaling
+#### Feature Scaling
 
 - 類別型特徵
+
   - 轉為指定值
 
     - 依照 Domain knowledge 將離散資料轉為指定值，藉以賦予連續型資料的特征。如將教育程度轉為教育年數：小學為6年，國中9年，高中12年等等。
+
 - 頻數編碼(count encoding)
-    - 頻數編碼使用頻次替換類別，頻次根據訓練集計算。這個方法對離群值很敏感
-    - 所以結果可以歸一化或者轉換一下（例如使用對數變換）。未知類別可以替換為1。
+
+  - 頻數編碼使用頻次替換類別，頻次根據訓練集計算。這個方法對離群值很敏感
+
+  - 所以結果可以歸一化或者轉換一下（例如使用對數變換）。未知類別可以替換為1。
+
   - LabelCount
+
   - 根據類別在訓練集中的頻次排序類別（昇冪或降冪）。相比標準的頻次編碼，LabelCount具有特定的優勢——對離群值不敏感，也不會對不同的值給出同樣的編碼。
+
   - 標籤編碼(Label Encoding)
-    
+
     - 類似於流⽔號，依序將新出現的類別依序編上新代碼，已出現的類別編上已使⽤的代碼
-    
+
     - 優點是能夠節省記憶體的使用量
-      
+
       - 確實能轉成分數，但缺點是分數的⼤⼩順序沒有意義
-      
+
       ```python
       # Encoding the Independent Variable
       from sklearn.compose import ColumnTransformer
@@ -1053,16 +2306,21 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
       le = LabelEncoder()
       y = le.fit_transform(y)
       ```
+
   - 獨熱編碼(One Hot Encoding)
+
     - 為了改良數字⼤⼩沒有意義的問題，將不同的類別分別獨立為⼀欄
     - 缺點是需要較⼤的記憶空間與計算時間，且類別數量越多時越嚴重
     - 在建置模型時，為了避免完全多重共線性造成的虛擬變數陷阱(Dummy Variable Trap)，需要把其中一個變數丟出模型外，否則無法估計出回歸參數。通常會丟數量最多的類別。
+
   - 當特徵重要性⾼，且可能值較少時，才應該考慮獨熱編碼
+
   - 均值編碼（mean encoding）
+
     - 如果某一個特徵是定性的（categorical），而這個特徵的可能值非常多（高基数），那麼平均數編碼是一種高效的編碼方式。我们可以嘗試使用平均数编碼的編碼方法，在貝葉斯的架構下，利用所要預測的應變量（target variable），有監督地確定最適合這個定性特徵的編碼方式。
     - 均值編碼的缺點是容易過擬合（因為提供了大量數據），所以使用時要配合適當的正則化技術。
     - 平滑化的⽅式能修正均值編碼容易 Overfitting 的問題，但效果有限，因此仍須經過檢驗後再決定是否該使⽤均值編碼
-  
+
   ![](https://lh3.googleusercontent.com/nx3knWrJTN3iibWvU0j_ZDBuQL0NFtzXLw9Q-CFg1-2XKAwW7Ol1pNSE7RInslFpt2m88Q7nwYYRaFeTJ1ZwinzIyFda4lTOBOWtI5NzBXxOq8nhCqhXYCehLVp-Z3jQCwvsddcuJ7u6EZ311pOj7Z87R3gJdWarJMyhR_xOAC2J-6TYephvJA3roAHxrjdCgadRINzqFIobIVvZq4rdFw1dQzIxGmggUkEdjmUIivwPUm5RKlG2vkMRWGKGsHAmJhmxgAnaC-H0cIMtW_U_ajW3GaDap7j2-FYQ3v42WR9FajOkpoWLUu85I3sqJLjBKm1SUWyi9eiDt37hDByjmkyl31VToLfaz1lMLli_epggWQ7mQloOhFoJLvVx4wEi1zravbGmP3F1cKAqHf6fIyJaT0_qfnRrUOT2JIzJmmIr0fsrCZ8Z_fgTmQH2eShqUuetzZrCbALr8EiZXa4i4osjxYMxmNFTKctm9am4S76cWeYeuGe8SOS-5DiCWiLmQVbw-uIcb8_ywsYe3jnbvXV_jQOWTfYgOuJcDlNvb-uNZp7CjVkO4zhSpxZEBzIQ9zCcJWyf3P9kl4eFgkNVH3Dbw_QFvX2jGkfh0f4xg2XZz98mMmMcntaVTLXjeuFIt-e1eOuHKVgxE3ig5PWlxyPDVOzqDkqexGl9duk4JbiLEAwjq_Xlq3t5GSh5YSh9hl5aNKIpEuv9BjvHP6iIhKEJ=w396-h345-no)
 
 
@@ -1103,6 +2361,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 
 - 數值型特徵
+
   - 二值化
     - 設定一個閾值，大於閾值的赋值為1，小於等於閾值的赋值為0
 
@@ -1123,13 +2382,14 @@ def smoothing_target_encoder(df, column, target, weight=100):
   $$
   \frac {(x-mean(x))}{sd(x)}
   $$
+
     ```python
   from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
+  sc = StandardScaler()
   X_train = sc.fit_transform(X_train)
   X_test = sc.transform(X_test)
   # 有時候會需要將還原轉換後的數值，這時候可以使用此函數
-sc_X.inverse_transform()
+  sc_X.inverse_transform()
     ```
 
   
@@ -1146,35 +2406,36 @@ sc_X.inverse_transform()
       $$
 
       ```python
-  from sklearn.preprocessing import StandardScaler
+      from sklearn.preprocessing import StandardScaler
       sc = StandardScaler()
       X_train[:, 3:] = sc.fit_transform(X_train[:, 3:])
       X_test[:, 3:] = sc.transform(X_test[:, 3:])
       ```
 
       
-      
+
     - 空間壓縮
-    
+
   - Y = 0 ~ 1
         $$
         \frac{x-min(x)}{max(x)-min(x)}
         $$
-    
+
   - Y = -1 ~ 1
         $$
     (\frac{x-min(x)}{max(x)-min(x)}-0.5)*2
         $$
 
       - Y = 0 ~ 1(影像資料)
+
     $$
         \frac{x}{255}
     $$
-    
+
     - Y = 0 ~ 100
-    
-        用分位數來進行normalization
-    
+
+      用分位數來進行normalization
+
     - 歸一化公式如下：
 
   $$
@@ -1197,9 +2458,10 @@ sc_X.inverse_transform()
 
   It will do the job all the time. Therefore since this is a technique that will work all the time and this is a technique that is more recommended for some specific situations where you have most of your features following a normal distribution
 
-### 其他類型特徵
+#### 其他類型特徵
 
 - **時間型特徵**
+
   - 時間型特徵最常⽤的是特徵分解 - 拆解成年/⽉/⽇/時/分/秒的分類值
 
   - 週期循環特徵是將時間"循環"特性改成特徵⽅式, 設計關鍵在於⾸尾相接, 因此我們需要使⽤ sin /cos 等週期函數轉換
@@ -1240,6 +2502,7 @@ sc_X.inverse_transform()
         兩者相比，後者較前者更為合理
 
 - **文本特徵**
+
   - 斷詞
     - 字典法
     - 爬蟲法
@@ -1275,11 +2538,7 @@ sc_X.inverse_transform()
 
 
 
-## 特徵工程(Feature Engineering)
-
-**都說特徵為王，特徵是決定效果最關鍵的一環。**我們需要通過探索資料，利用人為先驗知識，從資料中總結出特徵。
-
-### 特征抽取(Feature Extraction)
+### Feature Extraction
 
 **我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。**特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
 
@@ -1330,7 +2589,7 @@ sc_X.inverse_transform()
 
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
-### 特徵選擇(Feature Selection)
+### Feature Selection
 
 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
 
@@ -1358,11 +2617,33 @@ sc_X.inverse_transform()
 
   先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵
 
+  ```python
+  from sklearn.feature_selection import VarianceThreshold
+  
+  #方差选择法，返回值为特征选择后的数据
+  #参数threshold为方差的阈值
+  VarianceThreshold(threshold=3).fit_transform(iris.data)
+  ```
+
+  
+
 - **相關係數法**
 
   - 皮爾森相關係數是一種最簡單的，能説明理解特徵和回應變數之間關係的方法，該方法衡量的是變數之間的線性相關性，結果的取值區間為 $-1$ 至 $1$  ， $-1$ 表示完全的負相關(這個變數下降，那個就會上升)，$+1$ 表示完全的正相關，$0$ 表示沒有線性相關。
 
   - Pearson相關係數的一個明顯缺陷是，作為特徵排序機制，他只對線性關係敏感。如果關係是非線性的，即便兩個變數具有一一對應的關係，Pearson相關性也可能會接近 $0$
+
+    ```python
+    from sklearn.feature_selection import SelectKBest
+    from scipy.stats import pearsonr
+    
+    #选择K个最好的特征，返回选择特征后的数据
+    #第一个参数为计算评估特征是否好的函数，该函数输入特征矩阵和目标向量，输出二元组（评分，P值）的数组，数组第i项为第i个特征的评分和P值。在此定义为计算相关系数
+    #参数k为选择的特征个数
+    SelectKBest(lambda X, Y: array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
+    ```
+
+    
 
 - **卡方檢驗(K-Best)**
 
@@ -1661,9 +2942,9 @@ https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-a
   - [為什麼特徵工程很重要](https://ithelp.ithome.com.tw/articles/10200041?sc=iThelpR)
   - [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
 
-## 建置模型(Modeling)
+# 建置模型(Modeling)
 
-### 簡介
+## 簡介
 
 1. 切分訓練/測試資料集
    - 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
@@ -1737,7 +3018,7 @@ https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-a
 
 
 
-### Evaluation Method
+## Evaluation Method
 
 https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
 
@@ -1755,7 +3036,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
     - 正則化是符合**奧卡姆剃刀原理**：在所有可能的模型中，能夠很好的解釋已知數據並且十分簡單的才是最好的模型。
 
-#### 回歸模型
+### 回歸模型
 
 - 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
   - MAE, Mean Absolute Error, 範圍: [-∞, ∞]
@@ -1785,7 +3066,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
     - p: number of independent variable
     - n: sample size
 
-#### 分類模型
+### 分類模型
 
 - 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
 
@@ -1900,7 +3181,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 - https://gombru.github.io/2018/05/23/cross_entropy_loss/
 
-#### Cluster
+### Cluster
 
 - 輪廓分析(Silhouette analysis)
   - 歷史
@@ -1945,9 +3226,9 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
     
       - 平均值觀察 計算分群的輪廓分數總平均，分的群數越多應該分數越⼩，如果總平均值沒有隨著分群數增加⽽變⼩，就說明了那些分組數較不洽當
 
-#### Dimension Reduction
+### Dimension Reduction
 
-### 模型驗證(Validation)
+## 模型驗證(Validation)
 
 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
 
@@ -2021,12 +3302,11 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
   - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
   - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
 
-### 模型
+## 監督式模型
 
+- 由於大多數模型同時支持分類與回歸的任務，在這裡將兩者合併在一起說明
 - 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
 - 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
-
-#### 摘要
 
 回歸：
 
@@ -2487,8 +3767,6 @@ https://zhuanlan.zhihu.com/p/52583923
 
 The LightGBM boosting algorithm is becoming more popular by the day due to its speed and efficiency. LightGBM is able to handle huge amounts of data with ease. But keep in mind that this algorithm does not perform well with a small number of data points.
 
-
-
 #### CatBoost
 
 As the name suggests, CatBoost is a boosting algorithm that can handle categorical variables in the data. Most [machine learning algorithms](https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/?utm_source=blog&utm_medium=4-boosting-algorithms-machine-learning) cannot work with strings or categories in the data. Thus, converting categorical variables into numerical values is an essential preprocessing step.
@@ -2498,6 +3776,220 @@ CatBoost can internally handle categorical variables in the data. These variable
 If you want to understand the math behind how these categories are converted into numbers, you can go through this article:
 
 - [Transforming categorical features to numerical features](https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html#algorithm-main-stages_cat-to-numberic)
+
+## 非監督式模型
+
+### Dimension reduction
+
+> - 降低維度的好處，及其應⽤領域
+> - 主成分分析 (PCA) 概念簡介
+
+#### CA
+
+https://www.princexml.com/doc/troubleshooting/
+
+#### PCA
+
+- Feature Extraction technique
+
+- 目的
+
+  - Identify patterns in data
+  - Detect the correlation between variables
+  - Reduce the dimensions of a d-dimensional dataset by projecting into a (k)-dimensional subspace(where k < d) 
+  - form the m independent variables of your dataset, PCA extracts p<= m new independent variables that explain the most the variance of the dataset.
+
+- 流程
+
+  - Standardize the data.
+  - Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
+  - Sort eigenvalues in descending order and choose the $k$ eigenvectors that correspond to the $k$ largest eigenvalues where $k$ is the number of dimensions of the new feature subspace ($k<=d$).
+  - Construct the projection matrix $W$ from the selected $k$ eigenvectors.
+  - Transform the original dataset $X$ via $W$ to obtain a $k$-dimensional feature subspace $Y$.
+
+- 參考資料
+
+  - [Principal Component Analysis in Python/v3](https://plotly.com/python/v3/ipython-notebooks/principal-component-analysis/)
+
+- 說明
+
+  - 實務上我們經常遇到資料有非常多的 features, 有些 features 可能⾼度相關，有什麼⽅法能夠把⾼度相關的 features 去除？
+  - PCA 透過計算 eigen value, eigen vector, 可以將原本的 features 降維⾄特定的維度
+    - 原本資料有 100 個 features，透過 PCA，可以將這 100 個 features 降成 2 個features
+    - 新 features 為舊 features 的線性組合
+    - 新 features 之間彼此不相關
+
+- 爲什麼需要降低維度 ? 
+
+  降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、視覺化⾼維數據。常⽤的算法爲主成分分析。
+
+  - 壓縮資料
+
+    - 有助於使⽤較少的 RAM 或 disk space，也有助於加速 learning algorithms
+
+    - 影像壓縮
+
+      - 原始影像維度爲 512, 在降低維度到 16 的情況下 , 圖片雖然有些許模糊 ,但依然保有明顯的輪廓和特徵
+
+        ![](https://lh3.googleusercontent.com/p7w41bPYhLPENoIaH7t_xqsPB1IMINSe918mSI3GELa3uNbzxHBSS66Th8ahXaYIuU9fpEAzsZRyKNuD4hZd9On0axuGqgU3cXimCeJtA_STghhJKa-oZZYYTPah9NqQ5oLj5AuhGPpzmMxA1VmNDSZ5PYAEy5u-GBhFupbLJD5XtcrSTnHm7hTuDj3Fatv8BmCJXUJ3QWeB2L2P4wJduMs7rNt9dI9GE-_v2e5fcay0sBWNa9eCGadZbyemHZZd5FPpaCFpbN-s-NsdUuBCVQ7tN6rgpTgIIiCf0DXyf22oi1gPj3or-dAHXlX4aFHZQC97NvbW3rVYCAIEFZW3tXN5zLdqs5wV_EESqp6AXrGsObv0xbbYp4MlbbabsqcPlbQoRmq9niu9leNi3p2l5bKLE9encAsGTDXE4cm3I57bDlNIjZeTsCtBfL_e0g6WDrdJ_A4NnNy_8LrJpZ0ckX5bAbfTpPxGTvGMK91CcNrMkerRHeBz2tbBD8mpmHrqBYkwUUPFjW2gPlK317vpOb9GHep-TEh6BsZ29ldVvanmbd6zcQtrRiit08cScFQcXcRnQirzfzs5Rn5VRFos7FcIqezZfMPWxpKGXrQCuyWnhX5gQuR00xyUjPNsF-wWVS1pJloFyPJIc7D38vsY-bjbXYWS2xeq_bSMhaMGnDavuimr3dN6qWG5XUXI-zmneS8uTq0Vt7BEvdZGnHFWTygi3oAjaQ6cjYE94jMlOqS3LFA=w646-h514-no)
+
+  - 特徵組合及抽象化
+
+    - 壓縮資料可進⽽組合出新的、抽象化的特徵，減少冗餘的資訊。
+
+    - 左下圖的 x1 和 x2 ⾼度相關 , 因此可以合併成 1 個特徵 (右下圖)。
+
+      - 把 x(i) 投影到藍⾊線 , 從 2 維降低爲 1 維。
+
+      ![](https://lh3.googleusercontent.com/mgqelyYL1QQbGhn9eJhmlb2b0zl72fOr3QzCuK6Kqz0tcva4jR_sBYCgYPtq8VJ0VFTQbgWExqcaVCxHpn9h_dNwCaxx1hIyxFVRk2WP2crTOkqh0l3YT36e_Ckao-_zQSfBBmBPA3spWswzmE_AN5a52iAtH0GTZqx7LrleVS5KFyt2Ih0grm7PNWiBi_9-rHpG5gdyAH0fYYf2sJ04kQyQEEvDLLwaLIHvBbUUTkhV-gNlpdASvhAefrj1LSaGULQSPtn2F1SpQ5D4r9n741OrX9pjuaQvd1I99ZZxGjpCMAlY4IX1K4wQTC9VggxhcqbRmOTzsob7dIexz1u5o8SykSr1AJ7o6VcJFzxogH5h3bKDyZlY6Z2fUs9VwTDgOpGKnw_fjYs5PuBApXCgPiDYbbSD5og9GWu_onWDEB2xWUxbKJJIVukO-w0px7NJZ_uGGQUAw26A2jJWgYbJBKAcsT7vyPitfi287zGMXTyP5ECxoXAJk2ejXmjhxQ-XyoIstOMf4BVGtFJVos3DrhaKN97wv-TI8J63LlbmCtVFu70uOAtxc7QX_miA6JSvCYgwM61eAht292akoFg_xzb7go6IqB4Ev5uRLt5x2TGwQErRxcr7nY-ytEGcAQe7WdrB3aydLaJkG7n7jKjUbeh5OsuKF8eMOfBoi4Yr4oBpgOeI2yLynBGDHVJmZ1RD1PUzLepAi37FZC31CvIFZeZYVuDdvNTf1mdiPH-d4Rt4xKM=w793-h372-no)
+
+  - 資料視覺化
+
+    - 特徵太多時，很難 visualize data, 不容易觀察資料。
+    - 把資料維度 (特徵) 降到 2 到 3 個 , 則能夠⽤⼀般的 2D 或 3D 圖表呈現資料
+
+- 應⽤
+
+  - 組合出來的這些新的 features 可以進⽽⽤來做 supervised learning 預測模型
+  - 以判斷⼈臉爲例 , 最重要的特徵是眼睛、⿐⼦、嘴巴，膚⾊和頭髮等都可捨棄，將這些不必要的資訊捨棄除了可以加速 learning , 也可以避免⼀點overfitting。
+
+- 如何決定要選多少個主成分?
+
+  - Elbow
+  - 累積的解釋變異量達85%
+
+- 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
+
+- 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
+
+- 注意事項
+
+  - 不建議在早期時做 , 否則可能會丟失重要的 features ⽽ underfitting。
+  - 可以在 optimization 階段時 , 考慮 PCA, 並觀察運⽤了 PCA 後對準確度的影響
+  - PCA是透過距離來進行運算，因此在跑PCA之前需要對資料做標準化。避免PCA的結果因為測量範圍的不一致，導致只反映其中範圍較大的變量。
+  - [https://medium.com/@jimmywu0621/dimension-reduction-%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3pca%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-f0ce2dd28660](https://medium.com/@jimmywu0621/dimension-reduction-快速了解pca的原理及使用方法-f0ce2dd28660)
+
+```python
+from sklearn.decomposition import PCA
+pca = PCA(n_components = 2)
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+explained_variance = pca.explained_variance_ratio_
+```
+
+##### Kernel PCA
+
+```python
+from sklearn.decomposition import KernelPCA
+kpca = KernelPCA(n_components = 2, kernel = 'rbf')
+X_train = kpca.fit_transform(X_train)
+X_test = kpca.transform(X_test)
+```
+
+
+
+##### Linear Discriminant Analysis
+
+- Used as a dimensionality reduction technique
+
+- Used in the pre-processing step for pattern classification
+
+- Has the goal to project a dataset onto a lower-dimensional space
+
+- LDA differs because in addition to finding the component axises with LDA we are interested in the axes that maximize the separation between multiple aclsses.
+
+- Breaking it down further:
+
+  The goal of LDA is to project a feature space (a dataset n-dimensional
+
+  samples) onto a small subspace subspace k(where ksn-1) while
+
+  maintaining the class-discriminatory information.
+
+  Both PCA and LDA are linear transformation techniques used for
+
+  dimensional reduction. PCA is described as unsupervised but LDA is
+
+  supervised because of the relation to the dependent variable.
+
+- From the n independent variables of your dataset, LDA extracts p <= n new independent variables that separate the most the classes of the dependent variable.
+
+  - The fact that the DV is considered makes LDA a supervised model.
+
+- Difference with PCA
+
+  - PCA: component axes that maximize the variance.
+  - LDA: maximizing the component axes for class-separation.
+
+- Step
+
+  1. Compute the $d$-dimensional mean vectors for the different classes from the dataset.
+  2. Compute the scatter matrices (in-between=class and within -class scatter matrix).
+  3. Compute the eigenvectors($e_1$, $e_2$,...$e_d$) and corresponging eigenvalues($\lambda_1$, $\lambda_2$, ..., $\lambda_d$) for the scatter matrices.
+  4. Sort the eigenvectors by decreasing eigrnvalues and choose $k$ eigenvectors with the largest eigenvalues to form a $d * k$ dimensional matrix $W$ (where every column represents an eigenvector).
+  5. Use this $d*k$ eigenvector matrix to transform the samples onto the new subspace. This can be summarized by the matrix multiplication: $Y = X * W$(where $X$ is a $n*d$-dimensional matrix representing the $n$ samples, and $y$ are the transformed $n*k$-dimensional samples in the new subspace).  
+
+  ```python
+  from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+  lda = LinearDiscriminantAnalysis(n_components = 2)
+  X_train = lda.fit_transform(X_train, y_train)
+  X_test = lda.transform(X_test)
+  ```
+
+  
+
+##### t-SNE
+
+t-Distributed Stochastic Neighbor Embedding
+
+> - 瞭解 PCA 的限制
+> - t-SNE 概念簡介，及其優劣
+
+- PCA 的問題
+
+  - 求共變異數矩陣進⾏奇異值分解，因此會被資料的差異性影響，無法很好的表現相似性及分佈。
+  - PCA 是⼀種線性降維⽅式，因此若特徵間是非線性關係，會有
+    underfitting 的問題。
+
+- t-SNE
+
+  - t-SNE 也是⼀種降維⽅式，但它⽤了更複雜的公式來表達⾼維和低維之間的關係。
+  - 主要是將⾼維的資料⽤ gaussian distribution 的機率密度函數近似，⽽低維資料的部分⽤ t 分佈來近似，在⽤ KL divergence 計算相似度，再以梯度下降 (gradient descent) 求最佳解。
+
+- t-SNE 優劣
+
+  - 優點
+    - 當特徵數量過多時，使⽤ PCA 可能會造成降維後的 underfitting，這時可以考慮使⽤t-SNE 來降維
+  - 缺點
+    - t-SNE 的需要比較多的時間執⾏
+
+- 計算量太大了，通常不會直接對原始資料做TSNE,例如有100維的資料，通常會先用PCA降成50維，再用TSNE降成2維
+
+- 如果有新的點加入，如果直接套用既有模型。因此TSNE不是用來做traing testing，而是用來做視覺化
+
+- 流形還原
+
+  - 流形還原就是將⾼維度上相近的點，對應到低維度上相近的點，沒有資料點的地⽅不列入考量範圍
+  - 簡單的說，如果資料結構像瑞⼠捲⼀樣，那麼流形還原就是把它攤開鋪平 (流形還原資料集的其中⼀種，就是叫做瑞⼠捲-Swiss Roll)
+  - 流形還原就是在⾼維度到低維度的對應中，盡量保持資料點之間的遠近關係，沒有資料點的地⽅，就不列入考量範圍
+  - 除了 t-sne 外，較常⾒的流形還原還有 Isomap 與 LLE (Locally Linear Embedding) 等⼯具
+
+- 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
+
+### 參考資料
+
+- PCA
+  - [StatsLearning Lect12a](https://www.youtube.com/watch?v=ipyxSYXgzjQ)
+  - [StatsLearning Lect12b](https://www.youtube.com/watch?v=dbuSGWCgdzw)
+  - [StatsLearning Lect8k](https://www.youtube.com/watch?v=eYxwWGJcOfw)
+  - [Principal Component Analysis Algorithm](https://www.youtube.com/watch?v=rng04VJxUt4)
+
+- [Visualizing Data Using t-SNE](https://www.youtube.com/watch?v=RJVL80Gg3lA)
+- [ML Lecture 15: Unsupervised Learning - Neighbor Embedding](https://www.youtube.com/watch?v=GBUEjkpoxXc)
+
+
+
+
 
 #### K-means
 
@@ -2950,9 +4442,7 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 4. **驗證模型**的泛化能力
 
-### 建立
-
-## pipeline
+### 建立 pipeline
 
 ## 模型儲存
 
@@ -3001,8 +4491,6 @@ print(clf2.predict(X[0:1]))
 
 
 
-- - 
-
 ### 參考資料
 
 - Kmeans
@@ -3021,214 +4509,6 @@ print(clf2.predict(X[0:1]))
     - 將解釋變數與目標變數的分佈畫出來，逐一檢視解釋變數對於目標變數的區辨效度
     - 確認目標變數的資料是否存在離群值
     - 將複雜模型替換為簡單的模型，降低模型的複雜度
-
-## Dimension reduction
-
-> - 降低維度的好處，及其應⽤領域
-> - 主成分分析 (PCA) 概念簡介
-
-### CA
-
-https://www.princexml.com/doc/troubleshooting/
-
-### PCA
-
-- Feature Extraction technique
-
-- 目的
-
-  - Identify patterns in data
-  - Detect the correlation between variables
-  - Reduce the dimensions of a d-dimensional dataset by projecting into a (k)-dimensional subspace(where k < d) 
-  - form the m independent variables of your dataset, PCA extracts p<= m new independent variables that explain the most the variance of the dataset.
-
-- 流程
-
-  - Standardize the data.
-  - Obtain the Eigenvectors and Eigenvalues from the covariance matrix or correlation matrix, or perform Singular Vector Decomposition.
-  - Sort eigenvalues in descending order and choose the $k$ eigenvectors that correspond to the $k$ largest eigenvalues where $k$ is the number of dimensions of the new feature subspace ($k<=d$).
-  - Construct the projection matrix $W$ from the selected $k$ eigenvectors.
-  - Transform the original dataset $X$ via $W$ to obtain a $k$-dimensional feature subspace $Y$.
-
-- 參考資料
-
-  - [Principal Component Analysis in Python/v3](https://plotly.com/python/v3/ipython-notebooks/principal-component-analysis/)
-
-- 說明
-
-  - 實務上我們經常遇到資料有非常多的 features, 有些 features 可能⾼度相關，有什麼⽅法能夠把⾼度相關的 features 去除？
-  - PCA 透過計算 eigen value, eigen vector, 可以將原本的 features 降維⾄特定的維度
-    - 原本資料有 100 個 features，透過 PCA，可以將這 100 個 features 降成 2 個features
-    - 新 features 為舊 features 的線性組合
-    - 新 features 之間彼此不相關
-
-- 爲什麼需要降低維度 ? 
-
-  降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、視覺化⾼維數據。常⽤的算法爲主成分分析。
-
-  - 壓縮資料
-
-    - 有助於使⽤較少的 RAM 或 disk space，也有助於加速 learning algorithms
-
-    - 影像壓縮
-
-      - 原始影像維度爲 512, 在降低維度到 16 的情況下 , 圖片雖然有些許模糊 ,但依然保有明顯的輪廓和特徵
-
-        ![](https://lh3.googleusercontent.com/p7w41bPYhLPENoIaH7t_xqsPB1IMINSe918mSI3GELa3uNbzxHBSS66Th8ahXaYIuU9fpEAzsZRyKNuD4hZd9On0axuGqgU3cXimCeJtA_STghhJKa-oZZYYTPah9NqQ5oLj5AuhGPpzmMxA1VmNDSZ5PYAEy5u-GBhFupbLJD5XtcrSTnHm7hTuDj3Fatv8BmCJXUJ3QWeB2L2P4wJduMs7rNt9dI9GE-_v2e5fcay0sBWNa9eCGadZbyemHZZd5FPpaCFpbN-s-NsdUuBCVQ7tN6rgpTgIIiCf0DXyf22oi1gPj3or-dAHXlX4aFHZQC97NvbW3rVYCAIEFZW3tXN5zLdqs5wV_EESqp6AXrGsObv0xbbYp4MlbbabsqcPlbQoRmq9niu9leNi3p2l5bKLE9encAsGTDXE4cm3I57bDlNIjZeTsCtBfL_e0g6WDrdJ_A4NnNy_8LrJpZ0ckX5bAbfTpPxGTvGMK91CcNrMkerRHeBz2tbBD8mpmHrqBYkwUUPFjW2gPlK317vpOb9GHep-TEh6BsZ29ldVvanmbd6zcQtrRiit08cScFQcXcRnQirzfzs5Rn5VRFos7FcIqezZfMPWxpKGXrQCuyWnhX5gQuR00xyUjPNsF-wWVS1pJloFyPJIc7D38vsY-bjbXYWS2xeq_bSMhaMGnDavuimr3dN6qWG5XUXI-zmneS8uTq0Vt7BEvdZGnHFWTygi3oAjaQ6cjYE94jMlOqS3LFA=w646-h514-no)
-
-  - 特徵組合及抽象化
-
-    - 壓縮資料可進⽽組合出新的、抽象化的特徵，減少冗餘的資訊。
-
-    - 左下圖的 x1 和 x2 ⾼度相關 , 因此可以合併成 1 個特徵 (右下圖)。
-
-      - 把 x(i) 投影到藍⾊線 , 從 2 維降低爲 1 維。
-
-      ![](https://lh3.googleusercontent.com/mgqelyYL1QQbGhn9eJhmlb2b0zl72fOr3QzCuK6Kqz0tcva4jR_sBYCgYPtq8VJ0VFTQbgWExqcaVCxHpn9h_dNwCaxx1hIyxFVRk2WP2crTOkqh0l3YT36e_Ckao-_zQSfBBmBPA3spWswzmE_AN5a52iAtH0GTZqx7LrleVS5KFyt2Ih0grm7PNWiBi_9-rHpG5gdyAH0fYYf2sJ04kQyQEEvDLLwaLIHvBbUUTkhV-gNlpdASvhAefrj1LSaGULQSPtn2F1SpQ5D4r9n741OrX9pjuaQvd1I99ZZxGjpCMAlY4IX1K4wQTC9VggxhcqbRmOTzsob7dIexz1u5o8SykSr1AJ7o6VcJFzxogH5h3bKDyZlY6Z2fUs9VwTDgOpGKnw_fjYs5PuBApXCgPiDYbbSD5og9GWu_onWDEB2xWUxbKJJIVukO-w0px7NJZ_uGGQUAw26A2jJWgYbJBKAcsT7vyPitfi287zGMXTyP5ECxoXAJk2ejXmjhxQ-XyoIstOMf4BVGtFJVos3DrhaKN97wv-TI8J63LlbmCtVFu70uOAtxc7QX_miA6JSvCYgwM61eAht292akoFg_xzb7go6IqB4Ev5uRLt5x2TGwQErRxcr7nY-ytEGcAQe7WdrB3aydLaJkG7n7jKjUbeh5OsuKF8eMOfBoi4Yr4oBpgOeI2yLynBGDHVJmZ1RD1PUzLepAi37FZC31CvIFZeZYVuDdvNTf1mdiPH-d4Rt4xKM=w793-h372-no)
-
-  - 資料視覺化
-
-    - 特徵太多時，很難 visualize data, 不容易觀察資料。
-    - 把資料維度 (特徵) 降到 2 到 3 個 , 則能夠⽤⼀般的 2D 或 3D 圖表呈現資料
-
-- 應⽤
-
-  - 組合出來的這些新的 features 可以進⽽⽤來做 supervised learning 預測模型
-  - 以判斷⼈臉爲例 , 最重要的特徵是眼睛、⿐⼦、嘴巴，膚⾊和頭髮等都可捨棄，將這些不必要的資訊捨棄除了可以加速 learning , 也可以避免⼀點overfitting。
-
-- 如何決定要選多少個主成分?
-
-  - Elbow
-  - 累積的解釋變異量達85%
-
-- 降低維度可以幫助我們壓縮及丟棄無⽤資訊、抽象化及組合新特徵、呈現⾼維數據。常⽤的算法爲主成分分析。
-
-- 在維度太⼤發⽣ overfitting 的情況下，可以嘗試⽤ PCA 組成的特徵來做監督式學習，但不建議⼀開始就做。
-
-- 注意事項
-
-  - 不建議在早期時做 , 否則可能會丟失重要的 features ⽽ underfitting。
-  - 可以在 optimization 階段時 , 考慮 PCA, 並觀察運⽤了 PCA 後對準確度的影響
-  - PCA是透過距離來進行運算，因此在跑PCA之前需要對資料做標準化。避免PCA的結果因為測量範圍的不一致，導致只反映其中範圍較大的變量。
-  - [https://medium.com/@jimmywu0621/dimension-reduction-%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3pca%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-f0ce2dd28660](https://medium.com/@jimmywu0621/dimension-reduction-快速了解pca的原理及使用方法-f0ce2dd28660)
-
-```python
-from sklearn.decomposition import PCA
-pca = PCA(n_components = 2)
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-explained_variance = pca.explained_variance_ratio_
-```
-
-#### Kernel PCA
-
-```python
-from sklearn.decomposition import KernelPCA
-kpca = KernelPCA(n_components = 2, kernel = 'rbf')
-X_train = kpca.fit_transform(X_train)
-X_test = kpca.transform(X_test)
-```
-
-
-
-#### Linear Discriminant Analysis
-
-- Used as a dimensionality reduction technique
-
-- Used in the pre-processing step for pattern classification
-
-- Has the goal to project a dataset onto a lower-dimensional space
-
-- LDA differs because in addition to finding the component axises with LDA we are interested in the axes that maximize the separation between multiple aclsses.
-
-- Breaking it down further:
-
-  The goal of LDA is to project a feature space (a dataset n-dimensional
-
-  samples) onto a small subspace subspace k(where ksn-1) while
-
-  maintaining the class-discriminatory information.
-
-  Both PCA and LDA are linear transformation techniques used for
-
-  dimensional reduction. PCA is described as unsupervised but LDA is
-
-  supervised because of the relation to the dependent variable.
-
-- From the n independent variables of your dataset, LDA extracts p <= n new independent variables that separate the most the classes of the dependent variable.
-
-  - The fact that the DV is considered makes LDA a supervised model.
-
-- Difference with PCA
-
-  - PCA: component axes that maximize the variance.
-  - LDA: maximizing the component axes for class-separation.
-
-- Step
-
-  1. Compute the $d$-dimensional mean vectors for the different classes from the dataset.
-  2. Compute the scatter matrices (in-between=class and within -class scatter matrix).
-  3. Compute the eigenvectors($e_1$, $e_2$,...$e_d$) and corresponging eigenvalues($\lambda_1$, $\lambda_2$, ..., $\lambda_d$) for the scatter matrices.
-  4. Sort the eigenvectors by decreasing eigrnvalues and choose $k$ eigenvectors with the largest eigenvalues to form a $d * k$ dimensional matrix $W$ (where every column represents an eigenvector).
-  5. Use this $d*k$ eigenvector matrix to transform the samples onto the new subspace. This can be summarized by the matrix multiplication: $Y = X * W$(where $X$ is a $n*d$-dimensional matrix representing the $n$ samples, and $y$ are the transformed $n*k$-dimensional samples in the new subspace).  
-
-  ```python
-  from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-  lda = LinearDiscriminantAnalysis(n_components = 2)
-  X_train = lda.fit_transform(X_train, y_train)
-  X_test = lda.transform(X_test)
-  ```
-
-  
-
-#### t-SNE
-
-t-Distributed Stochastic Neighbor Embedding
-
-> - 瞭解 PCA 的限制
-> - t-SNE 概念簡介，及其優劣
-
-- PCA 的問題
-
-  - 求共變異數矩陣進⾏奇異值分解，因此會被資料的差異性影響，無法很好的表現相似性及分佈。
-  - PCA 是⼀種線性降維⽅式，因此若特徵間是非線性關係，會有
-    underfitting 的問題。
-
-- t-SNE
-
-  - t-SNE 也是⼀種降維⽅式，但它⽤了更複雜的公式來表達⾼維和低維之間的關係。
-  - 主要是將⾼維的資料⽤ gaussian distribution 的機率密度函數近似，⽽低維資料的部分⽤ t 分佈來近似，在⽤ KL divergence 計算相似度，再以梯度下降 (gradient descent) 求最佳解。
-
-- t-SNE 優劣
-
-  - 優點
-    - 當特徵數量過多時，使⽤ PCA 可能會造成降維後的 underfitting，這時可以考慮使⽤t-SNE 來降維
-  - 缺點
-    - t-SNE 的需要比較多的時間執⾏
-
-- 計算量太大了，通常不會直接對原始資料做TSNE,例如有100維的資料，通常會先用PCA降成50維，再用TSNE降成2維
-
-- 如果有新的點加入，如果直接套用既有模型。因此TSNE不是用來做traing testing，而是用來做視覺化
-
-- 流形還原
-
-  - 流形還原就是將⾼維度上相近的點，對應到低維度上相近的點，沒有資料點的地⽅不列入考量範圍
-  - 簡單的說，如果資料結構像瑞⼠捲⼀樣，那麼流形還原就是把它攤開鋪平 (流形還原資料集的其中⼀種，就是叫做瑞⼠捲-Swiss Roll)
-  - 流形還原就是在⾼維度到低維度的對應中，盡量保持資料點之間的遠近關係，沒有資料點的地⽅，就不列入考量範圍
-  - 除了 t-sne 外，較常⾒的流形還原還有 Isomap 與 LLE (Locally Linear Embedding) 等⼯具
-
-- 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
-
-### 參考資料
-
-- PCA
-  - [StatsLearning Lect12a](https://www.youtube.com/watch?v=ipyxSYXgzjQ)
-  - [StatsLearning Lect12b](https://www.youtube.com/watch?v=dbuSGWCgdzw)
-  - [StatsLearning Lect8k](https://www.youtube.com/watch?v=eYxwWGJcOfw)
-  - [Principal Component Analysis Algorithm](https://www.youtube.com/watch?v=rng04VJxUt4)
-
-- [Visualizing Data Using t-SNE](https://www.youtube.com/watch?v=RJVL80Gg3lA)
-- [ML Lecture 15: Unsupervised Learning - Neighbor Embedding](https://www.youtube.com/watch?v=GBUEjkpoxXc)
 
 
 
@@ -7291,1197 +8571,7 @@ http://alrightchiu.github.io/SecondRound/graph-introjian-jie.html
 
 [【Graph Embedding】Struc2Vec：算法原理，实现和应用](https://zhuanlan.zhihu.com/p/56733145)
 
-# 網路爬蟲
-
-https://pycrawler.cupoy.com/
-
-## 基礎知識
-
-### 資料來源與檔案存取
-
-- 資料釋出的三個來源
-  1. 檔案 資料會包成檔案提供下載，格式可能包含常⽤的標準格式，例如「CSV」、「JSON」等等通⽤ 的格式。
-  2. 開放接⼝（API） 提供程式化的連接的接⼝，讓⼯程師/分析師可以選擇資料中要讀取的特定部分，⽽不需要把整 批資料事先完整下載回來 
-  3. 網⾴爬蟲 資料沒有以檔案或 API 提供，但出現在網⾴上。可以利⽤爬蟲爬蟲程式，將網⾴的資料解析所需 的部分。
-- 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁 有者被動公開的。所以需要取得資料的時，通常會先考慮前兩者⽅法，真的無 法才使⽤網⾴爬蟲。
-
-### 資料格式
-
-- csv
-
-  - CSV（Comma Seperated Values）逗號分隔值，是⼀種常⾒的資料格式，使⽤逗號將不同欄位做為分隔。可以使⽤⼀般的⽂字編輯器以原始格式開啟，也 可以使⽤ excel 或 number 等試算表軟體以表格⽅式開啟。
-
-  - 優點
-
-    - 結構單純
-    - ⼈機皆可讀
-    - 檔案⼩
-
-  - 缺點
-
-    - 未限定編碼(big5, utf-8 … )
-    - 值內有逗點或換⾏可能造成欄位判斷錯誤
-    - 第⼀⾏不⼀定是欄位名稱
-
-    ```python
-    import csv
-    spamReader = csv.reader(open('egg.csv'), delimiter='',quotechar='|')
-    for row in spamReader:
-        print(','.join(row))
-    ```
-
-    
-
-- json
-
-  - JSON（JSON stands for JavaScript Object Notation）JavaScript 物件格式， 是⼀種延伸⾃ JavaScript 物件來儲存和交換簡單結構的輕量級純⽂字資料交換 格式。⼀般格式如下，每⼀筆資料都會⽤屬性 + 數值的格式紀錄，也可以是巢 狀資料。
-  - 優點
-    - 可以存放結構較複雜的資料
-    - ⼤部份瀏覽器都⽀援 
-  - 缺點
-    - 檔案較⼤（不過比XML⼩）
-    - 不⼀定適合轉換成表格型式
-
-- XML
-
-  - XML（eXtensible Markup Language）可延伸標記式語⾔，是⼀種標記式語 ⾔，利⽤標籤紀錄資料的屬性與數值，常⽤來處理包含各種資訊的資料等。
-
-  - 優點
-
-    - 可以存放結構較複雜的資料
-    - ⼤多瀏覽器可幫忙排版成較易讀格式 
-
-  - 缺點
-
-    - 檔案較⼤
-    - 不⼀定適合轉換成表格型式
-
-  - XML 檔案格式會利⽤ ... 標籤的⽅式記錄資料：
-
-    ```html
-    <標籤名稱 屬性='值'> 內文 </標籤名稱>
-    ```
-
-  - XML⽂件的字元分為標記（Markup）與內容（content）兩類。標記通常以<開頭，以>結尾；每⼀個標籤代表⼀個元素，元素當中有屬性與內容兩種設定。
-
-  - 解析工具
-
-    - xml.dom
-
-      將 XML 資料在記憶體中解析成⼀個樹狀結構，通過對樹的操作來操作。
-
-    - xml.etree
-
-      輕量級的 DOM，具有⽅便友 好的API。程式碼可⽤性好， 速度快，消耗記憶體少。
-
-    - xmltodict(推薦)
-
-      將 XML 轉成 Dict ，可以 利⽤ Dict 的⽅式做操作。
-
-### 下載檔案
-
-- 在 Python 可以使⽤第三⽅套件「urllib」中的「urlretrieve」⽅法來下載檔案。 
-
-- urllib 是⼀個⽤於網路資源（URL）操作的函式庫（library），例如：檔案下 載就是這⼀類。
-
-  ```python
-  from urllib.request import urlretrieve
-  urlretrieve ("http://www.example.com/songs/mp3.mp3", "mp3.mp3") 
-  ```
-
-### 路徑的⽤法
-
-- 在 Python 程式當中，有兩種表⽰路徑的⽅法
-  - 相對路徑： 
-    - 「 ./data/sample.csv」=> 與程式相同⽬錄下 data 資料夾中的 sample.csv 檔案
-    - 「 ../data/sample.csv」=> 程式的前⼀層⽬錄下 data 資料夾中的 sample.csv 檔案 
-  - 絕對路徑：
-    - 「C:\Users\cupoy\Desktop\sample.csv」=> windows 環境中，桌⾯的 sample.csv 檔案
-    - 「/Users/cupoy/Desktop/sample.csv」=> mac 環境中，桌⾯的 sample.csv 檔案
-
-- 路徑的寫法有可能因為不同的作業系統⽽產⽣歧義，因此我們通常可以搭配 OS 這個內建套件來幫我們處理路徑字串。
-
-  - 例如：windows 環境⽤ 「\」，mac 環境⽤ 「/」
-
-    ```python
-    import os
-    os.path.join('/hello/','good/boy/','doiido')
-    ```
-
-### Python File I/O
-
-- File I/O 全名叫 File Input and Output，意思是如何在程式當中存取⼀個外部 的檔案。在⼤部分的程式語⾔當中，這是⼀個基本功能，不⽤使⽤額外的套件。
-
-- 在檔案存取時候，依照權限可以分為以下幾種：
-
-  - ‘r’ read，讀取檔案 
-
-  - ‘w’ write，寫入檔案（會覆蓋原本的內容）
-
-  - 'a' append，寫入檔案（會對已存在的的部分增加內容）
-
-    ```python
-    # 讀取檔案
-    fh = open("example.txt", "r")
-    fh.read()
-    fh.close()
-    
-    # 寫入檔案
-    fh = open("example.txt", "w")
-    fh.write("To write or not to write\nthat is the question!\n")
-    fh.close()
-    ```
-
-- 讀取檔案
-
-  - read()：⼀次將整個⽂件讀成⼀個字串
-
-  - readline()：⼀次讀取⽂件中的⼀⾏資料成字串
-
-  - readlines()：將整個⽂件逐⾏存成⼀個列表
-
-    ```python
-    f = open("test.txt", "w")
-    print(f.read())
-    print(f.readline())
-    for line in f.readlines():
-     print(line)
-    f.close()
-    ```
-
-- 寫入檔案
-
-  - write()：將⼀個字串寫進檔案
-
-  - writelines()：將⼀個字串列表寫進檔案
-
-    ```python
-    f = open("test.txt", "w")
-    s = ‘Hello World’
-    f.write( seq )
-    seq = ["Hello", “ ”,"World"]
-    f.writelines( seq )
-    f.close() 
-    ```
-
-- 從檔案中整理資料
-
-  - ⼀個 File 在 Open 之後，如果沒有 Close，則會將檔案的狀態顯⽰為被佔 ⽤，因此可能造成資源的浪費或是其他⼈無法使⽤該檔案。 
-
-  - Python 提出了⼀個 With 的語法，稱為資源管理器，⽤於 File 存取時能夠⾃ 動在使⽤完畢後直接關閉佔⽤。
-
-    ```python
-    with open("example.txt", "w") as fh:
-     fh.write("To write or not to write\nthat is the question!\n")
-    with open("example.txt", "r") as fh:
-     fh.read() 
-    ```
-
-### 使⽤API 存取網路資料
-
-- HTTP 協定
-
-  「HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺 服器之間溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如 何傳輸資料。」
-
-  - get: 請求獲取url位置的資源
-
-  - head：請求獲取URL位置資源的響應消息報告，即獲取資源的頭部信息
-
-    > 網站很大，或只想快速取得重要訊息時使用
-
-  - post：請求向URL位置的資源後附加新的數據
-
-  - put：請求向URL位置存儲一個資源，覆蓋原URL位置的資源
-
-  - patch：請求局部更新URL位置的資源，及改變該處資源的部分內容
-
-  - delete：請求刪除URL位置存儲的資源
-
-- Request & Response
-
-  HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根據請求回傳⼀個「Response 回覆」
-
-- Request 可以分成幾種⽅法
-
-  HTTP 將請求（Request）依據使⽤情境分成兩種⽅法：GET & POST。GET ⽅法將要傳送的資料以 Query String 的⽅式接在網址後⾯。Query String 是⼀種 Key-Vaule 的組成。POST ⽅法則是將傳送的資料寫在傳送的封包當中，從網址上看不到。
-
-  - GET：將資料帶在網址上，利⽤ ?Key=Value 接在網址之後
-  - POST：⽤ form 的⽅式帶資料
-
-- ⼀般網⾴網⾴會利⽤ HTML 表單來發送請求，可以再傳資料的時候 設置⽅法。
-
-  ![](https://lh3.googleusercontent.com/xDI8p5MtQs3vy5B8SSnBxy5a7xnpm7FgVKxt6qk5WE7VGIQnwAf27Ude4ZBt_vb7uN30imUZwgpsN33RsMeO7H2upP8dQJrI3dQG995XcrRNv5SWsK318XefunFIWrSCUscM3U-66w5OCKCeW66_sUn-JW3PfkkeA8neFqwH1qZ_zv_kwrPHiBfV2kW-Pd4AjyvBrYm5OX7RQOKxheqGKTdTs6C_mB9tNC1QHbG5YuOCe01Co8MhlQmJ7JNevUvL7CHGsQPpbTLfdpJAdDcQ6zj9W0ttAN4uurZapIyKTnGSP-r3Chg3xlOzvo8wytcC8Usjo2yC8YgeEA8Yr1z6iImbsp2xENMIjLE4V43Eo5lSwvSqg2t2WhQ7A2Qw-o6cplG39oRDCgKzxKccdOg41Llox_5jy3m-aILCKuORTmdiDNHmpw0aX_ieVbUH1FqEtYUz6CmokZ1npees9lKo3ybt895ehPyosHJXtVbToX51L7J8QO0xkW1l_hJbaPrYvA2T8XuOjRIHqIAFpI3qLhcw3_uBEguT5FlqWQpdkPnJdE_DMzcYJhp1yLIy5CpXXfsAYLw_HjEtfquOPk5sEGmAbldbW9-5Qm5N8w9fBNECy3XFvrpHuk-5Ma3HphqjU7xa9BGubeBcK5qUObAM8JV0RVJIMskiCyOKuSsujHdCpgV5MgnPhRceTp-AqDHQW5Z1ScN2dn1pqa8dyWXvR5aiyCGmLKtalLfCXNmHtk2kewiLs8gSdGg=w848-h407-no)
-
-- Request 分為 Headers 與 Content
-
-  - Header ⽤來帶「發送⽅」相關的資訊
-
-  - Body 帶需要傳送給伺服器的資料
-
-    ![](https://lh3.googleusercontent.com/8yKYJK3TU8PyKyUsjCZZj6ilVhVVIDObATvJ7yZDUM1RlEjeZlTwTWlZeq0dX9bKmMQIXSugChxxDgA9HopIvp0y534vR0sBwIWLuygFjWWneaVgTWU3TrJBiVXHqxUeLt8OUOm8SlDEA7Ss9a2iOIE_uVny9klSN6hjV9GKu2_Fu-brdILsK02YIi35FdaAtUabuJ-vdAUlFFSV3gMM5ldvIUIRHGyl6Cb-glZ8j-WWFlrSgphCJ8w_jdXh4gcCZQluaHWv4rkOwd3FoGFL1gh6o315CCMj1_rn59B6WMlGuya0VK5vZ8ssgVqma2AE6rCr1lol3nQXNeNNw_jQ0ZM7IG7SLJmx_W9i6796ylk4OhDuQ2VhXFtC4LLSc5OScL1TiLHp3EYKHvRVWY9Ylb7fEmTY6dz3lDCqLFAHR7WlzlMpcqFDCKXH1klFhXjHRp92yXi-NG8XSih-1zP5KYmdHbLRKlmPc_EUPvhOrIirxMUot_qMA_trKDJFHtWaELyXiWmW5WsIYei6pwb8UuvadQfzopzk-knsfLT6e-0QZGh3aZDaRpKjGnL48HGUOANXYf2M3qiZ2WFVem9foMT4MmIi3CE-7atc8ucghE3AoDrbwN20IfiGNT0ekSkI16Psr0PlWOqRM_xO9g2MB6nb2zvWS8ceEtyfvte53tqPh9KV4sr1QbEMzpyRjgP4RCFmQqtEL1-53Fdpin914V50Deb11N6CkEEdrbICjqdJGSPRBNiSnd0=w779-h268-no)
-
-- Response 有幾種⽅式
-
-  HTTP 的回應（Respone）常⾒有兩種格式，API 與 HTML View。兩者的差別 是回傳的 HTTP 內容不同。
-
-  - API 通常會以 JSON 格式⽽成的字串，是提供給程式存取。
-  - HTML View 是包含 JS、CSS、HTML 三種語⾔所組成的網⾴原始碼，會交由瀏覽器進⾏處理。
-
-- Response 分為 Headers 與 Content
-
-  - Header ⽤來帶「發送⽅」相關的資訊
-
-  - Body 則會帶回傳給瀏覽器的資料
-
-    ![](https://lh3.googleusercontent.com/c7pM9jw8F9TlH-ArlAb-D0VQkthRv7-98y_-_NeP6RYrzjK6BPDqxcDMpxJRRiYQtwwI2WlJ6psevvCdxjTWGaRUJ3GNjD-X1xuqdD94eq0UX9OiB14_lGUzqU2nmgEpdWkZYSPqxr1tf9sSRL0_bg_0sDD8Tf63SiYjtNUD4jgQIXQ7KkjNkD9tOPh3b0ebOVmUSuIW9NZnioHrpdiBvT9_AVivaaDON-ZgxFJA0G-yynuvzpfyK6gQWJapJxxdKxtsTXky1R1ThW8jOq1QfbMmsQzi0tmKx3pK6uqgLxK8glBIkv1vNnpgleysamMMFdY1NPy9YtH1jEdZamdepDDu-iW1pff5Rlxw5y7y2bdaOX19zni8o-ov4Hf8RlxZ4_FMt6Cie8v-yz6bzgtIk98AlxEVoMCiPv0q5A7I0RsjcKST-Y6I9vf0te-LiFrCPCv3EzXZK5B5kZXW2sK1_B4Af76fJL1SFwQNzEilQQS8hvXBou9Tg_9xN6LvJrXKgNaLmJY6KtDIZsDGXF12jGyrA63oIQGbi9eXFlSWKCrWyRvVWWECsiRq9pnr0AMhooPDnCOJ3VxFWFI0qvmgpCy1krMnd9ZMcpNAiqhrnbJf3RSHL7iH4o798wUskGVOmNMiGYdlKP-9cwH08mFTnp6KxN-WT8bPfXNnOfY4iMTR9Cl6GKF6s8Ml69VGH3Lj9JX_Bd54GA43z0cLmFNhXxo9S5vuuuiHhWhjgh0N0A2OQ3WxvAxNlhY=w734-h275-no)
-
-- Response 狀態代碼
-  - 200 OK 代表請求已成功被伺服器接收、理解、並接受 
-  - 3XX Redirection ⽤來重新導向，後續的請求位址（重新導向⽬標） 
-  - 4XX Error ⽤⼾端看起來可能發⽣了錯誤，妨礙了伺服器的處理。 
-  - 5XX Server Error 伺服器在處理請求的過程中有錯誤或者異常狀態發⽣
-
-- 什麼是 API ？
-
-  - 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁 有者被動公開的。所以需要取得資料的時，通常會先考慮前兩者⽅法，真的無 法才使⽤網⾴爬蟲。
-
-  - 第⼆種資料的發布⽅式是 API 的存取接⼝，API 的全名叫應⽤程式介⾯ （Application Programming Interface），表⽰程式與程式間的溝通⽅式或介 ⾯。換句話說，就是資料⽅寫好⼀組程式，提供你可以⽤程式的⽅式與其串接 資料。
-
-  ```python
-  import requests
-  # 引入函式庫
-  r = requests.get('https://github.com/timeline.json')
-  # 想要爬資料的⽬標網址
-  response = r.text
-  # 模擬發送請求的動作
-  ```
-
-- 加入 headers
-
-  - Headers 是指從這個 API 的哪個部分來來獲知請求中的內容是使⽤用何種編碼⽅方式，需輸入的欄欄位包含了 Key 和 Value 兩部分。通常會包含發送資料⽅方的資訊，例如「時間」、「權限」、「瀏覽器資訊」等等的。
-  - 所以 Headers 可以視為是最基本的檢查機器，可以用來判斷發出 Request 的那⼀⽅是否為⼀個正常的來源。因此我們在這邊可以加上⼀些資訊，讓我們利⽤Python 發出的 Request 更像是⼀個正常的使⽤者行為。
-  - 從瀏覽器的開發者工具中可以在這裡看出瀏覽器帶了⼀堆 Headers 在請求中，我們可以從這裡找到要加入哪些 headers 的參數。在一開始不確定的情況下，會建議把所有參數都加上去！
-
-  ```python
-  import requests
-  # 定義標頭檔內容
-  headers = {'user-agent': 'my-app/0.0.1'}
-  r  = requests.get('https://www.zhihu.com/api/v4/questions/55493026/answers',
-                    headers=headers)
-  response = r.text
-  ```
-
-  
-
-### 參考資料
-
-- 資料來源與檔案存取
-  - [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
-- 資料格式
-  - [Difference Between XML and HTML](https://techdifferences.com/difference-between-xml-and-html.html)
-- [淺談 HTTP Method：表單中的 GET 與 POST 有什麼差別？](https://blog.toright.com/posts/1203/%E6%B7%BA%E8%AB%87-http-method%EF%BC%9A%E8%A1%A8%E5%96%AE%E4%B8%AD%E7%9A%84-get-%E8%88%87-post-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%EF%BC%9F.html)
-- [[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)
-  - 介紹常見的五種HTTP Method
-
-## 靜態網頁爬蟲
-
-### HTTP 網⾴架構-靜態網⾴
-
-- HTTP 協定
-
-  - HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺服器之間 溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如何傳輸資料。
-
-- Request & Response
-
-  - HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根 據請求回傳⼀個「Response 回覆」
-  - HTTP Status
-    - 200 伺服器回應Data成功。
-    - 206 取得片段資料，Http Request 中有的 Range 屬性，可以指定要取得那一段Bytes數。
-    - 301 目標網頁移到新網址(永久轉址)。
-    - 302 暫時轉址
-    - 304 已讀取過的圖片或網頁，由瀏覽器緩存 (cache) 中讀取。
-    - 401 需身分驗證，如 SSL key or htaccess pasword。
-    - 403 沒有權限讀取，可能是 IP 被阻檔或是伺服器限制。
-    - 404 伺服器未找到目標網址，檔案不存在。
-    - 408 Client Request timeout
-    - 411 沒有指定 content-length，使用 POST 傳送參數時，必須指定參數的總長度
-    - 414 URL 太長導致伺服器拒絕處理。
-    - 429 Requests 太多
-    - 500 伺服器發生錯誤 : 可能是 htaccess 有錯
-    - 503 伺服器當掉 : maybe is code dump
-    - 505 不支此 HTTP 版本
-
-- 靜態網⾴運作原理
-
-  - 所謂的靜態網⾴，表⽰網⾴是在 Server-side 就已經產⽣回來的，所以你看的網⾴上的資料是固定的（除非重新要求 Server-side）。這樣時候，我們可以來解析⼀下那資料，網⾴，瀏覽器，是怎麼被串起來的呢？⼀般來說流程是這樣：
-
-    1. 使⽤者（Client-side）發出請求，稱為是 Request。 
-
-    2. 伺服器（Server-side）收到請求，根據請求處理後回應，稱為是 Response。 
-    3. 產⽣的回應如果是純資料的話，屬於 API 的⼀種；如果是網⾴的話，就會回傳⼀個包含 HTML 標籤的網⾴格式。 
-    4. 瀏覽器接收包含 HTML 標籤的網⾴格式，呈現網⾴給使⽤者。
-
-- 網⾴的組成
-  
-- 每⼀個 HTTP Request 的回傳形式有兩種，⼀種是 API、⼀種是 HTML 。所謂的 HTML，其實就是現在⼤家所看到「網⾴」的原始碼。在真實的使⽤下，網⾴除了 HTML ，其中還包含了 CSS 與 JavaScript 兩種程式碼。
-  
-- HTML
-
-  - HTML（超⽂本標記語⾔，HyperText Markup Language）⽤於結構化網⾴內容。DOM 指的是HTML的分層結構。每個尖括號中的標籤稱為⼀個元素（元素），網⾴瀏覽器通 過解析 DOM 來理解⾴⾯的內容。
-
-    - 三個常⽤來定位的 HTML 屬性：
-
-      - id
-      - class
-      - name
-
-    - HTML 標籤與屬性
-
-      - 對於爬蟲程式⽽⾔，我們不需要非常熟悉 HTML 語法也沒關係，但是我們⾄少要知道幾個屬性：
-        -  id 是 HTML 元素的唯⼀識別碼，⼀個網⾴中是不可重複的。主要是定位與辨識使⽤。 
-        - name 主要是⽤於獲取提交表單的某表單域信息，同⼀表單內不可重複。 
-        - class 是設置標籤的類，⽤於指定元素屬於何種樣式的類，允許同⼀樣式元素使⽤重複的類名稱。
-
-      ![](https://lh3.googleusercontent.com/V4moEYC9e7jxHQkH3MtsvdGdFBBobbFtcs76iEhLsupcOJpHEakj9_3vL9451awOZzlyOQBSMgxDf_4RmOL3kd4th6tp3cl7753fgxMLt9jkMedcEjs5uQFHPWnc5YOIvj_jKzjMESjENBzIX0oRUO2OL7FlNjXRFWgydiydWBdKagBu6iMVk1v7xZ4xyKAESwinrZdovDodpP3TAMOn6d_r5kvHW0wAMJsJ5bjOpFQ5Eh0xfBqqxeYGVxYnMCOQ8axc_tLBi1x_2YmwotJCQhgqk3K-EEFSdYumN1a8q7-gnJCFiLnGukWhBnvhDI0CQ3pbHTLUXXXeRHxqp22uvHoxze1ShjS1Ak7BVxrlmguipkgJVhVLxEfs_JDjHtQPdixWITOWHSie06r3ptmwo2IHNbdeY6aYN2LGAzHqhL6WKvkfTbKb2urCEjSSRivKrxKYy2hPXe2JlJaec_YZWypZNXM7dVo-ULTCQ9JR45VKjDBWVUKelCjS_I0cKhNye33_saPVfM9Z4SuBkd4PKQL4GYBvT3OS1wZi4ojCDofzaTQECiMp58s2kTvhLsZ7EPAgcB9rRsn7tDB3uWufsn3FK2DJcRB82bEBO7qTNOv7oEO4O8NvD5J_A8S6RIqUjh_r3kGBKB432dhUakaXvhKOBKeNroo_B1NVYQj10Z3iVnmt83NnVVHCn9N-hjHcxl-6o6lg-he4-UzQgl3cq2xn-LLgRx9gqt4svWzqNr2C6EjzEFR5yNA=w856-h173-no)
-
-- CSS
-  
-- 層疊樣式表（Cascading Style Sheets，CSS）⽤於為HTML⾴⾯的圖形表達設 計樣式.CSS樣式包括選擇器（selectors）和規則（rules），規則由屬性跟值組 成
-  
-- JavaScript
-  - JavaScript的是⼀種動態腳本語⾔，它可以向瀏覽器發送命令，在網⾴加載完 成之後再去修改網⾴內容。腳本可以直接放在HTML中的兩個腳本標籤之間。
-    - HTML DOM/CSS 的操作
-    - HTML 事件函数/監聽
-    - JavaScript 特效與動畫
-    - AJAX 非同步的網⾴溝通
-
-- ⼀般的網⾴通常會包含三種程式碼，負責不同⽤途
-  - JavaScript：Behavior
-  - CSS：Presentation
-  - HTML：Content & Structure
-
-- 網⾴運作的流程
-  
-  - 從瀏覽器取得網⾴回傳之後，會先載入 HTML 的內容，再把 CSS 的樣式加上 去，最後才會運⾏ JavaScript 的語法。
-  
-
-### 靜態網⾴的資料爬蟲策略
-
-- 網路爬蟲，簡單來說，就是模擬使⽤者的⾏為，把資料做⼀個攔截的動作。基本上可以簡化為：
-     - 模擬 Request 
-     - 攔截 Response 
-  - 從 Response 整理資料
-
-- 靜態爬蟲的處理
-
-  利⽤「request」和「BeautifulSoup」這兩個函式庫進⾏
-
-  1. 模擬 Request & 攔截 Response 
-  2. 從 Response 整理資料
-
-- Requests Library
-  - Requests 是⼀個 Python HTTP 庫，該項⽬的⽬標是使 HTTP 請求更簡單，更 ⼈性化。 
-  - 其主要⼯作作為負責網⾴爬蟲中的 HTTP Request & Respone 的部分。
-
-- BeautifulSoup Library
-
-  - Beautiful Soup 是⼀個 Python 包，功能包括解析HTML、XML⽂件、修復含 有未閉合標籤等錯誤的⽂件。這個擴充包為待解析的⾴⾯建立⼀棵樹，以便提 取其中的資料。 
-  - 其主要⼯作作為負責網⾴爬蟲中的 解析資料 的部分。
-
-  ```python
-  soup = BeautifulSoup(html_doc) # => 將原始的 HTML 字串轉成物件
-  # 利⽤標籤
-  soup.title # <dom> => 取出第⼀個 title 標籤的物件
-  soup.title.name # title => 取出第⼀個 title 標籤的物件的標籤名稱
-  soup.title.text # The story => 取出第⼀個 title 標籤的物件的⽂字
-  # 取出屬性
-  soup.p['class'] # [title-class] => 取出第⼀個 p 標籤的物件中的 class 屬性
-  soup.a[‘id’] # title-id => 取出第⼀個 p 標籤的物件中的 id 屬性
-  # 利⽤ find ⽅法
-  soup.find(id='titile-id')#  => 取出第⼀個 id = title-id 的物件
-  soup.find(‘p’, class_=”content”)# => 取出第⼀個 class = content 的 p 標籤物件
-  soup.find_all(‘a’, class_=”link”)# => 取出所有 class = link 的 a 標籤物件
-  ```
-
-### 圖片下載
-
-- 圖片爬蟲流程
-
-  - 與⼀般爬蟲⽬標是⽂字的過程，圖片爬蟲其實只是要多送⼀次請求
-    - BEAUTIFULSOUP - PARSE + 定位
-    - 透過 SRC 屬性取得圖片位置
-    - 送出請求
-
-  ![](https://lh3.googleusercontent.com/mZ4gu7mlDgdValmMj8PaPhc6BZBiCb2r1B4nT2HYs8APGg1zsJCT8pud5cIr7tQpREKpq6hzqaQoURmCIi_T4p7yH608HamAsSW1qZdjFmU7S7quupM6_ijAS-OJ5D58vGyZCGfKXScGc6LtTcvcFTCllBPop4_FG-76bA1DnTNvjMH0nc3r3UpP8NRYF3YZhj4HEkKb0Ay1P9WJYjDmNtRKlfVj8tBRcXxZ7CzuozTz6lF_0LJrKYajM9mZiQgu61nXUwERbe-UuB6v63nxfzbGhGx_M5-D8yDZlsYtefGKji_0PHEFNGsxDw57D-NbZNvB3U2VHwSpGvlHwKNhY0EhBwz3SPzHSLNsxaCq2qFcQLPk-0L5Nuk_6-P2H6iFw78PSROrQ_RbHuoRFW4lgZUeK-Hl-tVjVHsEpjOff7BDG356PMJVP9rZDVr8xvLi0Y_l2wXA7_TtQZcFl1feD4iILgolwQHJrj_BvJfpMrYhgGQ9do6j3_WZzAh3_9sT3Jb4e3-fJGFtKHj046b--m6GM7W86QP1AjdoRdNvawm91EWEi5pBTyQCGrm3Cq9HC37fAB_rUsowSDStHpN3vXKtCBVk-Uv5tPewPNbewlXXbdb8XUw2fOTxuWBt-bkwRmo3PKXfti9P3BuHyY9voTA34ki0xJc57cbOu6qtoP22SsHyM_XnEv8ki3Fc6Y9icsxPBgvTBTTzdjvO2I9D70-qboRISLqGxq11TPzkRjE_SV4znlS4spI=w910-h315-no)
-
-- 圖片副檔名會造成的問題
-  - 副檔名是讓電腦決定要⽤甚麼軟體開啟檔案的提⽰
-  - 更改副檔名不等於轉檔
-  - 副檔名錯誤就無法正確開啟檔案
-
-- 網路上顯⽰的圖片格式不⼀定是正確的
-
-  - 在這個第三⽅服務⽤不同副檔名都可以檢視到同樣的圖片
-  - http://i.imgur.com/Cgb5oo1.jpg
-  - http://i.imgur.com/Cgb5oo1.png
-  - http://i.imgur.com/Cgb5oo1.gif
-
-- 下載圖片並以正確副檔名儲存
-
-  - 為了要⽤正確的副檔名存檔，我們必須下載下來之後先判斷圖片格式這邊可以藉由 PIL.Image 來判斷格式
-
-  ```python
-  from PIL import	Image
-  resp = requests.get(image_url,	stream=True)
-  image = Image.open(resp.raw)
-  print(image.format)	#	e.g.	JPEG
-  # 假設我們重新組合圖片檔名與副檔名 logo.jpeg	之後
-  # 可以⽤ requests 的⽅式也可以⽤ PIL 儲存圖片
-  image.save('logo.jpeg')
-  ```
-
-
-### grab
-
-- Grab 是⼀類似於 requests 的 HTTP 存取⼯具， ⼀樣可以對⼀個 URL 發送請求跟接收回應。
-
-- 像 request ⼀樣，Grab 初始化的時候也需要傳入 URL ，接著就可以⽤ body 取回內容
-
-  ```python
-  from grab import Grab
-  g = Grab()
-  resp = g.go('https://google.com')
-  resp.body 
-  ```
-
-  
-
-### PyQuery
-
-- 除了 BeatifulSoup 之外，如果你比較熟悉網⾴運作的話，其實也可以嘗試看看 PyQuery 。PyQuery 是⼀個利⽤ CSS Selector 選取資料 的解析⼯具。
-
-- 像BeautifulSoup⼀樣，PyQuery 初始化的時候也需要傳入HTML 字串來初始 化⼀個操作對象，接著就可以⽤ doc 的⽅式搭配 CSS 選擇器存取資料。
-
-  ```python
-  from pyquery import PyQuery as pq
-  doc = pq("<html><h1>Hello World</h1></html>")
-  h1 = doc('h1')
-  print(type(h1), h1.text())
-  ```
-
-  
-
-### Regular expression
-
-- 正規表達式是使⽤⼀段語法，來描述符合該語法規則的⼀系列⽂本。常⽤簡稱：regex, regexp。 
-- 正規表達式常⽤來處理⽂本資料。例如搜尋、過濾、新增、移除、隔離等功能。
-
-- 正規表達式運作及基本語法
-  - 正規表達式(regex)由兩種字元所組成：
-    - 詮釋字元(metacharacters)。擁有特殊意義的字元。
-    - 字⾯⽂字(literal)，或稱為⼀般⽂字。 
-  - 可以把 regex 比喻成⼀段句⼦。詮釋字元是語法，字⾯⽂字是單字。 單字+語法=>句⼦，這個句⼦就是⼀種表達式。此表達式可⽤來尋找 匹配(matching)此規則的⼀系列⽂字。 
-  - Regex 檢驗的對象是⽂本中的「⾏」，⽽不是單詞。
-
-- 參考資料
-  - [Regexone](https://regexone.com/)
-    - 這是⼀個互動式學習網站，裡⾯有15道題⽬，讓學員們練習 regex。匹配的結果會即時顯⽰，相當適合練習建構regex。 
-  - [Pythex](https://pythex.org/)
-    - 線上建構regex，並測試結果是否能匹配⽂本。 
-  - [常⽤ Regular Expression 範例](https://note.artchiu.org/2009/09/24/%E5%B8%B8%E7%94%A8-regular-expression-%E7%AF%84%E4%BE%8B/)
-    - 常⽤的regex patterns參考。
-
-## 動態網頁爬蟲
-
-- 動態網⾴有別於靜態網⾴產⽣資料的⽅式。靜態網⾴是透過每⼀次使⽤者請求，後端會產⽣⼀次網⾴回傳，所以請求與回傳是⼀對⼀的， 有些⼈把他們稱為同步。
-  在動態網⾴的話，是透過 Ajax 的技術，來完成非同步的資料傳輸。換句話說，就是在網⾴上，任何時間點都可以發送請求給後端，後端只回傳資料，⽽不是回傳整個網⾴
-
-### HTTP 動態網頁架構說明與非同步取得資料
-
-- AJAX（Asynchronous JavaScript and XML）
-  - AJAX（Asynchronous JavaScript and XML）是⼀種在瀏覽器中讓⾴ ⾯不會整個重載的情況下發送 HTTP 請求的技術。使⽤ AJAX 來與伺 服器溝通的情況下，不會重新載入整個⾴⾯，⽽只是傳遞最⼩的必要 資料。原⽣的老舊 AJAX 實現標準為 XHR，設計得⼗分粗糙不易使⽤，⽽ jQuery 其中的 AJAX 功能是前端早期相當普及的 AJAX 封裝， 使得 AJAX 使⽤起來容易許多。
-- 非同步載入的優點
-  - 提升使⽤者體驗
-  - 節省流量
-
-- 動態網⾴爬蟲如何進⾏
-  - 動態網⾴與靜態網⾴最⼤的不同是資料是在什麼時間點取得的。動態網⾴是在瀏覽器已經取得 HTML 後，才透過 JavaScript 在需要時動態地取得資料。因此，爬蟲程式也必須要考慮動態取得資料這件事情，才有辦法正確地找到想要的資料。
-
-- 先思考⼀下動態網⾴的運作流程
-  1. 使⽤者（Client-side）發出請求，稱為是 Request。 
-  2. 伺服器（Server-side）收到請求，根據請求處理後回應，稱為是 Response。 
-  3. 產⽣的回應如果是純資料的話，屬於 API 的⼀種；如果是網⾴的話，就會回傳 ⼀個包含 HTML 標籤的網⾴格式。
-  4. 瀏覽器接收包含 HTML 標籤的網⾴格式，呈現網⾴給使⽤者。 
-     => 此時是還沒有資料的！ 
-  5. 當瀏覽器解析 HTML 後，開始運⾏ JavaScript 時會動態的呼叫 API Request 取得資料。
-  6. 瀏覽器中的 JavaScript 會將資料更新到現有的 HTML 上，呈現網⾴給使⽤ 者。
-
-- 動態網⾴的爬蟲問題是什麼？
-  - 動態網⾴必須藉由 JavaScript 在第⼀次 Request 後，再動態載入更多的資料。因此，依據過去傳統的 HTTP ⼀來⼀回的機制，會找不到時機點執⾏動態的 Request 更新。另外單純靠 Python 程式，也無法執⾏ JavaScript。
-
-- 兩種策略
-  - 模擬使⽤者打開瀏覽器
-  - 模擬 JavaScript 取得新資料
-
-- 法⼀：模擬使⽤者打開瀏覽器
-  - 原本靜態爬蟲的策略是模擬 Request，那我們現在可以模擬更多⼀ 點，改為模擬使⽤者從「發出 Request」到「JavaScript 動態載入資 料」的過程。也就是說，這邊的做法是從模擬使⽤者打開瀏覽器的⾏ 為，到模擬器執⾏JavaScript 動態載入 之後。
-
-- 法⼆：模擬 JavaScript 取得新資料
-  - 另外⼀種⽅法是我們知道 Python 無法直接執⾏ JavaScript 的。但本 質上 JavaScript 也是透過呼叫 API 的⽅式拉資料，因此我們只要模 仿 JavaScript 呼叫 API 這個動作，改由 Python 執⾏即可。
-
-### 瀏覽器開發者工具介紹
-
-- ⼤部分的瀏覽器都會提供開發者⼯具，開發者⼯具主要會包含網⾴的 結構與網⾴資料的溝通兩⼤主要功能。今天我們會教⼤家如何利⽤ Google Chrome 的開發者⼯具。
-- 包含哪些資訊
-  - 打開Chrome 開發者⼯具 在Chrome菜單中選擇 更多⼯具 > 開發者⼯具 在⾴⾯元素上右鍵點擊，選擇 “檢查” 使⽤ 快捷鍵 Ctrl+Shift+I (Windows) 或 Cmd+Opt+I (Mac)
-  - Elements
-    - 元素⾯板（ Elements ）：顯⽰網⾴中的 HTML 元素與佈局，可以在 這裡做簡單的修改。另外注意右⽅會顯⽰選取的 HTML DOM 的 CSS 樣式。
-  - Console
-    - Console 可以⽤來執⾏ JavaScript ，通常我們會在上⾯做簡單的測 試。
-  - Source
-    - Source 會顯⽰這次載入的網⾴所需要所有檔案，像是 CSS、JS 或是 圖片等等
-  - Network
-    - Network 會記錄所有網⾴存取過程中所有的 HTTP 傳輸，⽽每個 HTTP 都會包含 Request 與 Response。
-  - Application
-    - Application 主要會存放的是網⾴在瀏覽器的暫存資料，包含 Cookie 或是 Storate 。
-- 開發者⼯具如何幫助爬蟲？
-  - Elements：觀察需要取得的 DOM 位置與 Selector 定位。 
-  - Network：⽤來觀察存取資料的 API Request（尤其是在動態網⾴ 爬蟲）。 
-  - Application：有⼀種登入機制會把權限狀態存在 Cookie ，可以在 這裡查看。
-
-### 使用Selenium + BeautifulSoup 模擬瀏覽器執行
-
-- 關於這種利⽤到 JavaScript 的非同步特性載入更多資料的網⾴稱為動 態網⾴。⽽爬蟲程式也會因為沒有執⾏到 JavaScript 導致資料不完全 的現象。 
-
-- 第⼀種解法會採⽤ selenium 這樣的瀏覽器模擬⼯作，從模擬使⽤者打 開瀏覽器的⾏為，到模擬器執⾏JavaScript 動態載資料之後
-
-- 利⽤ Selenium 模擬操作瀏覽器
-
-  - Selenium 是⼀個瀏覽器⾃動化（Browser Automation）⼯具，讓程式 可以直接驅動瀏覽器進⾏各種網站操作。最早的⽬的是⽤來進⾏網⾴ 測試使⽤，這邊我們藉由特性來運⾏ JavaScript 作為爬蟲⽤。
-
-  - 準備 Selenium 環境
-
-    - 安裝 selenium 套件
-
-      ```python
-      $ pip install selenium
-      ```
-
-    - 下載 Chrome 驅動程式
-
-      上⾯第⼀步驟只是安裝 Selenium 模組⽽已，必須要下載對應的瀏覽器 Chrome 的驅動程式（建議放在程式相同⽬錄下）：http://chromedriver.chromium.org/downloads
-
-  - 範例：使⽤ Selenium 進⾏爬蟲
-
-    ```python
-    from selenium import webdriver
-    browser = webdriver.Chrome(executable_path='./chromedriver')
-    browser.get("http://www.google.com")
-    browser.close()
-    browser.page_source
-    ```
-
-    - 執⾏後會真的看到電腦打開⼀個新個瀏覽器，⽽且跳轉到設定的網址上！ 透過 browser.page_source 可以取出，⽬前網⾴上當下的 HTML，不過這是⼀個 HTML 格式的字串，此時就可以再利⽤ BeautifulSoup 進⾏解析。
-
-### 利用開發者工具，觀察模擬 API 存取
-
-- 關於這種利⽤到 JavaScript 的非同步特性載入更多資料的網⾴稱為動 態網⾴。⽽爬蟲程式也會因為沒有執⾏到 JavaScript 導致資料不完全 的現象。 
-- 第⼆種解法透過利⽤ Python 模仿 JavaScript 呼叫 API 這個動作，也 可以達到動態取得資料的⽬的。
-- 利⽤ 開發者⼯具 觀察 JavaScript ⾏為
-  - 可以從瀏覽器的開發中⼯具中提供的「Network」功能，去查看所有 網⾴中的傳輸⾏為。這種透過 JavaScript 動態載入的請求，就可以從 中觀察到。接著就可以利⽤我們前⾯談到的 API 爬蟲⽅式進⾏。
-    1. 在網⾴上叫出 Console 切換到 Network Tab，中間選 XHR，這裡 會記載所有網⾴中的 API 呼叫
-    2. 此時點選重新整理，會發現網址沒有 動（表⽰沒有發送新的 HTML 網⾴請 求），但畫⾯有新的內容出現，左下 ⾓也多了⼀次新的 API 呼叫。
-    3. 點開就可以得到完整的 API 呼叫 內容，包含網址，Headers 和資 料。
-  - 簡單來說，在⼀個動態網⾴中，我們可以簡單地透過開發者的⼯具的 觀察，知道 JavaScript 發送了哪些請求。換句話說，我們就可以模仿 這部分，改⽤ Python 來發出 API，將原問題簡化為前⾯講過的 API 存取。
-
-## Scrapy爬蟲框架
-
-Scrapy 是為了持續運行設計的專業爬蟲框架
-
-簡單&一次性的任務：requests
-
-大量&重複性的任務：Scrapy
-
-### 多網頁爬蟲實作策略介紹
-
-- 多網⾴爬蟲概念
-  - 多網⾴爬蟲基本上就是逐⼀對網址清單上的網址爬蟲 ⽽根據網址清單型式的不同會有額外的策略
-    - ⾃訂清單列表：透過⽂件或是 List 紀錄⽬標網⾴網址 
-    - HTML 清單列表：\<div>\<li>等 tag 紀錄⽬標網⾴網址
-
-- 單⼀網站多網⾴爬蟲概念
-  - 如果是要爬取單⼀網站下的多個網⾴，我們不太可能拿到所有⽬標網⾴的清 單，此時比較適合的策略是階層式搜尋網⾴並爬取
-    1. 了解網站⽂件結構 
-    2. 從網站⾸⾴逐⼀根據超連結 (e.g.  tag) 找到其他網⾴網址
-    3. 爬取網⾴內容並檢查是否有超連結連到其他網⾴
-
-- 跨網站多網⾴爬蟲概念
-  - 概念上跟多網⾴爬蟲⼀樣可以列出多個⽬標網站的網址清單 再根據單⼀網站多網⾴爬蟲的概念逐⼀爬取 過程中有可能超連結會連到其他網站上的網⾴ 
-  - 隨著需要搜索的次數愈多，不確定性愈⾼ 需要更謹慎的檢查每次⽬標網址的合法性
-
-- 階層式搜尋的注意事項
-
-  - 紀錄已搜尋過的網址，避免重複爬蟲與無窮回圈 
-
-  - 合法超連結格式為絕對路徑
-
-    - 相對路徑建議可以透過 urllib.parse.urljoin 轉換
-
-  - 建議在處理網址問題時要先了解每個片段的意義 scheme://netloc/path;params?query#fragment	 
-
-    其中比較重要的是判斷網域的 netloc 與路徑的 path
-
-- 超連結的注意事項
-  - 超連結可以不是網址格式
-    - \<a>可以是其他非網址格式的型式
-
-- 網址網域的注意事項
-  - 超連結網址可以是任何網路位置
-    - 網域建議可以透過 urllib.parse.urlparse 判斷
-    - ⼦網域建議可以透過 tldextract.extract 判斷
-
-- 爬蟲的禮貌運動
-  - 網站擁有者有時候會限制爬蟲⾏為 (e.g. 搜尋引擎的爬蟲，可以爬全網站網 ⾴；⼀般爬蟲，只能爬⾸⾴的內容) 
-    - 這些規則通常會放在⾸⾴底下的 robots.txt 
-    - e.g. https://www.facebook.com/robots.txt
-  - 建議開發者根據這些不允許存取的路徑， 讓爬蟲直接忽略
-
-- 參考資料
-  - [URL wkik](https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6)
-    - 中⽂版的 wiki 詳細講解網址 URL 的⽂法與其意義 
-  - [W3C 超連結屬性](https://www.w3schools.com/tags/att_a_href.asp)
-    - 本篇有提到  tag 超連結的注意事項，並非所有值都適合 送請求做爬蟲，W3C ⽂件中有定義及範例可以幫助理解 
-  - [關於 robots.txt](https://support.google.com/webmasters/answer/6062608?hl=zh-Hant)
-    - Google 對於 robots.txt 的解釋，包含⽤途與限制 
-  - [google/robotstxt](https://github.com/google)
-    - Google 在 2019.07 開放 robots.txt 的解析器，該程式⼀直被 ⽤於 Google engine 服務，後來甚⾄發展成 Robots Exclusion Protocol (REP) 標準
-
-### Scrapy常用命令
-
-- startproject：創建一個新工程
-- genspider：創建一個爬蟲
-- settings：獲得爬蟲配置信息
-- crawl：運行一個爬蟲
-- list：列出工程中所有爬蟲
-- shell：啟動URL調試命令行
-
-### 建立流程 + 送出請求
-
-- Scrapy 框架與套件的差異
-  - 前⾯我們⼤多使⽤ requests + BeautifulSoup 套件的組合來實作 但是你必須要⾃⼰額外考慮很多爬蟲的細節（甚⾄你沒想過）
-    - 先對誰送請求 (Scheduling) 
-    - 資料儲存的 pipeline (ETL) 
-    - etc …
-  - 框架基於這些細節都有對應的程式碼，我們可以根據他們定義好的規則去設計 撰寫，細節則可以全部交給框架實作
-
-- 建立 Scrapy 專案
-
-  - Scrapy 並不僅僅是⼀個 Python 套件，⽽是⼀個框架 因此在建立 Scrapy 專案時還要遵循他的專案結構 
-
-  - 除了⼀般 import scrpay 的⽤法以外，也提供了命令列的功能 我們可以透過 scrapy startproject [專案名稱] ⾃動產⽣⼀個符合框架的檔案結構
-
-  - 舉例來說，當我們執⾏ scrapy startproject myproject 會看到 Scrapy ⾃動建立符合框架的檔案結構
-
-    ![](https://lh3.googleusercontent.com/9rmqg6Ui0eCtaExRhUjjGyEYsj9u2qwfVugg0Ni4CEprcnZjPD6WnIToALjRiuQgD5ZASlmsh0jGwc21qYDPggjxCPDZE3IzalmkFh9p8_nV22xUG4p7G80EjCazCwC4n1FA57cufYDtORkiLkEa7MjcVixLIr88_ns6_EWqNMsbtVS0EZKxBUtHB56CaWmKV6zyLLNxV9gB1J7LiDjKaRvK4jQ11DUDsqYAlDJAZ57wOEEI-FmDqwU1I8NIxQmHMlWLWgsf85EqnrMxOuW_PKL-xrXp-Fo5R_QNcOsg7mdn5usNBR8Z6XTtaNHsk_zd0X_tPrzWKotoP_Fi4Irbxtpx6ZMMgCNxTYxx8ikFck22o4NHw6omM7Xk50xixHo6JsQDxyeuStQum0SHWUxrhGHoCtFg58EDCyInT4PQLrFiJM_k6aRojP1k7Qr43BiarXqpPNX8Kt2SUWQNiXdHC-cTWe4Y73yoIpyLqA5tZb73kdeyj5kNqvxcCRzYJh103CYQrr6NQPV69v813qThlL9kT774oqS_ysE6YLsvIF3ISF_VHurK6ti5gbEYsbPM4YU-zlaJ5W1lTKOnDMhQZmppzAN0PM52A0P8LdubuHFfPG3bxf4zWpFltMlyB8RPvqFw-uRVGKOqhrcYJPwrnnY9ygkNLagh4PXtsEyRSjB2mBBXb1CMnZrbDJnJscAfUSbCzVduSos6-lcZtX81JzJFBbSvnJvIrklY95F5P8YE_AKM5WcGat4=w553-h272-no)
-
-- Scrapy 的第⼀隻爬蟲
-
-  - 同樣地，我們也可以透過命令列來產⽣出⼀個符合框架的爬蟲類別 scrapy genspider [爬蟲名稱] [爬蟲⽬標網址]
-
-  - 舉例來說，當我們執⾏ 
-    scrapy genspider PTTCrawler www.ptt.cc
-
-    ![](https://lh3.googleusercontent.com/kRJ0IAFM3RpR12xa7mpzwSsxjc1fhIu5pQHZpzUdXYEiwPv19RB6TI2YXwFkXgo3G_U-EC61SSB8aUNQX39OmdLJfNXncTFqsnOi6z98LwBH6Q7Bj24ixFOpiYo83F2yzLfC36TNjeKb_B4GwyARIYzWQRn3mKJlQta7qB4O3j3D5Jbgv0NmAVgflsaivJtL-Um-ND8udD_Vo6bArLUlLXoBLncB5FVaRa5Y0iHjZU8qunyKLgw4vR11HjFD_F0zGQDJxmuqIj8GTtF_o4ePTU3r_IFSXbZ8GqRoEEIuOkSjDiiLxVe42M8r6IHOqZP3hBNuP-D1y52CJqOBBILuoNvNjFQ1r-pR_dN9hvCDByoQ6GQfix_UMmPBix7Z7SGpp2ugFdc5N6ARajsWzQZgFl-zOUhxW5_GhcsSExyiS7xhNJwL8YCLMASSmBscQjTS6n5I32-Jn2HNUf4ROK09p7zTQwNpYAyRL0oCERAw80bCyMz1ytm5MWxtWR3YNn22t3LxsxATxtDPC8en73OGOjX-EnohEWl0LcgPyfW7JRJm8pw8cSbG77b6CEePYCW9slG-ell_hYCoxQoZarDahvuVb-LAAlRTMAeNeRkTkrhOqRj1iSyVv_JVlOOfvYsSPZrj7rRVgdFPKtYXCy5-_oF9c1tQxSE-Tl5cjcsue4k-qE2P1WrBJMuJmFyV6XrMlByrOa5ch_VkwS4fzrj_SxAJIQFGO44vYRnWKJjKpBV3dm5nJK4RkkY=w1681-h601-no)
-
-- Scrapy 請求過程
-  - 此時可透過指令開始爬蟲 scrapy crawl PTTCrawler 參考前⼀⾴的程式，這邊其實是因為 scrapy 在背後會呼叫 start_requests 進 ⾏爬蟲，為了⽅便理解我們將其內容寫下來
-    1. 準備傳送請求
-    2. 實際傳送請求
-    3. 實際收到回應
-    4. 傳送回應
-    5. 解析回應的邏輯
-
-### XPath + Item Pipeline
-
-- Scrapy 元素定位
-  - 爬蟲最重要的兩個部份就是送請求跟定位元素 在介紹 Scrapy 之前我們使⽤的分別是 requests 與 BeautifulSoup 
-  - 上個⼩節我們介紹了 Scrapy.Request 來取代 requests，為了符合框架設定所 以不適合混⽤，但定位元素並不限定 
-  - 這邊為了程式碼的⼀致性，介紹 Scrapy 定位元素的⽅式
-  - Scrapy 定位元素的⽅式分別有 XPath 與 CSS selector 兩種 與之前課程中介紹的概念差不多，只是呼叫的 function 不同
-    - 送出 Scrapy.Request 後取得 Response 物件 
-    - 透過 Response.selector.xpath() 或 Response.selector.css() 定位元素
-  - 如同 BeautifulSoup ⼀樣，搜尋符合條件的元素可以選擇要回傳⼀個或是多個
-    - BeautifulSoup
-      - soup.find()/soup.find_all()
-    - Scrapy.Selector
-      - .get() / .getall()
-
-- 定義資料格式
-
-  - 通常我們爬完資料都會以字典型式傳遞與儲存 當爬蟲愈來愈多，資料的格式也愈來愈多種，將會變得難以管理 
-
-  - 由於字典格式 (dict) 本⾝容易新增欄位與覆蓋 容易在沒有注意到的地⽅改變資料格式與型態
-
-  - Scrapy 透過明確定義資料格式來解決這個問題
-
-    ```python
-    class Product(scrapy.Item):
-        name = scrapy.Field()
-        price = scrapy.Field()
-        last_update = scrapy.Field()
-    ```
-
-    - scrapy.Field() 定義了每個資料屬性的型態 
-    - Product() 定義了資料格式
-
-- 定義資料格式
-  
-- 當爬完資料要儲存時，需要決定儲存成哪⼀種格式 (e.g. Product) Scrapy 框架會幫你檢查儲存格式的正確性
-  
-- 處理資料流程
-  - 前⾯我們定義了資料格式 (Item) 
-  - 框架會接著會進入資料處理的流程 (Itme Pipeline) 
-  - 主要處理資料的⽬的包含 
-    - 檢查爬到的數據是否正確 
-    - 檢查是否重複，是否需要丟棄資料 
-    - 將爬完的資料存到資料庫或是⽂檔
-
-- 處理資料流程範例
-  - Scrapy 框架主要處理資料的幾個時機點
-    - process_item
-      - 每個 Item Pipeline 都需要實作，⽤來檢查資料數據與是否丟棄等決定 
-    - open_spider
-      - 當爬蟲開啟時需要處理的流程 (e.g. 檢查資料庫是否可⽤) 
-    - close_spider
-      - 當爬蟲關閉時需要處理的流程 (e.g. 關閉資料庫連線)
-
-- 資料處理的檔案位置
-
-  ![](https://lh3.googleusercontent.com/M93RO5ttUuKmOHEdyydmKav4ubzBI6iVB9gWNjE9kLHeYgBagKz1foBq-8Q_ZU87l0YhjBalGamrR10Wy8m-B5Y_g9h9CqUt7AQsmXARzVY31popMVmWXXRSCJ788X_LzuQRa6r2xXhlZ2jM4Bupm5cw2rD3iw8WsnN4GUuHtu-hdSRRYJzpj1FgmEkvqp_FsfRL5rT7ws9bUTVTQxnpfV6DiebjOGaJoPA0CutD_VOuvORN47WSiwIK1mCMRkbquH25sQNkr2WHjeyHjh0VizQVpbkNXqm9dnbDwyPh9UTCEao2lyerSfJ5x6q9TlQRxfr2Gsq506cwxAHICJ-FipZIrWZFlPs3c6HG2YhmMx5Yqi9-vb4-u5LFEi6Enm-7imN-9fDACcsO3Dgftampm1-gjhuYbD_Fyo1imQ5UX_q3nSWzXjlHGsPWhh08R1sEPrQ3S2JT6-mjCIoCtX9_ECpP7oYk6n36kTqK36stioqkL6ii_mMSY78rVEsnwl7nhAB_3QNoLsJXrS7hAxnEU9VClmNJ0teSQPBj30P_LBleB42obE-Ncd2pR42WIGYXn8r17YGJ7TLzeXW0JmJm4K2eZjKTxV2vcS5G4BAcHVJKMKakTQtXvPF1UJLRBGbNjuG4yreb_k06zQiqlxYlDEq47uxAAUU-Xvdzk5x1-sgdlvcmD5QAEB1RJq03GR9xRJvGFRhPaDQL3peZXTH66EBpoYqoUSEhaQCRobFdvy9PwGR-ZP_cqmw=w840-h305-no)
-
-- 參考資料
-- [Srcapy Selector 官⽅⽂件](https://docs.scrapy.org/en/latest/topics/selectors.html)
-- [進階功能：Item Loader](https://docs.scrapy.org/en/latest/topics/loaders.html)
-  
-  - 在 Scrapy 中定義好如何定位元素，以及該元素應該如何存到 Item 格 式中，爬蟲過程框架可以幫你⾃動爬玩送到 pipeline 處理的功能 
-- [進階功能：Scrapy Feed exports](https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports)
-  
-  - 我們在 pipline 中寫入 JSON 只是熟悉 pipeline 的操作，實際上如果要 把資料存成某種格式應該參考 feed exports 的⽅式
-
-### API
-
-- 我們在前⾯介紹如何執⾏ Scrapy 的爬蟲都是透過命令列
-- 但其實框架本⾝有提供 API 讓我們可以從外部去呼叫並執⾏爬蟲甚⾄是其他元件，這樣可以⽅便我們串聯 其他非框架本⾝或是沒有提供的功能
-
-### 多網頁爬蟲
-
-- 我們⽬前的爬蟲功能是對「所有給予的 PTT ⽂章網址」進⾏爬蟲 實作 PTT 多網⾴爬蟲的實作有兩個⽅向
-- 外部決定網址 + 框架對給予網址進⾏爬蟲
-  - 在外部 (e.g. main.py) 對⽂章列表進⾏爬蟲取得所有⽂章網址
-  - 把所有⽂章網址傳入 scrapy 爬蟲 
-- 框架爬⽂章列表 + ⽂章內容
-- 這兩種⽅式都可以，但是先從外部取得網址的⽅式會比較慢 這邊我們可以更深入了解框架送請求的過程為什麼會比較快
-
-- 原本 requests 的⽅式，程式會送出第⼀個請求後會等到第⼀個 response 傳回 來才會送第⼆個請求
-- ⽽框架內的請求⽅式 yield scrapy.Request
-- 在送出第⼀個請求後會直接送第⼆個請求，並不會卡著等第⼀個 response，⽽ 是等第⼀個 response 送回來的時候再處理
-- 這種⽅式可以縮短因為網路延遲造成的等待，加速整個爬蟲過程
-
-- 參考資料
-  - [【知乎】Scrapy中的scrapy.Spider.parse()如何被調⽤?](https://www.zhihu.com/question/30201428) 
-    - 參考 Scrapy 的架構圖，再透過該篇⽂章可以更加了解 parse 的時 候 yield request 跟 yield item 的差別
-
-#### 框架
-
-![](https://lh3.googleusercontent.com/tEZMTOEI70TFT0p0G3uhWR7qSpl_x6dFwXH0vRMiNMTY-PlIVbW6aGmoAfu7db3knMAnWM4QHTwjPGw8WlREemjm_NBLmbWMeYTqOIukt2uAvy19fxCsoMz_Pgge7--U7FfP3BnvxFlWUZtLbmn5-DoFMm5SPEY31cuVLZLScKXcnR_sFKEQvqmUW5Pux33g36lrDpdQTHuNHjAuDoIl9It-FUgeqizbt6WfTXjLr694UF2cJBw6gI4NiZIzODULHWrv3KnuR83P5czY1bC-DpJ_oB07fi2qN7gEUbfvYCKdWbZiDt1pFTLvc2fzxfyQ-KsIszW32U8rkZ5oCAhM6ikV8FMh8uu-2KkloEws8NNHLXZbGrCOFjM4uod90UynHGDQHloGKdImfVTVprE0ack7HgPF_C5n-DbmRHuBaMUmh2-W3oNPpjkxlNDcacu4E4pmxrseLXpnf8dlhilSHvt-QCbh5PCu3U4ex2G439GLYreuCZKJjtUYmFwsC2hl2JPO2QspAiPm88mMDU5iEao77hvKoEJHAB2vZ226bygu1irKIlgQEyBdl5tssYZU8fJCXfETJkhHuvVccYeqfh3KO-oSm4WLplLnlyjLx3hqPlENCtMm-E1n5_Nn1-7L8V16u7jjvN2yvKVWsPqK8TFHMtZbdrBBxZWBVgKBwwp2kF2O7xM6PfYWJHVA5UU7DzFOXEjx9MCd8nfkhlXFGinc_JgVcn-x-gBgmHk6aWck3WydNDpTVi0=w988-h597-no)
-
-- Scrapy Engine：管理所有資料流程
-- Scheduler：任務調度
-- Downloader：網頁下載
-- Spiders：連結網頁、剖析裡面的資料
-- ItemPipeline：資料的萃取、剖析、篩選、資料儲存
-
-
-
-- 任務成功失敗的管理
-- 非同步化：
-  - 多個爬蟲任務時，不用等到一個結束才換下
-  - 一個
-
-- Selenium
-  - 定位
-  - 操作
-- 反爬蟲機制
-
-#### 流程
-
-1. 啟動專案
-
-   ```prompt
-   scrapy stratproject project_name
-   # scrapy stratproject und
-   ```
-
-
-教學
-
-1. [[Scrapy 爬蟲] 什麼是Scrapy以及為什麼要用Scrapy 爬取網頁?](https://www.youtube.com/watch?v=0pWJHy_fNWA)
-
-   1. conda install scrapy
-
-   2. cd 到工作的資料夾
-
-   3. scrapy startproject projectname
-
-      ex scrapy startproject undnews
-
-2. [[Scrapy 爬蟲] 如何撰寫第一支Scrapy 爬蟲以抓取蘋果即時新聞?](https://www.youtube.com/watch?v=fnwvYAtCFko)
-
-3. [[Scrapy 爬蟲] 如何從蘋果新聞的清單聯結抓取下一層的內容頁面?](https://www.youtube.com/watch?v=w4PPlkJFzCo&t=42s)
-
-4. [[Scrapy 爬蟲] 如何使用items.py整理Scrapy 爬取下來的資料並輸出成JSON檔?](https://www.youtube.com/watch?v=Me9SpR0SE08)
-
-5. [[Scrapy 爬蟲] 如何使用pipelines.py將Scrapy 爬取下來的資料儲存置資料庫之中?](https://www.youtube.com/watch?v=Xq4yRuePSdk)
-
-6. [[Scrapy 爬蟲] 如何使用Scrapy 的CrawlSpider 實現多網頁爬取?](https://www.youtube.com/watch?v=KSA12AKDr_o&t=3s)
-
-   1. from scrapy.spiders import CrawlSpider, Rule
-   2. from scrapy.linkextractors import LinkExtractor
-
-7. [[Scrapy 爬蟲] 如何設置 Job 以分段爬蟲任務?](https://www.youtube.com/watch?v=2xjAArPnOH8)
-   1. 當網頁很大，可以將工作分段暫停
-   2. 分段
-      1. scrapy crawl udnnews -s JOBDIR=job1
-      2. 按 Ctrl + C 是暫停
-      3. 再輸入一次一下命令即可繼續
-      4. scrapy crawl undnews -s JOBDIR=job1
-
-## 進階爬蟲技術
-
-### 爬蟲可能會遇到的問題
-
-- 在前⾯的課程中，我們討論了⼀個網⾴從該如何思考和撰寫。接下來我們要討論的是「爬蟲可以順利拉到資料，然後呢？」我們針對這三個⽅向來做優化：
-  - 反爬
-  - 加速
-  - 自動化更新
-
-- 反爬是什麼？常⾒見的反爬蟲機制有哪些？
-  - 許多網站為了保護資料，避免網頁上的公開資訊被網頁爬蟲給抓取，因此有了了「反爬蟲」的機制出現。爬蟲工程師也發展了出⼀系列「反反爬蟲」的策略！
-    - 檢查 HTTP 標頭檔
-    - 驗證碼機制
-    - 登入權限機制
-    - IP 黑名單
-
-- 如何為爬蟲程式加速？
-  - 第⼆種實務爬蟲需要考慮的問題是加速，當資料量龐⼤或是更新速度較為頻繁 的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤ 程式的⽅法，來思考如何加速爬蟲的處理速度。
-    - 多線程爬蟲加速
-    - 非同步爬蟲
-
-- 利⽤排程⾃動化更新
-  - 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料是最新的。常⾒的做法可以利⽤⼀個排程機制，週期性地重新抓 取資料。
-    - 在迴圈中加上 Sleep
-    - 利⽤ threading 的 Timer
-    - 第三⽅套件 schedule
-  - 參考資料
-    - [Python爬蟲系统學習⼗⼀：常⾒反爬蟲機制與應對⽅法](https://blog.csdn.net/guangyinglanshan/article/details/79043612)
-    - [Python爬蟲筆記（六）— 應對反爬策略](https://blog.csdn.net/dhaiuda/article/details/81410535)
-
-### 編碼
-
-```python
-import requests
-resp = requests.get('http://www.baidu.com')
-resp.status_code
->>>200
-resp.text
->>># 這裡會出現許多亂碼看不懂
-# 修正編碼
-r.encoding
->>> 'ISO-8859-1'
-r.apparent_encoding
->>>'utf-8'
-r.encoding = 'uf-8'
-r.text
->>> # 正常顯示內容
-```
-
-
-
-### 反爬：瀏覽器標頭與基本資訊
-
-- 檢查 HTTP 的發送請求⽅是否合法
-  - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
-  - 其中 Request ⼜可以分為幾個部分：
-    - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
-    - Body：網⾴服務真正要傳送的資料
-  - Header 包含發送⽅的資訊
-    - ⼀般來說，Header 可能會包含： 
-      - 發送⽅的位址（Host）
-      - 發送⽅的瀏覽器版本（User-Agent） 
-      - 發送⽅的語⾔/格式 … 等等
-
-- 讓爬蟲程式也加上 Header
-
-  - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
-  - 解法：在爬蟲程式的 Request 加上 Header！
-
-  ```python
-  import requests
-  headers = {'user-agent': 'my-app/0.0.1'}
-  r = requests.get('https://www.zhihu.com/api/v4/questions/55493026/
-  answers',headers=headers)
-  response = r.text 
-  ```
-
-- 怎麼檢查 Request 要帶哪些 Header？
-
-  1. 右鍵點選檢查
-  2. 下方點選 Network
-  3. 找到網址對應的請求
-  4. 切換到 Headers 項目
-  5. 找到 Request 的 Headers
-
-- 在 Request 上加上 Headers
-
-  - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
-
-    ```pythn
-    headers = {
-     'accept': '...',
-     'accept-encoding': '...',
-     'accept-language': '...',
-     ...
-     'user-agent': '...'
-    } 
-    ```
-
-### Robots協議
-
-- Https://www.jd.com/robots.txt
-- 網頁允許/不允許的爬蟲權限與內容
-
-### 反爬：驗證碼處理
-
-- 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
-- 驗證碼是⼀種圖靈測試
-  
-- CAPTCHA 的全名是「Completely Automated Public Turing test to tell Computers and Humans Apart」，或「全⾃動區分電腦與⼈類的圖靈測試」， 實作的⽅式很簡單，就是問⼀個電腦答不出來，但⼈類答得出來的問題。
-  
-- 爬蟲該怎麼辦？
-  
-- 爬蟲在實作上遇到驗證碼的做法會是這樣，先把圖抓回來， 再搭配圖形識別⼯具找出圖中的內容。
-  
-- 環境⼯具準備
-
-  - Tesseract
-
-    - Tesseract 是⼀個OCR庫(OCR是英⽂Optical Character Recognition的縮寫)，它⽤來對⽂ 字資料進⾏掃描，然後對影像檔案進⾏分析處理，獲取⽂字及版⾯資訊的過程 
-    - 安裝⽅式：https://github.com/tesseract-ocr/tesseract/wiki
-
-  - pytesseract
-
-    - 在 Python 中呼叫 Tesseract 的套件
-
-    - 安裝⽅式（利⽤ pip）：https://pypi.org/project/pytesseract/
-
-      ```python
-      import requests
-      import pytesseract
-      from io import BytesIO
-      response = requests.get('https://i0.wp.com/www.embhack.com/wp-content/uploads/
-      2018/06/hello-world.png')
-      img = Image.open(BytesIO(response.content))
-      code = pytesseract.image_to_string(img)
-      print(code)
-      ```
-
-- 參考資料
-
-  - [python識別驗證碼](https://www.cnblogs.com/benpao1314/p/9999283.html)
-  - [Python 實現識別弱圖片驗證碼](https://cloud.tencent.com/developer/article/1187805)
-
-### 反爬：登入授權模擬
-
-- 權限管理機制
-
-  - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
-
-- 登入有兩種實作⽅法
-
-  在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
-
-  - cookie/ session
-
-    cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
-
-  - tokenbased
-
-    另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
-
-- 利⽤ cookie/session 做登入
-
-  - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
-
-    ```python
-    import requests
-    rs = requests.session()
-    payload={
-     'from':'/bbs/Gossiping/index.html',
-     'yes':'yes'
-    }
-    res = rs.post('https://www.ptt.cc/ask/over18',verify = False, data = payload)
-    res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False)
-    soup = BeautifulSoup(res.text,'html.parser')
-    print(soup.text) 
-    ```
-
-  - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
-
-    ```python
-    import requests
-    res = requests.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False,
-    cookies={'over18': '1'})
-    soup = BeautifulSoup(res.text,'html.parser')
-    print(soup.text) 
-    ```
-
-### 反爬：代理 IP
-
-- 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
-
-- 代理伺服器
-
-  - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
-
-- 在 Python 中加上 proxy 參數
-
-  ```python
-  proxy_ips = [...]
-  resp = requests.get('http://ip.filefab.com/index.php',
-   proxies={'http': 'http://' + ip}) 
-  ```
-
-- Ref
-
-  - [USProxy.ipynb](https://github.com/TLYu0419/DataScience/blob/master/WebCrawler/USProxy/USProxy.ipynb)
-  
-- 哪裡有第三⽅的代理伺服器可以⽤？
-
-  - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 
-  - 中國：http://cn-proxy.com/
-
-### 加速：多線程爬蟲
-
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-- 簡單來說就是時間可貴!
-
-- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
-
-  ```python
-  import _thread
-  import time
-  def print_time( threadName, data):
-      for d in data:
-          time.sleep(2)
-          print(threadName, ' => ', d)
-  _thread.start_new_thread( print_time, ("Thread-1", range(0, 5, 2), ) )
-  _thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
-  ```
-
-- 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
-
-- 參考資料
-
-  - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
-
-### 加速：非同步爬蟲
-
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
-
-- Python 中實現非同步
-
-  ```python
-  import aiohttp
-  import asyncio
-  async def fetch(session, url):
-      async with session.get(url) as response:
-          return await response.text()
-  async def main():
-      async with aiohttp.ClientSession() as session:
-          html = await fetch(session, 'http://python.org')
-          print(html)
-  loop = asyncio.get_event_loop()
-  loop.run_until_complete(main()) 
-  ```
-
-- 參考資料
-
-  - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
-
-### 自動化更新機制(排程)
-
-- 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料部會是錯誤或是假的。
-
-- ⾃動化更新的做法
-
-  - 在迴圈中加上 Sleep
-  - 利⽤ threading 的 Timer
-  - 第三⽅套件 schedule
-
-- 在迴圈中加上 Sleep
-
-  ```python
-  def timer(n):
-  '''''
-  每n秒執⾏⼀次
-  '''
-  	while True:
-  	print time.strftime('%Y-%m-%d %X',time.localtime())
-  	yourTask() # 此處為要執⾏的任務
-  	time.sleep(n) 
-  ```
-
-- 利⽤ threading 的 Timer
-
-  ```python
-  def printHello():
-  	print "Hello World"
-  	t = Timer(2, printHello)
-  	t.start()
-  	if __name__ == "__main__":
-  		printHello() 
-  ```
-
-- 第三⽅套件 schedule
-
-  ```python
-  import schedule
-  import time
-  def job():
-      print("I'm working...")
-  	schedule.every(10).minutes.do(job)
-  	schedule.every().hour.do(job)
-  	schedule.every().day.at("10:30").do(job)
-  	schedule.every(5).to(10).minutes.do(job)
-  	schedule.every().monday.do(job)
-  	schedule.every().wednesday.at("13:15").do(job)
-  	schedule.every().minute.at(":17").do(job)
-  	while True:
-   		schedule.run_pending()
-   		time.sleep(1) 
-  ```
-
-
-## 搜尋引擎
-
-當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
-
-- Google
-- Yahoo
-- Bing
+- 
 
 # 影像辨識
 
