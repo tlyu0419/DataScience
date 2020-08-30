@@ -523,6 +523,8 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 - 公眾利益 / 影響政策⽅向：[停⾞⽅針](https://www.kaggle.com/new-york-city/nyc-parking-tickets/home), [計程⾞載客優化](https://www.kaggle.com/c/nyc-taxi-trip-duration)
 - 對世界很有貢獻：[肺炎偵測](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
 
+- 對於投稿 Proposal 來說，如果能讓主辦單位認同，並且讓其感受到需要在這個場合找到一起合作的夥伴會是很加分的事情
+
 ### 資料從何⽽來？
 
 - 來源與品質息息相關， 根據不同資料源，我們可以合理的推測/懷疑異常資料異常的理由與頻率
@@ -604,6 +606,10 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 - [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
 
 # 資料收集
+
+## 線上資料集
+
+- [openml](https://www.openml.org/search?type=data)
 
 ## 資料庫
 
@@ -1617,24 +1623,23 @@ r.text
 
 
 
-#### 反爬：瀏覽器標頭與基本資訊
+#### 反爬
 
-- 檢查 HTTP 的發送請求⽅是否合法
+- 瀏覽器標頭與基本資訊
+  - 檢查 HTTP 的發送請求⽅是否合法
+    - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
+    - 其中 Request ⼜可以分為幾個部分：
+      - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
+      - Body：網⾴服務真正要傳送的資料
+    - Header 包含發送⽅的資訊
+      - ⼀般來說，Header 可能會包含： 
+        - 發送⽅的位址（Host）
+        - 發送⽅的瀏覽器版本（User-Agent） 
+        - 發送⽅的語⾔/格式 … 等等
 
-  - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
-  - 其中 Request ⼜可以分為幾個部分：
-    - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
-    - Body：網⾴服務真正要傳送的資料
-  - Header 包含發送⽅的資訊
-    - ⼀般來說，Header 可能會包含： 
-      - 發送⽅的位址（Host）
-      - 發送⽅的瀏覽器版本（User-Agent） 
-      - 發送⽅的語⾔/格式 … 等等
-
-- 讓爬蟲程式也加上 Header
-
-  - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
-  - 解法：在爬蟲程式的 Request 加上 Header！
+  - 讓爬蟲程式也加上 Header
+    - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
+    - 解法：在爬蟲程式的 Request 加上 Header！
 
   ```python
   import requests
@@ -1644,17 +1649,17 @@ r.text
   response = r.text 
   ```
 
-- 怎麼檢查 Request 要帶哪些 Header？
+  - 怎麼檢查 Request 要帶哪些 Header？
 
-  1. 右鍵點選檢查
-  2. 下方點選 Network
-  3. 找到網址對應的請求
-  4. 切換到 Headers 項目
-  5. 找到 Request 的 Headers
+    1. 右鍵點選檢查
+    2. 下方點選 Network
+    3. 找到網址對應的請求
+    4. 切換到 Headers 項目
+    5. 找到 Request 的 Headers
 
-- 在 Request 上加上 Headers
+  - 在 Request 上加上 Headers
 
-  - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
+    - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
 
     ```pythn
     headers = {
@@ -1666,35 +1671,33 @@ r.text
     } 
     ```
 
-#### Robots協議
+- Robots協議
+  - Https://www.jd.com/robots.txt
+  - 網頁允許/不允許的爬蟲權限與內容
 
-- Https://www.jd.com/robots.txt
-- 網頁允許/不允許的爬蟲權限與內容
+- 驗證碼處理
+  - 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
 
-#### 反爬：驗證碼處理
+  - 驗證碼是⼀種圖靈測試
 
-- 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
+  - CAPTCHA 的全名是「Completely Automated Public Turing test to tell Computers and Humans Apart」，或「全⾃動區分電腦與⼈類的圖靈測試」， 實作的⽅式很簡單，就是問⼀個電腦答不出來，但⼈類答得出來的問題。
 
-- 驗證碼是⼀種圖靈測試
+  - 爬蟲該怎麼辦？
 
-- CAPTCHA 的全名是「Completely Automated Public Turing test to tell Computers and Humans Apart」，或「全⾃動區分電腦與⼈類的圖靈測試」， 實作的⽅式很簡單，就是問⼀個電腦答不出來，但⼈類答得出來的問題。
+  - 爬蟲在實作上遇到驗證碼的做法會是這樣，先把圖抓回來， 再搭配圖形識別⼯具找出圖中的內容。
 
-- 爬蟲該怎麼辦？
+  - 環境⼯具準備
 
-- 爬蟲在實作上遇到驗證碼的做法會是這樣，先把圖抓回來， 再搭配圖形識別⼯具找出圖中的內容。
+    - Tesseract
 
-- 環境⼯具準備
+      - Tesseract 是⼀個OCR庫(OCR是英⽂Optical Character Recognition的縮寫)，它⽤來對⽂ 字資料進⾏掃描，然後對影像檔案進⾏分析處理，獲取⽂字及版⾯資訊的過程 
+      - 安裝⽅式：https://github.com/tesseract-ocr/tesseract/wiki
 
-  - Tesseract
+    - pytesseract
 
-    - Tesseract 是⼀個OCR庫(OCR是英⽂Optical Character Recognition的縮寫)，它⽤來對⽂ 字資料進⾏掃描，然後對影像檔案進⾏分析處理，獲取⽂字及版⾯資訊的過程 
-    - 安裝⽅式：https://github.com/tesseract-ocr/tesseract/wiki
+      - 在 Python 中呼叫 Tesseract 的套件
 
-  - pytesseract
-
-    - 在 Python 中呼叫 Tesseract 的套件
-
-    - 安裝⽅式（利⽤ pip）：https://pypi.org/project/pytesseract/
+      - 安裝⽅式（利⽤ pip）：https://pypi.org/project/pytesseract/
 
       ```python
       import requests
@@ -1712,27 +1715,26 @@ r.text
   - [python識別驗證碼](https://www.cnblogs.com/benpao1314/p/9999283.html)
   - [Python 實現識別弱圖片驗證碼](https://cloud.tencent.com/developer/article/1187805)
 
-#### 反爬：登入授權模擬
+- 登入授權模擬
+  - 權限管理機制
 
-- 權限管理機制
+    - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
 
-  - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
+  - 登入有兩種實作⽅法
 
-- 登入有兩種實作⽅法
+    在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
 
-  在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
+    - cookie/ session
 
-  - cookie/ session
+      cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
 
-    cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
+    - tokenbased
 
-  - tokenbased
+      另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
 
-    另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
+  - 利⽤ cookie/session 做登入
 
-- 利⽤ cookie/session 做登入
-
-  - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
+    - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
 
     ```python
     import requests
@@ -1747,7 +1749,7 @@ r.text
     print(soup.text) 
     ```
 
-  - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
+    - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
 
     ```python
     import requests
@@ -1757,15 +1759,13 @@ r.text
     print(soup.text) 
     ```
 
-#### 反爬：代理 IP
+- 代理 IP
+  - 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
 
-- 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
+  - 代理伺服器
+    - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
 
-- 代理伺服器
-
-  - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
-
-- 在 Python 中加上 proxy 參數
+  - 在 Python 中加上 proxy 參數
 
   ```python
   proxy_ips = [...]
@@ -1779,16 +1779,15 @@ r.text
 
 - 哪裡有第三⽅的代理伺服器可以⽤？
 
-  - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 
+  - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 、https://www.us-proxy.org/
   - 中國：http://cn-proxy.com/
 
-#### 加速：多線程爬蟲
+- 多線程爬蟲
+  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
 
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+  - 簡單來說就是時間可貴!
 
-- 簡單來說就是時間可貴!
-
-- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
+  - 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
 
   ```python
   import _thread
@@ -1801,19 +1800,27 @@ r.text
   _thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
   ```
 
-- 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
+  - 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
 
-- 參考資料
+  - Ref
+    - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
 
-  - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
+- 搜尋引擎
 
-#### 加速：非同步爬蟲
+  當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
 
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+  - Google
+  - Yahoo
+  - Bing
 
-- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+#### 加速
 
-- Python 中實現非同步
+- 非同步爬蟲
+  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+
+  - 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+
+  - Python 中實現非同步
 
   ```python
   import aiohttp
@@ -1886,14 +1893,7 @@ r.text
    		time.sleep(1) 
   ```
 
-
-#### 反爬：搜尋引擎
-
-當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
-
-- Google
-- Yahoo
-- Bing
+- 
 
 
 
@@ -2569,24 +2569,27 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
   - 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
 
+- 
+  
 - 葉編碼
-  - 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
-
-  - 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
-
-  - 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
-
-  - 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
-
-    ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
-
-  - 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
-
+  
+- 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
+  
+- 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
+  
+- 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
+  
+- 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
+  
+  ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
+  
+- 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
+  
   - 實際結果也證明，在分類預測中使⽤樹狀模型，再對這些擬合完的樹狀模型進⾏
-    葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
-
-    ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
-
+  葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
+  
+  ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
+  
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
 ### Feature Selection
@@ -3976,13 +3979,12 @@ t-Distributed Stochastic Neighbor Embedding
 
 - 特徵間爲非線性關係時 (e.g. ⽂字、影像資料)，PCA很容易 underfitting，t-SNE 對於特徵非線性資料有更好的降維呈現能⼒。
 
-### 參考資料
-
-- PCA
+- Ref
   - [StatsLearning Lect12a](https://www.youtube.com/watch?v=ipyxSYXgzjQ)
   - [StatsLearning Lect12b](https://www.youtube.com/watch?v=dbuSGWCgdzw)
   - [StatsLearning Lect8k](https://www.youtube.com/watch?v=eYxwWGJcOfw)
   - [Principal Component Analysis Algorithm](https://www.youtube.com/watch?v=rng04VJxUt4)
+  - [主成分分析（PCA）原理总结](https://www.cnblogs.com/pinard/p/6239403.html)
 
 - [Visualizing Data Using t-SNE](https://www.youtube.com/watch?v=RJVL80Gg3lA)
 - [ML Lecture 15: Unsupervised Learning - Neighbor Embedding](https://www.youtube.com/watch?v=GBUEjkpoxXc)
