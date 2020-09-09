@@ -1,6 +1,16 @@
 [TOC]
 
-# 機器學習概論
+# 資料科學概論
+
+## 大數據的特性
+
+- 大數據的特性分成資料量（Volume）、多樣性（Variety）、傳輸速度（Velocity）與真實性（Veracity）
+  - 資料量：無論是天文學、生物醫療、金融、聯網物間連線、社群互動…每分每秒都正在生成龐大的數據量，如同上述所說的 TB、PB、EB 規模單位。
+  - 多樣性：分析多樣化的資料──從文字、位置、語音、影像、圖片、交易數據、類比訊號… 等結構化與非結構化包羅萬象的資料，彼此間能進行交互分析、尋找數據間的關聯性。
+  - 傳輸速度：隨著使用者每秒都在產生大量的數據回饋，過去三五年的資料已毫無用處。一旦資料串流到運算伺服器，企業便須立即進行分析、即時得到結果並立即做出反應修正，才能發揮資料的最大價值。
+  - 真實性：資料收集的時候是不是有資料造假、即使是真實資料，是否能夠準確的紀錄、資料中有沒有異常值、有異常值的話該怎麼處理… 等等。
+
+## 機器學習概論
 
 - 機器學習是甚麼? 
   - 讓機器從資料中找尋規律與趨勢⽽不需要給定特殊規則
@@ -9,7 +19,6 @@
 - 當我們輸入⼀個 x 進到模型中，不同參數的模型就會產⽣不同的 ŷ 
   - 希望模型產⽣的 ŷ 跟真實答案的 y 越接近越好
   - 找出⼀組參數，讓模型產⽣的 ŷ 與真正的 y 很接近，這個步驟就有點像學習的概念
-
 - 機器學習的組成及應用
   - 監督式學習 (Supervised Learning)
     - 會有⼀組成對的 (x, y) 資料，且 x 與 y 之間具有某種關係，如圖像分類，每⼀張圖都有對應到的標記 (y)，讓模型學習到 x 與 y 之間的對應關係
@@ -24,6 +33,39 @@
     - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
     - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
 
+## 分析工具
+
+- 安裝
+
+  - Anaconda
+
+  - miniconda
+
+    [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
+
+  - IDE
+
+    - jupyternotebook
+    - jupyterlab
+    - Table of CONTENT
+      - CONNECT TO DATABASE
+    - VARIABLE INSPECT
+
+
+  - 安裝套件
+    - pip install numpy
+    - pip uninstall numpy
+    - conda update --all
+
+  - [pandas Foundations](https://www.datacamp.com/courses/pandas-foundations)
+
+  - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
+
+  - Ref
+    - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
+    - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
+    - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
+
 # Python Basics
 
 [資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
@@ -32,38 +74,7 @@
 
 https://zhuanlan.zhihu.com/p/59870808
 
-## 安裝
 
-- Anaconda
-
-- miniconda
-
-  [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
-
-
-
-- IDE
-
-  - jupyternotebook
-  - jupyterlab
-  - Table of CONTENT
-    - CONNECT TO DATABASE
-  - VARIABLE INSPECT
-
-
-- 安裝套件
-  - pip install numpy
-  - pip uninstall numpy
-  - conda update --all
-
-- [pandas Foundations](https://www.datacamp.com/courses/pandas-foundations)
-
-- [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
-
-- Ref
-  - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
-  - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
-  - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
 
 ## 資料類型
 
@@ -79,9 +90,11 @@ https://zhuanlan.zhihu.com/p/59870808
 ### Current Work Space
 
 ```python
-pwd
+cwd
 >>> 'C:/Users/TL_Yu/Documents/'
 ```
+
+
 
 
 
@@ -343,9 +356,6 @@ print(f'{today: %B %d, %Y}')
   - [Python's `strftime` directives](https://strftime.org/)
 
 
-- 
-
-
 
 ### Subset
 
@@ -591,7 +601,16 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
   - 如何確立⼀個機器學習模型的可⽤性？
     - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
 
+## 流程
 
+1. 商業主題，要解決什麼問題
+2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
+3. 資料處理：遺漏值、缺失值填補，進行特徵工程找出變數間的潛在特徵
+4. 建置模型：
+   1. 建立不同的模型，並根據AUC值選擇最佳模型。
+   2. 在建模時為了解決資料不平衡的問題，我會用1:1的方式建模。
+   3. 透過CV調整最佳參數
+5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
 
 
 ### 參考資料
@@ -606,6 +625,8 @@ https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 - [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
 
 # 資料收集
+
+- 發問卷自己收集資料，自己 Coding
 
 ## 線上資料集
 
@@ -1897,20 +1918,20 @@ r.text
 
 
 
-## Feature Engineering
+# Feature Engineering
 
 > 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
 
 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
 
-### 流程
+## 流程
 
 1. 特徵使用方案
 2. 特徵獲取方式
 3. 特徵處理
 4. 特征監控
 
-### Explore Data Analysis
+## Explore Data Analysis
 
 - 初步透過視覺化/統計⼯具進⾏分析，達到三個主要⽬的
 
@@ -1930,14 +1951,14 @@ r.text
   2.	根據資料的類型可以挖掘怎樣的特徵？
   3.	資料中的哪些特徵會對標籤的預測有幫助？
 
-#### 資料類型
+### 資料類型
 
 - 離散變數
   - 只能⽤整數單位計算的變數，如房⼦的房間數量、性別、國家
 - 連續變數
   - 在⼀定區間內可以任意取值的變數，如測量的⾝⾼、⾶機起⾶到降落所花費的時間、⾞速
 
-#### 資料分佈
+### 資料分佈
 
 - 以單變量分析來說，量化的分析⽅式可包含
 
@@ -1982,7 +2003,7 @@ r.text
   - [List of probability distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions)
   - [Guess The Correlation](http://guessthecorrelation.com/)
 
-#### 視覺化
+### 視覺化
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
 
@@ -2106,7 +2127,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 
 
 
-### Data Preprocessing
+## Data Preprocessing
 
 剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。針對不同類型的變數，會有不同的清洗和處理方法：
 
@@ -2172,7 +2193,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
     - Tree-based model：沒有太⼤關係
 
 
-#### 遺漏值處理
+### 遺漏值處理
 
 - **刪除樣本**
   - 設定閾值並計算每個「樣本」有幾個遺漏值，當超過閾值時將該「樣本」刪除
@@ -2207,7 +2228,7 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 
 
 
-#### 離群值處理
+### 離群值處理
 
 - **檢測方式**
 
@@ -2268,7 +2289,7 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 
   - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
 
-#### Feature Scaling
+### Feature Scaling
 
 - 類別型特徵
 
@@ -2458,7 +2479,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
   It will do the job all the time. Therefore since this is a technique that will work all the time and this is a technique that is more recommended for some specific situations where you have most of your features following a normal distribution
 
-#### 其他類型特徵
+### 其他類型特徵
 
 - **時間型特徵**
 
@@ -2538,7 +2559,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 
 
-### Feature Extraction
+## Feature Extraction
 
 **我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。**特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
 
@@ -2552,7 +2573,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 4. 通過**錯誤分析**也可以發現新的特徵。
 
-### 特徵組合
+## 特徵組合
 
 - 數值與數值組合
   - 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
@@ -2592,7 +2613,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
   
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
-### Feature Selection
+## Feature Selection
 
 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
 
@@ -2612,7 +2633,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 
 
-#### 過濾法(Filter)
+### 過濾法(Filter)
 
 按照發散性或者相關性對各個特徵進行評分，設定閾值或者待選擇閾值的個數選擇特徵。
 
@@ -2673,7 +2694,7 @@ X_new.shape
 
 
 
-#### 包装法(Wrapper)
+### 包装法(Wrapper)
 
 包裹型是指把特徵選擇看做一個特徵子集搜索問題，根據目標函數（通常是預測效果評分），每次選擇/刪除若干特徵，藉以評估效果。
 
@@ -2778,7 +2799,7 @@ X_new.shape
   
     ![](https://lh3.googleusercontent.com/Sejwo5UKUsyTL6s7nk3Etd9vw34yxxLQcU9xhZZhK5RvybHzjgKe9nlvgbLxJN0ENzjfD08IIrbuf3yrcMxwTxKqobn6nIBHzbLHu8WI2u7x8LA0to04502y0cBtjIhh7VJ_RXYIt_HPt6C1bc4nfbQ8GmdKFlHtq614kCuiG-MEB2DSc4z4GLOEEFHOSVSy8iazaku3fn0l67Z8pru0qa02QH2hPB-IM_JhXlN639YVsqeyModlod_vyXFDBJ8fryK8clTDT8LlP_9gZhUz-GUodGjV6EhXpy4T-qMgS3Bg9bMJpq3xH4C6kjqtkvYfVTKZcx2ijYfsYHdEUsWPvnOfchFAycbxY9BFKxWH23gw5glWsznsAjW_r0TZHRV6RdaFjDiaxsnOCRkChpGYRNS8BX1RnXe9ISOkr8Hc7V7YzXkVKuiit59vZ2rAnXBm6PvMU2f4XYdD6r4Olc3Y-76p4hMhcnv4GiVCqUj8wxskt8148YPEgm1PflheSsBtpGKuULORj9dXg6Koi7zNZHVX96kM9v2bv2dhnzLI7zhueAee_hiobDXxFtKzfeGxgX2hz21wIg-WzvLJBhAzlzjYl9l2Bqju7ClKpqog-stiQSF4r0sRb8MozAPzD-s1ws6fWDKayO7JKQJ1IKam7BCOIq7p5MiBgQCAyvQEK1wV1e4qVA4J5K5qRdPLvLfzSww1P9Kbra5BrX6LA6PVePpS6a1P92YH2IfskjgAxI_q3jJfa3yEOlc=w640-h480-no)
 
-#### 嵌入法(Embedded)
+### 嵌入法(Embedded)
 
 先使用某些機器學習的演算法和模型進行訓練，得到各個特徵的權值係數，根據係數從大到小選擇特徵。類似於Filter方法，但是是通過訓練來確定特徵的優劣。
 
@@ -2886,7 +2907,7 @@ X_new.shape
   
     ![](https://lh3.googleusercontent.com/bWTx_EJ48E2VgHh8NuTF3whLwQja51xo_405L43NIvGBqCpk-1sbP7zeVPNFASixpFyBPEc7_s9Th2Klt1efPDS31fJHNd-odKC8-T0NkKNcyHuimhW_0qrae0c6_Vuasb_54mPcuA4KhRHdV-m75lB5R3pn4yKRNSM3Apn3aPnm7Gbn5Mr9aIpupdWeOogEPluSGUYQAznOsNPV83lmarEutQsoMImBpf79Y2nhQKu-Iwok8Mgv7LwKdmQsym4Sygytbbov1bXojsS80isg_GEhzjzrjYN1h9u-rWuvB617dL34CwG8WO-GmBKIVnFkAtmTlbHDg72rgqs-lesP3q79nzscU61Db5Q0zkMV-EaCrRgjcoLodkhAxflBbltpeIHCML5uSQMnuYnLMsNgNeB3S6X1z_6KBzY4275NDsPL-_5wq4zKTgY-H8XusjZ4uT-IiEBiLoorcVdZ08-pC4B0KzoNdUs1FwTmp2hdc40xvCvmkMmnpBAFTn-pZwDmkumo60R3RORJXCPNx0_jqQTgrOeL4A0r_7z7tqZ6PpquVdKX_Q7pT9tI_AwNY8jP-sP9dHE9n-2E9PnYq_poZPjsav58oAyNAnNXEyLGYmdXj5evkxc3iOrLVuw0wX8WFa8m_Oub_EMb9xDAr3xGjwaca9nqt7Exyqk_Roup6egD_gJJoAi9jV8tYEgb3RiOIFsg3vlTkZ1SAhyx9QCqhVL-bhJVYdaHh56oLx2QGhmyrRGtXGJpp7g=w640-h480-no)
 
-#### 排列重要性 (permutation Importance)
+### 排列重要性 (permutation Importance)
 
 - 特徵重要性計算方法
   - 在樹模型中特徵的分支次數：weight
