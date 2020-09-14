@@ -2230,6 +2230,8 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 
 ### 離群值處理
 
+![image-20200910103305304](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910103305304.png)
+
 - **檢測方式**
 
   - 類別型特徵
@@ -2614,6 +2616,16 @@ def smoothing_target_encoder(df, column, target, weight=100):
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
 ## Feature Selection
+
+![image-20200910104604976](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910104604976.png)
+
+![image-20200910104804525](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910104804525.png)
+
+![image-20200910105331778](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105331778.png)
+
+![image-20200910105421782](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105421782.png)
+
+![image-20200910105819060](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105819060.png)
 
 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
 
@@ -4467,6 +4479,12 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 ### 建立 pipeline
 
+## 模型組合
+
+- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+
+### 
+
 ## 模型儲存
 
 ```python
@@ -4535,7 +4553,13 @@ print(clf2.predict(X[0:1]))
 
 
 
+# 模型部署
 
+![image-20200910110114797](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910110114797.png)
+
+![image-20200910110221599](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910110221599.png)
+
+![image-20200910111353797](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910111353797.png)
 
 # 深度學習
 
@@ -6839,6 +6863,8 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
   - output gate
 
 # Natural Language Precessing
+
+![image-20200910164113325](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910164113325.png)
 
 - [Python 文本数据分析初学指南](https://datartisan.gitbooks.io/begining-text-mining-with-python/content/)
 
