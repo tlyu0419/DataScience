@@ -2,16 +2,13 @@
 
 # 資料科學概論
 
-## 大數據的特性
+## 機器學習簡介
 
 - 大數據的特性分成資料量（Volume）、多樣性（Variety）、傳輸速度（Velocity）與真實性（Veracity）
   - 資料量：無論是天文學、生物醫療、金融、聯網物間連線、社群互動…每分每秒都正在生成龐大的數據量，如同上述所說的 TB、PB、EB 規模單位。
   - 多樣性：分析多樣化的資料──從文字、位置、語音、影像、圖片、交易數據、類比訊號… 等結構化與非結構化包羅萬象的資料，彼此間能進行交互分析、尋找數據間的關聯性。
   - 傳輸速度：隨著使用者每秒都在產生大量的數據回饋，過去三五年的資料已毫無用處。一旦資料串流到運算伺服器，企業便須立即進行分析、即時得到結果並立即做出反應修正，才能發揮資料的最大價值。
   - 真實性：資料收集的時候是不是有資料造假、即使是真實資料，是否能夠準確的紀錄、資料中有沒有異常值、有異常值的話該怎麼處理… 等等。
-
-## 機器學習概論
-
 - 機器學習是甚麼? 
   - 讓機器從資料中找尋規律與趨勢⽽不需要給定特殊規則
   - 給定⽬標函數與訓練資料，學習出能讓⽬標函數最佳的模型參數
@@ -33,46 +30,53 @@
     - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
     - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
 
-## 分析工具
-
-- 安裝
-
-  - Anaconda
-
-  - miniconda
-
-    [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
-
-  - IDE
-
-    - jupyternotebook
-    - jupyterlab
-    - Table of CONTENT
-      - CONNECT TO DATABASE
-    - VARIABLE INSPECT
 
 
-  - 安裝套件
-    - pip install numpy
-    - pip uninstall numpy
-    - conda update --all
+
+
+## 環境安裝
+
+- Anaconda
+
+- miniconda
+
+  [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
+
+## IDE
+
+- PyCharm
+  - [Python IDE之 pycharm的十大奇技淫巧](https://zhuanlan.zhihu.com/p/52040964)
+- Jupyter Notebook
+- Table of CONTENT
+- Jupyter Lab
+- CONNECT TO DATABASE
+  - VARIABLE INSPECT
+- Ref
+  - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
+  - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
+  - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
+
+
+
+## 安裝套件
+
+- pip install numpy
+- pip uninstall numpy
+- conda update --all
+
+## Python 基礎
+
 
   - [pandas Foundations](https://www.datacamp.com/courses/pandas-foundations)
 
   - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
 
-  - Ref
-    - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
-    - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
-    - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
 
-# Python Basics
+- [資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
 
-[資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
+- [](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html
 
-[](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html
-
-https://zhuanlan.zhihu.com/p/59870808
+- https://zhuanlan.zhihu.com/p/59870808
 
 
 
@@ -513,10 +517,6 @@ print(f'{today: %B %d, %Y}')
 
 
 
-
-# 機器學習
-
-https://hackmd.io/@overkill8927/SyyCBk3Mr?type=view
 
 
 
@@ -2214,7 +2214,7 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 
 - **填補預測值**
   - 藉由其他資料欄位來學習填補的內容，如knn， randomforest。
-  - 本⽅式須提防overfitting : 可能退化成為其他特徵的組合
+  - 本方式須提防overfitting : 可能退化成為其他特徵的組合
 
 - **不處理**
   - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
@@ -4409,7 +4409,7 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 - 超參數調整方法
   - 窮舉法 (Grid Search)：直接指定超參數的組合範圍，每⼀組參數都訓練完成，再根據驗證集 (validation) 的結果選擇最佳參數
-  - 隨機搜尋 (Random Search)：指定超參數的範圍，⽤均勻分布進⾏參數抽樣，⽤抽到的參數進⾏訓練，再根據驗證集的結果選擇最佳參數
+  - 隨機搜尋 (Random Search)：指定超參數的範圍，用均勻分布進⾏參數抽樣，用抽到的參數進⾏訓練，再根據驗證集的結果選擇最佳參數
   - 隨機搜尋通常都能獲得更佳的結果，詳⾒[Smarter Parameter Sweeps (or Why Grid Search Is Plain Stupid)](https://medium.com/rants-on-machine-learning/smarter-parameter-sweeps-or-why-grid-search-is-plain-stupid-c17d97a0e881)
 
 - 超參數調整步驟
