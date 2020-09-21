@@ -1916,7 +1916,13 @@ r.text
 
 - 
 
+### 常用的社群
 
+台灣常用的社群，可以從中找尋合適的語料庫
+
+- Facebook
+- PTT
+- Dcard
 
 # Feature Engineering
 
@@ -4478,6 +4484,12 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 4. **驗證模型**的泛化能力
 
 ### 建立 pipeline
+
+## 模型診斷
+
+我們通常會為了提升模型的準確度，經肯能的增加模型的解釋變數，
+
+- 
 
 ## 模型組合
 
