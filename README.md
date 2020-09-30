@@ -4487,9 +4487,12 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 ## 模型診斷
 
-我們通常會為了提升模型的準確度，經肯能的增加模型的解釋變數，
+- 我們通常會為了提升模型的準確度，會盡可能的增加模型的複雜度。但是當模型的複雜度提升時伴隨而來的就是可解釋性就隨之降低。
+- 當模型很準確且無需解釋時，固然可以直接使用複雜的模型，但在商業環境中則往往會需要解釋模型發現了什麼，因為除了預測的準確度之外，公司也會希望模型協助管理，如營運績效、服務流程等等。
+- 又或者當模型的準確度不夠時會需要對模型進行診斷，找出模型犯錯的原因，來改善模型的預測結果。 
 
-- 
+- Ref
+  - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
 
 ## 模型組合
 
