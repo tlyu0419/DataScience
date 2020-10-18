@@ -7314,7 +7314,6 @@ We can think of this as a powerful version of Regular Expression where we actual
     - 將新聞依照風險類型做文本聚類，讓甄審人員進一步瀏覽新聞確認是不是自己的客戶
       - 還可以在系統中將關鍵字標註顏色，方便找出風險詞彙
     - 中信有投稿IJCAI，獲得許多獎項
-    - 
 - Ref
   - [Non-Negative-Matrix-Factorization.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/01-Non-Negative-Matrix-Factorization.ipynb)
   - [LDA-NMF-Assessment-Project-Solutions.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/05-Topic-Modeling/03-LDA-NMF-Assessment-Project-Solutions.ipynb)
