@@ -12,10 +12,10 @@
 - 機器學習是甚麼? 
   - 讓機器從資料中找尋規律與趨勢⽽不需要給定特殊規則
   - 給定⽬標函數與訓練資料，學習出能讓⽬標函數最佳的模型參數
-- ⼀個機器學習模型中會有許多參數(parameters)，例如線性回歸中的 w (weights)跟 b (bias) 就是線性回歸模型的參數
-- 當我們輸入⼀個 x 進到模型中，不同參數的模型就會產⽣不同的 ŷ 
-  - 希望模型產⽣的 ŷ 跟真實答案的 y 越接近越好
-  - 找出⼀組參數，讓模型產⽣的 ŷ 與真正的 y 很接近，這個步驟就有點像學習的概念
+  - ⼀個機器學習模型中會有許多參數(parameters)，例如線性回歸中的 w (weights)跟 b (bias) 就是線性回歸模型的參數
+    - 當我們輸入⼀個 x 進到模型中，不同參數的模型就會產⽣不同的 ŷ 
+    - 希望模型產⽣的 ŷ 跟真實答案的 y 越接近越好
+    - 找出⼀組參數，讓模型產⽣的 ŷ 與真正的 y 很接近，這個步驟就有點像學習的概念
 - 機器學習的組成及應用
   - 監督式學習 (Supervised Learning)
     - 會有⼀組成對的 (x, y) 資料，且 x 與 y 之間具有某種關係，如圖像分類，每⼀張圖都有對應到的標記 (y)，讓模型學習到 x 與 y 之間的對應關係
@@ -32,75 +32,50 @@
 
 
 
+## 機器學習開發流程
 
+1. 商業主題，要解決什麼問題
+2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
+3. 資料處理：遺漏值、缺失值填補，進行特徵工程找出變數間的潛在特徵
+4. 建置模型：
+   1. 建立不同的模型，並根據AUC值選擇最佳模型。
+   2. 在建模時為了解決資料不平衡的問題，我會用1:1的方式建模。
+   3. 透過CV調整最佳參數
+5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
 
-## 環境安裝
+## 分析工具
 
 - Anaconda
+  - 適合電腦空間大，預先安裝 720 多個 Python 套件，所占容量約 3.0 Gb
 
 - miniconda
+- 適合電腦空有限，可自由控制需要安裝的 Python 套件，所占容量約 600 Mb
+  - Cheatsheet
+    - `conda --version` 檢視 conda 版本
+    - `conda update PACKAGE_NAME`更新指定套件
+    - `conda --help` 檢視 conda 指令說明文件
+    - `conda list --ENVIRONMENT` 檢視指定工作環境安裝的套件清單
+    - `conda install PACAKGE_NAME=MAJOR.MINOR.PATCH` 在目前的工作環境安裝指定套件
+    - `conda remove PACKAGE_NAME` 在目前的工作環境移除指定套件
+    - `conda create --name ENVIRONMENT python=MAIN.MINOR.PATCH` 建立新的工作環境且安裝指定 Python 版本
+    - `conda activate ENVIRONMENT` 切換至指定工作環境
+    - `conda deactivate` 回到 base 工作環境
+    - `conda env export --name ENVIRONMENT --file ENVIRONMENT.yml` 將指定工作環境之設定匯出為 .yml 檔藉此複製且重現工作環境
+    - `conda remove --name ENVIRONMENT --all` 移除指定工作環境
+- Jupyter extensions
+  - Table of Content
+  - Autopep8: 自動排版程式碼
+  - variable inspector
+  - ExecuteTime
 
-  [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
-
-## IDE
-
-- PyCharm
-  - [Python IDE之 pycharm的十大奇技淫巧](https://zhuanlan.zhihu.com/p/52040964)
-- Jupyter Notebook
-- Table of CONTENT
-- Jupyter Lab
-- CONNECT TO DATABASE
-  - VARIABLE INSPECT
 - Ref
-  - [给 jupyter lab 安装插件](https://zhuanlan.zhihu.com/p/101669800)
+  - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
-  - [Awesome JupyterLab](https://github.com/mauhai/awesome-jupyterlab)
+  - [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
 
 
 
-## 安裝套件
-
-- pip install numpy
-- pip uninstall numpy
-- conda update --all
-
-## Python 基礎
-
-
-  - [pandas Foundations](https://www.datacamp.com/courses/pandas-foundations)
-
-  - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
-
-
-- [資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
-
-- [](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html
-
-- https://zhuanlan.zhihu.com/p/59870808
-
-
-
-## 資料類型
-
-- Number 數字
-- String 字串
-- boolean 布林
-- List 列表
-- Tuple 元組
-- Dictionary 字典
-
-## 基本操作
-
-### Current Work Space
-
-```python
-cwd
->>> 'C:/Users/TL_Yu/Documents/'
-```
-
-
-
-
+## Python basic
 
 ### Work with txt file
 
@@ -137,12 +112,12 @@ myfile.readlines()
   - 將 list 寫成txt
 
     若遇到中文在encoding的部分很容易出錯，需要在open時加上encoding='utf-8'的參數!
-    
+
     ```python
     with open("stop_words.txt", "w", encoding="utf-8") as outfile:
         outfile.write("\n".join(stopwords))
     ```
-    
+
     
 
 - append
@@ -180,42 +155,113 @@ myfile.readlines()
 
   
 
-### Read Csv/pdf files
+### Loops
+
+- for
+- while
+
+
+
+### Pandas
+
+提供了高性能、易用的資料結構及資料分析工具
+
+
+  - Pandas exercises
+
+      - [Getting and knowing](https://github.com/guipsamora/pandas_exercises#getting-and-knowing)
+      - [Filtering and Sorting](https://github.com/guipsamora/pandas_exercises#filtering-and-sorting)
+      - [Grouping](https://github.com/guipsamora/pandas_exercises#grouping)
+      - [Apply](https://github.com/guipsamora/pandas_exercises#apply)
+      - [Merge](https://github.com/guipsamora/pandas_exercises#merge)
+      - [Stats](https://github.com/guipsamora/pandas_exercises#stats)
+      - [Visualization](https://github.com/guipsamora/pandas_exercises#visualization)
+      - [Creating Series and DataFrames](https://github.com/guipsamora/pandas_exercises#creating-series-and-dataframes)
+      - [Time Series](https://github.com/guipsamora/pandas_exercises#time-series)
+      - [Deleting](https://github.com/guipsamora/pandas_exercises#deleting)
+  - Ref
+
+      - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
+    - [資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
+    - [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+
+
+### Numpy
+
+必用的科學計算基礎包，底層由C實現，計算速度快。
+
+- Functions
+  - np.select
+
+### datetime
 
 ```python
-person = 'Jose'
-print('my name is {}'.format(person))
->>> my name is Jose
-print(f'my name is {person}')
->>> my name is Jose
+from datetime import datetime
+today = datetime(year = 2019, month=2, day=28)
+print(f'{today: %B %d, %Y}')
+>>> February 28, 2019
 ```
 
+- 參考資料
 
-
-```python
-d = {'a':123,'b':456}
-print(f'my number is {d['a']}')
-mylist = [0,1,2]
-print(f'my number is {mylist[0]}')
-```
-
-### loop
-
-```python
-for author, topic, page in library:
-    print(f'Author is {author}')
-    
-for x, y in zip(df['x'], df['y']):
-    print(x, y)
-```
+  - [Python's `strftime` directives](
 
 
 
+### Matplotlib
+
+### Seaborn
 
 
 
+### Regular Expressions
 
-## 常用套件
+- Regular expressions allow for pattern searching in a text document.
+
+- The syntax for regular expressions can be very intimidating at first.
+
+- For special code, you need to use backslash allow python to understand that it is a special code.
+
+- special code
+
+  - ^:以...開頭
+  - $：以...結尾
+
+- Sample Code
+
+  - [Regular Expressions](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/00-Python-Text-Basics/02-Regular-Expressions.ipynb)
+
+- functions
+
+  - re.search:在一個字符串中搜索匹配正則表達式的第一個位置，返回match對象
+  - re.match：從一個字符串的開始位置起匹配正則表達式，返回match對象
+  - re.findall：搜索字符串，以列表類型返回全部能匹配的字串
+  - re.split：將一個字符串按照正則表達式匹配結果進行分割，返回列表類型
+  - re.finditer：搜索字符串，返回一個匹配結果的迭代類型，每個迭代元素是match對象
+  - re.sub：在一個字符串中替換所有匹配正則表達式的字串，返回替換後的字符串
+
+- 用法
+
+  - 函數式用法(一次性操作)
+
+    ```python
+    rst = re.search(r'[1-9]\d{5}', 'BIT 100081')
+    ```
+
+  - 物件式用法(多次操作)
+
+    將正則表達式的字符形式編譯成正則表達式對象
+
+    ```python
+    pat = re.compile(r'[1-9]\d{5}')
+    rst = pat.search('BIT 100081')
+    ```
+
+- 參考資料
+
+  - [Regular expression operations](https://docs.python.org/3.9/library/re.html)
+
+
 
 ### PyPDF2
 
@@ -249,276 +295,6 @@ for x, y in zip(df['x'], df['y']):
   pdf_output.close()
   f.close()
   ```
-
-### Regular Expressions
-
-- Regular expressions allow for pattern searching in a text document.
-- The syntax for regular expressions can be very intimidating at first.
-- For special code, you need to use backslash allow python to understand that it is a special code.
-- special code
-  - ^:以...開頭
-  - $：以...結尾
-- Sample Code
-  
-  - [Regular Expressions](https://github.com/TLYu0419/NLP_Natural_Language_Processing_with_Python/blob/master/00-Python-Text-Basics/02-Regular-Expressions.ipynb)
-- functions
-  - re.search:在一個字符串中搜索匹配正則表達式的第一個位置，返回match對象
-  - re.match：從一個字符串的開始位置起匹配正則表達式，返回match對象
-  - re.findall：搜索字符串，以列表類型返回全部能匹配的字串
-  - re.split：將一個字符串按照正則表達式匹配結果進行分割，返回列表類型
-  - re.finditer：搜索字符串，返回一個匹配結果的迭代類型，每個迭代元素是match對象
-  - re.sub：在一個字符串中替換所有匹配正則表達式的字串，返回替換後的字符串
-
-- 用法
-
-  - 函數式用法(一次性操作)
-
-    ```python
-    rst = re.search(r'[1-9]\d{5}', 'BIT 100081')
-    ```
-
-  - 物件式用法(多次操作)
-
-    將正則表達式的字符形式編譯成正則表達式對象
-
-    ```python
-    pat = re.compile(r'[1-9]\d{5}')
-    rst = pat.search('BIT 100081')
-    ```
-
-    
-
-- 參考資料
-  
-  - [Regular expression operations](https://docs.python.org/3.9/library/re.html)
-
-### Pandas
-
-提供了高性能、易用的資料結構及資料分析工具
-
-- pd.melt(df)
-
-  將 column 轉為 row 
-
-- pd.pivot(columns='var', values='val')
-
-  將 row 轉為 column
-
-- pd.concat([df1,df2])
-
-  沿 row 合併兩個 dataframe
-
-- pd.concat([df1,df2],axis=1)
-
-  沿columns合併兩個 dataframe
-
-- pd.merge(df1, df2, on='id', how='outer')
-
-  將df1, df2 以'id'欄位做全合併
-
-- pd.merge(df1, df2, on='id', how='inner')
-
-  將df1，df2 以'id'欄位做部分合併
-
-![](https://lh3.googleusercontent.com/2Dk-QkxFMvRnnqDda85yaTly_MCzcGyBzgcRHJ6gBthtHXxGIGNT_UzSfrEVM8KZ_brrf1YJAai7DELuKTq70UGLgHa0gjRLvKrAiYXAwl8jVdjNjIqleOywTLAMDhjq5wH_adxFQELXfAIkNpQHzWy5GC8H9PRP9X18JAQB5_ObHrtJIsvhDFtA6B67ar1p-V1OVEm9esfLB0uOOgof70nijGEzGY4d-JMTuCxcV_4Hbb8WkNDzxK9IT6g8DQhaaXfn0rx8gmZtW3sd1kMYPpOQbLxY8RFBruq0OPrlIhJ0QqTJGv492W3nrNdRIpaZB102hWd_dzKnfmPXO0NiyCSPixhhawbOwSrfKJK7sK2zBhQDSc5X7gunYwbrBA0uXJm35mCeGcAD2TUf_N8dG3AcwJemwiEHoX1xx3JLwyOVeuzqqO9i68KroURkRBWOdldeKg2aamEeIq7kDLfPPa2ecs6-B-sK_YeLdVpYLiqJsHtDDBp0a5VNa5Es0B8e-PJbSou9-wgdi_rpUzOyMOMbY8qYPnnSZteKkijRrWKGlCIPno6A2qV_90bBwvEUvKrDwXGoaUa0T66xPIVJ5iKgN-YISROCG2MoHxxaX4ZlQqPX0F7q81kXpmjfWWuBnpHo4RqCqvJmbECDer2YhhtCdCqHWXGKZWPHu1LbZ6st7uzWhndpxQO7dKAR15TTYkSuOcFJ-YqzBopWrxpx-gIk=w698-h575-no)
-
-### Numpy
-
-必用的科學計算基礎包，底層由C實現，計算速度快。
-
-### NLTK
-
-自然語言工具包，集成了很多自然語言相關的演算法和資源。
-
-### Standford CoreNLP
-
-Stanford的自然語言工具包，可以通過NLTK調用。
-
-### Gensim
-
-主題模型工具包，可用于訓練詞向量，讀取預訓練好的詞向量。
-
-### scikit-learn
-
-機器學習Python包 ，包含了大部分的機器學習演算法。
-
-
-
-### Matplotlib
-
-### datetime
-
-```python
-from datetime import datetime
-today = datetime(year = 2019, month=2, day=28)
-print(f'{today: %B %d, %Y}')
->>> February 28, 2019
-```
-
-- 參考資料
-
-  - [Python's `strftime` directives](https://strftime.org/)
-
-
-
-### Subset
-
-- Row 篩選
-
-  - 邏輯操作
-
-    ```python
-    df[df['age'] > 20]
-    ```
-
-    - 大於： >
-
-    - 小於： <
-
-    - 等於：==
-
-    - 不等於： !=
-
-    - 小於等於： <=
-
-    - 大於等於： >=
-
-    - 且(and)：&
-
-    - 或(or)：|
-
-    - not： ~
-
-    - xor：^
-
-    - 欄位中包含特定Value
-
-      ```python
-      df.columns.isin(value)
-      ```
-
-    - 為 Nan
-
-      ```python
-      df.columns.isnull()
-      ```
-
-    - 非 Nan
-
-      ```python
-      df.columns.notnull()
-      ```
-
-  - 移除重複
-
-    ```python
-    df = pd.DataFrame({'a':[1,2,1,2], 'b':[3,4,3,5]})
-    df
-    #    a  b
-    # 0  1  3
-    # 1  2  4
-    # 2  1  3
-    # 3  2  5
-    df.drop_duplicates()
-    #    a  b
-    # 0  1  3
-    # 1  2  4
-    # 3  2  5
-    ```
-
-  - 前 n 筆
-
-    ```python
-    df.head(n=10)
-    ```
-
-  - 後 n 筆
-
-    ```python
-    df.tail(n=10)
-    ```
-
-  - 隨機抽樣
-
-    ```python
-    df.sample(frac=0.5) # 抽50%
-    df.sample(n=10) # 抽10筆
-    ```
-
-  - 第 n 到 m 筆
-
-    ```python
-    df.iloc[n:m]
-    ```
-
-- column 篩選
-
-  - 選擇單一欄位
-
-    ```python
-    df['col1']
-    df.col1
-    ```
-
-  - 選擇多個欄位
-
-    ```python
-    df[['col1', 'col2', 'col3']]
-    ```
-
-  - Regex 篩選
-
-    ```python
-    df.filter(regex=……)
-    ```
-
-### Group operations
-
-- 計算各組的數值
-
-  ```python
-  df.groupby(['col1']).size()
-  ```
-
-- 得到各組的基本統計值
-
-  ```python
-  df.groupby(['col1']).describe()
-  ```
-
-- 根據col1分組後，計算col2的統計值
-
-  ```python
-  df.groupby(['col1'])['col2'].mean()
-  ```
-
-- 對依col1分組後的col2引用操作
-
-  ```python
-  df.groupby(['col1'])['col2'].apply()
-  ```
-
-- 對依col1分組後的col2繪圖
-
-  ```python
-  df.groupby(['col1'])['col2'].hist()
-  ```
-
-- loc/iloc
-
-- 平行運算
-
-  https://github.com/kunalj101/Data-Science-Hacks/blob/master/Code/pandarellel.ipynb
-
-### 參考資料
-
-- [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
-
-
-
-
-
-
 
 
 
@@ -601,16 +377,7 @@ print(f'{today: %B %d, %Y}')
   - 如何確立⼀個機器學習模型的可⽤性？
     - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
 
-## 流程
 
-1. 商業主題，要解決什麼問題
-2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
-3. 資料處理：遺漏值、缺失值填補，進行特徵工程找出變數間的潛在特徵
-4. 建置模型：
-   1. 建立不同的模型，並根據AUC值選擇最佳模型。
-   2. 在建模時為了解決資料不平衡的問題，我會用1:1的方式建模。
-   3. 透過CV調整最佳參數
-5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
 
 
 ### 參考資料
@@ -8634,7 +8401,15 @@ http://alrightchiu.github.io/SecondRound/graph-introjian-jie.html
 
 [【Graph Embedding】Struc2Vec：算法原理，实现和应用](https://zhuanlan.zhihu.com/p/56733145)
 
-- 
+- Louvain 算法流程
+
+  1. 將每個節點視為一個獨立群集
+
+  2. 將單個節點重新分配最改善模組性的集群中，否則維持原樣，直到所有節點都不再需要重新分配
+  3. 將第一階段的群集以獨立節點呈現，並將前一個群集的邊合併，以成為連結新節點的加權邊
+  4. 重複2跟3，直到不再出現重新分配或合併的需求
+
+  - 缺點是重要但小的群集可能被吸收了(如意見領袖、有錢人?)
 
 # 影像辨識
 
