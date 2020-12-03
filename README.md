@@ -1030,8 +1030,6 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   - 可以進行分區
     - 但不能與外部表一起使用
   
-  #### 
-  
 ## 公開資料集
 
 - 政府/企業釋出的資料集，供民眾或資料科學家進行分析、解決問題
@@ -1261,15 +1259,15 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 - ⼀般網⾴網⾴會利⽤ HTML 表單來發送請求，可以再傳資料的時候 設置⽅法。
 
-  ![](https://lh3.googleusercontent.com/xDI8p5MtQs3vy5B8SSnBxy5a7xnpm7FgVKxt6qk5WE7VGIQnwAf27Ude4ZBt_vb7uN30imUZwgpsN33RsMeO7H2upP8dQJrI3dQG995XcrRNv5SWsK318XefunFIWrSCUscM3U-66w5OCKCeW66_sUn-JW3PfkkeA8neFqwH1qZ_zv_kwrPHiBfV2kW-Pd4AjyvBrYm5OX7RQOKxheqGKTdTs6C_mB9tNC1QHbG5YuOCe01Co8MhlQmJ7JNevUvL7CHGsQPpbTLfdpJAdDcQ6zj9W0ttAN4uurZapIyKTnGSP-r3Chg3xlOzvo8wytcC8Usjo2yC8YgeEA8Yr1z6iImbsp2xENMIjLE4V43Eo5lSwvSqg2t2WhQ7A2Qw-o6cplG39oRDCgKzxKccdOg41Llox_5jy3m-aILCKuORTmdiDNHmpw0aX_ieVbUH1FqEtYUz6CmokZ1npees9lKo3ybt895ehPyosHJXtVbToX51L7J8QO0xkW1l_hJbaPrYvA2T8XuOjRIHqIAFpI3qLhcw3_uBEguT5FlqWQpdkPnJdE_DMzcYJhp1yLIy5CpXXfsAYLw_HjEtfquOPk5sEGmAbldbW9-5Qm5N8w9fBNECy3XFvrpHuk-5Ma3HphqjU7xa9BGubeBcK5qUObAM8JV0RVJIMskiCyOKuSsujHdCpgV5MgnPhRceTp-AqDHQW5Z1ScN2dn1pqa8dyWXvR5aiyCGmLKtalLfCXNmHtk2kewiLs8gSdGg=w848-h407-no)
-
 - Request 分為 Headers 與 Content
 
   - Header ⽤來帶「發送⽅」相關的資訊
 
   - Body 帶需要傳送給伺服器的資料
 
-    ![](https://lh3.googleusercontent.com/8yKYJK3TU8PyKyUsjCZZj6ilVhVVIDObATvJ7yZDUM1RlEjeZlTwTWlZeq0dX9bKmMQIXSugChxxDgA9HopIvp0y534vR0sBwIWLuygFjWWneaVgTWU3TrJBiVXHqxUeLt8OUOm8SlDEA7Ss9a2iOIE_uVny9klSN6hjV9GKu2_Fu-brdILsK02YIi35FdaAtUabuJ-vdAUlFFSV3gMM5ldvIUIRHGyl6Cb-glZ8j-WWFlrSgphCJ8w_jdXh4gcCZQluaHWv4rkOwd3FoGFL1gh6o315CCMj1_rn59B6WMlGuya0VK5vZ8ssgVqma2AE6rCr1lol3nQXNeNNw_jQ0ZM7IG7SLJmx_W9i6796ylk4OhDuQ2VhXFtC4LLSc5OScL1TiLHp3EYKHvRVWY9Ylb7fEmTY6dz3lDCqLFAHR7WlzlMpcqFDCKXH1klFhXjHRp92yXi-NG8XSih-1zP5KYmdHbLRKlmPc_EUPvhOrIirxMUot_qMA_trKDJFHtWaELyXiWmW5WsIYei6pwb8UuvadQfzopzk-knsfLT6e-0QZGh3aZDaRpKjGnL48HGUOANXYf2M3qiZ2WFVem9foMT4MmIi3CE-7atc8ucghE3AoDrbwN20IfiGNT0ekSkI16Psr0PlWOqRM_xO9g2MB6nb2zvWS8ceEtyfvte53tqPh9KV4sr1QbEMzpyRjgP4RCFmQqtEL1-53Fdpin914V50Deb11N6CkEEdrbICjqdJGSPRBNiSnd0=w779-h268-no)
+    ![](.\images\request.jpg)
+    
+    
 
 - Response 有幾種⽅式
 
@@ -1284,7 +1282,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
   - Body 則會帶回傳給瀏覽器的資料
 
-    ![](https://lh3.googleusercontent.com/c7pM9jw8F9TlH-ArlAb-D0VQkthRv7-98y_-_NeP6RYrzjK6BPDqxcDMpxJRRiYQtwwI2WlJ6psevvCdxjTWGaRUJ3GNjD-X1xuqdD94eq0UX9OiB14_lGUzqU2nmgEpdWkZYSPqxr1tf9sSRL0_bg_0sDD8Tf63SiYjtNUD4jgQIXQ7KkjNkD9tOPh3b0ebOVmUSuIW9NZnioHrpdiBvT9_AVivaaDON-ZgxFJA0G-yynuvzpfyK6gQWJapJxxdKxtsTXky1R1ThW8jOq1QfbMmsQzi0tmKx3pK6uqgLxK8glBIkv1vNnpgleysamMMFdY1NPy9YtH1jEdZamdepDDu-iW1pff5Rlxw5y7y2bdaOX19zni8o-ov4Hf8RlxZ4_FMt6Cie8v-yz6bzgtIk98AlxEVoMCiPv0q5A7I0RsjcKST-Y6I9vf0te-LiFrCPCv3EzXZK5B5kZXW2sK1_B4Af76fJL1SFwQNzEilQQS8hvXBou9Tg_9xN6LvJrXKgNaLmJY6KtDIZsDGXF12jGyrA63oIQGbi9eXFlSWKCrWyRvVWWECsiRq9pnr0AMhooPDnCOJ3VxFWFI0qvmgpCy1krMnd9ZMcpNAiqhrnbJf3RSHL7iH4o798wUskGVOmNMiGYdlKP-9cwH08mFTnp6KxN-WT8bPfXNnOfY4iMTR9Cl6GKF6s8Ml69VGH3Lj9JX_Bd54GA43z0cLmFNhXxo9S5vuuuiHhWhjgh0N0A2OQ3WxvAxNlhY=w734-h275-no)
+    ![](./images/response.jpg)
 
 - Response 狀態代碼
 
@@ -1331,8 +1329,8 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   - [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
 - 資料格式
   - [Difference Between XML and HTML](https://techdifferences.com/difference-between-xml-and-html.html)
-- [淺談 HTTP Method：表單中的 GET 與 POST 有什麼差別？](https://blog.toright.com/posts/1203/%E6%B7%BA%E8%AB%87-http-method%EF%BC%9A%E8%A1%A8%E5%96%AE%E4%B8%AD%E7%9A%84-get-%E8%88%87-post-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%EF%BC%9F.html)
-- [[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)
+  - [淺談 HTTP Method：表單中的 GET 與 POST 有什麼差別？](https://blog.toright.com/posts/1203/%E6%B7%BA%E8%AB%87-http-method%EF%BC%9A%E8%A1%A8%E5%96%AE%E4%B8%AD%E7%9A%84-get-%E8%88%87-post-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%EF%BC%9F.html)
+  - [[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)
   - 介紹常見的五種HTTP Method
 
 ### 靜態網頁爬蟲
@@ -1394,7 +1392,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
         -  name 主要是⽤於獲取提交表單的某表單域信息，同⼀表單內不可重複。 
         -  class 是設置標籤的類，⽤於指定元素屬於何種樣式的類，允許同⼀樣式元素使⽤重複的類名稱。
 
-      ![](https://lh3.googleusercontent.com/V4moEYC9e7jxHQkH3MtsvdGdFBBobbFtcs76iEhLsupcOJpHEakj9_3vL9451awOZzlyOQBSMgxDf_4RmOL3kd4th6tp3cl7753fgxMLt9jkMedcEjs5uQFHPWnc5YOIvj_jKzjMESjENBzIX0oRUO2OL7FlNjXRFWgydiydWBdKagBu6iMVk1v7xZ4xyKAESwinrZdovDodpP3TAMOn6d_r5kvHW0wAMJsJ5bjOpFQ5Eh0xfBqqxeYGVxYnMCOQ8axc_tLBi1x_2YmwotJCQhgqk3K-EEFSdYumN1a8q7-gnJCFiLnGukWhBnvhDI0CQ3pbHTLUXXXeRHxqp22uvHoxze1ShjS1Ak7BVxrlmguipkgJVhVLxEfs_JDjHtQPdixWITOWHSie06r3ptmwo2IHNbdeY6aYN2LGAzHqhL6WKvkfTbKb2urCEjSSRivKrxKYy2hPXe2JlJaec_YZWypZNXM7dVo-ULTCQ9JR45VKjDBWVUKelCjS_I0cKhNye33_saPVfM9Z4SuBkd4PKQL4GYBvT3OS1wZi4ojCDofzaTQECiMp58s2kTvhLsZ7EPAgcB9rRsn7tDB3uWufsn3FK2DJcRB82bEBO7qTNOv7oEO4O8NvD5J_A8S6RIqUjh_r3kGBKB432dhUakaXvhKOBKeNroo_B1NVYQj10Z3iVnmt83NnVVHCn9N-hjHcxl-6o6lg-he4-UzQgl3cq2xn-LLgRx9gqt4svWzqNr2C6EjzEFR5yNA=w856-h173-no)
+      ![](./images/html_format.jpg)
 
 - CSS
 
@@ -1467,8 +1465,6 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
     - 透過 SRC 屬性取得圖片位置
     - 送出請求
 
-  ![](https://lh3.googleusercontent.com/mZ4gu7mlDgdValmMj8PaPhc6BZBiCb2r1B4nT2HYs8APGg1zsJCT8pud5cIr7tQpREKpq6hzqaQoURmCIi_T4p7yH608HamAsSW1qZdjFmU7S7quupM6_ijAS-OJ5D58vGyZCGfKXScGc6LtTcvcFTCllBPop4_FG-76bA1DnTNvjMH0nc3r3UpP8NRYF3YZhj4HEkKb0Ay1P9WJYjDmNtRKlfVj8tBRcXxZ7CzuozTz6lF_0LJrKYajM9mZiQgu61nXUwERbe-UuB6v63nxfzbGhGx_M5-D8yDZlsYtefGKji_0PHEFNGsxDw57D-NbZNvB3U2VHwSpGvlHwKNhY0EhBwz3SPzHSLNsxaCq2qFcQLPk-0L5Nuk_6-P2H6iFw78PSROrQ_RbHuoRFW4lgZUeK-Hl-tVjVHsEpjOff7BDG356PMJVP9rZDVr8xvLi0Y_l2wXA7_TtQZcFl1feD4iILgolwQHJrj_BvJfpMrYhgGQ9do6j3_WZzAh3_9sT3Jb4e3-fJGFtKHj046b--m6GM7W86QP1AjdoRdNvawm91EWEi5pBTyQCGrm3Cq9HC37fAB_rUsowSDStHpN3vXKtCBVk-Uv5tPewPNbewlXXbdb8XUw2fOTxuWBt-bkwRmo3PKXfti9P3BuHyY9voTA34ki0xJc57cbOu6qtoP22SsHyM_XnEv8ki3Fc6Y9icsxPBgvTBTTzdjvO2I9D70-qboRISLqGxq11TPzkRjE_SV4znlS4spI=w910-h315-no)
-
 - 圖片副檔名會造成的問題
 
   - 副檔名是讓電腦決定要⽤甚麼軟體開啟檔案的提⽰
@@ -1497,35 +1493,6 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   ```
 
 
-#### grab
-
-- Grab 是⼀類似於 requests 的 HTTP 存取⼯具， ⼀樣可以對⼀個 URL 發送請求跟接收回應。
-
-- 像 request ⼀樣，Grab 初始化的時候也需要傳入 URL ，接著就可以⽤ body 取回內容
-
-  ```python
-  from grab import Grab
-  g = Grab()
-  resp = g.go('https://google.com')
-  resp.body 
-  ```
-
-  
-
-#### PyQuery
-
-- 除了 BeatifulSoup 之外，如果你比較熟悉網⾴運作的話，其實也可以嘗試看看 PyQuery 。PyQuery 是⼀個利⽤ CSS Selector 選取資料 的解析⼯具。
-
-- 像BeautifulSoup⼀樣，PyQuery 初始化的時候也需要傳入HTML 字串來初始 化⼀個操作對象，接著就可以⽤ doc 的⽅式搭配 CSS 選擇器存取資料。
-
-  ```python
-  from pyquery import PyQuery as pq
-  doc = pq("<html><h1>Hello World</h1></html>")
-  h1 = doc('h1')
-  print(type(h1), h1.text())
-  ```
-
-  
 
 ### 動態網頁爬蟲
 
@@ -1567,7 +1534,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 #### 瀏覽器開發者工具介紹
 
-- ⼤部分的瀏覽器都會提供開發者⼯具，開發者⼯具主要會包含網⾴的 結構與網⾴資料的溝通兩⼤主要功能。今天我們會教⼤家如何利⽤ Google Chrome 的開發者⼯具。
+- ⼤部分的瀏覽器都會提供開發者⼯具，開發者⼯具主要會包含網⾴的 結構與網⾴資料的溝通兩⼤主要功能。
 - 包含哪些資訊
   - 打開Chrome 開發者⼯具 在Chrome菜單中選擇 更多⼯具 > 開發者⼯具 在⾴⾯元素上右鍵點擊，選擇 “檢查” 使⽤ 快捷鍵 Ctrl+Shift+I (Windows) 或 Cmd+Opt+I (Mac)
   - Elements
@@ -1584,6 +1551,8 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   - Elements：觀察需要取得的 DOM 位置與 Selector 定位。 
   - Network：⽤來觀察存取資料的 API Request（尤其是在動態網⾴ 爬蟲）。 
   - Application：有⼀種登入機制會把權限狀態存在 Cookie ，可以在 這裡查看。
+
+
 
 #### 使用Selenium + BeautifulSoup 模擬瀏覽器執行
 
@@ -1619,6 +1588,8 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
     - 執⾏後會真的看到電腦打開⼀個新個瀏覽器，⽽且跳轉到設定的網址上！ 透過 browser.page_source 可以取出，⽬前網⾴上當下的 HTML，不過這是⼀個 HTML 格式的字串，此時就可以再利⽤ BeautifulSoup 進⾏解析。
 
+
+
 #### 利用開發者工具，觀察模擬 API 存取
 
 - 關於這種利⽤到 JavaScript 的非同步特性載入更多資料的網⾴稱為動 態網⾴。⽽爬蟲程式也會因為沒有執⾏到 JavaScript 導致資料不完全 的現象。 
@@ -1632,11 +1603,11 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 ### Scrapy爬蟲框架
 
-Scrapy 是為了持續運行設計的專業爬蟲框架
+- Scrapy 是為了持續運行設計的專業爬蟲框架
 
-簡單&一次性的任務：requests
-
-大量&重複性的任務：Scrapy
+- 使用時機
+  - 簡單&一次性的任務：requests
+  - 大量&重複性的任務：Scrapy
 
 #### 多網頁爬蟲實作策略介紹
 
@@ -1805,18 +1776,16 @@ Scrapy 是為了持續運行設計的專業爬蟲框架
 
 - 資料處理的檔案位置
 
-  ![](https://lh3.googleusercontent.com/M93RO5ttUuKmOHEdyydmKav4ubzBI6iVB9gWNjE9kLHeYgBagKz1foBq-8Q_ZU87l0YhjBalGamrR10Wy8m-B5Y_g9h9CqUt7AQsmXARzVY31popMVmWXXRSCJ788X_LzuQRa6r2xXhlZ2jM4Bupm5cw2rD3iw8WsnN4GUuHtu-hdSRRYJzpj1FgmEkvqp_FsfRL5rT7ws9bUTVTQxnpfV6DiebjOGaJoPA0CutD_VOuvORN47WSiwIK1mCMRkbquH25sQNkr2WHjeyHjh0VizQVpbkNXqm9dnbDwyPh9UTCEao2lyerSfJ5x6q9TlQRxfr2Gsq506cwxAHICJ-FipZIrWZFlPs3c6HG2YhmMx5Yqi9-vb4-u5LFEi6Enm-7imN-9fDACcsO3Dgftampm1-gjhuYbD_Fyo1imQ5UX_q3nSWzXjlHGsPWhh08R1sEPrQ3S2JT6-mjCIoCtX9_ECpP7oYk6n36kTqK36stioqkL6ii_mMSY78rVEsnwl7nhAB_3QNoLsJXrS7hAxnEU9VClmNJ0teSQPBj30P_LBleB42obE-Ncd2pR42WIGYXn8r17YGJ7TLzeXW0JmJm4K2eZjKTxV2vcS5G4BAcHVJKMKakTQtXvPF1UJLRBGbNjuG4yreb_k06zQiqlxYlDEq47uxAAUU-Xvdzk5x1-sgdlvcmD5QAEB1RJq03GR9xRJvGFRhPaDQL3peZXTH66EBpoYqoUSEhaQCRobFdvy9PwGR-ZP_cqmw=w840-h305-no)
+  ![](./images/scrapy.jpg)
 
 - 參考資料
 
-- [Srcapy Selector 官⽅⽂件](https://docs.scrapy.org/en/latest/topics/selectors.html)
+  - [Srcapy Selector 官⽅⽂件](https://docs.scrapy.org/en/latest/topics/selectors.html)
 
-- [進階功能：Item Loader](https://docs.scrapy.org/en/latest/topics/loaders.html)
-
+  - [進階功能：Item Loader](https://docs.scrapy.org/en/latest/topics/loaders.html)
   - 在 Scrapy 中定義好如何定位元素，以及該元素應該如何存到 Item 格 式中，爬蟲過程框架可以幫你⾃動爬玩送到 pipeline 處理的功能 
-
-- [進階功能：Scrapy Feed exports](https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports)
-
+    
+  - [進階功能：Scrapy Feed exports](https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports)
   - 我們在 pipline 中寫入 JSON 只是熟悉 pipeline 的操作，實際上如果要 把資料存成某種格式應該參考 feed exports 的⽅式
 
 #### API
@@ -1838,31 +1807,11 @@ Scrapy 是為了持續運行設計的專業爬蟲框架
 - 在送出第⼀個請求後會直接送第⼆個請求，並不會卡著等第⼀個 response，⽽ 是等第⼀個 response 送回來的時候再處理
 - 這種⽅式可以縮短因為網路延遲造成的等待，加速整個爬蟲過程
 
-- 參考資料
+- Ref
   - [【知乎】Scrapy中的scrapy.Spider.parse()如何被調⽤?](https://www.zhihu.com/question/30201428) 
     - 參考 Scrapy 的架構圖，再透過該篇⽂章可以更加了解 parse 的時 候 yield request 跟 yield item 的差別
 
-#### 框架
 
-![](https://lh3.googleusercontent.com/tEZMTOEI70TFT0p0G3uhWR7qSpl_x6dFwXH0vRMiNMTY-PlIVbW6aGmoAfu7db3knMAnWM4QHTwjPGw8WlREemjm_NBLmbWMeYTqOIukt2uAvy19fxCsoMz_Pgge7--U7FfP3BnvxFlWUZtLbmn5-DoFMm5SPEY31cuVLZLScKXcnR_sFKEQvqmUW5Pux33g36lrDpdQTHuNHjAuDoIl9It-FUgeqizbt6WfTXjLr694UF2cJBw6gI4NiZIzODULHWrv3KnuR83P5czY1bC-DpJ_oB07fi2qN7gEUbfvYCKdWbZiDt1pFTLvc2fzxfyQ-KsIszW32U8rkZ5oCAhM6ikV8FMh8uu-2KkloEws8NNHLXZbGrCOFjM4uod90UynHGDQHloGKdImfVTVprE0ack7HgPF_C5n-DbmRHuBaMUmh2-W3oNPpjkxlNDcacu4E4pmxrseLXpnf8dlhilSHvt-QCbh5PCu3U4ex2G439GLYreuCZKJjtUYmFwsC2hl2JPO2QspAiPm88mMDU5iEao77hvKoEJHAB2vZ226bygu1irKIlgQEyBdl5tssYZU8fJCXfETJkhHuvVccYeqfh3KO-oSm4WLplLnlyjLx3hqPlENCtMm-E1n5_Nn1-7L8V16u7jjvN2yvKVWsPqK8TFHMtZbdrBBxZWBVgKBwwp2kF2O7xM6PfYWJHVA5UU7DzFOXEjx9MCd8nfkhlXFGinc_JgVcn-x-gBgmHk6aWck3WydNDpTVi0=w988-h597-no)
-
-- Scrapy Engine：管理所有資料流程
-- Scheduler：任務調度
-- Downloader：網頁下載
-- Spiders：連結網頁、剖析裡面的資料
-- ItemPipeline：資料的萃取、剖析、篩選、資料儲存
-
-
-
-- 任務成功失敗的管理
-- 非同步化：
-  - 多個爬蟲任務時，不用等到一個結束才換下
-  - 一個
-
-- Selenium
-  - 定位
-  - 操作
-- 反爬蟲機制
 
 #### 流程
 
@@ -1908,29 +1857,29 @@ Scrapy 是為了持續運行設計的專業爬蟲框架
       3. 再輸入一次一下命令即可繼續
       4. scrapy crawl undnews -s JOBDIR=job1
 
-### 進階爬蟲技術
 
-#### 爬蟲可能會遇到的問題
+
+### 進階爬蟲技術
 
 - 在前⾯的課程中，我們討論了⼀個網⾴從該如何思考和撰寫。接下來我們要討論的是「爬蟲可以順利拉到資料，然後呢？」我們針對這三個⽅向來做優化：
   - 反爬
   - 加速
   - 自動化更新
 
-- 反爬是什麼？常⾒見的反爬蟲機制有哪些？
-  - 許多網站為了保護資料，避免網頁上的公開資訊被網頁爬蟲給抓取，因此有了了「反爬蟲」的機制出現。爬蟲工程師也發展了出⼀系列「反反爬蟲」的策略！
+- 反爬是什麼？常見的反爬蟲機制有哪些？
+  - 許多網站為了保護資料，避免網頁上的公開資訊被網頁爬蟲給抓取，因此有了「反爬蟲」的機制出現。爬蟲工程師也發展了出⼀系列「反反爬蟲」的策略！
     - 檢查 HTTP 標頭檔
     - 驗證碼機制
     - 登入權限機制
     - IP 黑名單
 
 - 如何為爬蟲程式加速？
-  - 第⼆種實務爬蟲需要考慮的問題是加速，當資料量龐⼤或是更新速度較為頻繁 的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤ 程式的⽅法，來思考如何加速爬蟲的處理速度。
+  - 第⼆種實務爬蟲需要考慮的問題是加速，當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
     - 多線程爬蟲加速
     - 非同步爬蟲
 
 - 利⽤排程⾃動化更新
-  - 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料是最新的。常⾒的做法可以利⽤⼀個排程機制，週期性地重新抓 取資料。
+  - 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確保拿到的資料是最新的。常⾒的做法可以利⽤⼀個排程機制，週期性地重新抓取資料。
     - 在迴圈中加上 Sleep
     - 利⽤ threading 的 Timer
     - 第三⽅套件 schedule
@@ -2051,80 +2000,87 @@ r.text
   - [python識別驗證碼](https://www.cnblogs.com/benpao1314/p/9999283.html)
   - [Python 實現識別弱圖片驗證碼](https://cloud.tencent.com/developer/article/1187805)
 
-- 登入授權模擬
-  - 權限管理機制
 
-    - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
+#### 登入授權模擬
 
-  - 登入有兩種實作⽅法
+- 權限管理機制
 
-    在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
+  - ⼤部分網站都有權限管理機制，使⽤上也會有登入/登出的機制。但由於爬蟲多 半是基於 HTTP Request Response ⼀來⼀回的⽅式取資料。接下來我們將討 論在爬蟲中要如何加上登入的做法。
 
-    - cookie/ session
+- 登入有兩種實作⽅法
 
-      cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
+  在開始講爬蟲登入之前，我們必須要知道現⾏的網站是如何做到登入這件事 的。主要有兩種做法：
 
-    - tokenbased
+  - cookie/ session
 
-      另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
+    cookie 是⼀種存放於瀏覽器的暫存空間，傳統的登入機制⽽會將驗證登入後的 結果存在這裡，後續透過瀏覽器資料將 cookie 跟著 request ⼀起傳出去。所 以 server 只要檢查 request 帶來的 cookie 是否存放正確的登入資訊，即可以 判斷是否已登入過。
 
-  - 利⽤ cookie/session 做登入
+  - tokenbased
 
-    - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
+    另外⼀種登入⽅式，是登入之後會得到⼀個 Token（令牌），由使⽤者⾃⾏保 管，之後再發 Request 的時候帶在 Header 當中。這個⽅法其實就是我們之前 講 FB API 的⽤法，這裡就不⽰範了。
 
-    ```python
-    import requests
-    rs = requests.session()
-    payload={
-     'from':'/bbs/Gossiping/index.html',
-     'yes':'yes'
-    }
-    res = rs.post('https://www.ptt.cc/ask/over18',verify = False, data = payload)
-    res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False)
-    soup = BeautifulSoup(res.text,'html.parser')
-    print(soup.text) 
-    ```
+- 利⽤ cookie/session 做登入
 
-    - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
-
-    ```python
-    import requests
-    res = requests.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False,
-    cookies={'over18': '1'})
-    soup = BeautifulSoup(res.text,'html.parser')
-    print(soup.text) 
-    ```
-
-- 代理 IP
-  - 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
-
-  - 代理伺服器
-    - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
-
-  - 在 Python 中加上 proxy 參數
+  - 第⼀種做法，可以先模仿⼀個「登入」的請求，把這個請求的狀態保存，再接 著發送第⼆次「取資料」的請求。
 
   ```python
-  proxy_ips = [...]
-  resp = requests.get('http://ip.filefab.com/index.php',
-   proxies={'http': 'http://' + ip}) 
+  import requests
+  rs = requests.session()
+  payload={
+   'from':'/bbs/Gossiping/index.html',
+   'yes':'yes'
+  }
+  res = rs.post('https://www.ptt.cc/ask/over18',verify = False, data = payload)
+  res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False)
+  soup = BeautifulSoup(res.text,'html.parser')
+  print(soup.text) 
   ```
+
+  - 第⼆種做法，直接觀察瀏覽器記錄的資訊是什麼，將 cookie 帶在請求當中。
+
+  ```python
+  import requests
+  res = requests.get('https://www.ptt.cc/bbs/Gossiping/index.html',verify = False,
+  cookies={'over18': '1'})
+  soup = BeautifulSoup(res.text,'html.parser')
+  print(soup.text) 
+  ```
+
+#### 代理 IP
+
+- 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
+
+- 代理伺服器
+  - 這邊的解法我們會採⽤「代理伺服器（Proxy）」的概念來處理，所謂的代理 伺服器即是透過⼀個第三⽅主機代為發送請求，因此對於網站⽅⽽⾔，他收到 的請求是來⾃於第三⽅的。
+
+- 在 Python 中加上 proxy 參數
+
+```python
+proxy_ips = [...]
+resp = requests.get('http://ip.filefab.com/index.php',
+ proxies={'http': 'http://' + ip}) 
+```
 
 - Ref
 
   - [USProxy.ipynb](https://github.com/TLYu0419/DataScience/blob/master/WebCrawler/USProxy/USProxy.ipynb)
-
 - 哪裡有第三⽅的代理伺服器可以⽤？
 
   - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 、https://www.us-proxy.org/
   - 中國：http://cn-proxy.com/
 
+
+
+#### 加速
+
 - 多線程爬蟲
-  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-  - 簡單來說就是時間可貴!
-
-  - 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
-
+  
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+  
+- 簡單來說就是時間可貴!
+  
+- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
+  
   ```python
   import _thread
   import time
@@ -2135,29 +2091,22 @@ r.text
   _thread.start_new_thread( print_time, ("Thread-1", range(0, 5, 2), ) )
   _thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
   ```
-
+  
   - 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
 
   - Ref
     - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
-
-- 搜尋引擎
-
-  當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
-
-  - Google
-  - Yahoo
-  - Bing
-
-#### 加速
-
+  
+  
+  
 - 非同步爬蟲
-  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-  - 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
-
-  - Python 中實現非同步
-
+  
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+  
+- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+  
+- Python 中實現非同步
+  
   ```python
   import aiohttp
   import asyncio
@@ -2170,15 +2119,23 @@ r.text
           print(html)
   loop = asyncio.get_event_loop()
   loop.run_until_complete(main()) 
-  ```
-
+```
+  
 - 參考資料
 
   - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
 
+#### 搜尋引擎
+
+當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
+
+- Google
+- Yahoo
+- Bing
+
 #### 自動化更新機制(排程)
 
-- 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資 料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確 保拿到的資料部會是錯誤或是假的。
+- 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確保拿到的資料不會是錯誤或是假的。
 
 - ⾃動化更新的做法
 
@@ -2228,6 +2185,8 @@ r.text
    		schedule.run_pending()
    		time.sleep(1) 
   ```
+
+
 
 
 # Data Preprocessing
@@ -2312,101 +2271,116 @@ r.text
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
 
-- 繪圖技巧
+#### Correlation
 
-- 圖表類型與內容
+> The plots under correlation is used to visualize the relationship between 2 or more variables. That is, how does one variable change with respect to another.
 
-- Pandas-Profiling
+1. Scatter plot: 
 
-  ```python
-  pip install pandas-profiling
-  
-  from sklearn.datasets import load_boston
-  
-  data = load_boston()["data"]
-  cols = load_boston()["feature_names"]
-  df = pd.DataFrame(data=data, columns=cols)
-  
-  profile = pandas_profiling.ProfileReport(df)
-  profile.to_file(outputfile="output.html")  #支援輸出html
-  ```
+   - Scatteplot is a classic and fundamental plot used to study the relationship between two variables. If you have multiple groups in your data you may want to visualise each group in a different color. In `matplotlib`, you can conveniently do this using `plt.scatterplot()`
 
-  
+     ![](./images/1_Scatterplot_Matplotlib-min.png)
 
-- **繪圖與樣式**
+2. Bubble plot with Encircling: 
 
-  ⽤已經被設計過的風格,讓觀看者更清楚明瞭，包含⾊彩選擇、線條、樣式等。
+   - Sometimes you want to show a group of points within a boundary to emphasize their importance. In this example, you get the records from the dataframe that should be encircled and pass it to the `encircle()` described in the code below.
 
-```python
-plt.style.use('default') # 不需設定就會使⽤預設
-plt.style.use('ggplot')
-plt.style.use('seaborn') # 或採⽤ seaborn 套件繪圖
-```
+     ![](./images/2_Bubble_Plot-min.png)
 
+3. Scatter plot with line of best fit
 
-  ![](https://lh3.googleusercontent.com/ng0N7k4WMKWqGg3vrJxImznJvitqADU2mwQlmZjzXBpHFUIucoZBUaghZMt9qSK0GIS7nk16e4LA4zZlm7RUkZW_7iG61ITxfkCavcqL-kH-0qIt58TivnMyRVRbRZLILBw9FDFgAQkGdzhFY4hWl1AdOmpNT0lnOm5aesbdimFPsIwLCD2B06ykv-AQUuYQyWZcMIEBBos8hOKdRp9_MbAlg_qwJv2K4hAEUFYyIgBwJ6-gOrq-Gm1WpJ2OqKfikCQVfRK-1uI5gBs6Xj3ZUb0WJvZiKVxHgEPxn3P7mv-uaciPmcn4B_ea-VUIsJt1Lf_-9cLaz5743-Koe_87PPQdouP1UpAcLR1UdDu5VorOKtTIICKt4Df4a7XmLSqMcp3I0RVWNqGebTYy02HCslpEh06msL8Ej5Du62bhJY55xIS02TOIl4Xi9znCiPcFcQ7MiEUzzL-R4BY2Ff9UxFxd0VqOEmu_kz2yeymQda_jC2kUAWn_XSA7BksqV1t87Nc6iQu9413YBYgciMzqmMERvyHJFDy_zxsDt5fS7bO8VGR3UbdRdKC15KEuTEUFd65H7NOKqVHlPeH6TL6wt6M-Y-beaEwRVe9rMdlMUEA0-6cjMmbDrBRDIrfVmZzGDkgbKM0FsGkdIdOQb_0oGD458JiOYFtm0rqLDekAPCJ6VUayC2choNt9C2k0fa2csVsMSbwqytrO39TLjYUc6lJ4=w891-h435-no)
+   - If you want to understand how two variables change with respect to each other, the line of best fit is the way to go. The below plot shows how the line of best fit differs amongst various groups in the data. To disable the groupings and to just draw one line-of-best-fit for the entire dataset, remove the `hue='cyl'` parameter from the `sns.lmplot()` call below.
 
-- **Kernel Density Estimation (KDE)**
+     ![](./images/3_1_Scatterplot_with_linesofbestfit_Seaborn-min.png)
 
-  - 採⽤無⺟數⽅法畫出⼀個觀察變數的機率密度函數
+   - Alternately, you can show the best fit line for each group in its own column. You cando this by setting the `col=groupingcolumn` parameter inside the `sns.lmplot()`.
 
-    某個 X 出現的機率為何
+     ![](./images/3_2_Scatterplot_with_lineofbestfit_Seaborn-min.png)
 
-  - KDE 的優點與缺點
+4. Jittering with stripplot
 
-    - 優：無⺟數⽅法，對分布沒有假設 (使⽤上不需擔
-      ⼼是否有⼀些常⾒的特定假設，如分布為常態)
-    - 缺：計算量⼤，電腦不好可能跑不動
+   - Often multiple datapoints have exactly the same X and Y values. As a result, multiple points get plotted over each other and hide. To avoid this, jitter the points slightly so you can visually see them. This is convenient to do using seaborn’s `stripplot()`.
 
-  - 透過 KDE plot，我們可以較為清楚的看到不同組間的分布差異
+     ![](./images/4_Jittering_with_Stripplot_Seaborn-min.png)
 
-  - Density plot 的特性
+5. Counts Plot
 
-    - 歸⼀：線下⾯積和為 1
-    - 對稱：K(-u) = K(u)
+   - Another option to avoid the problem of points overlap is the increase the size of the dot depending on how many points lie in that spot. So, larger the size of the point more is the concentration of points around that.
 
-  - 常⽤的 Kernel function
+6. Marginal Histogram
 
-    - Gaussian (Normal dist)
-    - Cosine
+   - Marginal histograms have a histogram along the X and Y axis variables. This is used to visualize the relationship between the X and Y along with the univariate distribution of the X and the Y individually. This plot if often used in exploratory data analysis (EDA).
 
-- **Subplots**
+7. Marginal Boxplot
 
-  - 有很多相似的資訊要呈現時 (如不同組別的比較)
+   - Marginal boxplot serves a similar purpose as marginal histogram. However, the boxplot helps to pinpoint the median, 25th and 75th percentiles of the X and the Y.
 
-  - 同⼀組資料，但想同時⽤不同的圖型呈現
+8. Correlogram
 
-  - 適度地將圖片分格呈現，有助於資訊傳達
+   - Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe (or 2D array).
 
-  - 但過度使⽤ subplots 也將會使得資訊太多反⽽讓重點混淆
+9. Pairwise Plot
 
-  - Subplot 的坐標系 (列-欄-位置), 如
+   - Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. It is a must have tool for bivariate analysis.
 
-    - (321) 代表在⼀個 3列2欄的最左上⾓ (列1欄1)
-    - (232) 為在⼀個 2列3欄的 (列1欄2) 位
+#### Deviation
 
-    ![](https://lh3.googleusercontent.com/J0YKB2xbVyLuXHunZ9NhK2cn5aCbel3qJFMeC9Ne1bjBrFb2PW9sKw5fHWwnyU5R8H2uhQm5BscycTStOzzCH3EgVddL5_dHDLf3dJFJxDL0PMov0hlDOwyPJDiLDeIGLSP6smm_3P8EfpjtZUSQY99A4wpnXvzJXgr2MgALkI2J3AduSlxaiwrEgBeuZK64y-S06vj991-fpbedrQK5enjOlaeZRNm8T-z3Fd6dZka0DzM6XpLar-shGfmKlnS2VePyiVDBpI7qP5BUE4B-IsLS32o1EfZKX6DY6ymR_D-O0esOJ-Za72lI1aPdXE3YtyDvlwwSX1YFMDNFdgeoKGxGFaFwcQmT4TWIPAS5aJ4OIb8qGR0M6fYyyIdlkgPHQjifXeDnGkGqINu6l4NL5wXs4FAhPdwe7cIKi6AVx9yWEcjATtxHqvrOSYtJXkB4jHMs_QFGp03pl2rJEPo_trijGFJpmi95vd38PXG5Z2Bh3V7r3V7wt3XE5FzR2oOtvWTXE4vKQASx0CIpurQl3Gib1ejZQ5GeHHjoQllrAbsb75JVEEM_Jsb4drW-YMf_mkxq17mvwvYjQ4HbZmgA1u9X4Wc9oBvKDlqVKov_FpYPcVVwKiaempWTyJQnkW70Jeqke3SW5UOiPiQeVsvt-RIBmgGBCfazvGEDB_o4v6NluclRlMKyed52NtI-VlYhZXBiTWBvgULYa45E_Vglw3Y0=w545-h472-no)
+1. [Diverging Bars](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#10.-Diverging-Bars)
+2. [Diverging Texts](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#11.-Diverging-Texts)
+3. [Diverging Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#12.-Diverging-Dot-Plot)
+4. [Diverging Lollipop Chart with Markers](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#13.-Diverging-Lollipop-Chart-with-Markers)
+5. [Area Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#14.-Area-Chart)
 
-- **Heatmap**
+#### Ranking
 
-  - 常⽤於呈現變數間的相關性
+1. [Ordered Bar Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#15.-Ordered-Bar-Chart)
+2. [Lollipop Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#16.-Lollipop-Chart)
+3. [Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#17.-Dot-Plot)
+4. [Slope Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#18.-Slope-Chart)
+5. [Dumbbell Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#19.-Dumbbell-Plot)
 
-  - 也可以⽤於呈現不同條件下，數量的⾼低關係
+#### Distribution
 
-    ![](https://lh3.googleusercontent.com/6csWSVGo3LW4nMwWFk48K9Om6F1AOnzAmEFXxReZrUPuYrykaGDRl4jAPzmPjccatbPGwinZtt-qnfUyl9lwj8AMXUiT2hrj3oHVCx9snsmRc45H6xjbAzi_uG5eWfmHqhUuI6q15qVuTvSYWX4BBYGE98yb71jRrkUqVOq1llhBNdeXvjN_dapwsZNLk1O2Q0Pd7He6Qp6-7EpSj1GWa0ZnsWIOcHn_ObAhzxN97_HiNORN7Q7ufLiEZv0ICahbT21k8O3ABmxHu9hr9w3hW-X5xRuKRn2zVzRjwP91vlgHZO06Y4fy8e_aRlPcblodE7D7w36_owwLFo2ZJeRy_pPqx8Xkq0rEJbN3LDkTt9ZcsuiWhenCe53JnFJOl6YuZTze5Jqx_ciBrh2T_CGXd83mjtEBelF0hTpJrJA9JjE6LqfVOycw6s1eZ8pKdErFIaqV_yU7_lvnXQtWzZyIkB4hu7mCg66KLSKAdWj8OUqBkiQsbiqggp8dK4GyFVSwHa4oT8jih4pkybv2RXjIduvk9JlwV-8KuDROzgWCb6--4ziw413XNcupPzJmYJf2Ijo5-kdBglORppZz2kUv9vB3nWZmtgdauyzRo_BG0WdutVZHIAWKj1DEQkxSgKv8zf9AKV5p2yZWgpbovwb8CFsQAIPlf4eN6P-Lg478zFURCMFvaPdfPBcQ-YeeRowbth0FONAOa1NKAfJklsw-pMgu=w452-h336-no)
+1. [Histogram for Continuous Variable](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#20.-Histogram-for-Continuous-Variable)
+2. [Histogram for Categorical Variable](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#21.-Histogram-for-Categorical-Variable)
+3. [Density Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#22.-Density-Plot)
+4. [Density Curves with Histogram](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#23.-Density-Curves-with-Histogram)
+5. [Joy Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#24.-Joy-Plot)
+6. [Distributed Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#25.-Distributed-Dot-Plot)
+7. [Box Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#26.-Box-Plot)
+8. [Dot + Box Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#27.-Dot-+-Box-Plot)
+9. [Violin Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#28.-Violin-Plot)
+10. [Population Pyramid](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#29.-Population-Pyramid)
+11. [Categorical Plots](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#30.-Categorical-Plots)
 
-- **Gridplot**
+#### Composition
 
-  - Subplot 的延伸, 但是 seaborn 幫你做的⼜美⼜好!
+1. [Waffle Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#31.-Waffle-Chart)
+2. [Pie Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#32.-Pie-Chart)
+3. [Treemap](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#33.-Treemap)
+4. [Bar Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#34.-Bar-Chart)
 
-  - Heatmap 常⽤於呈現訊息的強弱 (以顏⾊深淺呈現)，也常⽤於呈現混淆矩陣 (Confusion matrix,後⾯的機器學習課程會再深入介紹)
+#### Change
 
-  - pair/gridplot 結合了 scatter plot 與 historgram 的好處來呈現變數間的相關程度
+1. [Time Series Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#35.-Time-Series-Plot)
+2. [Time Series with Peaks and Troughs Annotated](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#36.-Time-Series-with-Peaks-and-Troughs-Annotated)
+3. [Autocorrelation Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#37.-Autocorrelation-(ACF)-and-Partial-Autocorrelation-(PACF)
+4. [Cross Correlation Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#38.-Cross-Correlation-plot)
+5. [Time Series Decomposition Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#39.-Time-Series-Decomposition-Plot)
+6. [Multiple Time Series](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#40.-Multiple-Time-Series)
+7. [Plotting with different scales using secondary Y axis](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#41.-Plotting-with-different-scales-using-secondary-Y-axis)
+8. [Time Series with Error Bands](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#42.-Time-Series-with-Error-Bands)
+9. [Stacked Area Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#43.-Stacked-Area-Chart)
+10. [Area Chart Unstacked](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#44.-Area-Chart-UnStacked)
+11. [Calendar Heat Map](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#45.-Calendar-Heat-Map)
+12. [Seasonal Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#46.-Seasonal-Plot)
 
-    - 對⾓線：該變數的分布 (distribution)
-    - 非對⾓線：兩兩變數間的散布圖
+Groups
 
-    ![](https://lh3.googleusercontent.com/Et63EdYQFOoXb35V7d-B6e6p9e3amn3tGEn0OJNL01NHXr20PewMTdKMJAi5YzPFb13KCOEx6WwKZtYB_PqMJmKr1oM6giGjUNGouBGofCLzYrUBSkLLi51sjI4SK-YacnC5ycXoUeAZZoVEAq__D4lLefG6MIJM6-iRiav03kB1oTMgBlLHv16iscUuODmM5_Qd5bB53UiUW7MTzYrB0nriojo_qexGMt-aAwcBEjviI-XninZV7fShUm5ACIkvPlxza0TsKPBHP5Ovga3vd4v3gOg7_MD6k4mWp8--GP4pTY8-jURPPwVGmtz-hTm3XaJokPbBmX3xvz8O9SoCayEA-pgdMym41e2E4gKsjfj-NExZrJjUYyLyrqyTN_XbS7wOf1gMaGVlFZ3PEkPtyZu7qdTgG2yPGISzLAT6icxVj_iozChU5G8ZP74lJLCP64O1FoakaNDrd4uuEqnvKh5OERuBABTIWBonigZv1q1vDSgZzQgGdh6hJRVdpPyON47T8wJUqm5wWx3bKsLG2jXiQAl61ZQOkau0QSLkAYFKnsckEi_Ymy2sxnVwoslzEXh9G0W79kPHDn84F9DGWcEt-TVYBhQF3IdwuFJzoNPhX2NZv0InRouiFrR_o1kKvUVgOBz3j8HXv-kUMjvTevbdtEyYcv5VQIUe5v8SlSB2OhD3mBaMNzqB5a1ZQvb23wS1F1nFSAVwHq_xAdKkgCFg=s900-no)
+1. [Dendrogram](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#47.-Dendrogram)
+2. [Cluster Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#48.-Cluster-Plot)
+3. [Andrews Curve](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#49.-Andrews-Curve)
+4. [Parallel Coordinates](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#50.-Parallel-Coordinates)
 
 [Matplotlib可视化最有价值的 50 个图表](http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/)
 
