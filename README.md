@@ -35,13 +35,66 @@
 ## 機器學習開發流程
 
 1. 商業主題，要解決什麼問題
+   - 定義⽬標與評估準則：要預測的⽬標是甚麼? 
+     - 回歸問題?
+     - 分類問題?
+   - 要⽤什麼資料來進⾏預測? (predictor 或 x)
 2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
-3. 資料處理：遺漏值、缺失值填補，進行特徵工程找出變數間的潛在特徵
+3. 資料處理：
+   - 缺失值填補
+   - 離群值
+   - 常態化
+   - 特徵工程
 4. 建置模型：
-   1. 建立不同的模型，並根據AUC值選擇最佳模型。
-   2. 在建模時為了解決資料不平衡的問題，我會用1:1的方式建模。
-   3. 透過CV調整最佳參數
+   1. 將資料分為
+      - 訓練集, training set
+      - 驗證集, validation set
+      - 測試集, test set
+   2. 設定評估準則
+      - 回歸問題 (預測值為實數)
+        - RMSE, Root Mean Square Error
+        - Mean Absolute Error
+        - R-Square
+      - 分類問題 (預測值為類別)
+        - Accuracy
+        - F1-score
+        - AUC, Area Under Curve
+   3. 建立模型並調整參數
+      - 根據設定⽬標建立機器學習模型
+        - Regression, 回歸模型
+        - Tree-based model, 樹模型
+        - Neural network, 神經網路
+      - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
+      - 如果有資料不平衡的問題，可以用 Upsampling, DownSampling, SMOTE 等方式建立新資料集再建模
+   4. 透過CV調整最佳參數
 5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
+
+- 導入
+  - 建立資料搜集、前處理等流程
+  - 送進模型進⾏預測
+  - 輸出預測結果
+  - 視專案需求整合前後端
+    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
+  - 如何確立⼀個機器學習模型的可⽤性？
+    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
+
+- Ref
+  - [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
+  - [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
+  - [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
+  - [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
+
+## 職務分工
+
+- 資料科學家
+- 數據分析師
+- 資料工程師
+
+- Ref
+  - [Data Scientist vs Data Engineer](https://www.datacamp.com/community/blog/data-scientist-vs-data-engineer)
+  - [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
+  - [Why Data Scientists Must Focus on Developing Product Sense](https://www.kdnuggets.com/2018/04/data-scientists-product-sense.html)
+  - [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
 
 ## 分析工具
 
@@ -222,6 +275,18 @@ print(f'{today: %B %d, %Y}')
 
 - For special code, you need to use backslash allow python to understand that it is a special code.
 
+- 正規表達式是使⽤⼀段語法，來描述符合該語法規則的⼀系列⽂本。常⽤簡稱：regex, regexp。 
+
+- 正規表達式常⽤來處理⽂本資料。例如搜尋、過濾、新增、移除、隔離等功能。
+
+- 正規表達式運作及基本語法
+
+  - 正規表達式(regex)由兩種字元所組成：
+    - 詮釋字元(metacharacters)。擁有特殊意義的字元。
+    - 字⾯⽂字(literal)，或稱為⼀般⽂字。 
+  - 可以把 regex 比喻成⼀段句⼦。詮釋字元是語法，字⾯⽂字是單字。 單字+語法=>句⼦，這個句⼦就是⼀種表達式。此表達式可⽤來尋找 匹配(matching)此規則的⼀系列⽂字。 
+  - Regex 檢驗的對象是⽂本中的「⾏」，⽽不是單詞。
+
 - special code
 
   - ^:以...開頭
@@ -259,6 +324,13 @@ print(f'{today: %B %d, %Y}')
 
 - 參考資料
 
+  - [Regexone](https://regexone.com/)
+    - 這是⼀個互動式學習網站，裡⾯有15道題⽬，讓學員們練習 regex。匹配的結果會即時顯⽰，相當適合練習建構regex。 
+  - [Pythex](https://pythex.org/)
+    - 線上建構regex，並測試結果是否能匹配⽂本。 
+  - [常⽤ Regular Expression 範例](https://note.artchiu.org/2009/09/24/%E5%B8%B8%E7%94%A8-regular-expression-%E7%AF%84%E4%BE%8B/)
+    - 常⽤的regex patterns參考。
+
   - [Regular expression operations](https://docs.python.org/3.9/library/re.html)
 
 
@@ -295,118 +367,6 @@ print(f'{today: %B %d, %Y}')
   pdf_output.close()
   f.close()
   ```
-
-
-
-# 需求釐清與定義問題
-
-## 首次面對資料時應該思考的問題
-
-### 為什麼這個問題重要？
-
-- 好玩：預測⽣存 (吃雞) 遊戲誰可以活得久, [PUBG](https://www.kaggle.com/c/pubg-finish-placement-prediction)
-- 企業核⼼問題：⽤⼾廣告投放, [ADPC](https://www.kaggle.com/c/avito-demand-prediction)
-- 公眾利益 / 影響政策⽅向：[停⾞⽅針](https://www.kaggle.com/new-york-city/nyc-parking-tickets/home), [計程⾞載客優化](https://www.kaggle.com/c/nyc-taxi-trip-duration)
-- 對世界很有貢獻：[肺炎偵測](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
-
-- 對於投稿 Proposal 來說，如果能讓主辦單位認同，並且讓其感受到需要在這個場合找到一起合作的夥伴會是很加分的事情
-
-### 資料從何⽽來？
-
-- 來源與品質息息相關， 根據不同資料源，我們可以合理的推測/懷疑異常資料異常的理由與頻率
-- 資料來源如：網站流量、購物⾞紀錄、網路爬蟲、格式化表單、[Crowdsourcing](https://en.wikipedia.org/wiki/Crowdsourcing)、紙本轉電⼦檔
-
-### 資料的型態是什麼?
-
-- 結構化資料：檢視欄位意義以及名稱，如數值, 表格,...etc 
-- 非結構化資料：需要思考資料轉換與標準化⽅式（如圖像、影片、⽂字、⾳訊…etc）
-
-### 要回答什麼問題?
-
-- 每個問題都應該要可以被評估、被驗證，常⾒的[衡量指標](https://blog.csdn.net/aws3217150/article/details/50479457)如：
-  - 分類：Accuracy, AUC, MAP, F1-score, ...etc
-
-  - 迴歸：MAE, RMSE, R-Square, ...etc
-
-- **範例：我們應該要/可以回答什麼問題？**
-  - ⽣存 (吃雞) 遊戲
-    - 玩家排名：平均絕對誤差 (Mean Absolute Error, MAE)
-    - 怎麼樣的⼈通常活得久/不久 (如加入遊戲的時間、開始地點、單位時間內取得的資源量, ...) → 玩家在⼀場遊戲中的存活時間：迴歸 (Mean Squared Error, MSE)
-  - 廣告投放
-    - 不同時間點的客群樣貌如何 → 廣告點擊預測 → 預測哪些受眾會點擊或⾏動：Accuracy / Receiver Operating Curve, ROC
-    - 哪些素材很好/不好 → 廣告點擊預測 → 預測在版⾯上的哪個廣告會被點擊：ROC / MAP@N (eg. MAP@5, MAP@12)
-
-## 機器學習專案開發流程
-
-- 資料搜集、前處理
-  - 缺失值填補
-  - 離群值處理
-  - 標準化
-
-- 定義⽬標與評估準則：要預測的⽬標是甚麼? 
-  - 回歸問題?
-  - 分類問題?
-- 要⽤什麼資料來進⾏預測? (predictor 或 x)
-- 將資料分為
-  - 訓練集, training set
-  - 驗證集, validation set
-  - 測試集, test set
-- 設定評估準則
-  - 回歸問題 (預測值為實數)
-    - RMSE, Root Mean Square Error
-    - Mean Absolute Error
-    - R-Square
-  - 分類問題 (預測值為類別)
-    - Accuracy
-    - F1-score
-    - AUC, Area Under Curve
-
-- 建立模型並調整參數
-  - 根據設定⽬標建立機器學習模型
-    - Regression, 回歸模型
-    - Tree-based model, 樹模型
-    - Neural network, 神經網路
-  - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
-
-- 導入
-  - 建立資料搜集、前處理等流程
-  - 送進模型進⾏預測
-  - 輸出預測結果
-  - 視專案需求整合前後端
-    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
-  - 如何確立⼀個機器學習模型的可⽤性？
-    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
-
-
-
-
-### 參考資料
-
-- [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
-- [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
-- [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
-- [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
-- [Data Scientist vs Data Engineer](https://www.datacamp.com/community/blog/data-scientist-vs-data-engineer)
-- [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
-- [Why Data Scientists Must Focus on Developing Product Sense](https://www.kdnuggets.com/2018/04/data-scientists-product-sense.html)
-- [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
-
-# 資料收集
-
-- 發問卷自己收集資料，自己 Coding
-
-## 線上資料集
-
-- [openml](https://www.openml.org/search?type=data)
-
-## 資料庫
-
-### MySQL
-
-- [MySQL Insert](https://www.mysqltutorial.org/mysql-insert-statement.aspx)
-- [Python之使用Pandas庫實現MySQL資料庫的讀寫](https://codertw.com/資料庫/16156/)
-
-
 
 ### sqlite3
 
@@ -473,25 +433,633 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 
 
-## 網路爬蟲
+# 確認專案目標
 
-https://pycrawler.cupoy.com/
+## 為什麼這個問題重要？
+
+> 對於投稿 Proposal 來說，如果能說明為什麼要在這個場合發表會是很加分的事情
+
+- 好玩：預測⽣存 (吃雞) 遊戲誰可以活得久, [PUBG](https://www.kaggle.com/c/pubg-finish-placement-prediction)
+
+- 企業核⼼問題：⽤⼾廣告投放, [ADPC](https://www.kaggle.com/c/avito-demand-prediction)
+
+- 公眾利益 / 影響政策⽅向：[停⾞⽅針](https://www.kaggle.com/new-york-city/nyc-parking-tickets/home), [計程⾞載客優化](https://www.kaggle.com/c/nyc-taxi-trip-duration)
+
+- 對世界很有貢獻：[肺炎偵測](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
+
+  
+
+## 資料從何⽽來？
+
+- 來源與品質息息相關， 根據不同資料源，我們可以合理的推測/懷疑異常資料異常的理由與頻率
+- 資料來源如：網站流量、購物⾞紀錄、網路爬蟲、格式化表單、[Crowdsourcing](https://en.wikipedia.org/wiki/Crowdsourcing)、紙本轉電⼦檔
+
+
+
+## 資料的型態是什麼?
+
+- 結構化資料：檢視欄位意義以及名稱，如數值, 表格,...etc 
+- 非結構化資料：需要思考資料轉換與標準化⽅式（如圖像、影片、⽂字、⾳訊…etc）
+
+
+
+## 要回答什麼問題?
+
+- 分析案
+  - 藉由資料分析來回答商業/社會問題，並嘗試找到解決問題的方式
+- 透過**視覺化**的技巧，協助長官理解想傳遞的想法
+  - 要有清楚、具體的建議，與後續的工作項目
+- 模型案
+  - 建立**預測模型**精準的找到目標客戶或訂定目標
+  - 要清楚的告訴業務單位改變跟影響是什麼
+  - 需要設計追蹤的機制定期檢視模型成效
+  - 每個問題都應該要可以被評估、被驗證，常⾒的[衡量指標](https://blog.csdn.net/aws3217150/article/details/50479457)如：
+    - 分類：Accuracy, AUC, MAP, F1-score, ...etc
+
+    - 迴歸：MAE, RMSE, R-Square, ...etc
+  - **範例：我們應該要/可以回答什麼問題？**
+    - ⽣存 (吃雞) 遊戲
+      - 玩家排名：平均絕對誤差 (Mean Absolute Error, MAE)
+      - 怎麼樣的⼈通常活得久/不久 (如加入遊戲的時間、開始地點、單位時間內取得的資源量, ...) → 玩家在⼀場遊戲中的存活時間：迴歸 (Mean Squared Error, MSE)
+    - 廣告投放
+      - 不同時間點的客群樣貌如何 → 廣告點擊預測 → 預測哪些受眾會點擊或⾏動：Accuracy / Receiver Operating Curve, ROC
+      - 哪些素材很好/不好 → 廣告點擊預測 → 預測在版⾯上的哪個廣告會被點擊：ROC / MAP@N (eg. MAP@5, MAP@12)
+
+
+
+# 資料收集
+
+- 資料蒐集的方式可以分為以下幾種，說明如下
+
+## 調查問卷
+
+- 傳統的資料蒐集方式，由領域知識的專家設計具有信、效度的問卷，並用有代表性的方式發放、回收問卷，最後將資料登入至電腦中
+- 將問卷內容登入至網路問卷平台，並藉由連結的方式發放問卷，請受訪者在線上填答問卷
+  - [Google表單](https://www.google.com.tw/intl/zh-TW/forms/about/)
+  - [Survey Monkey](https://www.surveymonkey.com/)
+  - [Survey Cake](https://www.surveycake.com/)
+
+## 資料庫
+
+- 中/大型的公司通常會採購資料庫，藉此統一存放公司各項業務的資料表
+
+  Hive
+
+- SQL
+
+  - groupby
+  - case when
+  - create table
+  - drop table
+
+- MySQL
+
+  - [MySQL Insert](https://www.mysqltutorial.org/mysql-insert-statement.aspx)
+
+### SQL
+
+- create table
+
+  ```sql
+  CREATE TABLE TMP.LEO_XXXXXXXXXXXXX_01 AS
+  (
+  SELECT
+     TXN_DATE AS "日期"
+    ,MERCHANT_NAME AS "商店"
+    ,COUNT(DISTINCT CUSTOMER_ID) AS "客戶數"
+    ,SUM(TXN_AMT) AS "總金額"
+    ,AVG(TXN_AMT) AS "平均金額"
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE '%百貨%'
+  HAVING AVG(TXN_AMT) > 1000
+  GROUP BY 1,2
+  ) WITH DATA;
+  ```
+
+- drop table
+
+  ```sql
+  DROP TABLE 
+  TMP.LEO_XXXXXXXXXXXXX_01;
+  ```
+
+- select
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID
+    ,TXN_DATE 
+    ,MERCHANT_NAME
+    ,TXN_AMT 
+  FROM EVENT_CC_TXN;
+  ```
+
+  
+
+- as
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  ```
+
+  
+
+- order by
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  ORDER BY TXN_DATE DESC
+           TXN_AMT ASC;
+  ```
+
+  
+
+- where
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE TXN_DATE = ‘2015-11-01’; 
+  ```
+
+  
+
+- 判斷式
+
+  - =：等於
+  - \>:大於
+  - \<:小於
+  - <>: 不等於
+  - \>=: 大於等於
+  - <=：小於等於
+
+- AND/OR
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE TXN_DATE = ‘2015-11-01’
+        AND TXN_AMT > 10000; 
+  ```
+
+  
+
+- IN/NOT IN
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE TXN_DATE IN (‘2015-11-01’)
+        AND TXN_AMT > 10000; 
+  ```
+
+  
+
+- BETWEEN
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE TXN_DATE 
+        BETWEEN ‘2015-11-01’
+        AND ‘2015-11-30’
+        AND TXN_AMT > 10000; 
+  ```
+
+  
+
+- LIKE
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’; 
+  ```
+
+  ```sql
+  SELECT 
+    CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ANY (‘%百貨%’,'小吃'); 
+  ```
+
+  
+
+- GROUP BY
+
+  ```sql
+  SELECT 
+     CUSTOMER_ID AS “客戶”
+    ,TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,TXN_AMT AS “金額”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  GROUP BY 1,2,3,4 
+  ```
+
+  
+
+- COUNT
+
+  ```sql
+  SELECT
+     TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,COUNT(CUSTOMER_ID) AS “客戶數”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  GROUP BY 1,2;
+  ```
+
+  
+
+- DISTINCT
+
+  ```sql
+  SELECT
+     TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  GROUP BY 1,2;
+  ```
+
+  
+
+- SUM
+
+  ```sql
+  SELECT
+     TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
+    ,SUM(TXN_AMT) AS “總金額”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  GROUP BY 1,2;
+  ```
+
+  
+
+- AVG
+
+  ```sql
+  SELECT
+     TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
+    ,SUM(TXN_AMT) AS “總金額”
+    ,AVG(TXN_AMT) AS “平均金額”
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  GROUP BY 1,2;
+  ```
+
+  
+
+- 函式條件
+
+  ```SQL
+  SELECT
+     TXN_DATE AS “日期”
+    ,MERCHANT_NAME AS “商店”
+    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
+    ,SUM(TXN_AMT) AS “總金額”
+    ,AVG(TXN_AMT) AS “平均金額”
+    ,"總金額"/"客戶數" AS "總金額/客戶數"
+  FROM EVENT_CC_TXN
+  WHERE MERCHANT_NAME LIKE ‘%百貨%’
+  HAVING AVG(TXN_AMT) > 1000
+  GROUP BY 1,2;
+  ```
+
+  
+
+- UNION/UNION ALL
+
+  - UNION: 去除重複的串接
+  - UNIONALL： 不去除重複的串接
+
+  ```SQL
+  SELECT * FROM TABLE1
+  UNION
+  SELECT * FROM TABLE1
+  UNION
+  SELECT * FROM TABLE3
+  ```
+
+  
+
+- CAST
+
+  - 文字形態轉數字
+
+  ```SQL
+  SELECT CAST('1   ' AS DEC(4,0))
+  ```
+
+  - 數字形態轉文字
+
+  ```SQL
+  SELECT CAST(1 AS VARCHAR(4))
+  ```
+
+  - 文字轉時間
+
+  ```SQL
+  SELECT CAST('153330' AS TIME(0) FORMAT 'HHMISS');
+  ```
+
+  - 文字轉日期
+
+  ```python
+  SELECT CAST ('20191201' as date format 'yyyymmdd') as yyyymmdd
+  ```
+
+- 日期運算
+
+  ```SQL
+  SELECT CAST ('20191201' as date format 'yyyymmdd') as yyyymmdd -- 轉為日期格式
+  		, add_months(yyyymmdd, 1) as yyyymmdd2 -- 加1個月
+  		, extract(year from yyyymmdd2) -- 萃取年的資訊
+  		, extract(month from yyyymmdd2) -- 萃取月的資訊
+  		, extract(day from yyyymmdd2) -- 萃取日的資訊
+  ```
+
+  - 將時間轉為timestamp format
+
+    ```SQL
+    SELECT CAST(KEYIN_DATE||' '||KEYIN_TIME AS TIMESTAMP(0) FORMAT 'YYYY-MM-DDbHH:MI:SS')
+    FROM TABLEA
+    ```
+
+  - 計算兩個timeformat的時間差距
+
+    ```SQL
+    SELECT (MAX_TIME - MIN_TIME) HOUR(4) TO SECOND AS DIFF_SEC AS DIFF_SEC -- 計算兩個時間差了幾個小時、分鐘與秒
+    		, EXTRACT(HOUR FROM DIFF_SEC) * 3600 + EXTRACT(MINUTE FROM DIFF_SEC) * 60 + EXTRACT(SECOND FROM DIFF_SEC) AS USAGE_TIME
+    ```
+
+    
+
+- LPAD/RPAD
+
+  - 補0
+
+    ```SQL
+    SELECT LPAD('12345', 8, '0')
+    ```
+
+    
+
+- CASE WHEN
+
+  ```SQL
+  SELECT CUSTOMER_ID
+  		, AGE
+          , CASE WHEN AGE < 20 THEN '20-'
+           		WHEN AGE < 30 THEN '30-'
+           		WHEN AGE < 40 THEN '40-'
+          		ELSE '40+' END AS AGE2
+  FROM PARTY_DRV_DEMO
+  ```
+
+  
+
+- QUANTILE
+
+  ```SQL
+  SELECT CUSTOMER_ID, PURCHASE_AMT, QUANTILE(100, PURCHASE_AMT) AS nPURCHASE_AMT
+  FROM bacc_temp.NT86000_CHATBOT_CUSTATR
+  ```
+
+  
+
+- JOIN
+
+  ```SQL
+  SELECT * FROM EVENT_CTI_CALL_TYPE_TXN A
+  LEFT JOIN (SELECT * FROM EVENT_CTI_INBOND_TXN202001) B
+  ON A.CALL_NBR=B.CALL_NBR
+  WHERE B.CALL_NBR <> ''
+  ```
+
+  
+
+- REPLACE
+
+  ```SQL
+  SELECT REPLACE (REGION_NAME, 'AST', 'ASTERN')
+  FROM GEOGRAPHY
+  ```
+
+  
+
+- 宣告變數
+
+  ```SQL
+  WITH VARIABLES AS
+  (
+  	SELECT '2019-05-01' AS MINDATE,
+      	   '2019-05-02' AS MAXDATE
+  )
+  SELECT *
+  FROM EVENT_ICS_QRY_FLOW_LOG201905, VARIABLES
+  WHERE KEYIN_DATE >= VARIABLES.MINDATE AND KEYIN_DATE <= VARIABLES.MINDATE
+  ```
+
+  
+
+- 萃取時間
+
+  - 當天日期
+
+    ```SQL
+    SELECT DATE
+    ```
+
+  - 當年
+
+    ```SQL
+    SELECT EXTRACT (YEAR FROM DATE)
+    ```
+
+  - 當月
+
+    ```SQL
+    SELECT EXTRACT (MONTH FROM DATE)
+    ```
+
+  - 當號
+
+    ```SQL
+    SELECT EXTRACT (DAY FROM DATE)
+    SELECT EXTRACT (HOUR FROM '12:34:56')
+    SELECT EXTRACT (MINUTE FROM '12:34:56')
+    SELECT EXTRACT (SECOND FROM '12:34:56')
+    ```
+
+  
+
+- STRTOK
+
+  - 用底線切割字串，並取第一個值
+
+  ```SQL
+  select strtok('HiHi_Tony', '_', 1)
+  ```
+
+  
+
+### Hive
+
+- 可以透過SQL語言作資料查詢
+
+- Hadoop 生態圈
+
+- 透過Hive幫忙SQL語法把操作複雜的MapReduce過程
+
+- 常用指令
+
+  - 查看欄位及欄位型別
+
+  ```HIVE
+  DESCRIBE tables_name
+  DESC table_name
+  ```
+
+  - 查看欄位細項內容
+
+  ```HIVE
+  DESCRIBE FORMATTED table_name
+  ```
+
+  - 查看 CREATE SCHEMA
+
+  ```HIVE
+  SHOW CREATE TABLE table_name
+  ```
+
+  - Creat tale
+
+  ```HIVE
+  CREATE TABLE [IF NOT EXISTS] [db_name.]table_name 
+  (col_name data_type [COMMENT 'col_comment'],...) 
+  [PARTITIONED BY (col_name data_type [COMMENT 'col_comment'], ...)] 
+  [ROW FORMAT DELIMITED]
+    [FIELDS TERMINATED BY char [ESCAPED BY char]
+  [STORED AS file_format]
+  ```
+
+  - Insert Data
+
+    Append Data
+
+  ```HIVE
+  insert into table
+  ```
+
+  - 先清空Data，再insert Data
+
+  ```HIVE
+  insert overwrite table
+  ```
+
+  - 刪除資料表
+  ```HIVE
+  DROP TABLE table_name
+  ```
+
+  - 清空資料表
+
+  ```HIVE
+  TRUNCATE TABLE table_name
+  ```
+
+- Partition vs. Index
+
+  在構建數據模型時，可以根據數據的大小和預期的使用模式確定對索引和/或分區的最佳使用。
+
+  Partition：目的是做數據區隔，縮小讀取/查詢的數據量。
+
+  - 底層其實就是利用目錄存放，來達到縮小資料範圍。
+
+  - 每個分區會創建子目錄
+  - 使用where子句，來指定分區列
+  - PARTITION 欄位必須放在最後面
+  
+  Index：目的是加快對Table中的搜索速度。
+  
+  - 僅限於單表
+    - 建立時會建一個單獨的表
+  - 可以進行分區
+    - 但不能與外部表一起使用
+  
+  #### 
+  
+## 公開資料集
+
+- 政府/企業釋出的資料集，供民眾或資料科學家進行分析、解決問題
+  - [openml](https://www.openml.org/search?type=data)
+  - [UCI MLdataset](https://archive.ics.uci.edu/ml/datasets.php)
+  - [台灣社會變遷基本調查](https://www2.ios.sinica.edu.tw/sc/cht/home.php)
+  - [經濟地理資訊系統](https://egis.moea.gov.tw/EgisWeb/)
+  - [捷運各站進出量統計](https://www.metro.taipei/cp.aspx?n=FF31501BEBDD0136)
+
+
+
+## 網路爬蟲
 
 ### 基礎知識
 
 #### 資料來源與檔案存取
 
 - 資料釋出的三個來源
-  1. 檔案 資料會包成檔案提供下載，格式可能包含常⽤的標準格式，例如「CSV」、「JSON」等等通⽤ 的格式。
-  2. 開放接口（API） 提供程式化的連接的接⼝，讓⼯程師/分析師可以選擇資料中要讀取的特定部分，⽽不需要把整 批資料事先完整下載回來 
-  3. 網⾴爬蟲 資料沒有以檔案或 API 提供，但出現在網⾴上。可以利⽤爬蟲爬蟲程式，將網⾴的資料解析所需 的部分。
-- 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁 有者被動公開的。所以需要取得資料的時，通常會先考慮前兩者⽅法，真的無 法才使⽤網⾴爬蟲。
+  1. 檔案: 資料會包成檔案提供下載，格式可能包含常⽤的標準格式，例如「CSV」、「JSON」等等通⽤的格式
+  2. 開放接口（API）: 提供程式化的連接的接⼝，讓⼯程師/分析師可以選擇資料中要讀取的特定部分，⽽不需要把整批資料事先完整下載回來 
+  3. 網⾴爬蟲: 資料沒有以檔案或 API 提供，但出現在網⾴上。可以利⽤網路爬蟲程式，將網⾴的資料解析並保存所需的部分
+- 資料的來源⽅式很多，檔案 & API 是由資料擁有者主動釋出，爬蟲則是資料擁有者被動公開的。所以需要取得資料時，通常會先考慮前兩者⽅法，真的無法才使⽤網路爬蟲。
 
 #### 資料格式
 
 - csv
 
-  - CSV（Comma Seperated Values）逗號分隔值，是⼀種常⾒的資料格式，使用逗號將不同欄位做為分隔。可以使⽤⼀般的⽂字編輯器以原始格式開啟，也 可以使⽤ excel 或 number 等試算表軟體以表格⽅式開啟。
+  - CSV（Comma Seperated Values）逗號分隔值，是⼀種常⾒的資料格式，使用逗號將不同欄位做為分隔。可以使⽤⼀般的⽂字編輯器以原始格式開啟，也可以使⽤ excel 或 number 等試算表軟體以表格⽅式開啟。
 
   - 優點
 
@@ -516,7 +1084,7 @@ https://pycrawler.cupoy.com/
 
 - json
 
-  - JSON（JSON stands for JavaScript Object Notation）JavaScript 物件格式， 是⼀種延伸⾃ JavaScript 物件來儲存和交換簡單結構的輕量級純⽂字資料交換 格式。⼀般格式如下，每⼀筆資料都會⽤屬性 + 數值的格式紀錄，也可以是巢 狀資料。
+  - JSON（JSON stands for JavaScript Object Notation）JavaScript 物件格式， 是⼀種延伸⾃ JavaScript 物件來儲存和交換簡單結構的輕量級純⽂字資料交換格式。⼀般格式如下，每⼀筆資料都會⽤屬性 + 數值的格式紀錄，也可以是巢狀資料。
   - 優點
     - 可以存放結構較複雜的資料
     - ⼤部份瀏覽器都⽀援 
@@ -526,7 +1094,7 @@ https://pycrawler.cupoy.com/
 
 - XML
 
-  - XML（eXtensible Markup Language）可延伸標記式語⾔，是⼀種標記式語 ⾔，利⽤標籤紀錄資料的屬性與數值，常⽤來處理包含各種資訊的資料等。
+  - XML（eXtensible Markup Language）可延伸標記式語⾔，是⼀種標記式語⾔，利⽤標籤紀錄資料的屬性與數值，常⽤來處理包含各種資訊的資料等。
 
   - 優點
 
@@ -958,26 +1526,6 @@ https://pycrawler.cupoy.com/
   ```
 
   
-
-#### Regular expression
-
-- 正規表達式是使⽤⼀段語法，來描述符合該語法規則的⼀系列⽂本。常⽤簡稱：regex, regexp。 
-- 正規表達式常⽤來處理⽂本資料。例如搜尋、過濾、新增、移除、隔離等功能。
-
-- 正規表達式運作及基本語法
-  - 正規表達式(regex)由兩種字元所組成：
-    - 詮釋字元(metacharacters)。擁有特殊意義的字元。
-    - 字⾯⽂字(literal)，或稱為⼀般⽂字。 
-  - 可以把 regex 比喻成⼀段句⼦。詮釋字元是語法，字⾯⽂字是單字。 單字+語法=>句⼦，這個句⼦就是⼀種表達式。此表達式可⽤來尋找 匹配(matching)此規則的⼀系列⽂字。 
-  - Regex 檢驗的對象是⽂本中的「⾏」，⽽不是單詞。
-
-- 參考資料
-  - [Regexone](https://regexone.com/)
-    - 這是⼀個互動式學習網站，裡⾯有15道題⽬，讓學員們練習 regex。匹配的結果會即時顯⽰，相當適合練習建構regex。 
-  - [Pythex](https://pythex.org/)
-    - 線上建構regex，並測試結果是否能匹配⽂本。 
-  - [常⽤ Regular Expression 範例](https://note.artchiu.org/2009/09/24/%E5%B8%B8%E7%94%A8-regular-expression-%E7%AF%84%E4%BE%8B/)
-    - 常⽤的regex patterns參考。
 
 ### 動態網頁爬蟲
 
@@ -1681,28 +2229,16 @@ r.text
    		time.sleep(1) 
   ```
 
-- 
 
-### 常用的社群
+# Data Preprocessing
 
-台灣常用的社群，可以從中找尋合適的語料庫
+- 剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。
 
-- Facebook
-- PTT
-- Dcard
-
-# Feature Engineering
-
-> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
-
-特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
-
-## 流程
-
-1. 特徵使用方案
-2. 特徵獲取方式
-3. 特徵處理
-4. 特征監控
+- 主要會分成以下幾個步驟
+  1. Explore Data Analysis: 檢查欄位型態與資料內容，確認資料中是否存在離群值與遺漏值DA
+  2. 資料清理: 遺漏值填補、離群資料處理。
+  3. 特徵轉換: 離散化、常態化...等等
+  4. 資料縮減: 挑選建模特徵、維度縮減...等等
 
 ## Explore Data Analysis
 
@@ -1710,26 +2246,22 @@ r.text
 
   - 了解資料：獲取資料所包含的資訊、結構和特點
   - 發現 outliers 或異常數值：檢查資料是否有誤
-  - 分析各變數間的關聯性：找出重要的變數
+  - 分析各變數間的關聯性：找出(對於預測目標變數有幫助的)重要變數
 
 - 從 EDA 的過程中觀察現象，檢查資料是否符合分析前的假設
 
   - 可以在模型建立之前，先發現潛在的錯誤
   - 也可以根據 EDA 的結果來調整分析的⽅向
 
-- 思考問題
-
-  - 資料應該怎麼清洗和處理才是合理的？
-
-  2.	根據資料的類型可以挖掘怎樣的特徵？
-  3.	資料中的哪些特徵會對標籤的預測有幫助？
 
 ### 資料類型
 
-- 離散變數
-  - 只能⽤整數單位計算的變數，如房⼦的房間數量、性別、國家
-- 連續變數
-  - 在⼀定區間內可以任意取值的變數，如測量的⾝⾼、⾶機起⾶到降落所花費的時間、⾞速
+- 實際上資料可以分為類別、順序、等距與等比這四種測量尺度，但實務上通常會將順序、等距與等比的資料都視為數值資料。
+- 測量尺度
+  - 類別變數(nominal): 如國家、縣市...等等。
+  - 順序尺度(ordinal)：如滿意度分數
+  - 等距尺度(interval):沒有絕對的0，如溫度
+  - 等比尺度(ratio)：0 表示沒有，如收入、身高、體重。
 
 ### 資料分佈
 
@@ -1779,6 +2311,10 @@ r.text
 ### 視覺化
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
+
+- 繪圖技巧
+
+- 圖表類型與內容
 
 - Pandas-Profiling
 
@@ -1876,8 +2412,6 @@ plt.style.use('seaborn') # 或採⽤ seaborn 套件繪圖
 
 https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analyzing-the-food-culture-of-bangalore/
 
-[使用pandas-profiling生成数据的详细报告](https://zhuanlan.zhihu.com/p/47548106)
-
 - 參考資料
   - [matplotlib](https://matplotlib.org/gallery/index.html)
   - [seaborn](https://seaborn.pydata.org/examples/index.html)
@@ -1902,7 +2436,9 @@ https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analy
 
 ## Data Preprocessing
 
-剛拿到手的資料會出現雜訊，缺失，髒亂等現象，我們需要對資料進行清洗與加工，從而方便進行後續的工作。針對不同類型的變數，會有不同的清洗和處理方法：
+
+
+針對不同類型的變數，會有不同的清洗和處理方法：
 
 1. 對於數值型變數(Numerical Variable)，需要處理離群點，缺失值，異常值等情況。
 2. 對於類別型變數(Categorical Variable)，可以轉化為one-hot編碼。
@@ -2332,7 +2868,11 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 - 聲音特徵
 
+### Feature Engineering
 
+> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
+
+特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
 
 ## Feature Extraction
 
