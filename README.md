@@ -263,9 +263,16 @@ print(f'{today: %B %d, %Y}')
 
 ### Matplotlib
 
+- [matplotlib](https://matplotlib.org/gallery/index.html)
+- 
+- [Python Gallery](https://python-graph-gallery.com/)
+- [R-Gallery](https://www.r-graph-gallery.com/)
+- [R-Gallery (Interactive plot)](https://bl.ocks.org/mbostock)
+- [样式美化matplotlib.pyplot.style.use定制画布风格](https://zhuanlan.zhihu.com/p/37891729)
+
 ### Seaborn
 
-
+- [seaborn](https://seaborn.pydata.org/examples/index.html)
 
 ### Regular Expressions
 
@@ -2307,104 +2314,306 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
    - Another option to avoid the problem of points overlap is the increase the size of the dot depending on how many points lie in that spot. So, larger the size of the point more is the concentration of points around that.
 
+   ![](./images/5_Counts_plot_Matplotlib-min.png)
+
 6. Marginal Histogram
 
    - Marginal histograms have a histogram along the X and Y axis variables. This is used to visualize the relationship between the X and Y along with the univariate distribution of the X and the Y individually. This plot if often used in exploratory data analysis (EDA).
+
+   ![](./images/6_Marginal_histogram_Matplotlib-min.png)
 
 7. Marginal Boxplot
 
    - Marginal boxplot serves a similar purpose as marginal histogram. However, the boxplot helps to pinpoint the median, 25th and 75th percentiles of the X and the Y.
 
+   ![](./images/7_Marginal_boxplot_Matplotlib-min.png)
+
 8. Correlogram
 
    - Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe (or 2D array).
+
+   ![](./images/8_Correlogram_Matplotlib-min.png)
 
 9. Pairwise Plot
 
    - Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. It is a must have tool for bivariate analysis.
 
+   ![](./images/9_Pairplot_lines_Seaborn-min.png)
+
 #### Deviation
 
-1. [Diverging Bars](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#10.-Diverging-Bars)
-2. [Diverging Texts](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#11.-Diverging-Texts)
-3. [Diverging Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#12.-Diverging-Dot-Plot)
-4. [Diverging Lollipop Chart with Markers](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#13.-Diverging-Lollipop-Chart-with-Markers)
-5. [Area Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#14.-Area-Chart)
+1. Diverging Bars
+
+   - If you want to see how the items are varying based on a single metric and visualize the order and amount of this variance, the diverging bars is a great tool. It helps to quickly differentiate the performance of groups in your data and is quite intuitive and instantly conveys the point.
+
+   ![](./images/10_Diverging_bars_Matplotlib-min.png)
+
+2. Diverging Texts
+
+   - Diverging texts is similar to diverging bars and it preferred if you want to show the value of each items within the chart in a nice and presentable way.
+
+   ![](./images/11_Diverging_Textbars_Matplotlib-min.png)
+
+3. Diverging Dot Plot
+
+   - Divering dot plot is also similar to the diverging bars. However compared to diverging bars, the absence of bars reduces the amount of contrast and disparity between the groups.
+
+   ![](./images/12_Diverging_DotPlot_Matplotlib-min.png)
+
+4. Diverging Lollipop Chart with Markers
+
+   - Lollipop with markers provides a flexible way of visualizing the divergence by laying emphasis on any significant datapoints you want to bring attention to and give reasoning within the chart appropriately.
+
+   ![](./images/13_Diverging_Lollipop_Matplotlib-min.png)
+
+5. Area Chart
+
+   - By coloring the area between the axis and the lines, the area chart throws more emphasis not just on the peaks and troughs but also the duration of the highs and lows. The longer the duration of the highs, the larger is the area under the line.
+
+   ![](./images/14_AreaChart_Matplotlib-min.png)
 
 #### Ranking
 
-1. [Ordered Bar Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#15.-Ordered-Bar-Chart)
-2. [Lollipop Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#16.-Lollipop-Chart)
-3. [Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#17.-Dot-Plot)
-4. [Slope Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#18.-Slope-Chart)
-5. [Dumbbell Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#19.-Dumbbell-Plot)
+1. Ordered Bar Chart
+
+   - Ordered bar chart conveys the rank order of the items effectively. But adding the value of the metric above the chart, the user gets the precise information from the chart itself.
+
+   ![](./images/15_Ordered_Barchart_Matplotlib-min.png)
+
+2. Lollipop Chart
+
+   - Lollipop chart serves a similar purpose as a ordered bar chart in a visually pleasing way.
+
+   ![](./images/16_Lollipop_Chart_Matplotlib-min.png)
+
+3. Dot Plot
+
+   - The dot plot conveys the rank order of the items. And since it is aligned along the horizontal axis, you can visualize how far the points are from each other more easily.
+
+   ![](./images/17_DotPlot_Matplotlib-min.png)
+
+4. Slope Chart
+
+   - Slope chart is most suitable for comparing the ‘Before’ and ‘After’ positions of a given person/item.
+
+   ![](./images/18_Slopechart_Matplotlib-min.png)
+
+5. Dumbbell Plot
+
+   - Dumbbell plot conveys the ‘before’ and ‘after’ positions of various items along with the rank ordering of the items. Its very useful if you want to visualize the effect of a particular project / initiative on different objects.
+
+   ![](./images/19_Dumbbell_Chart_Matplotlib-min.png)
 
 #### Distribution
 
-1. [Histogram for Continuous Variable](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#20.-Histogram-for-Continuous-Variable)
-2. [Histogram for Categorical Variable](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#21.-Histogram-for-Categorical-Variable)
-3. [Density Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#22.-Density-Plot)
-4. [Density Curves with Histogram](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#23.-Density-Curves-with-Histogram)
-5. [Joy Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#24.-Joy-Plot)
-6. [Distributed Dot Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#25.-Distributed-Dot-Plot)
-7. [Box Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#26.-Box-Plot)
-8. [Dot + Box Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#27.-Dot-+-Box-Plot)
-9. [Violin Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#28.-Violin-Plot)
-10. [Population Pyramid](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#29.-Population-Pyramid)
-11. [Categorical Plots](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#30.-Categorical-Plots)
+1. Histogram for Continuous Variable
+
+   - Histogram shows the frequency distribution of a given variable. The below representation groups the frequency bars based on a categorical variable giving a greater insight about the continuous variable and the categorical variable in tandem.
+
+   ![](./images/20_Histogram_Continuous_Matplotlib-min.png)
+
+2. Histogram for Categorical Variable
+
+   - The histogram of a categorical variable shows the frequency distribution of a that variable. By coloring the bars, you can visualize the distribution in connection with another categorical variable representing the colors.
+
+   ![](./images/21_Histogram_Barchart_Matplotlib-min.png)
+
+3. Density Plot
+
+   - Density plots are a commonly used tool visualise the distribution of a continuous variable. By grouping them by the ‘response’ variable, you can inspect the relationship between the X and the Y. The below case if for representational purpose to describe how the distribution of city mileage varies with respect the number of cylinders.
+
+   ![](./images/22_DensityPlot_Matplotlib-min.png)
+
+4. Density Curves with Histogram
+
+   - Density curve with histogram brings together the collective information conveyed by the two plots so you can have them both in a single figure instead of two.
+
+   ![](./images/23_DensityPlot_With_Histogram_Matplotlib-min.png)
+
+5. Joy Plot
+
+   - Joy Plot allows the density curves of different groups to overlap, it is a great way to visualize the distribution of a larger number of groups in relation to each other. It looks pleasing to the eye and conveys just the right information clearly. It can be easily built using the `joypy` package which is based on `matplotlib`.
+
+   ![](./images/24_JoyPlot_joypy-min.png)
+
+6. Distributed Dot Plot
+
+   - Distributed dot plot shows the univariate distribution of points segmented by groups. The darker the points, more is the concentration of data points in that region. By coloring the median differently, the real positioning of the groups becomes apparent instantly.
+
+   ![](./images/25_Distributed_Dotplot_Matplotlib-min.png)
+
+7. Box Plot
+
+   - Box plots are a great way to visualize the distribution, keeping the median, 25th 75th quartiles and the outliers in mind. However, you need to be careful about interpreting the size the boxes which can potentially distort the number of points contained within that group. So, manually providing the number of observations in each box can help overcome this drawback.
+   - For example, the first two boxes on the left have boxes of the same size even though they have 5 and 47 obs respectively. So writing the number of observations in that group becomes necessary.
+
+   ![](./images/26_Boxplots_Matplotlib-min.png)
+
+8. Dot + Box Plot
+
+   - Dot + Box plot Conveys similar information as a boxplot split in groups. The dots, in addition, gives a sense of how many data points lie within each group.
+
+   ![](./images/27_Dot_Box_Plot_Seaborn-min.png)
+
+9. Violin Plot
+
+   - Violin plot is a visually pleasing alternative to box plots. The shape or area of the violin depends on the number of observations it holds. However, the violin plots can be harder to read and it not commonly used in professional settings.
+
+   ![](./images/28_Violin_Plot_Seaborn-min.png)
+
+10. Population Pyramid
+
+    - Population pyramid can be used to show either the distribution of the groups ordered by the volumne. Or it can also be used to show the stage-by-stage filtering of the population as it is used below to show how many people pass through each stage of a marketing funnel.
+
+    ![](./images/29_PyramidPlot_Matplotlib-min.png)
+
+11. Categorical Plots
+
+    - Categorical plots provided by the `seaborn` library can be used to visualize the counts distribution of 2 ore more categorical variables in relation to each other.
+
+    ![](./images/30_CatPlots_1_Seaborn-min.png)
 
 #### Composition
 
-1. [Waffle Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#31.-Waffle-Chart)
-2. [Pie Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#32.-Pie-Chart)
-3. [Treemap](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#33.-Treemap)
-4. [Bar Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#34.-Bar-Chart)
+1. Waffle Chart
+
+   - The `waffle` chart can be created using the `pywaffle` package and is used to show the compositions of groups in a larger population.
+
+   ![](./images/31_WaffleChart_1_Pywaffle-min.png)
+
+   ![](./images/31_WaffleChart_2_PyWaffle-min.png)
+
+2. Pie Chart
+
+   - Pie chart is a classic way to show the composition of groups. However, its not generally advisable to use nowadays because the area of the pie portions can sometimes become misleading. So, if you are to use pie chart, its highly recommended to explicitly write down the percentage or numbers for each portion of the pie.
+
+   ![](./images/32_PieChart_1_Matplotlib-min.png)
+
+   ![](./images/32_PieChart_2_Matplotlib-min.png)
+
+3. Treemap
+
+   - Tree map is similar to a pie chart and it does a better work without misleading the contributions by each group.
+
+   ![](./images/33_Treemap_squarify-min.png)
+
+4. Bar Chart
+
+   - Bar chart is a classic way of visualizing items based on counts or any given metric. In below chart, I have used a different color for each item, but you might typically want to pick one color for all items unless you to color them by groups. The color names get stored inside `all_colors` in the code below. You can change the color of the bars by setting the `color` parameter in `plt.plot()`.
+
+   ![](./images/34_BarChart_Matplotlib-min.png)
 
 #### Change
 
-1. [Time Series Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#35.-Time-Series-Plot)
-2. [Time Series with Peaks and Troughs Annotated](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#36.-Time-Series-with-Peaks-and-Troughs-Annotated)
-3. [Autocorrelation Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#37.-Autocorrelation-(ACF)-and-Partial-Autocorrelation-(PACF)
-4. [Cross Correlation Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#38.-Cross-Correlation-plot)
-5. [Time Series Decomposition Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#39.-Time-Series-Decomposition-Plot)
-6. [Multiple Time Series](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#40.-Multiple-Time-Series)
-7. [Plotting with different scales using secondary Y axis](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#41.-Plotting-with-different-scales-using-secondary-Y-axis)
-8. [Time Series with Error Bands](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#42.-Time-Series-with-Error-Bands)
-9. [Stacked Area Chart](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#43.-Stacked-Area-Chart)
-10. [Area Chart Unstacked](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#44.-Area-Chart-UnStacked)
-11. [Calendar Heat Map](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#45.-Calendar-Heat-Map)
-12. [Seasonal Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#46.-Seasonal-Plot)
+1. Time Series Plot
 
-Groups
+   - Time series plot is used to visualise how a given metric changes over time. Here you can see how the Air Passenger traffic changed between 1949 and 1969.
 
-1. [Dendrogram](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#47.-Dendrogram)
-2. [Cluster Plot](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#48.-Cluster-Plot)
-3. [Andrews Curve](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#49.-Andrews-Curve)
-4. [Parallel Coordinates](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/#50.-Parallel-Coordinates)
+   ![](./images/35_TimeSeries_Matplotlib-min.png)
 
-[Matplotlib可视化最有价值的 50 个图表](http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/)
+2. Time Series with Peaks and Troughs Annotated
 
-https://www.marktechpost.com/2019/07/13/exploratory-data-analysis-tutorial-analyzing-the-food-culture-of-bangalore/
+   - The below time series plots all the the peaks and troughs and annotates the occurence of selected special events.
 
-- 參考資料
-  - [matplotlib](https://matplotlib.org/gallery/index.html)
-  - [seaborn](https://seaborn.pydata.org/examples/index.html)
-  - [Python Gallery](https://python-graph-gallery.com/)
-  - [R-Gallery](https://www.r-graph-gallery.com/)
-  - [R-Gallery (Interactive plot)](https://bl.ocks.org/mbostock)
-  - [D3.js](https://d3js.org/)
-  - [核密度估计基础-Part I](https://blog.csdn.net/david830_wu/article/details/66974189)
-  - [核密度估计 Kernel Density Estimation(KDE)](https://blog.csdn.net/unixtch/article/details/78556499)
-- [Subplots](https://matplotlib.org/examples/pylab_examples/subplots_demo.html)
-  - [Multiple Subplots](https://jakevdp.github.io/PythonDataScienceHandbook/04.08-multiple-subplots.html)
-  - [seaborn.jointplot](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
-  - [heatmaps](https://matplotlib.org/gallery/images_contours_and_fields/image_annotated_heatmap.html)
-- [Python可视化：Seaborn库热力图使用进阶](https://www.jianshu.com/p/363bbf6ec335)
-  - [Visualizing Data with Pairs Plots in Python](https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166)
-  - [Pariplot](https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166)
-  - [Gridplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
+   ![](./images/36_TimeSeries_Peaks_Troughs_Matplotlib-min.png)
+
+3. Autocorrelation (ACF) and Partial Autocorrelation (PACF) Plot
+
+   - The ACF plot shows the correlation of the time series with its own lags. Each vertical line (on the autocorrelation plot) represents the correlation between the series and its lag starting from lag 0. The blue shaded region in the plot is the significance level. Those lags that lie above the blue line are the significant lags.
+   - So how to interpret this?
+   - For AirPassengers, we see upto 14 lags have crossed the blue line and so are significant. This means, the Air Passengers traffic seen upto 14 years back has an influence on the traffic seen today.
+   - PACF on the other had shows the autocorrelation of any given lag (of time series) against the current series, but with the contributions of the lags-inbetween removed.
+
+   ![](./images/37_ACF_PACF_Plot_Matplotlib_Statmodels-min.png)
+
+4. Cross Correlation Plot
+
+   - Cross correlation plot shows the lags of two time series with each other.
+
+   ![](./images/38_CCFPlot_Statmodels_Matplotlib-min.png)
+
+5. Time Series Decomposition Plot
+
+   - Time series decomposition plot shows the break down of the time series into trend, seasonal and residual components.
+
+   ![](./images/39_TimeSeries_Decomposition_Statmodels_Matplotlib-min.png)
+
+6. Multiple Time Series
+
+   - You can plot multiple time series that measures the same value on the same chart as shown below.
+
+   ![](./images/40_Multiple_Timeseries_in_Same_Plot_Matplotlib-min.png)
+
+7. Plotting with different scales using secondary Y axis
+
+   - If you want to show two time series that measures two different quantities at the same point in time, you can plot the second series againt the secondary Y axis on the right.
+
+   ![](./images/41_Timeseries_of_Different_Scales_On_Secondary_Y_Axis_Matplotlib-min.png)
+
+8. Time Series with Error Bands
+
+   - Time series with error bands can be constructed if you have a time series dataset with multiple observations for each time point (date / timestamp). Below you can see a couple of examples based on the orders coming in at various times of the day. And another example on the number of orders arriving over a duration of 45 days.
+   - In this approach, the mean of the number of orders is denoted by the white line. And a 95% confidence bands are computed and drawn around the mean.
+
+   ![](./images/42_TimeSeries_with_ErrorBands_1_Matplotlib-min.png)
+
+   ![](./images/42_TimeSeries_with_ErrorBands_2_Matplotlib-min.png)
+
+9. Stacked Area Chart
+
+   - Stacked area chart gives an visual representation of the extent of contribution from multiple time series so that it is easy to compare against each other.
+
+   ![](./images/43_Stacked_Area_Chart_Matplotlib-min.png)
+
+10. Area Chart Unstacked
+
+    - An unstacked area chart is used to visualize the progress (ups and downs) of two or more series with respect to each other. In the chart below, you can clearly see how the personal savings rate comes down as the median duration of unemployment increases. The unstacked area chart brings out this phenomenon nicely.
+
+    ![](./images/44_Unstacked_Area_Chart_Matplotlib-min.png)
+
+11. Calendar Heat Map
+
+    - Calendar map is an alternate and a less preferred option to visualise time based data compared to a time series. Though can be visually appealing, the numeric values are not quite evident. It is however effective in picturising the extreme values and holiday effects nicely.
+
+    ![](./images/45_Calendar_Heatmap_Matplotlib_Calmap-min.png)
+
+12. Seasonal Plot
+
+    - The seasonal plot can be used to compare how the time series performed at same day in the previous season (year / month / week etc).
+
+    ![](./images/46_Seasonal_Plot_Matplotlib-min.png)
+
+#### Groups
+
+1. Dendrogram
+
+   - A Dendrogram groups similar points together based on a given distance metric and organizes them in tree like links based on the point’s similarity.
+
+   ![](./images/47_Dendrogram_Matplotlib-min.png)
+
+2. Cluster Plot
+
+   - Cluster Plot canbe used to demarcate points that belong to the same cluster. Below is a representational example to group the US states into 5 groups based on the USArrests dataset. This cluster plot uses the ‘murder’ and ‘assault’ columns as X and Y axis. Alternately you can use the first to principal components as rthe X and Y axis.
+
+   ![](./images/48_Cluster_Plot_Matplotlib-min.png)
+
+3. Andrews Curve
+
+   - Andrews Curve helps visualize if there are inherent groupings of the numerical features based on a given grouping. If the features (columns in the dataset) doesn’t help discriminate the group (`cyl)`, then the lines will not be well segregated as you see below.
+
+   ![](./images/49_Andrews_Curves_On_Mtcars-min.png)
+
+4. Parallel Coordinates
+
+   - Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
+
+   ![](./images/50_Parallel_Coordinates_Matplotlib_Pandas-min.png)
+
+- Ref
+  - [Top 50 matplotlib Visualizations – The Master Plots (with full python code)](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/)
+  - [Matplotlib可视化最有价值的 50 个图表](http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/)
+  - [d3js](https://d3js.org/)
   - [解決Python 3 Matplotlib與Seaborn視覺化套件中文顯示問題](https://medium.com/marketingdatascience/解決python-3-matplotlib與seaborn視覺化套件中文顯示問題-f7b3773a889b)
-  - [样式美化matplotlib.pyplot.style.use定制画布风格](https://zhuanlan.zhihu.com/p/37891729)
 
 
 
