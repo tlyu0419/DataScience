@@ -2126,6 +2126,7 @@ resp = requests.get('http://ip.filefab.com/index.php',
           print(html)
   loop = asyncio.get_event_loop()
   loop.run_until_complete(main()) 
+  ```
 ```
   
 - 參考資料
@@ -2161,7 +2162,7 @@ resp = requests.get('http://ip.filefab.com/index.php',
   	print time.strftime('%Y-%m-%d %X',time.localtime())
   	yourTask() # 此處為要執⾏的任務
   	time.sleep(n) 
-  ```
+```
 
 - 利⽤ threading 的 Timer
 
@@ -2617,7 +2618,7 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
 
 
-## Data Preprocessing
+## 資料清理
 
 
 
@@ -2782,6 +2783,14 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 - **分布去偏(boxcox)** 
 
   - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
+
+- 
+
+## Feature Engineering
+
+> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
+
+特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
 
 ### Feature Scaling
 
@@ -3051,11 +3060,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 - 聲音特徵
 
-### Feature Engineering
 
-> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
-
-特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
 
 ## Feature Extraction
 
