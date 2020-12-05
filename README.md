@@ -2082,11 +2082,11 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
 - 多線程爬蟲
   
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-  
-- 簡單來說就是時間可貴!
-  
-- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
+  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+    
+  - 簡單來說就是時間可貴!
+    
+  - 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
   
   ```python
   import _thread
@@ -2100,7 +2100,7 @@ resp = requests.get('http://ip.filefab.com/index.php',
   ```
   
   - 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
-
+  
   - Ref
     - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
   
@@ -2108,11 +2108,11 @@ resp = requests.get('http://ip.filefab.com/index.php',
   
 - 非同步爬蟲
   
-- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-  
-- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
-  
-- Python 中實現非同步
+  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+    
+  - 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+    
+  - Python 中實現非同步
   
   ```python
   import aiohttp
@@ -2127,19 +2127,16 @@ resp = requests.get('http://ip.filefab.com/index.php',
   loop = asyncio.get_event_loop()
   loop.run_until_complete(main()) 
   ```
-```
-  
-- 參考資料
-
-  - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
+- Ref
+    - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
 
 #### 搜尋引擎
 
-當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
+- 當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
 
-- Google
-- Yahoo
-- Bing
+  - Google
+  - Yahoo
+  - Bing
 
 #### 自動化更新機制(排程)
 
@@ -2148,16 +2145,15 @@ resp = requests.get('http://ip.filefab.com/index.php',
 - ⾃動化更新的做法
 
   - 在迴圈中加上 Sleep
+  
   - 利⽤ threading 的 Timer
   - 第三⽅套件 schedule
 
-- 在迴圈中加上 Sleep
-
-  ```python
-  def timer(n):
-  '''''
-  每n秒執⾏⼀次
-  '''
+```python
+def timer(n):
+    '''
+  	每n秒執⾏⼀次
+  	'''
   	while True:
   	print time.strftime('%Y-%m-%d %X',time.localtime())
   	yourTask() # 此處為要執⾏的任務
@@ -2620,110 +2616,30 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
 ## 資料清理
 
-
-
 針對不同類型的變數，會有不同的清洗和處理方法：
 
 1. 對於數值型變數(Numerical Variable)，需要處理離群點，缺失值，異常值等情況。
 2. 對於類別型變數(Categorical Variable)，可以轉化為one-hot編碼。
 3. 文本資料是較難處理的資料類型，文本中會有垃圾字元，錯別字(詞)，數學公式，不統一單位和日期格式等。我們還需要處理標點符號，分詞，去停用詞，對於英文文本可能還要詞性還原(lemmatize)，抽取詞幹(stem)等等。
 
- 
-
-- 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
-
-- 大多數的參數統計數值，如均值、標準差、相關係數等，以及基於這些參數的統計分析，均對離群值高度敏感。
-
-- 因此，離群值的存在會對資料分析造成極大影響在對各欄位進行歸一化之前，需要先將各欄位中的離群值進行處理，否則在歸一化後「非離群值」之間的差距反而無法呈現，影響模型的精準度與穩定性。
-
-- 遺漏值處理
-
-  - 刪除樣本
-  - 刪除特徵
-  - 填補指定值
-    - 類別特徵：填補「其他」
-    - 數值特徵：補0
-  - 填補統計值
-    - 類別特徵：填補眾數
-    - 數值特征：填補平均值、中位數
-  - 填補預測值
-    - 透過其他欄位建置預測模型，對該欄位填補預測結果
-  - 不處理
-
-- 離群值
-
-  - 離群值是與正常數值偏離較遠的數值群，如果不處理則特徵縮放(標準化 / 最⼩最⼤化)就會出現很⼤的問題
-  - 處理離群值之後，好處是剩餘資料中模型較為單純且準確，壞處是有可能刪除掉重要資訊，因此刪除前最好能先了解該數值會離群的可能原因
-  - 當離群資料比例太⾼，或者平均值沒有代表性時，可以考慮去除偏態，包含
-    - 對數去偏  
-    - ⽅根去偏
-    - 分布去偏
-  - 使⽤ box-cox 分布去偏時，除了注意 λ 參數要介於 0 到 0.5 之間，並且要注意轉換前的數值不可⼩於等於 0
-  - 對於左偏、右偏的資料型態都會減少平均數的代表性，因為會拉低/拉高整體的平均值(如台灣的平均薪資會被少數富翁拉高)。
-  - 對存在離群值的變數作對數轉換可以克服其離群值問題，且對數轉換並不影響各觀察值之間在此變數上的相對大小。使資料更接近常態分佈，讓平均值更有代表性。
-  - 異常值 (Outliers) 出現的可能原因
-    - 所以未知值，隨意填補 (約定俗成的代入)
-      如年齡 = -1 或 999, 電話是 0900-123-456
-    - 可能的錯誤紀錄/⼿誤/系統性錯誤
-      如某本書在某筆訂單的銷售量 = 1000 本
-  - 檢查 Outliers 的流程與⽅法
-    - 盡可能確認每⼀個欄位的意義 (但有些競賽資料不會提供欄位意義)
-    - 透過檢查數值範圍 (五值、平均數及標準差) 或繪製散點圖 (scatter)、分布圖 (histogram) 或其他圖檢查是否有異常。
-  - 對 Outliers 的處理⽅法
-    - 新增欄位⽤以紀錄異常與否
-    - 填補 (取代)
-    - 視情況以中位數, Min, Max 或平均數填補(有時會⽤ NA)
-
-- 常態化
-
-  - 改變⼀單位的 x2 對 y 的影響完全不同
-
-    ![](https://lh3.googleusercontent.com/Ewdqr5FOohRyWnOG9dP8ThYx10sg638dqgqYrP90jCv9cjG6q7Rl7FYKUnxz9RTpwuqst6ftuhPa2RneF8lmzeOe5i-LD5QKkunTCr4FHtWqcxpoGQz0Swe50uqPfq8cjaiqOmMnQkhkmJ2VYdAm1PT6VLQTASf-csXfEDIzn3HeEXpLhMG05cRsX7ki7aIjYWwDOex0WF5QiSdhSwU4IES_BsFIKFVaXqTTLrvYvIf-ZrfLwNeskEWwxjpte7Pu4ntQk01MKoq-SRMxK1C09EdWq4rLrRghQ4mrW_aRqd9S_8dbJ5cqbk6wnauZ_47tAdwdeu0Ur2cW3z0vqI0rNypz8T-IjhAsEILJ83fuWIHQzAUYJWy9tJvjY3uhtK91iJUS6pOix3rMwoqmxI2_NFZ3qXTYx6gnTTismV2zm0_kBvFp3PF-yEIAk4tnFq4SA_ByB1AmhpHUERrCxl99qD3ir-u0-nul7qWHUJLrXa3cWmi-nEvCj2SJpNyp3QGUOB95us09UR0mU6rg_uKomvCEFuRJlWhdm3CLeZnoHHT-U6xGbbmPARPc71h3jQzvFx_LISYVIWRbwFyhNE-QR4etLLdZiY7F34fjqINPCD427aQ5oc83GO97P3Y2Jp5-JrULdCl62GyUr2oFX8RMg0GqnVBgkUf4O5jsos0P9z6f6_XzYuK5wkDizIk5c36IU4sfrQ0TbLdQ7xLPis563n68=w914-h163-no)
-
-  - 是否⼀定要做標準化 (有沒有做有差嗎)?
-
-    - Regression model：有差
-    - Tree-based model：沒有太⼤關係
-
-
-### 遺漏值處理
-
-- **刪除樣本**
-  - 設定閾值並計算每個「樣本」有幾個遺漏值，當超過閾值時將該「樣本」刪除
-
-- **刪除特徵**
-  - 設定閾值並計算每個「欄位」有幾個遺漏值，當超過閾值時將該「欄位」刪除
-
-- **填補指定值**
-  - 類別型特徵可以填補「其他」
-  - 數值型特徵可以填補 0
-    - 常見於 event類型的資料集，因為沒發生事件，所以最後在groupby 、 summarise 與join表格時會出現 na
-
-- **填補統計值**
-  - 類別型特徵可以填補「眾數」
-  - 數值型特徵可以填補「平均值」或「中位數」
-    - 填補平均值(Mean) : 數值型欄位，偏態不明顯
-    - 填補中位數(Median) : 數值型欄位，偏態很明顯
-
-- **填補預測值**
-  - 藉由其他資料欄位來學習填補的內容，如knn， randomforest。
-  - 本方式須提防overfitting : 可能退化成為其他特徵的組合
-
-- **不處理**
-  - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
-
-```python
-from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
-imputer.fit(df[:, 1:3])
-df[:, 1:3] = imputer.transform(df[:, 1:3])
-```
-
 
 
 ### 離群值處理
 
-![image-20200910103305304](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910103305304.png)
+- 大多數的參數統計數值，如均值、標準差、相關係數等，以及基於這些參數的統計分析，均對離群值高度敏感。
+- 因此，離群值的存在會對資料分析造成極大影響在對各欄位進行歸一化之前，需要先將各欄位中的離群值進行處理，否則在歸一化後「非離群值」之間的差距反而無法呈現，影響模型的精準度與穩定性。
+- 離群值是與正常數值偏離較遠的數值群，如果不處理則特徵縮放(標準化 / 最⼩最⼤化)就會出現很⼤的問題
+- 處理離群值之後，好處是剩餘資料中模型較為單純且準確，壞處是有可能刪除掉重要資訊，因此刪除前最好能先了解該數值會離群的可能原因
+- 異常值 (Outliers) 出現的可能原因
+  - 所以未知值，隨意填補 (約定俗成的代入)，如年齡 = -1 或 999, 電話是 0900-123-456
+  - 可能的錯誤紀錄/⼿誤/系統性錯誤，如某本書在某筆訂單的銷售量 = 1000 本
+- 檢查 Outliers 的流程與⽅法
+  - 盡可能確認每⼀個欄位的意義 (但有些競賽資料不會提供欄位意義)
+  - 透過檢查數值範圍 (五值、平均數及標準差) 或繪製散點圖 (scatter)、分布圖 (histogram) 或其他圖檢查是否有異常。
+- 對 Outliers 的處理⽅法
+  - 新增欄位⽤以紀錄異常與否
+  - 填補 (取代)
+  - 視情況以中位數, Min, Max 或平均數填補(有時會⽤ NA)
 
 - **檢測方式**
 
@@ -2747,58 +2663,76 @@ df[:, 1:3] = imputer.transform(df[:, 1:3])
 
       將mean ± 9 * MAD外的值視為離群值。
 
+- **刪除樣本**: 當離群值的數量相當少時，可以使用此方法
+
+- **刪除欄位**: 若是題目設計的問題導致某欄位中存在許多離群值，可以考慮刪除該欄位。
+
+- **整併至「其他」類別**: 適用於類別型變數
+
+- **縮尾**: 將超出變數特定百分位元範圍的數值替換為其特定百分位數值的方法。    
+
+- **截尾**: 將超出變數特定百分位元範圍的數值予以**刪除**的方法。
+
+- **插值**: 應用原有資料資訊對離群值賦予一個相對合理的新值的方法
+
+- 去除偏態
+
+  - 當離群資料比例太⾼，或者平均值沒有代表性時，可以考慮去除偏態，
+  - 對於左偏、右偏的資料型態都會減少平均數的代表性，因為會拉低/拉高整體的平均值(如台灣的平均薪資會被少數富翁拉高)。
+  - 對存在離群值的變數作對數轉換可以克服其離群值問題，且對數轉換並不影響各觀察值之間在此變數上的相對大小。使資料更接近常態分佈，讓平均值更有代表性。
+  - **對數去偏(log1p)** 
+    - 對數去偏就是使⽤⾃然對數去除偏態，常⾒於計數 / 價格這類非負且可能為 0 的欄位
+    - 因為需要將 0 對應到 0，所以先加1 (plus one) 再取對數 (log)，還原時使⽤ expm1，也就是先取指數 (exp) 後再減⼀ (minus one)
+  - **⽅根去偏(sqrt)**
+  - 就是將數值減去最⼩值後開根號，最⼤值有限時適⽤ (例 : 成績轉換) 
+  - **分布去偏(boxcox)** 
+    - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
+    - 使⽤ box-cox 分布去偏時，除了注意 λ 參數要介於 0 到 0.5 之間，並且要注意轉換前的數值不可⼩於等於 0
+
+
+
+### 遺漏值處理
+
 - **刪除樣本**
+  - 設定閾值並計算每個「樣本」有幾個遺漏值，當超過閾值時將該「樣本」刪除
 
-- 當離群值的數量相當少時，可以使用此方法
+- **刪除特徵**
+  - 設定閾值並計算每個「欄位」有幾個遺漏值，當超過閾值時將該「欄位」刪除
 
-- **刪除欄位**
+- **填補指定值**
+  - 類別型特徵可以填補「其他」
+  - 數值型特徵可以填補 0
+    - 常見於 event類型的資料集，因為沒發生事件，所以最後在groupby 、 summarise 與join表格時會出現 na
 
-- 若是題目設計的問題導致某欄位中存在許多離群值，可以考慮刪除該欄位。
+- **填補統計值**
+  - 類別型特徵可以填補「眾數」
+  - 數值型特徵可以填補「平均值」或「中位數」
+    - 填補平均值(Mean) : 數值型欄位，偏態不明顯
+    - 填補中位數(Median) : 數值型欄位，偏態很明顯
 
-- **整併至「其他」類別**
+- **填補預測值**
+  - 藉由其他資料欄位來學習填補的內容，如knn， randomforest。
+  - 本方式須留意overfitting : 可能退化成為其他特徵的組合
 
-- 適用於類別型變數
+- **不處理**
+  - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
 
-- **縮尾**
+```python
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+imputer.fit(df[:, 1:3])
+df[:, 1:3] = imputer.transform(df[:, 1:3])
+```
 
-- 將超出變數特定百分位元範圍的數值替換為其特定百分位數值的方法。    
 
-- **截尾**
 
-- 將超出變數特定百分位元範圍的數值予以**刪除**的方法。
+## Feature Scaling
 
-- **插值**
+### 類別型特徵
 
-- 應用原有資料資訊對離群值賦予一個相對合理的新值的方法
+- 轉為指定值
 
-- **對數去偏(log1p)** 
-
-  - 對數去偏就是使⽤⾃然對數去除偏態，常⾒於計數 / 價格這類非負且可能為 0 的欄位
-  - 因為需要將 0 對應到 0，所以先加1 (plus one) 再取對數 (log)，還原時使⽤ expm1，也就是先取指數 (exp) 後再減⼀ (minus one)
-
-- **⽅根去偏(sqrt)**
-
-- 就是將數值減去最⼩值後開根號，最⼤值有限時適⽤ (例 : 成績轉換) 
-
-- **分布去偏(boxcox)** 
-
-  - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
-
-- 
-
-## Feature Engineering
-
-> 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
-
-特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
-
-### Feature Scaling
-
-- 類別型特徵
-
-  - 轉為指定值
-
-    - 依照 Domain knowledge 將離散資料轉為指定值，藉以賦予連續型資料的特征。如將教育程度轉為教育年數：小學為6年，國中9年，高中12年等等。
+  - 依照 Domain knowledge 將離散資料轉為指定值，藉以賦予連續型資料的特征。如將教育程度轉為教育年數：小學為6年，國中9年，高中12年等等。
 
 - 頻數編碼(count encoding)
 
@@ -2884,103 +2818,168 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 
 
-- 數值型特徵
+### 數值型特徵
 
-  - 二值化
-    - 設定一個閾值，大於閾值的赋值為1，小於等於閾值的赋值為0
+- 二值化
+  - 設定一個閾值，大於閾值的赋值為1，小於等於閾值的赋值為0
 
-  - 等寬劃分：
-    - 按照相同寬度將資料分成幾等份。缺點是受到異常值的影響比較⼤。
+- 等寬劃分：
+  - 按照相同寬度將資料分成幾等份。缺點是受到異常值的影響比較⼤。
 
-  - 等頻劃分：
-    - 將資料分成幾等份，每等份資料裡⾯的個數是⼀樣的。
+- 等頻劃分：
+  - 將資料分成幾等份，每等份資料裡⾯的個數是⼀樣的。
 
-  - 聚類劃分：
-    - 使⽤聚類演算法將資料聚成幾類，每⼀個類為⼀個劃分。
+- 聚類劃分：
+  - 使⽤聚類演算法將資料聚成幾類，每⼀個類為⼀個劃分。
 
-  - 標準化 (Standard Scaler) 
-    - 標準化的意義：平衡數值特徵間的影響⼒
+- 標準化 (Standard Scaler) 
+  - 標準化的意義：平衡數值特徵間的影響⼒
 
-    - 假定數值為常態分佈，適合本⽅式平衡特徵。若資料不符合常態分佈，使用此方法進行Normalization的效果會變得很糟糕。
+  - 假定數值為常態分佈，適合本⽅式平衡特徵。若資料不符合常態分佈，使用此方法進行Normalization的效果會變得很糟糕。
 
-  $$
-  \frac {(x-mean(x))}{sd(x)}
-  $$
+$$
+\frac {(x-mean(x))}{sd(x)}
+$$
+
+```python
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+# 有時候會需要將還原轉換後的數值，這時候可以使用此函數
+sc_X.inverse_transform()
+```
+
+
+
+- 最⼩最⼤化 (MinMax Scaler)
+
+  - 將資料按比例縮放，使之落入一個小的特定區間，例如[0, 1]等。在某些比較和評價的指標處理中經常會用到，去除數據的單位限制，將其轉化為無量綱的純數值，便於不同單位或量級的指標能夠進行比較和加權
+
+  - 因為最⼤最⼩化對極端數值較敏感，所以如果資料不會有極端值，或已經去極端值，就適合⽤最⼤最⼩化，否則請⽤標準化
+
+  - Z 轉換
+    $$
+    \frac {(x-mean(x))}{std(x)}
+    $$
 
     ```python
-  from sklearn.preprocessing import StandardScaler
-  sc = StandardScaler()
-  X_train = sc.fit_transform(X_train)
-  X_test = sc.transform(X_test)
-  # 有時候會需要將還原轉換後的數值，這時候可以使用此函數
-  sc_X.inverse_transform()
+    from sklearn.preprocessing import StandardScaler
+    sc = StandardScaler()
+    X_train[:, 3:] = sc.fit_transform(X_train[:, 3:])
+    X_test[:, 3:] = sc.transform(X_test[:, 3:])
     ```
 
+    
+
+  - 空間壓縮
+
+- Y = 0 ~ 1
+      $$
+      \frac{x-min(x)}{max(x)-min(x)}
+      $$
+
+- Y = -1 ~ 1
+      $$
+  (\frac{x-min(x)}{max(x)-min(x)}-0.5)*2
+      $$
+
+    - Y = 0 ~ 1(影像資料)
+
+  $$
+      \frac{x}{255}
+  $$
+
+  - Y = 0 ~ 100
+
+    用分位數來進行normalization
+
+  - 歸一化公式如下：
+
+$$
+\frac {(x-min(x))}{max(x)-min(x)}
+$$
+
+- 常態化優缺點
+  - 優點
+    - 模型的運算速度較快
+    - 平衡變數間的影響力
+    - 線性回歸模型中對於離群值非常敏感
+  - 缺點
+    - 降低解釋效果，如果對於變數的「單位」有特殊的解釋需求，不建議轉換
+
+是否⼀定要做標準化 (有沒有做有差嗎)?
+
+- Regression model：有差
+- Tree-based model：沒有太⼤關係
+
+
+
+
+
+## Feature Engineering
+
+> - 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
+> - 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
+
+- 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
+
+- 我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
+
+- 那問題來了，怎麼去發現特徵呢？光盯著資料集肯定是不行的。如果你是新手，可以先耗費一些時間在Forum上，看看別人是怎麼做Feature Extraction的，並且多思考。雖然Feature Extraction特別講究經驗，但其實還是有章可循的：
+  1. 對於Numerical Variable，可以通過**線性組合、多項式組合**來發現新的Feature。
+  2. 對於文本資料，有一些常規的Feature。比如，文本長度，Embeddings，TF-IDF，LDA，LSI等，你甚至可以用深度學習提取文本特徵（隱藏層）。
+  3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
+  4. 通過**錯誤分析**也可以發現新的特徵。
+
+- 
+
+
+
+
+
+
+
+
+### 數值與數值組合
+
+- 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
+- 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
+
+### 類別與數值組合
+
+- 群聚編碼(Group by Encoding)
+
+  均值編碼是計算各個類別在目標變數的平均值，而群聚編碼則是針對其他數值變數計算類別平均值 (Mean)、中位數 (Median)，眾數(Mode)，最⼤值(Max)，最⼩值(Min)，次數(Count)...等。
+
+- 群聚編碼的使用時機是，先以 領域知識 或 特徵重要性 挑選強⼒特徵後, 再將特徵組成更強的特徵
+
+- 可以依照領域知識挑選,或亂槍打⿃後再以特徵重要性挑選
+
+- 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
+
+
+
+### 葉編碼
+
+- 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
   
-
-  - 最⼩最⼤化 (MinMax Scaler)
-
-    - 將資料按比例縮放，使之落入一個小的特定區間，例如[0, 1]等。在某些比較和評價的指標處理中經常會用到，去除數據的單位限制，將其轉化為無量綱的純數值，便於不同單位或量級的指標能夠進行比較和加權
-
-    - 因為最⼤最⼩化對極端數值較敏感，所以如果資料不會有極端值，或已經去極端值，就適合⽤最⼤最⼩化，否則請⽤標準化
-
-    - Z 轉換
-      $$
-      \frac {(x-mean(x))}{std(x)}
-      $$
-
-      ```python
-      from sklearn.preprocessing import StandardScaler
-      sc = StandardScaler()
-      X_train[:, 3:] = sc.fit_transform(X_train[:, 3:])
-      X_test[:, 3:] = sc.transform(X_test[:, 3:])
-      ```
-
-      
-
-    - 空間壓縮
-
-  - Y = 0 ~ 1
-        $$
-        \frac{x-min(x)}{max(x)-min(x)}
-        $$
-
-  - Y = -1 ~ 1
-        $$
-    (\frac{x-min(x)}{max(x)-min(x)}-0.5)*2
-        $$
-
-      - Y = 0 ~ 1(影像資料)
-
-    $$
-        \frac{x}{255}
-    $$
-
-    - Y = 0 ~ 100
-
-      用分位數來進行normalization
-
-    - 歸一化公式如下：
-
-  $$
-  \frac {(x-min(x))}{max(x)-min(x)}
-  $$
-
-  - 常態化優缺點
-    - 優點
-      - 模型的運算速度較快
-      - 平衡變數間的影響力
-      - 線性回歸模型中對於離群值非常敏感
-    - 缺點
-      - 降低解釋效果，如果對於變數的「單位」有特殊的解釋需求，不建議轉換
-
-
-
-- Normalization is recommended when you have a normal distribution in most of your features.
-
-- In that case standardization actually works well all the time.
-
-  It will do the job all the time. Therefore since this is a technique that will work all the time and this is a technique that is more recommended for some specific situations where you have most of your features following a normal distribution
+- 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
+  
+- 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
+  
+- 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
+  
+  ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
+  
+- 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
+  
+  - 實際結果也證明，在分類預測中使⽤樹狀模型，再對這些擬合完的樹狀模型進⾏
+  葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
+  
+  ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
+  
+  - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
 ### 其他類型特徵
 
@@ -3062,71 +3061,7 @@ def smoothing_target_encoder(df, column, target, weight=100):
 
 
 
-## Feature Extraction
-
-**我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。**特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
-
-那問題來了，怎麼去發現特徵呢？光盯著資料集肯定是不行的。如果你是新手，可以先耗費一些時間在Forum上，看看別人是怎麼做Feature Extraction的，並且多思考。雖然Feature Extraction特別講究經驗，但其實還是有章可循的：
-
-1. 對於Numerical Variable，可以通過**線性組合、多項式組合**來發現新的Feature。
-
-2. 對於文本資料，有一些常規的Feature。比如，文本長度，Embeddings，TF-IDF，LDA，LSI等，你甚至可以用深度學習提取文本特徵（隱藏層）。
-
-3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
-
-4. 通過**錯誤分析**也可以發現新的特徵。
-
-## 特徵組合
-
-- 數值與數值組合
-  - 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
-  - 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
-
-- 類別與數值組合
-  - 群聚編碼(Group by Encoding)
-
-    均值編碼是計算各個類別在目標變數的平均值，而群聚編碼則是針對其他數值變數計算類別平均值 (Mean)、中位數 (Median)，眾數(Mode)，最⼤值(Max)，最⼩值(Min)，次數(Count)...等。
-
-  - 群聚編碼的使用時機是，先以 領域知識 或 特徵重要性 挑選強⼒特徵後, 再將特徵組成更強的特徵
-
-  - 可以依照領域知識挑選,或亂槍打⿃後再以特徵重要性挑選
-
-  - 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
-
-- 
-  
-- 葉編碼
-  
-- 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
-  
-- 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
-  
-- 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
-  
-- 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
-  
-  ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
-  
-- 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
-  
-  - 實際結果也證明，在分類預測中使⽤樹狀模型，再對這些擬合完的樹狀模型進⾏
-  葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
-  
-  ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
-  
-  - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
-
 ## Feature Selection
-
-![image-20200910104604976](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910104604976.png)
-
-![image-20200910104804525](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910104804525.png)
-
-![image-20200910105331778](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105331778.png)
-
-![image-20200910105421782](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105421782.png)
-
-![image-20200910105819060](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910105819060.png)
 
 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
 
