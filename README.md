@@ -508,16 +508,9 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 ## 資料庫
 
+> - [ ] TO DO: 開一個 SQLlite 的專案來練習 SQL
+
 - 中/大型的公司通常會採購資料庫，藉此統一存放公司各項業務的資料表
-
-  Hive
-
-- SQL
-
-  - groupby
-  - case when
-  - create table
-  - drop table
 
 - MySQL
 
@@ -2128,6 +2121,7 @@ resp = requests.get('http://ip.filefab.com/index.php',
   loop.run_until_complete(main()) 
   ```
 - Ref
+  
     - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
 
 #### 搜尋引擎
@@ -2225,6 +2219,9 @@ def timer(n):
   - 順序尺度(ordinal)：如滿意度分數
   - 等距尺度(interval):沒有絕對的0，如溫度
   - 等比尺度(ratio)：0 表示沒有，如收入、身高、體重。
+
+- Ref
+  - [Data Types: A Better Way to Think about Data Types for Machine Learning](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)
 
 ### 資料分佈
 
@@ -2693,27 +2690,44 @@ def timer(n):
 
 ### 遺漏值處理
 
+#### 確認資料遺漏的原因
+
+> 根據原因做相應的處理
+
+- **無意的**：資訊被遺漏，比如由於工作人員的疏忽，忘記而缺失；或者由於資料獲取器等故障等原因造成的缺失，比如系統即時性要求較高的時候，機器來不及判斷和決策而造成缺失；
+- **有意的**：有些資料集在特徵描述中會規定將缺失值也作為一種特徵值，這時候缺失值就可以看作是一種特殊的特徵值；
+- **不存在**：有些特徵屬性根本就是不存在的，比如一個未婚者的配偶名字就沒法填寫，再如一個孩子的收入狀況也無法填寫；
+
+#### 確認資料遺漏的類型
+
+- 資料集中不含缺失值的變數稱為完全變數，資料集中含有缺失值的變數稱為不完全變數。而從缺失的分佈來將缺失可以分為完全隨機缺失，隨機缺失和完全非隨機缺失。
+  - **完全隨機缺失（missing completely at random,MCAR）**：指的是資料的缺失是完全隨機的，不依賴於任何不完全變數或完全變數，不影響樣本的無偏性，如家庭地址缺失；
+  - **隨機缺失(missing at random,MAR)**：指的是資料的缺失不是完全隨機的，即該類資料的缺失依賴于其他完全變數，如財務資料缺失情況與企業的大小有關；
+  - **非隨機缺失(missing not at random,MNAR)**：指的是資料的缺失與不完全變數自身的取值有關，如高收入人群不原意提供家庭收入；
+- 對於隨機缺失和非隨機缺失，直接刪除記錄是不合適的，原因上面已經給出。隨機缺失可以通過已知變數對缺失值進行估計，而非隨機缺失的非隨機性還沒有很好的解決辦法。
+
+#### 遺漏值的處理方法
+
 - **刪除樣本**
-  - 設定閾值並計算每個「樣本」有幾個遺漏值，當超過閾值時將該「樣本」刪除
+  - **優點**是最簡單粗暴
+  - 缺點是會犧牲了大量的資料，通過減少歷史資料換取完整的資訊，這樣可能丟失了很多隱藏的重要資訊
+  - 當缺失資料比例較大時，特別是缺失資料非隨機分佈時，直接刪除可能會導致資料發生偏離，比如原本的正態分佈變為非正太；
+  - 這種方法在樣本資料量十分大且缺失值不多的情況下非常有效，但如果樣本量本身不大且缺失也不少，那麼不建議使用。
 
 - **刪除特徵**
   - 設定閾值並計算每個「欄位」有幾個遺漏值，當超過閾值時將該「欄位」刪除
-
 - **填補指定值**
   - 類別型特徵可以填補「其他」
   - 數值型特徵可以填補 0
     - 常見於 event類型的資料集，因為沒發生事件，所以最後在groupby 、 summarise 與join表格時會出現 na
-
 - **填補統計值**
   - 類別型特徵可以填補「眾數」
   - 數值型特徵可以填補「平均值」或「中位數」
     - 填補平均值(Mean) : 數值型欄位，偏態不明顯
     - 填補中位數(Median) : 數值型欄位，偏態很明顯
-
 - **填補預測值**
   - 藉由其他資料欄位來學習填補的內容，如knn， randomforest。
   - 本方式須留意overfitting : 可能退化成為其他特徵的組合
-
 - **不處理**
   - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
 
@@ -2724,171 +2738,130 @@ imputer.fit(df[:, 1:3])
 df[:, 1:3] = imputer.transform(df[:, 1:3])
 ```
 
+Ref
 
+- [【Python数据分析基础】: 数据缺失值处理](https://juejin.im/post/5b5c4e6c6fb9a04f90791e0c)
 
 ## Feature Scaling
 
+- 資料的標準化（normalization）是將資料按比例縮放，使之落入一個小的特定區間。在某些比較和評價的指標處理中經常會用到，去除數據的單位限制，將其轉化為無量綱的純數值，便於不同單位或量級的指標能夠進行比較和加權。
+
+- Scaling 的好處
+
+  - 提升模型的收斂速度
+
+    - 如下圖，x1的取值為0-2000，而x2的取值為1-5，假如只有這兩個特徵，對其進行優化時，會得到一個窄長的橢圓形，導致在梯度下降時，梯度的方向為垂直等高線的方向而走之字形路線，這樣會使反覆運算很慢，相比之下，右圖的反覆運算就會很快（理解：也就是步長走多走少方向總是對的，不會走偏）
+
+    ![](./images/featureScaling.png)
+
+  - 提升模型的精度
+
+    - 這在涉及到一些距離計算的演算法時效果顯著，比如演算法要計算歐氏距離，上圖中x2的取值範圍比較小，涉及到距離計算時其對結果的影響遠比x1帶來的小，所以這就會造成精度的損失。所以歸一化很有必要，他可以讓各個特徵對結果做出的貢獻相同。
+
+  - 線性回歸模型中對於離群值非常敏感
+
+- Scaling 的缺點
+
+  - 降低解釋效果，如果對於變數的「單位」有特殊的解釋需求，不建議轉換
+
+- 是否⼀定要做標準化?
+
+  - Regression model：有差
+  - Tree-based model：沒有太⼤關係
+
+
+
 ### 類別型特徵
 
-- 轉為指定值
+#### 轉為指定值
 
-  - 依照 Domain knowledge 將離散資料轉為指定值，藉以賦予連續型資料的特征。如將教育程度轉為教育年數：小學為6年，國中9年，高中12年等等。
+- 依照 Domain knowledge 將離散資料轉為指定值，藉以賦予連續型資料的特征。如將教育程度轉為教育年數：小學為6年，國中9年，高中12年等等。
 
-- 頻數編碼(count encoding)
+#### Count Encoding
 
-  - 頻數編碼使用頻次替換類別，頻次根據訓練集計算。這個方法對離群值很敏感
+- 頻數編碼使用頻次替換類別，頻次根據訓練集計算。這個方法對離群值很敏感
+- 所以結果可以歸一化或者轉換一下（例如使用對數變換）。未知類別可以替換為1。
 
-  - 所以結果可以歸一化或者轉換一下（例如使用對數變換）。未知類別可以替換為1。
+#### Label Encoding
 
-  - LabelCount
+- 類似於流⽔號，依序將新出現的類別依序編上新代碼，已出現的類別編上已使⽤的代碼
 
-  - 根據類別在訓練集中的頻次排序類別（昇冪或降冪）。相比標準的頻次編碼，LabelCount具有特定的優勢——對離群值不敏感，也不會對不同的值給出同樣的編碼。
+- 優點是能夠節省記憶體的使用量
 
-  - 標籤編碼(Label Encoding)
+  - 確實能轉成分數，但缺點是分數的⼤⼩順序沒有意義
 
-    - 類似於流⽔號，依序將新出現的類別依序編上新代碼，已出現的類別編上已使⽤的代碼
+  ```python
+  # Encoding the Independent Variable
+  from sklearn.compose import ColumnTransformer
+  from sklearn.preprocessing import OneHotEncoder
+  ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+  X = np.array(ct.fit_transform(X))
+  
+  # Encoding the Dependent Variable
+  from sklearn.preprocessing import LabelEncoder
+  le = LabelEncoder()
+  y = le.fit_transform(y)
+  ```
 
-    - 優點是能夠節省記憶體的使用量
+#### One Hot Encoding
 
-      - 確實能轉成分數，但缺點是分數的⼤⼩順序沒有意義
+- 為了改良數字⼤⼩沒有意義的問題，將不同的類別分別獨立為⼀欄
+- 缺點是需要較⼤的記憶空間與計算時間，且類別數量越多時越嚴重
+- 在建置模型時，為了避免完全多重共線性造成的虛擬變數陷阱(Dummy Variable Trap)，需要把其中一個變數丟出模型外，否則無法估計出回歸參數。通常會丟數量最多的類別。
 
-      ```python
-      # Encoding the Independent Variable
-      from sklearn.compose import ColumnTransformer
-      from sklearn.preprocessing import OneHotEncoder
-      ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
-      X = np.array(ct.fit_transform(X))
-      
-      # Encoding the Dependent Variable
-      from sklearn.preprocessing import LabelEncoder
-      le = LabelEncoder()
-      y = le.fit_transform(y)
-      ```
+- 當特徵重要性⾼，且可能值較少時，才應該考慮獨熱編碼
 
-  - 獨熱編碼(One Hot Encoding)
+#### Target encoding
 
-    - 為了改良數字⼤⼩沒有意義的問題，將不同的類別分別獨立為⼀欄
-    - 缺點是需要較⼤的記憶空間與計算時間，且類別數量越多時越嚴重
-    - 在建置模型時，為了避免完全多重共線性造成的虛擬變數陷阱(Dummy Variable Trap)，需要把其中一個變數丟出模型外，否則無法估計出回歸參數。通常會丟數量最多的類別。
+- 如果某一個特徵是定性的（categorical），而這個特徵的可能值非常多（高基数），那麼平均數編碼是一種高效的編碼方式。我们可以嘗試使用平均数编碼的編碼方法，在貝葉斯的架構下，利用所要預測的應變量（target variable），有監督地確定最適合這個定性特徵的編碼方式。
+- 均值編碼的缺點是容易過擬合（因為提供了大量數據），所以使用時要配合適當的正則化技術。
+- 平滑化的⽅式能修正均值編碼容易 Overfitting 的問題，但效果有限，因此仍須經過檢驗後再決定是否該使⽤均值編碼
 
-  - 當特徵重要性⾼，且可能值較少時，才應該考慮獨熱編碼
-
-  - 均值編碼（mean encoding）
-
-    - 如果某一個特徵是定性的（categorical），而這個特徵的可能值非常多（高基数），那麼平均數編碼是一種高效的編碼方式。我们可以嘗試使用平均数编碼的編碼方法，在貝葉斯的架構下，利用所要預測的應變量（target variable），有監督地確定最適合這個定性特徵的編碼方式。
-    - 均值編碼的缺點是容易過擬合（因為提供了大量數據），所以使用時要配合適當的正則化技術。
-    - 平滑化的⽅式能修正均值編碼容易 Overfitting 的問題，但效果有限，因此仍須經過檢驗後再決定是否該使⽤均值編碼
-
-  ![](https://lh3.googleusercontent.com/nx3knWrJTN3iibWvU0j_ZDBuQL0NFtzXLw9Q-CFg1-2XKAwW7Ol1pNSE7RInslFpt2m88Q7nwYYRaFeTJ1ZwinzIyFda4lTOBOWtI5NzBXxOq8nhCqhXYCehLVp-Z3jQCwvsddcuJ7u6EZ311pOj7Z87R3gJdWarJMyhR_xOAC2J-6TYephvJA3roAHxrjdCgadRINzqFIobIVvZq4rdFw1dQzIxGmggUkEdjmUIivwPUm5RKlG2vkMRWGKGsHAmJhmxgAnaC-H0cIMtW_U_ajW3GaDap7j2-FYQ3v42WR9FajOkpoWLUu85I3sqJLjBKm1SUWyi9eiDt37hDByjmkyl31VToLfaz1lMLli_epggWQ7mQloOhFoJLvVx4wEi1zravbGmP3F1cKAqHf6fIyJaT0_qfnRrUOT2JIzJmmIr0fsrCZ8Z_fgTmQH2eShqUuetzZrCbALr8EiZXa4i4osjxYMxmNFTKctm9am4S76cWeYeuGe8SOS-5DiCWiLmQVbw-uIcb8_ywsYe3jnbvXV_jQOWTfYgOuJcDlNvb-uNZp7CjVkO4zhSpxZEBzIQ9zCcJWyf3P9kl4eFgkNVH3Dbw_QFvX2jGkfh0f4xg2XZz98mMmMcntaVTLXjeuFIt-e1eOuHKVgxE3ig5PWlxyPDVOzqDkqexGl9duk4JbiLEAwjq_Xlq3t5GSh5YSh9hl5aNKIpEuv9BjvHP6iIhKEJ=w396-h345-no)
+![](https://lh3.googleusercontent.com/nx3knWrJTN3iibWvU0j_ZDBuQL0NFtzXLw9Q-CFg1-2XKAwW7Ol1pNSE7RInslFpt2m88Q7nwYYRaFeTJ1ZwinzIyFda4lTOBOWtI5NzBXxOq8nhCqhXYCehLVp-Z3jQCwvsddcuJ7u6EZ311pOj7Z87R3gJdWarJMyhR_xOAC2J-6TYephvJA3roAHxrjdCgadRINzqFIobIVvZq4rdFw1dQzIxGmggUkEdjmUIivwPUm5RKlG2vkMRWGKGsHAmJhmxgAnaC-H0cIMtW_U_ajW3GaDap7j2-FYQ3v42WR9FajOkpoWLUu85I3sqJLjBKm1SUWyi9eiDt37hDByjmkyl31VToLfaz1lMLli_epggWQ7mQloOhFoJLvVx4wEi1zravbGmP3F1cKAqHf6fIyJaT0_qfnRrUOT2JIzJmmIr0fsrCZ8Z_fgTmQH2eShqUuetzZrCbALr8EiZXa4i4osjxYMxmNFTKctm9am4S76cWeYeuGe8SOS-5DiCWiLmQVbw-uIcb8_ywsYe3jnbvXV_jQOWTfYgOuJcDlNvb-uNZp7CjVkO4zhSpxZEBzIQ9zCcJWyf3P9kl4eFgkNVH3Dbw_QFvX2jGkfh0f4xg2XZz98mMmMcntaVTLXjeuFIt-e1eOuHKVgxE3ig5PWlxyPDVOzqDkqexGl9duk4JbiLEAwjq_Xlq3t5GSh5YSh9hl5aNKIpEuv9BjvHP6iIhKEJ=w396-h345-no)
 
 
-
-```python
-def smoothing_target_encoder(df, column, target, weight=100):
-   '''
-    Target-based encoding is numerization of a categorical variables via the target variable. This replaces the
-    categorical variable with just one new numerical variable. Each category or level of the categorical variable
-    is represented by it's summary statistic of the target. Main purpose is to deal with high cardinality categorical
-    features.
-    Smoothing adds the requirement that there must be at least m values for the sample mean to replace the global mean.
-    Source: https://www.wikiwand.com/en/Additive_smoothing
-    Args:
-        df (pandas df): Pandas DataFrame containing the categorical column and target.
-        column (string): Categorical variable column to be encoded.
-        target (string): Target on which to encode.
-        method (string): Summary statistic of the target.
-        weight (int): Weight of the overall mean.
-    Returns:
-        array: Encoded categorical variable column.
-   '''
-    # Compute the global mean
-    mean = df[target].mean()
-
-    # Compute the number of values and the mean of each group
-    agg = df.groupby(column)[target].agg(['count', 'mean'])
-    counts = agg['count']
-    means = agg['mean']
-    
-    # Compute the 'smoothed' means
-    smooth = (counts * means + weight * mean) / (counts + weight)
-    
-    # Replace each value by the according smoothed mean
-    return df[column].map(smooth)
-```
 
 
 
 ### 數值型特徵
 
-- 二值化
-  - 設定一個閾值，大於閾值的赋值為1，小於等於閾值的赋值為0
+#### 二值化
 
-- 等寬劃分：
-  - 按照相同寬度將資料分成幾等份。缺點是受到異常值的影響比較⼤。
+- 設定一個閾值，大於閾值的赋值為1，小於等於閾值的赋值為0
 
-- 等頻劃分：
-  - 將資料分成幾等份，每等份資料裡⾯的個數是⼀樣的。
+#### 等寬劃分
 
-- 聚類劃分：
-  - 使⽤聚類演算法將資料聚成幾類，每⼀個類為⼀個劃分。
+- 按照相同寬度將資料分成幾等份。缺點是受到異常值的影響比較⼤。
 
-- 標準化 (Standard Scaler) 
-  - 標準化的意義：平衡數值特徵間的影響⼒
+#### 等頻劃分
 
-  - 假定數值為常態分佈，適合本⽅式平衡特徵。若資料不符合常態分佈，使用此方法進行Normalization的效果會變得很糟糕。
+- 將資料分成幾等份，每等份資料裡⾯的個數是⼀樣的。
+
+#### 聚類劃分
+
+- 使⽤聚類演算法將資料聚成幾類，每⼀個類為⼀個劃分。
+
+#### Standard Scaler
+
+- 標準化的意義：平衡數值特徵間的影響⼒
+
+- 假定數值為常態分佈，適合本⽅式平衡特徵。若資料不符合常態分佈，使用此方法進行Normalization的效果會變得很糟糕。
 
 $$
 \frac {(x-mean(x))}{sd(x)}
 $$
 
-```python
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-# 有時候會需要將還原轉換後的數值，這時候可以使用此函數
-sc_X.inverse_transform()
-```
+#### MinMax Scaler
 
+- 將資料按比例縮放，使之落入一個小的特定區間，例如[0, 1]等。在某些比較和評價的指標處理中經常會用到，去除數據的單位限制，將其轉化為無量綱的純數值，便於不同單位或量級的指標能夠進行比較和加權
 
+- 因為最⼤最⼩化對極端數值較敏感，所以如果資料不會有極端值，或已經去極端值，就適合⽤最⼤最⼩化，否則請⽤標準化
 
-- 最⼩最⼤化 (MinMax Scaler)
-
-  - 將資料按比例縮放，使之落入一個小的特定區間，例如[0, 1]等。在某些比較和評價的指標處理中經常會用到，去除數據的單位限制，將其轉化為無量綱的純數值，便於不同單位或量級的指標能夠進行比較和加權
-
-  - 因為最⼤最⼩化對極端數值較敏感，所以如果資料不會有極端值，或已經去極端值，就適合⽤最⼤最⼩化，否則請⽤標準化
-
-  - Z 轉換
-    $$
-    \frac {(x-mean(x))}{std(x)}
-    $$
-
-    ```python
-    from sklearn.preprocessing import StandardScaler
-    sc = StandardScaler()
-    X_train[:, 3:] = sc.fit_transform(X_train[:, 3:])
-    X_test[:, 3:] = sc.transform(X_test[:, 3:])
-    ```
-
-    
-
-  - 空間壓縮
-
-- Y = 0 ~ 1
-      $$
-      \frac{x-min(x)}{max(x)-min(x)}
-      $$
-
-- Y = -1 ~ 1
-      $$
-  (\frac{x-min(x)}{max(x)-min(x)}-0.5)*2
-      $$
+- 空間壓縮
+  - Y = 0 ~ 1
+  - Y = -1 ~ 1
 
     - Y = 0 ~ 1(影像資料)
-
-  $$
-      \frac{x}{255}
-  $$
 
   - Y = 0 ~ 100
 
@@ -2896,28 +2869,16 @@ sc_X.inverse_transform()
 
   - 歸一化公式如下：
 
+
 $$
 \frac {(x-min(x))}{max(x)-min(x)}
 $$
 
-- 常態化優缺點
-  - 優點
-    - 模型的運算速度較快
-    - 平衡變數間的影響力
-    - 線性回歸模型中對於離群值非常敏感
-  - 缺點
-    - 降低解釋效果，如果對於變數的「單位」有特殊的解釋需求，不建議轉換
-
-是否⼀定要做標準化 (有沒有做有差嗎)?
-
-- Regression model：有差
-- Tree-based model：沒有太⼤關係
 
 
 
 
-
-## Feature Engineering
+## Feature Construction
 
 > - 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
 > - 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
@@ -2932,21 +2893,17 @@ $$
   3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
   4. 通過**錯誤分析**也可以發現新的特徵。
 
-- 
 
 
+#### Features Interaction
 
-
-
-
-
-
-### 數值與數值組合
-
+- 假設你有 `A` 和 `B` 兩個 continuous 特徵，你可以用 `A + B`、`A - B`、`A * B` 或 `A / B` 之類的方式建立新的特徵。
 - 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
 - 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
 
-### 類別與數值組合
+#### Feature Combination 
+
+- 特徵組合主要是針對 categorical 特徵，特徵交互則是適用於 continuous 特徵。但是兩者的概念是差不多的，就是把兩個以上的特徵透過某種方式結合在一起，變成新的特徵。通常用來解決一般的線性模型沒辦法學到非線性特徵的問題。
 
 - 群聚編碼(Group by Encoding)
 
@@ -2958,9 +2915,25 @@ $$
 
 - 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
 
+- 假設 C 是 categorical 特徵，N 是 continuous 特徵，以下有幾種有意義的組合：
+  - `median(N) GROUP BY C` 中位數
+  - `mean(N) GROUP BY C` 算術平均數
+  - `mode(N) GROUP BY C` 眾數
+  - `min(N) GROUP BY C` 最小值
+  - `max(N) GROUP BY C` 最大值
+  - `std(N) GROUP BY C` 標準差
+  - `var(N) GROUP BY C` 方差
+  - `N - median(N) GROUP BY C`
 
+#### Feature Extraction
 
-### 葉編碼
+通常就是指 dimensionality reduction。
+
+- Principal Component Analysis (PCA)
+- Latent Dirichlet Allocation (LDA)
+- Latent Semantic Analysis (LSA)
+
+#### Feature Learning
 
 - 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
   
@@ -2980,6 +2953,50 @@ $$
   ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
   
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
+
+## Data Leakage
+
+- 本來不應該出現在X裡的、和目標y有關的資料，出現在了X中。如此一來，機器學習演算法就會有好到不真實的表現。
+
+### 資料洩露的種類以及影響分析
+
+- 測試集資料被洩露到訓練集：過擬合，模型在現實中的表現遠不如test accuracy；測試集失去意義。
+
+- 正確的預測（y）被洩露到測試集：嚴重過擬合，訓練出的模型毫無用處，比賽組織者的極大失敗
+
+- 未來的資訊被洩露到過去：時間序列相關，現實中模型將無法有效根據過去情況預測未來。
+
+- 模型可以獲得一些不該獲得的資訊，比如和目標變數有較大關係的變數、現實裡接觸不到的變數。例子：y是“病人是否患有癌症”，但是X包括了“病人是否接受腫瘤切除手術”。
+
+- 反向工程，去匿名化，去除資料集中的隨機打亂操作，社會工程學。這種行為是資料比賽明令禁止的，而且在現實中也涉嫌侵犯隱私。例子：反向工程“隨機的”使用者編碼，得出使用者的真名。
+
+- 第三方信息。例子：已知座標，利用geocoder類型的服務推出所在城市；在預測金融市場時加入協力廠商的政策新聞的特徵。
+
+ 
+
+### 有效發現和利用資料洩露
+
+資料洩露可以分為兩大類：
+
+- 由於自己的疏忽，在交叉驗證、訓練過程中，產生的資料洩露。這種情況屬於失誤，應當儘量避免。
+
+- 在資料競賽中，找到了理論上不能使用（但是也沒有明令禁止）的額外資料，從而提升分數。
+
+- 避免第一種資料洩露的方法，可以參考kaggle的各類比賽。假設有大量資料，我們可以把未處理的資料分為訓練集和測試集，其中，測試集包括Public LB和Private LB兩部分。
+  - 在模型的訓練、選擇和交叉驗證時，我們只能接觸訓練集。
+  - 在對自己的模型非常自信時，可以偶爾在Public LB上驗證。
+  - 只有模型即將被用於正式商業用途時，才能看模型在Private LB上的表現。
+
+- 交叉驗證誤差、public LB誤差、private LB誤差：如果後者的誤差值顯著高於前者，那麼需要考慮過擬合或第一類資料洩露。
+
+- 第二類的資料洩露，屬於旁門左道。本質上，這相當於在模型訓練階段，幹了資料收集階段的工作。搜集原始資料，或是自己提供資料舉辦競賽（試圖避免他人利用資料洩露）時，可以參考這種思路。
+  - 資料夾的創造時間。
+  - 看似亂碼的字串（如各類id）可能有統計分佈的規律。
+  - 地理位置資訊：如果提供了座標，則可反向地理編碼，得出相關地理資訊。
+
+這類資料可能會導致過擬合。
+
+
 
 ### 其他類型特徵
 
@@ -3063,21 +3080,25 @@ $$
 
 ## Feature Selection
 
-在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
-
-- Garbage In Garbage Out
-- [奥卡姆剃刀原理](https://zhuanlan.zhihu.com/p/45321953)
+- 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。
+  
+- 另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
+  
+  - Garbage In Garbage Out
+  - [奥卡姆剃刀原理](https://zhuanlan.zhihu.com/p/45321953)
 - 讓後續解釋更簡單
-
-特徵選擇有三⼤類⽅法
-
-- 過濾法 (Filter) : 選定統計數值與設定⾨檻，刪除低於⾨檻的特徵
-- 包裝法 (Wrapper) : 根據⽬標函數，逐步加入特徵或刪除特徵
-- 嵌入法 (Embedded) : 使⽤機器學習模型，根據擬合後的係數，刪除係數低於⾨檻的特徵
-
+  
 - All-in
-
+  
   基於 Domain Knowledge，或設計過的調查資料時會使用此方法。此外通常在建置模型是也會出於與其他模型做比較的考量，建置一個這類的模型，藉以檢視後續其他模型的效度。
+  
+- 特徵選擇有三⼤類⽅法
+  
+  - 過濾法 (Filter) : 選定統計數值與設定⾨檻，刪除低於⾨檻的特徵
+  - 包裝法 (Wrapper) : 根據⽬標函數，逐步加入特徵或刪除特徵
+- 嵌入法 (Embedded) : 使⽤機器學習模型，根據擬合後的係數，刪除係數低於⾨檻的特徵
+  
+  
 
 
 
@@ -3085,41 +3106,41 @@ $$
 
 按照發散性或者相關性對各個特徵進行評分，設定閾值或者待選擇閾值的個數選擇特徵。
 
-- **方差選擇法**
+#### 方差選擇
 
-  先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵
+- 先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵
+
+```python
+from sklearn.feature_selection import VarianceThreshold
+
+#方差选择法，返回值为特征选择后的数据
+#参数threshold为方差的阈值
+VarianceThreshold(threshold=3).fit_transform(iris.data)
+```
+
+
+
+#### 相關係數
+
+- 皮爾森相關係數是一種最簡單的，能説明理解特徵和回應變數之間關係的方法，該方法衡量的是變數之間的線性相關性，結果的取值區間為 $-1$ 至 $1$  ， $-1$ 表示完全的負相關(這個變數下降，那個就會上升)，$+1$ 表示完全的正相關，$0$ 表示沒有線性相關。
+
+- Pearson相關係數的一個明顯缺陷是，作為特徵排序機制，他只對線性關係敏感。如果關係是非線性的，即便兩個變數具有一一對應的關係，Pearson相關性也可能會接近 $0$
 
   ```python
-  from sklearn.feature_selection import VarianceThreshold
+  from sklearn.feature_selection import SelectKBest
+  from scipy.stats import pearsonr
   
-  #方差选择法，返回值为特征选择后的数据
-  #参数threshold为方差的阈值
-  VarianceThreshold(threshold=3).fit_transform(iris.data)
+  #选择K个最好的特征，返回选择特征后的数据
+  #第一个参数为计算评估特征是否好的函数，该函数输入特征矩阵和目标向量，输出二元组（评分，P值）的数组，数组第i项为第i个特征的评分和P值。在此定义为计算相关系数
+  #参数k为选择的特征个数
+  SelectKBest(lambda X, Y: array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
   ```
 
   
 
-- **相關係數法**
+#### 卡方檢驗(K-Best)
 
-  - 皮爾森相關係數是一種最簡單的，能説明理解特徵和回應變數之間關係的方法，該方法衡量的是變數之間的線性相關性，結果的取值區間為 $-1$ 至 $1$  ， $-1$ 表示完全的負相關(這個變數下降，那個就會上升)，$+1$ 表示完全的正相關，$0$ 表示沒有線性相關。
-
-  - Pearson相關係數的一個明顯缺陷是，作為特徵排序機制，他只對線性關係敏感。如果關係是非線性的，即便兩個變數具有一一對應的關係，Pearson相關性也可能會接近 $0$
-
-    ```python
-    from sklearn.feature_selection import SelectKBest
-    from scipy.stats import pearsonr
-    
-    #选择K个最好的特征，返回选择特征后的数据
-    #第一个参数为计算评估特征是否好的函数，该函数输入特征矩阵和目标向量，输出二元组（评分，P值）的数组，数组第i项为第i个特征的评分和P值。在此定义为计算相关系数
-    #参数k为选择的特征个数
-    SelectKBest(lambda X, Y: array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
-    ```
-
-    
-
-- **卡方檢驗(K-Best)**
-
-  - 傳統的卡方檢驗是檢驗類別變數對類別目標變數的相關性。假設自變數有 $N$ 種取值，目標變數有 $M$ 種取值，考慮自變數等於 $i$ 且目標變數等於 $j$ 的樣本頻數的觀察值與期望的差距，構建統計量：
+- 傳統的卡方檢驗是檢驗類別變數對類別目標變數的相關性。假設自變數有 $N$ 種取值，目標變數有 $M$ 種取值，考慮自變數等於 $i$ 且目標變數等於 $j$ 的樣本頻數的觀察值與期望的差距，構建統計量：
 
 $$
 \chi^2 = \sum \frac{(A-E)^2}{E}
@@ -3146,241 +3167,112 @@ X_new.shape
 
 包裹型是指把特徵選擇看做一個特徵子集搜索問題，根據目標函數（通常是預測效果評分），每次選擇/刪除若干特徵，藉以評估效果。
 
-- **Forward Selection(向前搜索)**
+#### Forward Selection(向前搜索)
 
-  1. 先設定一個顯著水準/重要性
-  2. 逐一針對，每個 X 變數對 Y 建立模型，從中保留最顯著 / 重要性最高的變數
-  3. 逐一針對其餘的 X變數並加入保留下來的變數，對Y建立模型，從中保留最顯著/最重要的變數
-  4. 觀測模型的效果是否有提升，若有則重複第3個步驟
-  5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
+1. 先設定一個顯著水準/重要性
+2. 逐一針對，每個 X 變數對 Y 建立模型，從中保留最顯著 / 重要性最高的變數
+3. 逐一針對其餘的 X變數並加入保留下來的變數，對Y建立模型，從中保留最顯著/最重要的變數
+4. 觀測模型的效果是否有提升，若有則重複第3個步驟
+5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
 
-- **Backwark Elimination(向後搜索)**
+#### Backwark Elimination(向後搜索)
 
-  最快速，而且看得到過程
+最快速，而且看得到過程
 
-  1. 先設定一個顯著水準/重要性
-  2. 將全部變數投入到模型中
-  3. 找出最不顯著(p值最高)/重要性最低的變數，並移除該變數，並重新建模
-  4. 觀測移除後的模型表現是否有較移除前提升，若有，回到第3個步驟繼續執行
-  5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
+1. 先設定一個顯著水準/重要性
+2. 將全部變數投入到模型中
+3. 找出最不顯著(p值最高)/重要性最低的變數，並移除該變數，並重新建模
+4. 觀測移除後的模型表現是否有較移除前提升，若有，回到第3個步驟繼續執行
+5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
 
-- **Bidirectional Elimination(遞歸特徵消除法**
+#### Bidirectional Elimination(遞歸特徵消除法
 
-  結合前兩種方法，由於模型在新增變數時會影響到其他變數的顯著性/重要性，因此在新增變數後同步確認時候有變數變得不顯著，此時需要將這類變數從模型中移除。後只會留下最佳解釋效果的變數，並藉以建出的模型。
+結合前兩種方法，由於模型在新增變數時會影響到其他變數的顯著性/重要性，因此在新增變數後同步確認時候有變數變得不顯著，此時需要將這類變數從模型中移除。後只會留下最佳解釋效果的變數，並藉以建出的模型。
+
+1. 設定要選入變數/移除變數的閾值(顯著水準/重要性)
+2. 執行 Forward Selection 找出最重要的變數加入至模型中
+3. 針對目前選入的變數執行 Backwark Elimination，確認所有變數的閾值都有符合設定的條件，執行完後回到步驟2，繼續找新變數。
+4. 直到沒有變數可以新增/移除後才結束
+
+
+
+#### Recursive feature elimination
+
+- RFE
+
+  ```python
+  from sklearn.feature_selection import RFE
+  ```
+
+- REFCV
+
+  ```python
+   from sklearn.feature_selection import RFECV
+  ```
+
   
-  1. 設定要選入變數/移除變數的閾值(顯著水準/重要性)
-  2. 執行 Forward Selection 找出最重要的變數加入至模型中
-  3. 針對目前選入的變數執行 Backwark Elimination，確認所有變數的閾值都有符合設定的條件，執行完後回到步驟2，繼續找新變數。
-  4. 直到沒有變數可以新增/移除後才結束
-  
-  
-  
-  - Recursive feature elimination
-  
-    ```python
-    print(__doc__)
-    
-    from sklearn.svm import SVC
-    from sklearn.datasets import load_digits
-    from sklearn.feature_selection import RFE
-    import matplotlib.pyplot as plt
-    
-    # Load the digits dataset
-    digits = load_digits()
-    X = digits.images.reshape((len(digits.images), -1))
-    y = digits.target
-    
-    # Create the RFE object and rank each pixel
-    svc = SVC(kernel="linear", C=1)
-    rfe = RFE(estimator=svc, n_features_to_select=1, step=1)
-    rfe.fit(X, y)
-    ranking = rfe.ranking_.reshape(digits.images[0].shape)
-    
-    # Plot pixel ranking
-    plt.matshow(ranking, cmap=plt.cm.Blues)
-    plt.colorbar()
-    plt.title("Ranking of pixels with RFE")
-    plt.show()
-    ```
-  
-    ![](https://lh3.googleusercontent.com/CfbKn6asZS_RvJwWw4iEgNysZXlEhK5USetrL8Sug_IBwmiHwgPfB7lCGUEO-M8nvdsJM0lrCC3VEDbfaTxLY-lLtVOmE5kHLrsn1vGVxmgzsoFqYdvX7mbO44T2Q-qRKA6ZQAo8K1JedquVxWpS8Nl9PsGh2oAx8dYcOm3KIfkIsH8oAm_Mvw1SXeMMQT7sVqLObVyJ5pYSavy62dIpsEV7_nuh-__MRduKmUyWvosXoIrl3pD96cPLvnWzwpQqBdu36EQR0vWB6WsNu_FZHwWk-Pjof2Aq8ezeEsi0Mfug24CzC898oqL65wB9gFUJVn0wJh6o_9f-mSZmyd59ckI5PDaRBIJLVvk2exqju2Ko9SvlvPV12suqG6JDN3IG_L4IrBdaIYaaI_HVBwQh3Y_oEzs2ttEAHM8KFHuauKmzkxnTAkblqPqOeC3F5FhTYlX-bGa25lay_tbiwirnNHfX0VnzhZMdU39PVlzbCd8qLZAk4-CB10IkOI6vp5rLlJ6_8bM_3p_Kgqnyh1czXoAhwmj6i5d3d2hsOrION--dX3rgIkCJd3Qk2ICWRdREaiwFnWCV0uGTjppngYbTzA6KMKopNsyJDXKIugOj1fH5LGFKnIUmEa8FFuEBjD0FC0Ekkq4IqmmlTuA-oXS5hqir0Rz426hf07jVj3UPFP5liCsWUzfcvfCLo8NJ_7oc9x-jcggcwFo484hfirxNXA3m1jjXMGg7gFGV4YMvGxbCYFXJwx7bzFQ=s480-no)
-  
-  - Recursive feature elimination with cross-validation
-  
-    ```python
-      import matplotlib.pyplot as plt
-      from sklearn.svm import SVC
-      from sklearn.model_selection import StratifiedKFold
-      from sklearn.feature_selection import RFECV
-      from sklearn.datasets import make_classification
-    
-      # Build a classification task using 3 informative features
-      X, y = make_classification(n_samples=1000,
-                               n_features=25,
-                               n_informative=3,
-                               n_redundant=2,
-                               n_repeated=0,
-                               n_classes=8,
-                               n_clusters_per_class=1,
-                               random_state=0)
-    
-    # Create the RFE object and compute a cross-validated score.
-    svc = SVC(kernel="linear")
-    # The "accuracy" scoring is proportional to the number of correct
-    # classifications
-    rfecv = RFECV(estimator=svc,
-                  step=1,
-                  cv=StratifiedKFold(2),
-                  scoring='accuracy')
-    rfecv.fit(X, y)
-    
-    print("Optimal number of features : %d" % rfecv.n_features_)
-    
-    # Plot number of features VS. cross-validation scores
-    plt.figure()
-    plt.xlabel("Number of features selected")
-    plt.ylabel("Cross validation score (nb of correct classifications)")
-    plt.plot(range(1, len(rfecv.grid_scores_) + 1), rfecv.grid_scores_)
-    plt.show()
-    
-    ```
-  
-    ![](https://lh3.googleusercontent.com/Sejwo5UKUsyTL6s7nk3Etd9vw34yxxLQcU9xhZZhK5RvybHzjgKe9nlvgbLxJN0ENzjfD08IIrbuf3yrcMxwTxKqobn6nIBHzbLHu8WI2u7x8LA0to04502y0cBtjIhh7VJ_RXYIt_HPt6C1bc4nfbQ8GmdKFlHtq614kCuiG-MEB2DSc4z4GLOEEFHOSVSy8iazaku3fn0l67Z8pru0qa02QH2hPB-IM_JhXlN639YVsqeyModlod_vyXFDBJ8fryK8clTDT8LlP_9gZhUz-GUodGjV6EhXpy4T-qMgS3Bg9bMJpq3xH4C6kjqtkvYfVTKZcx2ijYfsYHdEUsWPvnOfchFAycbxY9BFKxWH23gw5glWsznsAjW_r0TZHRV6RdaFjDiaxsnOCRkChpGYRNS8BX1RnXe9ISOkr8Hc7V7YzXkVKuiit59vZ2rAnXBm6PvMU2f4XYdD6r4Olc3Y-76p4hMhcnv4GiVCqUj8wxskt8148YPEgm1PflheSsBtpGKuULORj9dXg6Koi7zNZHVX96kM9v2bv2dhnzLI7zhueAee_hiobDXxFtKzfeGxgX2hz21wIg-WzvLJBhAzlzjYl9l2Bqju7ClKpqog-stiQSF4r0sRb8MozAPzD-s1ws6fWDKayO7JKQJ1IKam7BCOIq7p5MiBgQCAyvQEK1wV1e4qVA4J5K5qRdPLvLfzSww1P9Kbra5BrX6LA6PVePpS6a1P92YH2IfskjgAxI_q3jJfa3yEOlc=w640-h480-no)
 
 ### 嵌入法(Embedded)
 
-先使用某些機器學習的演算法和模型進行訓練，得到各個特徵的權值係數，根據係數從大到小選擇特徵。類似於Filter方法，但是是通過訓練來確定特徵的優劣。
+- 先使用某些機器學習的演算法和模型進行訓練，得到各個特徵的權值係數，根據係數從大到小選擇特徵。
 
-- 基於懲罰項的特徵選擇法(Lasso)
-  - 通過L1正則項來選擇特徵：L1正則方法具有稀疏解的特性，因此天然具備特徵選擇的特性，但是要注意，L1沒有選到的特徵不代表不重要，原因是兩個具有高相關性的特徵可能只保留了一個，如果要確定哪個特徵重要應再通過L2正則方法交叉檢驗。
+  - 類似於Filter方法，但是是通過訓練來確定特徵的優劣。
+
+  ```python
+  from sklearn.feature_selection import SelectFromModel
+  ```
+
   
-  - 對於SVM和logistic回歸來說，參數C控制著稀疏性：C越小，選擇到的features就越少。而對於Lasso，alpha的值越大，則選擇到的features越少。
-  
+
+#### 基於懲罰項的特徵選擇法(Lasso)
+
+- 通過L1正則項來選擇特徵：L1正則方法具有稀疏解的特性，因此天然具備特徵選擇的特性，但是要注意，L1沒有選到的特徵不代表不重要，原因是兩個具有高相關性的特徵可能只保留了一個，如果要確定哪個特徵重要應再通過L2正則方法交叉檢驗。
+
+- 對於SVM和logistic回歸來說，參數C控制著稀疏性：C越小，選擇到的features就越少。而對於Lasso，alpha的值越大，則選擇到的features越少。
+
 - L1懲罰項降維的原理在於保留多個對目標值具有同等相關性的特徵中的一個，所以沒選到的特徵不代表不重要。故可結合L2懲罰項來優化。
     - L1正則化是指權值向量w中各個元素的絕對值之和,L1正則化可以產生稀疏權值矩陣，即產生一個稀疏模型，可以用於特徵選擇
     - L2正則化是指權值向量w中各個元素的平方和然後再求平方根L2正則化可以防止模型過擬合（overfitting）。當然，一定程度上，L1也可以防止過擬合
-    
-    ```python
-    from sklearn.svm import LinearSVC
-    from sklearn.datasets import load_iris
-    from sklearn.feature_selection import SelectFromModel
-    iris = load_iris()
-    X, y = iris.data, iris.target
-    X.shape
-    # (150, 4)
-    lsvc = LinearSVC(C=0.01, penalty="l1", dual=False).fit(X, y)
-    model = SelectFromModel(lsvc, prefit=True)
-    X_new = model.transform(X)
-    X_new.shape
-    # (150, 3)
-    ```
-    
-    
-  
-- 基於模型的特徵選擇法(Model based ranking)
-  - 直接使用機器學習演算法，針對每個單獨的特徵和目標變數建立預測模型。假如某個特徵和目標變數之間的關係是非線性的，可以用基於樹的方法（決策樹、隨機森林）、或者擴展的線性模型等。基於樹的方法比較易於使用，因為他們對非線性關係的建模比較好，並且不需要太多的調試。但要注意過擬合問題，因此樹的深度最好不要太大，再就是運用交叉驗證。通過這種訓練對特徵進行打分獲得相關性後再訓練最終模型。
-  
-  - 使⽤梯度提升樹擬合後，以特徵在節點出現的頻率當作特徵重要性，以此刪除重要性低於⾨檻的特徵
-  
-  - 特徵選擇中，計算時間較長，但是能排除共線性且比較穩定的⽅式是梯度提升樹嵌入法
-  
-    ```python
-    from sklearn.ensemble import ExtraTreesClassifier
-    from sklearn.datasets import load_iris
-    from sklearn.feature_selection import SelectFromModel
-    iris = load_iris()
-    X, y = iris.data, iris.target
-    X.shape
-    # (150, 4)
-    clf = ExtraTreesClassifier()
-    clf = clf.fit(X, y)
-    clf.feature_importances_  
-    # array([ 0.04...,  0.05...,  0.4...,  0.4...])
-    model = SelectFromModel(clf, prefit=True)
-    X_new = model.transform(X)
-    X_new.shape               
-    # (150, 2)
-    ```
-  
-    
-  
-  - https://www.kaggle.com/cast42/select-features-rfecv/output
-  
-  - Feature selection using SelectFromModel and LassoCV
-  
-    ```python
-    # Author: Manoj Kumar <mks542@nyu.edu>
-    # License: BSD 3 clause
-    
-    print(__doc__)
-    
-    import matplotlib.pyplot as plt
-    import numpy as np
-    
-    from sklearn.datasets import load_boston
-    from sklearn.feature_selection import SelectFromModel
-    from sklearn.linear_model import LassoCV
-    
-    # Load the boston dataset.
-    X, y = load_boston(return_X_y=True)
-    
-    # We use the base estimator LassoCV since the L1 norm promotes sparsity of features.
-    clf = LassoCV()
-    
-    # Set a minimum threshold of 0.25
-    sfm = SelectFromModel(clf, threshold=0.25)
-    sfm.fit(X, y)
-    n_features = sfm.transform(X).shape[1]
-    
-    # Reset the threshold till the number of features equals two.
-    # Note that the attribute can be set directly instead of repeatedly
-    # fitting the metatransformer.
-    while n_features > 2:
-        sfm.threshold += 0.1
-        X_transform = sfm.transform(X)
-        n_features = X_transform.shape[1]
-    
-    # Plot the selected two features from X.
-    plt.title(
-        "Features selected from Boston using SelectFromModel with "
-        "threshold %0.3f." % sfm.threshold)
-    feature1 = X_transform[:, 0]
-    feature2 = X_transform[:, 1]
-    plt.plot(feature1, feature2, 'r.')
-    plt.xlabel("Feature number 1")
-    plt.ylabel("Feature number 2")
-    plt.ylim([np.min(feature2), np.max(feature2)])
-    plt.show()
-    ```
-  
-    ![](https://lh3.googleusercontent.com/bWTx_EJ48E2VgHh8NuTF3whLwQja51xo_405L43NIvGBqCpk-1sbP7zeVPNFASixpFyBPEc7_s9Th2Klt1efPDS31fJHNd-odKC8-T0NkKNcyHuimhW_0qrae0c6_Vuasb_54mPcuA4KhRHdV-m75lB5R3pn4yKRNSM3Apn3aPnm7Gbn5Mr9aIpupdWeOogEPluSGUYQAznOsNPV83lmarEutQsoMImBpf79Y2nhQKu-Iwok8Mgv7LwKdmQsym4Sygytbbov1bXojsS80isg_GEhzjzrjYN1h9u-rWuvB617dL34CwG8WO-GmBKIVnFkAtmTlbHDg72rgqs-lesP3q79nzscU61Db5Q0zkMV-EaCrRgjcoLodkhAxflBbltpeIHCML5uSQMnuYnLMsNgNeB3S6X1z_6KBzY4275NDsPL-_5wq4zKTgY-H8XusjZ4uT-IiEBiLoorcVdZ08-pC4B0KzoNdUs1FwTmp2hdc40xvCvmkMmnpBAFTn-pZwDmkumo60R3RORJXCPNx0_jqQTgrOeL4A0r_7z7tqZ6PpquVdKX_Q7pT9tI_AwNY8jP-sP9dHE9n-2E9PnYq_poZPjsav58oAyNAnNXEyLGYmdXj5evkxc3iOrLVuw0wX8WFa8m_Oub_EMb9xDAr3xGjwaca9nqt7Exyqk_Roup6egD_gJJoAi9jV8tYEgb3RiOIFsg3vlTkZ1SAhyx9QCqhVL-bhJVYdaHh56oLx2QGhmyrRGtXGJpp7g=w640-h480-no)
 
-### 排列重要性 (permutation Importance)
+```python
+from sklearn.linear_model import LassoCV
+```
+
+
+
+#### 基於模型的特徵選擇法(Model based ranking)
+
+- 直接使用機器學習演算法，針對每個單獨的特徵和目標變數建立預測模型。假如某個特徵和目標變數之間的關係是非線性的，可以用基於樹的方法（決策樹、隨機森林）、或者擴展的線性模型等。基於樹的方法比較易於使用，因為他們對非線性關係的建模比較好，並且不需要太多的調試。但要注意過擬合問題，因此樹的深度最好不要太大，再就是運用交叉驗證。通過這種訓練對特徵進行打分獲得相關性後再訓練最終模型。
+
+- 使⽤梯度提升樹擬合後，以特徵在節點出現的頻率當作特徵重要性，以此刪除重要性低於⾨檻的特徵
+
+- 特徵選擇中，計算時間較長，但是能排除共線性且比較穩定的⽅式是梯度提升樹嵌入法
+
+  ```python
+  from sklearn.feature_selection import SelectFromModel
+  ```
+  
+
+
+
+#### 排列重要性 (permutation Importance)
 
 - 特徵重要性計算方法
   - 在樹模型中特徵的分支次數：weight
   - 特徵覆蓋度：cover
   - 損失函數降低量：gain
-
 - 雖然特徵重要性相當實⽤，然⽽計算原理必須基於樹狀模型，於是有了可延伸⾄非樹狀模型的排序重要性
 - 排序重要性計算，是打散單⼀特徵的資料排序順序，再⽤原本模型重新預測，觀察打散前後誤差會變化多少
-
-https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2
-
-https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df
 
 
 
 ### 參考資料
 
-- [数据特征处理之特征哈希（Feature Hashing）](https://www.jianshu.com/p/9c40b8dc60bf)
-- [哈希算法-MD5](https://www.jianshu.com/p/2c01e37dcbd8?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)
-- [基于sklearn的文本特征抽取](https://www.jianshu.com/p/063840752151)
-- [离群值！离群值？离群值！](https://zhuanlan.zhihu.com/p/33468998)
-- [【Python数据分析基础】: 数据缺失值处理](https://juejin.im/post/5b5c4e6c6fb9a04f90791e0c)
-- [数据标准化/归一化normalization](https://blog.csdn.net/pipisorry/article/details/52247379)
-- [Data Types: A Better Way to Think about Data Types for Machine Learning](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)
-- [Feature Engineering 特徵工程中常見的方法](https://vinta.ws/code/feature-engineering.html)
+- [Stopping stepwise: Why stepwise selection is bad and what you should use instead](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)
+- [The 5 Feature Selection Algorithms every Data Scientist should know](https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2)
+
+
+
 - [平均数编码：针对高基数定性特征（类别特征）的数据预处理/特征工程](https://zhuanlan.zhihu.com/p/26308272)
 - [连续特征的离散化：在什么情况下将连续的特征离散化之后可以获得更好的效果？](https://www.zhihu.com/question/31989952)
 - 離群值
@@ -9149,3 +9041,10 @@ u'\u53f0\u5317\u5e02'
 True
 ```
 
+
+
+# To-Do
+
+- [ ] Auto-DataPreprocess
+  - 檢測資料品質
+- [ ] 
