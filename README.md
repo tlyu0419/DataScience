@@ -84,7 +84,9 @@
   - [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
   - [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
 
-## 職務分工
+
+
+## 角色與職務分工
 
 - 資料科學家
 - 數據分析師
@@ -2214,13 +2216,97 @@ def timer(n):
 ### 資料類型
 
 - 實際上資料可以分為類別、順序、等距與等比這四種測量尺度，但實務上通常會將順序、等距與等比的資料都視為數值資料。
+
 - 測量尺度
   - 類別變數(nominal): 如國家、縣市...等等。
   - 順序尺度(ordinal)：如滿意度分數
   - 等距尺度(interval):沒有絕對的0，如溫度
   - 等比尺度(ratio)：0 表示沒有，如收入、身高、體重。
 
+- 其他類型特徵
+  
+  - **時間型特徵**
+  
+    - 時間型特徵最常⽤的是特徵分解 - 拆解成年/⽉/⽇/時/分/秒的分類值
+  
+    - 週期循環特徵是將時間"循環"特性改成特徵⽅式, 設計關鍵在於⾸尾相接, 因此我們需要使⽤ sin /cos 等週期函數轉換
+  
+    - 常⾒的週期循環特徵有 - 年週期(季節) / 周周期(例假⽇) / ⽇週期(⽇夜與⽣活作息), 要注意的是最⾼與最低點的設置
+  
+    - 雖然時間型特徵可當作數值型特徵或類別型特徵，但都不適合
+  
+      - 取總秒數雖可變為數值，但會失去週期性 (ex ⽉ / 星期)
+      - 使⽤本⾝可以當作類別，但會失去排序資訊，類別數量也過⼤
+  
+    - 週期循環特徵
+  
+      - **年週期：**與春夏秋冬季節溫度相關（正：冷 / 負：熱）
+  
+        $cos((月/6 + 日/180) \pi)$
+  
+      - **月週期：**與薪⽔、繳費相關
+  
+      - **週週期：**與周休、消費習慣相關（正：精神飽滿 / 負：疲倦）
+  
+        $sin((星期幾/3.5 + 小時/84) \pi)$
+  
+      - **日週期：**與⽣理時鐘相關（正：精神飽滿 / 負：疲倦）
+  
+        $sin((小時/12 + 分/720 + 秒/43200) \pi)$
+  
+      - 前述的週期所需數值都可由時間欄位組成, 但還⾸尾相接
+        因此週期特徵還需以正弦函數( sin )或餘弦函數( cos )加以組合
+  
+    - 時段特徵
+  
+      - 短暫時段內的事件計數，也可能影響事件發⽣的機率
+        - 如 : 網站銷售預測，點擊網站前 10分鐘 / 1⼩時 / 1天 的累計點擊量
+      - 以⼀筆 17:05 發⽣的網站瀏覽事件為例
+        - 同樣是1⼩時的統計，基礎分解會統計當⽇ 17 時整個⼩時的點擊量
+        - 時段特徵則是會統計 16:05-17:04 的點擊量
+          兩者相比，後者較前者更為合理
+  
+    - [Python-基础-时间日期处理小结](http://www.wklken.me/posts/2015/03/03/python-base-datetime.html)
+  
+  - **文本特徵**
+  
+    - 斷詞
+      - 字典法
+      - 爬蟲法
+      - 左右互信息法
+      - NER?
+  
+    - 詞頻統計
+      - 如果是文本類型的數據，比如詞袋，則可以在文本數據預處理後，去掉停用詞，剩下的詞使用Hash技巧做一些詞頻統計。
+    - TD-IDF
+      - 到TF-IDF这种统计方法。字词的重要性随着它在文件中 出现的次数成正比增加，但同时会随着它在语料库中出现的频率成 反比下降。
+  
+    - Bag-of-Words
+      - 將一篇文檔看作是一個詞的集合，單純計算每個詞的出現次數，不考慮語法，甚至是詞序信息也都拋棄了。
+  
+    - word2vec(word embeddings)
+      - 中文名“詞向量”，作用就是將自然語言中的字詞轉為計算機可以理解的稠密向量（Dense Vector）。在word2vec出現之前，自然語言處理經常把字詞轉為離散的單獨的符號，也就是One-Hot Encoder。
+  
+      - 但是使用One-Hot Encoder有以下問題。一方面，城市編碼是隨機的，向量之間相互獨立，看不出城市之間可能存在的關聯關係。其次，向量維度的大小取決於語料庫中字詞的多少。如果將世界所有城市名稱對應的向量合為一個矩陣的話，那這個矩陣過於稀疏，並且會造成維度災難。
+  
+      - **通過嵌入一個線性的投影矩陣（projection matrix），將原始的one-hot向量映射為一個稠密的連續向量，並通過一個語言模型的任務去學習這個向量的權重。**Word2Vec其實就是通過學習文本來用詞向量的方式表徵詞的語義信息，即通過一個嵌入空間使得語義上相似的單詞在該空間內距離很近。
+  
+    - 特徵雜湊(Feature Hash)
+      - 類別型特徵最⿇煩的問題 : 相異類別的數量非常龐⼤, 該如何編碼?
+        舉例 : 鐵達尼⽣存預測的旅客姓名
+  
+      - 特徵雜湊是⼀種折衷⽅案，將類別由雜湊函數定應到⼀組數字。調整雜湊函數對應值的數量，在計算空間/時間與鑑別度間取折衷，也提⾼了訊息密度, 減少無⽤的標籤
+  
+  - 影像特徵
+  
+  - 影片特徵
+  
+  - 聲音特徵
+  
+  
+  
 - Ref
+  
   - [Data Types: A Better Way to Think about Data Types for Machine Learning](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)
 
 ### 資料分佈
@@ -2627,51 +2713,52 @@ def timer(n):
 - 因此，離群值的存在會對資料分析造成極大影響在對各欄位進行歸一化之前，需要先將各欄位中的離群值進行處理，否則在歸一化後「非離群值」之間的差距反而無法呈現，影響模型的精準度與穩定性。
 - 離群值是與正常數值偏離較遠的數值群，如果不處理則特徵縮放(標準化 / 最⼩最⼤化)就會出現很⼤的問題
 - 處理離群值之後，好處是剩餘資料中模型較為單純且準確，壞處是有可能刪除掉重要資訊，因此刪除前最好能先了解該數值會離群的可能原因
-- 異常值 (Outliers) 出現的可能原因
-  - 所以未知值，隨意填補 (約定俗成的代入)，如年齡 = -1 或 999, 電話是 0900-123-456
-  - 可能的錯誤紀錄/⼿誤/系統性錯誤，如某本書在某筆訂單的銷售量 = 1000 本
-- 檢查 Outliers 的流程與⽅法
-  - 盡可能確認每⼀個欄位的意義 (但有些競賽資料不會提供欄位意義)
-  - 透過檢查數值範圍 (五值、平均數及標準差) 或繪製散點圖 (scatter)、分布圖 (histogram) 或其他圖檢查是否有異常。
-- 對 Outliers 的處理⽅法
-  - 新增欄位⽤以紀錄異常與否
-  - 填補 (取代)
-  - 視情況以中位數, Min, Max 或平均數填補(有時會⽤ NA)
 
-- **檢測方式**
+#### Outliers 出現的可能原因
 
-  - 類別型特徵
+- 所以未知值，隨意填補 (約定俗成的代入)，如年齡 = -1 或 999, 電話是 0900-123-456
+- 可能的錯誤紀錄/⼿誤/系統性錯誤，如某本書在某筆訂單的銷售量 = 1000 本
 
-    - 發生次數：該類別事件小於設定的最小次數門檻
-    - 發生比例：該類別事件的事件比率小於設定的最小次數百分比，常用5%作為門檻。
+#### Outliers 的檢查流程與方法
 
-  - 數值型特徵
+- 盡可能確認每⼀個欄位的意義 (但有些競賽資料不會提供欄位意義)
+- 透過檢查數值範圍 (五值、平均數及標準差) 或繪製散點圖 (scatter)、分布圖 (histogram) 或其他圖檢查是否有異常。
 
-    - **標準分數**：將資料轉為Z分數，並以±3個標準差作為作為臨界值，超過設定的臨界值即判定為離群值。
+- 類別型特徵
 
-    - **百分位數**：將最低與最高5%的資料視為離群值。
+  - 發生次數：該類別事件小於設定的最小次數門檻
+  - 發生比例：該類別事件的事件比率小於設定的最小次數百分比，常用5%作為門檻。
 
-    - **四分位距(Interquartile range, IQR)**：
+- 數值型特徵
 
-      - 從分位數的角度來偵測，IQR=Q3 - Q1，將(Q1 - 1.5 * IQR)與 (Q3 + 1.5 * IQR)視為離群值
+  - **標準分數**：將資料轉為Z分數，並以±3個標準差作為作為臨界值，超過設定的臨界值即判定為離群值。
 
-    - **平均絕對離差(Mean Absolute Deviation, MAD)**:
-      $$MAD = \frac{\Sigma^n_1|x_i- \bar x|}{n}$$
+  - **百分位數**：將最低與最高5%的資料視為離群值。
 
-      將mean ± 9 * MAD外的值視為離群值。
+  - **四分位距(Interquartile range, IQR)**：
+
+    - 從分位數的角度來偵測，IQR=Q3 - Q1，將(Q1 - 1.5 * IQR)與 (Q3 + 1.5 * IQR)視為離群值
+  - Box-plot
+  
+  - **平均絕對離差(Mean Absolute Deviation, MAD)**:
+  $$MAD = \frac{\Sigma^n_1|x_i- \bar x|}{n}$$
+  
+    將mean ± 9 * MAD外的值視為離群值。
+
+
+
+#### Outliers 的處理方法
+
+- 新增欄位⽤以紀錄異常與否
+- 填補 (取代)
+- 視情況以中位數, Min, Max 或平均數填補(有時會⽤ NA)
 
 - **刪除樣本**: 當離群值的數量相當少時，可以使用此方法
-
 - **刪除欄位**: 若是題目設計的問題導致某欄位中存在許多離群值，可以考慮刪除該欄位。
-
 - **整併至「其他」類別**: 適用於類別型變數
-
 - **縮尾**: 將超出變數特定百分位元範圍的數值替換為其特定百分位數值的方法。    
-
 - **截尾**: 將超出變數特定百分位元範圍的數值予以**刪除**的方法。
-
 - **插值**: 應用原有資料資訊對離群值賦予一個相對合理的新值的方法
-
 - 去除偏態
 
   - 當離群資料比例太⾼，或者平均值沒有代表性時，可以考慮去除偏態，
@@ -2686,7 +2773,9 @@ def timer(n):
     - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
     - 使⽤ box-cox 分布去偏時，除了注意 λ 參數要介於 0 到 0.5 之間，並且要注意轉換前的數值不可⼩於等於 0
 
+### 參考資料
 
+- [Ways to Detect and Remove the Outliers](https://towardsdatascience.com/ways-to-detect-and-remove-the-outliers-404d16608dba)
 
 ### 遺漏值處理
 
@@ -2730,13 +2819,6 @@ def timer(n):
   - 本方式須留意overfitting : 可能退化成為其他特徵的組合
 - **不處理**
   - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
-
-```python
-from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
-imputer.fit(df[:, 1:3])
-df[:, 1:3] = imputer.transform(df[:, 1:3])
-```
 
 Ref
 
@@ -2874,7 +2956,10 @@ $$
 \frac {(x-min(x))}{max(x)-min(x)}
 $$
 
+### 參考資料
 
+- [连续特征的离散化：在什么情况下将连续的特征离散化之后可以获得更好的效果？](https://www.zhihu.com/question/31989952)
+- [Is it a good practice to always scale/normalize data for machine learning?](https://stats.stackexchange.com/questions/189652/is-it-a-good-practice-to-always-scale-normalize-data-for-machine-learning)
 
 
 
@@ -2895,13 +2980,13 @@ $$
 
 
 
-#### Features Interaction
+### Features Interaction
 
 - 假設你有 `A` 和 `B` 兩個 continuous 特徵，你可以用 `A + B`、`A - B`、`A * B` 或 `A / B` 之類的方式建立新的特徵。
 - 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
 - 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
 
-#### Feature Combination 
+### Feature Combination 
 
 - 特徵組合主要是針對 categorical 特徵，特徵交互則是適用於 continuous 特徵。但是兩者的概念是差不多的，就是把兩個以上的特徵透過某種方式結合在一起，變成新的特徵。通常用來解決一般的線性模型沒辦法學到非線性特徵的問題。
 
@@ -2925,7 +3010,7 @@ $$
   - `var(N) GROUP BY C` 方差
   - `N - median(N) GROUP BY C`
 
-#### Feature Extraction
+### Feature Extraction
 
 通常就是指 dimensionality reduction。
 
@@ -2933,7 +3018,7 @@ $$
 - Latent Dirichlet Allocation (LDA)
 - Latent Semantic Analysis (LSA)
 
-#### Feature Learning
+### Feature Learning
 
 - 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
   
@@ -2954,133 +3039,20 @@ $$
   
   - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
 
-## Data Leakage
+### 參考資料
 
-- 本來不應該出現在X裡的、和目標y有關的資料，出現在了X中。如此一來，機器學習演算法就會有好到不真實的表現。
-
-### 資料洩露的種類以及影響分析
-
-- 測試集資料被洩露到訓練集：過擬合，模型在現實中的表現遠不如test accuracy；測試集失去意義。
-
-- 正確的預測（y）被洩露到測試集：嚴重過擬合，訓練出的模型毫無用處，比賽組織者的極大失敗
-
-- 未來的資訊被洩露到過去：時間序列相關，現實中模型將無法有效根據過去情況預測未來。
-
-- 模型可以獲得一些不該獲得的資訊，比如和目標變數有較大關係的變數、現實裡接觸不到的變數。例子：y是“病人是否患有癌症”，但是X包括了“病人是否接受腫瘤切除手術”。
-
-- 反向工程，去匿名化，去除資料集中的隨機打亂操作，社會工程學。這種行為是資料比賽明令禁止的，而且在現實中也涉嫌侵犯隱私。例子：反向工程“隨機的”使用者編碼，得出使用者的真名。
-
-- 第三方信息。例子：已知座標，利用geocoder類型的服務推出所在城市；在預測金融市場時加入協力廠商的政策新聞的特徵。
-
- 
-
-### 有效發現和利用資料洩露
-
-資料洩露可以分為兩大類：
-
-- 由於自己的疏忽，在交叉驗證、訓練過程中，產生的資料洩露。這種情況屬於失誤，應當儘量避免。
-
-- 在資料競賽中，找到了理論上不能使用（但是也沒有明令禁止）的額外資料，從而提升分數。
-
-- 避免第一種資料洩露的方法，可以參考kaggle的各類比賽。假設有大量資料，我們可以把未處理的資料分為訓練集和測試集，其中，測試集包括Public LB和Private LB兩部分。
-  - 在模型的訓練、選擇和交叉驗證時，我們只能接觸訓練集。
-  - 在對自己的模型非常自信時，可以偶爾在Public LB上驗證。
-  - 只有模型即將被用於正式商業用途時，才能看模型在Private LB上的表現。
-
-- 交叉驗證誤差、public LB誤差、private LB誤差：如果後者的誤差值顯著高於前者，那麼需要考慮過擬合或第一類資料洩露。
-
-- 第二類的資料洩露，屬於旁門左道。本質上，這相當於在模型訓練階段，幹了資料收集階段的工作。搜集原始資料，或是自己提供資料舉辦競賽（試圖避免他人利用資料洩露）時，可以參考這種思路。
-  - 資料夾的創造時間。
-  - 看似亂碼的字串（如各類id）可能有統計分佈的規律。
-  - 地理位置資訊：如果提供了座標，則可反向地理編碼，得出相關地理資訊。
-
-這類資料可能會導致過擬合。
+- [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+- [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html#example-ensemble-plot-feature-transformation-py)
+- [CTR预估: Algorithm-GBDT Encoder](https://zhuanlan.zhihu.com/p/31734283)
+- [三分鐘了解推薦系統中的分解機方法](https://kknews.cc/code/62k4rml.html)
 
 
-
-### 其他類型特徵
-
-- **時間型特徵**
-
-  - 時間型特徵最常⽤的是特徵分解 - 拆解成年/⽉/⽇/時/分/秒的分類值
-
-  - 週期循環特徵是將時間"循環"特性改成特徵⽅式, 設計關鍵在於⾸尾相接, 因此我們需要使⽤ sin /cos 等週期函數轉換
-
-  - 常⾒的週期循環特徵有 - 年週期(季節) / 周周期(例假⽇) / ⽇週期(⽇夜與⽣活作息), 要注意的是最⾼與最低點的設置
-
-  - 雖然時間型特徵可當作數值型特徵或類別型特徵，但都不適合
-
-    - 取總秒數雖可變為數值，但會失去週期性 (ex ⽉ / 星期)
-    - 使⽤本⾝可以當作類別，但會失去排序資訊，類別數量也過⼤
-
-  - 週期循環特徵
-
-    - **年週期：**與春夏秋冬季節溫度相關（正：冷 / 負：熱）
-
-      $cos((月/6 + 日/180) \pi)$
-
-    - **月週期：**與薪⽔、繳費相關
-
-    - **週週期：**與周休、消費習慣相關（正：精神飽滿 / 負：疲倦）
-
-      $sin((星期幾/3.5 + 小時/84) \pi)$
-
-    - **日週期：**與⽣理時鐘相關（正：精神飽滿 / 負：疲倦）
-
-      $sin((小時/12 + 分/720 + 秒/43200) \pi)$
-
-    - 前述的週期所需數值都可由時間欄位組成, 但還⾸尾相接
-      因此週期特徵還需以正弦函數( sin )或餘弦函數( cos )加以組合
-
-  - 時段特徵
-
-    - 短暫時段內的事件計數，也可能影響事件發⽣的機率
-      - 如 : 網站銷售預測，點擊網站前 10分鐘 / 1⼩時 / 1天 的累計點擊量
-    - 以⼀筆 17:05 發⽣的網站瀏覽事件為例
-      - 同樣是1⼩時的統計，基礎分解會統計當⽇ 17 時整個⼩時的點擊量
-      - 時段特徵則是會統計 16:05-17:04 的點擊量
-        兩者相比，後者較前者更為合理
-
-- **文本特徵**
-
-  - 斷詞
-    - 字典法
-    - 爬蟲法
-    - 左右互信息法
-    - NER?
-
-  - 詞頻統計
-    - 如果是文本類型的數據，比如詞袋，則可以在文本數據預處理後，去掉停用詞，剩下的詞使用Hash技巧做一些詞頻統計。
-  - TD-IDF
-    - 到TF-IDF这种统计方法。字词的重要性随着它在文件中 出现的次数成正比增加，但同时会随着它在语料库中出现的频率成 反比下降。
-
-  - Bag-of-Words
-    - 將一篇文檔看作是一個詞的集合，單純計算每個詞的出現次數，不考慮語法，甚至是詞序信息也都拋棄了。
-
-  - word2vec(word embeddings)
-    - 中文名“詞向量”，作用就是將自然語言中的字詞轉為計算機可以理解的稠密向量（Dense Vector）。在word2vec出現之前，自然語言處理經常把字詞轉為離散的單獨的符號，也就是One-Hot Encoder。
-
-    - 但是使用One-Hot Encoder有以下問題。一方面，城市編碼是隨機的，向量之間相互獨立，看不出城市之間可能存在的關聯關係。其次，向量維度的大小取決於語料庫中字詞的多少。如果將世界所有城市名稱對應的向量合為一個矩陣的話，那這個矩陣過於稀疏，並且會造成維度災難。
-
-    - **通過嵌入一個線性的投影矩陣（projection matrix），將原始的one-hot向量映射為一個稠密的連續向量，並通過一個語言模型的任務去學習這個向量的權重。**Word2Vec其實就是通過學習文本來用詞向量的方式表徵詞的語義信息，即通過一個嵌入空間使得語義上相似的單詞在該空間內距離很近。
-
-  - 特徵雜湊(Feature Hash)
-    - 類別型特徵最⿇煩的問題 : 相異類別的數量非常龐⼤, 該如何編碼?
-      舉例 : 鐵達尼⽣存預測的旅客姓名
-
-    - 特徵雜湊是⼀種折衷⽅案，將類別由雜湊函數定應到⼀組數字。調整雜湊函數對應值的數量，在計算空間/時間與鑑別度間取折衷，也提⾼了訊息密度, 減少無⽤的標籤
-
-- 影像特徵
-
-- 影片特徵
-
-- 聲音特徵
 
 
 
 ## Feature Selection
 
-- 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant )的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。
+- 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant)的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。
   
 - 另一方面，選取出真正相關的特徵簡化模型，協助理解資料產生的過程。
   
@@ -3264,6 +3236,17 @@ from sklearn.linear_model import LassoCV
 - 雖然特徵重要性相當實⽤，然⽽計算原理必須基於樹狀模型，於是有了可延伸⾄非樹狀模型的排序重要性
 - 排序重要性計算，是打散單⼀特徵的資料排序順序，再⽤原本模型重新預測，觀察打散前後誤差會變化多少
 
+### 參考資料
+
+- [谈谈 L1 与 L2-正则项](https://liam.page/2017/03/30/L1-and-L2-regularizer/)
+
+- [Permutation Importances](https://www.kaggle.com/dansbecker/permutation-importance?utm_medium=email&utm_source=mailchimp&utm_campaign=ml4insights)
+- [干货：结合Scikit-learn介绍几种常用的特征选择方法](https://www.zhihu.com/question/28641663)
+- [特征工程到底是什么？](https://www.zhihu.com/question/29316149)
+- [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
+
+
+
 
 
 ### 參考資料
@@ -3273,62 +3256,107 @@ from sklearn.linear_model import LassoCV
 
 
 
-- [平均数编码：针对高基数定性特征（类别特征）的数据预处理/特征工程](https://zhuanlan.zhihu.com/p/26308272)
-- [连续特征的离散化：在什么情况下将连续的特征离散化之后可以获得更好的效果？](https://www.zhihu.com/question/31989952)
-- 離群值
-  - [Ways to Detect and Remove the Outliers](https://towardsdatascience.com/ways-to-detect-and-remove-the-outliers-404d16608dba)
-  - [How to Use Statistics to Identify Outliers in Data](https://machinelearningmastery.com/how-to-use-statistics-to-identify-outliers-in-data/)
-
-- 常態化
-  - [Is it a good practice to always scale/normalize data for machine learning?](https://stats.stackexchange.com/questions/189652/is-it-a-good-practice-to-always-scale-normalize-data-for-machine-learning)
-
-- 時間特徵
-  - [Python-基础-时间日期处理小结](http://www.wklken.me/posts/2015/03/03/python-base-datetime.html)
-  - [Basic date and time types](https://docs.python.org/3/library/datetime.html)
-
-- 特徵組合
-  - [特征组合&特征交叉 (Feature Crosses)](https://segmentfault.com/a/1190000014799038)
-  - [利用python数据分析之数据聚合与分组](https://zhuanlan.zhihu.com/p/27590154)
-  - [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
-  - [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html#example-ensemble-plot-feature-transformation-py)
-  - [CTR预估: Algorithm-GBDT Encoder](https://zhuanlan.zhihu.com/p/31734283)
-  - [三分鐘了解推薦系統中的分解機方法](https://kknews.cc/code/62k4rml.html)
-
-- 特徵選擇
-  - [谈谈 L1 与 L2-正则项](https://liam.page/2017/03/30/L1-and-L2-regularizer/)
-
-  - [机器学习 - 特征选择算法流程、分类、优化与发展综述](https://juejin.im/post/5a1f7903f265da431c70144c)
-  - [Permutation Importances](https://www.kaggle.com/dansbecker/permutation-importance?utm_medium=email&utm_source=mailchimp&utm_campaign=ml4insights)
-  - [干货：结合Scikit-learn介绍几种常用的特征选择方法](http://dataunion.org/14072.html)
-  - [机器学习中，有哪些特征选择的工程方法？](http://www.zhihu.com/question/28641663/answer/41653367)
-
-  - [特征工程到底是什么？](https://www.zhihu.com/question/29316149)
-  - [為什麼特徵工程很重要](https://ithelp.ithome.com.tw/articles/10200041?sc=iThelpR)
-  - [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
-
 # 建置模型(Modeling)
 
 ## 簡介
 
-1. 切分訓練/測試資料集
-   - 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
-   - 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
-   - 有些資料要特別注意!
+### 模型驗證(Validation)
 
-     - 時間序列資料
-     - 同⼀⼈有多筆資料
-   - 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
-   - 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
-   
-2. 模型選擇
-   
-   ![](https://lh3.googleusercontent.com/k3V0KBGhxRnF9_sIvNi_aJamr1zsDvV8FFgnrLGZ8VQNDnmXaiQOvQEAuqlfZqZNmzDQeQdDRtrvuxFjnzxIYUTxtCE5Gcr09wTjJ4v3ybBEk6fJW4zgyqphSJdfdxAeSX5Oavnipupu6WPR_9k82zBnbwjYUtzJtSBj6HKcrXOZBrlWwTQU2uAXCU9DMGWvQA25-hiVX01HKVGKyB6tZesBbtJz6blSavUouiimFxcC6n1AzIr9b4Q972VzTCzMVS3qhW_nGAYoun80GcrHObN0tSmdRl5j2O1M7rT3xaknIBTM8px99G-KhYFvTSZfAzB_DZ0djroq_JO5xVJ4-Q4S7L-Gms2jVaKFqdEgwS85AbkcOU2pmDhPTR8EW9P8-ZW7i6ClKrcKTep9fWAHHyAd7MKge4CbXmPRP52apXTsRzQJWKAqoA5ctZ1Py0ZbfBmN_4KgH9ioSnd_kkHwh5Zgo8NjnGfUjMXVtA8_N7wLvNvRt4SOXkUJ1pqeeMhMHrNAt-02ruXWxeUyyHL2744ssqwbPixLhRShcibdOXRVGKpnQeRhBYMQKlgigUpgSOdSnUvmVzWcYi8SYTnSd0x5IiniCplaUOU4OUHMT6EiV4pmRdo-a4wsojFkBZI1s7rhIuKamMylBkhoTY-mxtnVqZ70KNf50ZUsfh531DXGmmAEwS_jwNypuKycq_CtPt7CiKX5g38B9Jy_tNHl91CNBN2UdJAkxzKpkFc529--obSPCiqcYQE=w1491-h929-no)
-   
-   - binary-class vs. Multi-class
-     - ⼆元分類，顧名思義就是⽬標的類別僅有兩個。像是詐騙分析 (詐騙⽤⼾ vs. 正常⽤⼾)、瑕疵偵測 (瑕疵 vs. 正常)
-     - 多元分類則是⽬標類別有兩種以上。如⼿寫數字辨識有 10 個類別(0~9)，影像競賽 ImageNet 更是有⾼達 1,000 個類別需要分類
-   - Multi-class vs. Multi-label
-     - 當每個樣本都只能歸在⼀個類別，我們稱之為多分類 (Multi-class) 問題；⽽⼀個樣本如果可以同時有多個類別，則稱為多標籤 (Multi-label)。
+- 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
+
+- 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
+
+- 有些資料要特別注意!
+
+  - 時間序列資料
+  - 同⼀⼈有多筆資料
+  
+- 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
+
+- 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
+
+- 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
+
+  - 簡單切分
+
+    - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
+
+    ```python
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+    ```
+
+  - Cross-validation
+
+    - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
+
+      如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
+
+       
+
+    - 根據切分的方法不同，交叉驗證分為下面三種：　　　
+
+      - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
+
+      - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
+
+        $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
+
+        每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
+
+      - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
+
+      ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
+
+      ```python
+      sklearn.model_selection.KFold()
+      ```
+
+  - 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
+
+    - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
+
+  
+
+  - 過擬合 (Over-fitting)
+
+    - 模型的訓練⽬標是將損失函數的損失降⾄最低
+
+    - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
+
+  - 如何知道模型已經過擬合了?
+
+    - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
+
+  - **如何解決過擬合或⽋擬合**
+
+    - 過擬合
+    - 增加資料量
+      - 降低模型複雜度
+    - 使⽤正規化 (Regularization)
+    - ⽋擬合
+    - 增加模型複雜度
+      - 減輕或不使⽤正規化
+
+    ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
+
+  
+
+  - 切分完訓練測試資料需要比較兩者是否有差異
+
+    - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
+    - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
+
+### 模型選擇
+
+
+
+- binary-class vs. Multi-class
+  - ⼆元分類，顧名思義就是⽬標的類別僅有兩個。像是詐騙分析 (詐騙⽤⼾ vs. 正常⽤⼾)、瑕疵偵測 (瑕疵 vs. 正常)
+  - 多元分類則是⽬標類別有兩種以上。如⼿寫數字辨識有 10 個類別(0~9)，影像競賽 ImageNet 更是有⾼達 1,000 個類別需要分類
+- Multi-class vs. Multi-label
+  - 當每個樣本都只能歸在⼀個類別，我們稱之為多分類 (Multi-class) 問題；⽽⼀個樣本如果可以同時有多個類別，則稱為多標籤 (Multi-label)。
+
   - 了解專案的⽬標是甚麼樣的分類問題並選⽤適當的模型訓練
    - 定義⼀個⽬標函數 (Objective function) 也可稱作損失函數 (Loss function)，來衡量模型的好壞，Loss 越⼤，代表這組參數的模型預測出的 ŷ 越不準，也代表不應該選這組參數的模型
      - **線性回歸模型**：觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
@@ -3382,7 +3410,7 @@ from sklearn.linear_model import LassoCV
 
 
 
-## Evaluation Method
+### Evaluation Method
 
 https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
 
@@ -3400,7 +3428,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
     - 正則化是符合**奧卡姆剃刀原理**：在所有可能的模型中，能夠很好的解釋已知數據並且十分簡單的才是最好的模型。
 
-### 回歸模型
+#### 回歸模型
 
 - 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
   - MAE, Mean Absolute Error, 範圍: [-∞, ∞]
@@ -3430,7 +3458,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
     - p: number of independent variable
     - n: sample size
 
-### 分類模型
+#### 分類模型
 
 - 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
 
@@ -3545,7 +3573,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 - https://gombru.github.io/2018/05/23/cross_entropy_loss/
 
-### Cluster
+#### Cluster
 
 - 輪廓分析(Silhouette analysis)
   - 歷史
@@ -3590,81 +3618,14 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
     
       - 平均值觀察 計算分群的輪廓分數總平均，分的群數越多應該分數越⼩，如果總平均值沒有隨著分群數增加⽽變⼩，就說明了那些分組數較不洽當
 
-### Dimension Reduction
+#### Dimension Reduction
 
-## 模型驗證(Validation)
-
-在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
-
-- 簡單切分
-
-  - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
-
-  ```python
-  from sklearn.model_selection import train_test_split
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-  ```
-
-- Cross-validation
-
-  - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
-
-    如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
-
-     
-
-  - 根據切分的方法不同，交叉驗證分為下面三種：　　　
-
-    - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
-
-    - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
-
-      $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
-
-      每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
-
-    - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
-
-    ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
-
-    ```python
-    sklearn.model_selection.KFold()
-    ```
-
-- 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
-
-  - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
+- KMO球型檢定
+- Compenent Loading
 
 
 
-- 過擬合 (Over-fitting)
-
-  - 模型的訓練⽬標是將損失函數的損失降⾄最低
-
-  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
-
-- 如何知道模型已經過擬合了?
-
-  - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
-
-- **如何解決過擬合或⽋擬合**
-
-  - 過擬合
-  - 增加資料量
-    - 降低模型複雜度
-  - 使⽤正規化 (Regularization)
-  - ⽋擬合
-  - 增加模型複雜度
-    - 減輕或不使⽤正規化
-
-  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
-
-
-
-- 切分完訓練測試資料需要比較兩者是否有差異
-
-  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
-  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
+- - 
 
 ## 監督式模型
 
@@ -4807,18 +4768,69 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 ### 建立 pipeline
 
+## 模型組合
+
+- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+
 ## 模型診斷
 
 - 我們通常會為了提升模型的準確度，會盡可能的增加模型的複雜度。但是當模型的複雜度提升時伴隨而來的就是可解釋性就隨之降低。
 - 當模型很準確且無需解釋時，固然可以直接使用複雜的模型，但在商業環境中則往往會需要解釋模型發現了什麼，因為除了預測的準確度之外，公司也會希望模型協助管理，如營運績效、服務流程等等。
 - 又或者當模型的準確度不夠時會需要對模型進行診斷，找出模型犯錯的原因，來改善模型的預測結果。 
+- 
+
+### Imbalance Data
+
+### OverFit
+
+### DataLeak
+
+- 本來不應該出現在X裡的、和目標y有關的資料，出現在了X中。如此一來，機器學習演算法就會有好到不真實的表現。
+
+#### 資料洩露的種類以及影響分析
+
+- 測試集資料被洩露到訓練集：過擬合，模型在現實中的表現遠不如test accuracy；測試集失去意義。
+
+- 正確的預測（y）被洩露到測試集：嚴重過擬合，訓練出的模型毫無用處，比賽組織者的極大失敗
+
+- 未來的資訊被洩露到過去：時間序列相關，現實中模型將無法有效根據過去情況預測未來。
+
+- 模型可以獲得一些不該獲得的資訊，比如和目標變數有較大關係的變數、現實裡接觸不到的變數。例子：y是“病人是否患有癌症”，但是X包括了“病人是否接受腫瘤切除手術”。
+
+- 反向工程，去匿名化，去除資料集中的隨機打亂操作，社會工程學。這種行為是資料比賽明令禁止的，而且在現實中也涉嫌侵犯隱私。例子：反向工程“隨機的”使用者編碼，得出使用者的真名。
+
+- 第三方信息。例子：已知座標，利用geocoder類型的服務推出所在城市；在預測金融市場時加入協力廠商的政策新聞的特徵。
+
+ 
+
+#### 有效發現和利用資料洩露
+
+資料洩露可以分為兩大類：
+
+- 由於自己的疏忽，在交叉驗證、訓練過程中，產生的資料洩露。這種情況屬於失誤，應當儘量避免。
+
+- 在資料競賽中，找到了理論上不能使用（但是也沒有明令禁止）的額外資料，從而提升分數。
+
+- 避免第一種資料洩露的方法，可以參考kaggle的各類比賽。假設有大量資料，我們可以把未處理的資料分為訓練集和測試集，其中，測試集包括Public LB和Private LB兩部分。
+  - 在模型的訓練、選擇和交叉驗證時，我們只能接觸訓練集。
+  - 在對自己的模型非常自信時，可以偶爾在Public LB上驗證。
+  - 只有模型即將被用於正式商業用途時，才能看模型在Private LB上的表現。
+
+- 交叉驗證誤差、public LB誤差、private LB誤差：如果後者的誤差值顯著高於前者，那麼需要考慮過擬合或第一類資料洩露。
+
+- 第二類的資料洩露，屬於旁門左道。本質上，這相當於在模型訓練階段，幹了資料收集階段的工作。搜集原始資料，或是自己提供資料舉辦競賽（試圖避免他人利用資料洩露）時，可以參考這種思路。
+  - 資料夾的創造時間。
+  - 看似亂碼的字串（如各類id）可能有統計分佈的規律。
+  - 地理位置資訊：如果提供了座標，則可反向地理編碼，得出相關地理資訊。
+
+這類資料可能會導致過擬合。
+
+
 
 - Ref
   - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
 
-## 模型組合
-
-- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+- 
 
 ### 
 
