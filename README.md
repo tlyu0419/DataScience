@@ -3245,12 +3245,6 @@ from sklearn.linear_model import LassoCV
 - [特征工程到底是什么？](https://www.zhihu.com/question/29316149)
 - [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
 
-
-
-
-
-### 參考資料
-
 - [Stopping stepwise: Why stepwise selection is bad and what you should use instead](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)
 - [The 5 Feature Selection Algorithms every Data Scientist should know](https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2)
 
@@ -3260,153 +3254,61 @@ from sklearn.linear_model import LassoCV
 
 ## 簡介
 
-### 模型驗證(Validation)
-
-- 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
-
-- 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
-
-- 有些資料要特別注意!
-
-  - 時間序列資料
-  - 同⼀⼈有多筆資料
-  
-- 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
-
-- 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
-
-- 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
-
-  - 簡單切分
-
-    - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
-
-    ```python
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    ```
-
-  - Cross-validation
-
-    - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
-
-      如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
-
-       
-
-    - 根據切分的方法不同，交叉驗證分為下面三種：　　　
-
-      - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
-
-      - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
-
-        $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
-
-        每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
-
-      - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
-
-      ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
-
-      ```python
-      sklearn.model_selection.KFold()
-      ```
-
-  - 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
-
-    - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
-
-  
-
-  - 過擬合 (Over-fitting)
-
-    - 模型的訓練⽬標是將損失函數的損失降⾄最低
-
-    - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
-
-  - 如何知道模型已經過擬合了?
-
-    - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
-
-  - **如何解決過擬合或⽋擬合**
-
-    - 過擬合
-    - 增加資料量
-      - 降低模型複雜度
-    - 使⽤正規化 (Regularization)
-    - ⽋擬合
-    - 增加模型複雜度
-      - 減輕或不使⽤正規化
-
-    ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
-
-  
-
-  - 切分完訓練測試資料需要比較兩者是否有差異
-
-    - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
-    - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
-
 ### 模型選擇
 
+- 了解專案的⽬標是甚麼樣的分類問題並選⽤適當的模型訓練
+- Supervised Learning
+  - where we have inputs, and one (or more) response variable(s).
+  - 如果我們的資料已經有明確的目標變數，我們可以直接讓模型專注在目標變數的變化
+  - 找出讓訓練⽬標最佳的模型參數
+    - 模型的參數組合可能有無限多組，我們可以⽤暴⼒法每個參數都試看看，從中找到讓損失函數最⼩的參數
+    - 但是這樣非常沒有效率，有許多像是梯度下降 (Gradient Descent)、增量訓練 (Additive Training) 等⽅式，這些演算法可以幫我們找到可能的最佳模型參數
+
+- Unsupervised Learning
+
+  - where we have inputs, but not response variables.
+
+  - 在不清楚資料特性、問題定義、沒有標記的情況下，非監督式學習技術可以幫助我們理清資料脈絡
+
+  - 特徵數太龐⼤的情況下，非監督式學習可以幫助概念抽象化，⽤更簡潔的特徵描述資料
+
+    - 客⼾分群
+
+      在資料沒有任何標記，或是問題還沒定義清楚前，可⽤分群的⽅式幫助理清資料特性。
+
+    - 特徵抽象化
+
+      特徵數太多難於理解及呈現的情況下，藉由抽象化的技術幫助降低資料維度，同時不失去原有的資訊，組合成新的特徵。
+
+    - 購物籃分析
+
+      資料探勘的經典案例，適⽤於線下或線上零售的商品組合推薦。
+
+    - 非結構化資料分析
+
+      非結構化資料如⽂字、影像等，可以藉由⼀些非監督式學習的技術，幫助呈現及描述資料。
+
+![](./images/intro-learning-paradigms.png)
+
+- 可以再依據目標變數屬於數值資料還是類別資料，將模型區分為
+  
+  - 分類模型
+  - 回歸模型
+  - 分群模型
+  - 降維模型
+  
+  ![](./images/four-corners.png)
 
 
-- binary-class vs. Multi-class
-  - ⼆元分類，顧名思義就是⽬標的類別僅有兩個。像是詐騙分析 (詐騙⽤⼾ vs. 正常⽤⼾)、瑕疵偵測 (瑕疵 vs. 正常)
-  - 多元分類則是⽬標類別有兩種以上。如⼿寫數字辨識有 10 個類別(0~9)，影像競賽 ImageNet 更是有⾼達 1,000 個類別需要分類
-- Multi-class vs. Multi-label
-  - 當每個樣本都只能歸在⼀個類別，我們稱之為多分類 (Multi-class) 問題；⽽⼀個樣本如果可以同時有多個類別，則稱為多標籤 (Multi-label)。
 
-  - 了解專案的⽬標是甚麼樣的分類問題並選⽤適當的模型訓練
-   - 定義⼀個⽬標函數 (Objective function) 也可稱作損失函數 (Loss function)，來衡量模型的好壞，Loss 越⼤，代表這組參數的模型預測出的 ŷ 越不準，也代表不應該選這組參數的模型
-     - **線性回歸模型**：觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
+### 調參
 
-       - MAE, Mean Absolute Error
-        - MSE, Mean Square Error：$MSE = \frac{1}{n} \sum_{n=1}^n{(y_i - y_i^~)}^2$
-     
-        - R-square, 範圍: [0, 1]
-     
-     - **分類模型**：觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
-
-       - Accuracy
-        - AUC, Area Under Curve
-     
-       - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
-     
-       - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
-       - F1 - Score (Precision, Recall), 範圍: [0, 1]
-
-3. 找出讓訓練⽬標最佳的模型參數
-   - 模型的參數組合可能有無限多組，我們可以⽤暴⼒法每個參數都試看看，從中找到讓損失函數最⼩的參數
-   - 但是這樣非常沒有效率，有許多像是梯度下降 (Gradient Descent)、增量訓練 (Additive Training) 等⽅式，這些演算法可以幫我們找到可能的最佳模型參數
-
-
-
-- 非監督學習允許我們在對結果無法預知時接近問題。非監督學習演算法只基於輸入資料找出模式。當我們無法確定尋找內容，或無標記 (y) 資料時，通常會⽤這類演算法，幫助我們了解資料模式。
-
-  - 客⼾分群
-
-    在資料沒有任何標記，或是問題還沒定義清楚前，可⽤分群的⽅式幫助理清資料特性。
-
-  - 特徵抽象化
-
-    特徵數太多難於理解及呈現的情況下，藉由抽象化的技術幫助降低資料維度，同時不失去原有的資訊，組合成新的特徵。
-
-  - 購物籃分析
-
-    資料探勘的經典案例，適⽤於線下或線上零售的商品組合推薦。
-
-  - 非結構化資料分析
-
-    非結構化資料如⽂字、影像等，可以藉由⼀些非監督式學習的技術，幫助呈現及描述資料。
-
-- 聚類分析 : 尋找資料的隱藏模式
-- 降低維度 : 特徵數太⼤且特徵間相關性⾼，以此⽅式縮減特徵維度
-- 其他 : 關聯法則 (購物籃分析)、異常值偵測、探索性資料分析等
-
-- 在不清楚資料特性、問題定義、沒有標記的情況下，非監督式學習技術可以幫助我們理清資料脈絡
-- 特徵數太龐⼤的情況下，非監督式學習可以幫助概念抽象化，⽤更簡潔的特徵描述資料
-- 非監督式學習以聚類算法及降低維度算法爲主，本課程也以這兩⾨技術進⾏探究
+- 之前接觸到的所有模型都有超參數需要設置
+  - LASSO，Ridge: α 的⼤⼩
+  - 決策樹：樹的深度、節點最⼩樣本數
+  - 隨機森林：樹的數量
+- 這些超參數都會影響模型訓練的結果，建議先使⽤預設值，再慢慢進⾏調整
+- 超參數會影響結果，但提升的效果有限，資料清理與特徵⼯程才能最有效的提升準確率，調整參數只是⼀個加分的⼯具。
 
 
 
@@ -3428,6 +3330,18 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
     - 正則化是符合**奧卡姆剃刀原理**：在所有可能的模型中，能夠很好的解釋已知數據並且十分簡單的才是最好的模型。
 
+定義⼀個⽬標函數 (Objective function) 也可稱作損失函數 (Loss function)，來衡量模型的好壞，Loss 越⼤，代表這組參數的模型預測出的 ŷ 越不準，也代表不應該選這組參數的模型
+
+- **分類模型**：觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
+
+  - Accuracy
+   - AUC, Area Under Curve
+
+  - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
+
+  - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
+  - F1 - Score (Precision, Recall), 範圍: [0, 1]
+
 #### 回歸模型
 
 - 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
@@ -3435,22 +3349,10 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
   - MSE, Mean Square Error, 範圍: [-∞, ∞]
   - R-square, 範圍: [0, 1]
 
-- [What is a good r square value in regression analysis?](https://www.researchgate.net/post/what_is_a_good_r_square_value_in_regression_analysis)
-  1. **Falk and Miller (1992)** recommended that R2 values should be **equal to or greater than 0.10** in order for the variance explained of a particular endogenous construct to be deemed adequate.
-  2. Cohen (1988)** suggested R2 values for endogenous latent variables are assessed as follows: **0.26 (substantial), 0.13 (moderate), 0.02 (weak).**
-  3. Chin (1998)** recommended R2 values for endogenous latent variables based on: **0.67 (substantial), 0.33 (moderate), 0.19 (weak).**
-  4. Hair et al. (2011) & Hair et al. (2013)** suggested in scholarly research that focuses on marketing issues, R2 values of **0.75, 0.50, or 0.25** for endogenous latent variables can, as a rough rule of thumb, be respectively described as **substantial, moderate or weak.**
-
-  $$
-  R^2 = 1 - \frac{\sum(y_i - \hat y_i)^2}{\sum(y_i - \bar y)^2}
-  $$
-
+  - Adjust R-square
   
-
-
-- Adjust R-square
+    - R^2會隨著變數數量的增加而提升，進而容易有Overfit的問題，而adjust R^2 則會針對變數數量進行懲罰，可以幫助我們找出最合適的變數數量
   
-  - R^2會隨著變數數量的增加而提升，進而容易有Overfit的問題，而adjust R^2 則會針對變數數量進行懲罰，可以幫助我們找出最合適的變數數量
     $$
     AdjR^2 = 1 - (1-R^2)\frac{n-1}{n-p-1}
     $$
@@ -3462,29 +3364,15 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 - 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
 
+  - 會透過混淆矩陣 (Confusion Matrix)來衡量模型的效度
+
   - 因應預測與實際結果的不一致，會產生TP，TN，FP，FN等4種情況
 
     (英文的命名可以從預測的角度來理解)
 
-    ![](https://lh3.googleusercontent.com/pw/ACtC-3e6UBwHwVQ_055CQXdZDLbbtUEImGdjpnZzh9BUDMSlF6RsRjZwgcHsX688xvDD0FUtZCG_jSy7Lmk1lYjCHoCqZ55389pfzuGJw-vsPsSB9XyqVrGIgawsn0nK9kpnYHQJXFoKphU-VR4ASAmvYnMf=w332-h288-no?authuser=1)
+    ![](./images/confusion_matrix_1.png)
 
-- 混淆矩陣 (Confusion Matrix)
-
-  - 縱軸為模型預測
-  - 橫軸為正確答案
-  - 可以清楚看出每個 Class 間預測的準確率，完美的模型就會在對⾓線上呈現 100 % 的準確率
-  - 多分類問題，則可使⽤ top-k accuracy，k 代表模型預測前 k 個類別有包含正確類別即為正確 (ImageNet 競賽通常都是比 Top-5 Accuracy)
-  - Type I error: False Positive
-  - Type II error: false negative
-
-  ```python
-  from sklearn.metrics import confusion_matrix, accuracy_score
-  cm = confusion_matrix(y_test, y_pred)
-  print(cm)
-  accuracy_score(y_test, y_pred)
-  ```
-
-  ![](https://lh3.googleusercontent.com/DiuwfL6oiiIiKkOKoE8jnu1vvZvaz9srnBi7FzgdR6EPjaX9hribT5ALXt8QPd87stJo-3S39zVBaFMx334SsLCuafq1Lvk7-XUiEWpyM-5Esoz0zWHQ5WWrK4MMecWD2VCJ_g6fIhdrYmJRnMWMHdMMIiGRZEIAYjmAHgZVyhFLwA5urbsHKY2uw_so2VZrl8WHd_bNc0-8Gx-tI5-DisPuh5XHMc7T4nAUdzyLC7HKy8BqqCVj6NOyRJpyaGaWLKyygah6oLv-liuk7-FT0B1hGif_E9dz-se6s-BvbJBRe63nW7AYx6CB0RoOsUkkK-2DYZ7ur3SXyInw6dnaMj7GAOCK4pgIqhoz7Sbg_09zMH7qMTRM8TFOYgHUWc3YL424hXjNfXhncAUIgRQ4XKMtuBcTakdlgK72HmHPhYuUPt3Jdno18vf3w9Pwa1JQKbDDRzx9I5fObJrpKgoxYdAcib_71sgsHf1T0fltk-D_y88kveds_Wi7BNbGgUX62WYwLkQ4py-_L2pgWtx5mL-VpOecUa_1_MEz0xmKUNtEWnCrEY3VyAPrD6GxwYNm4KD8QAw1ACuoPGsiDHzxllFJktHntUMITELx93jFoP94VFjeF8nDq0L0_1LIM8_GZwAJ5HGHBZTIOppIcHA4eAODS3sBUh4KHiDtzvge6Z2omebnxqKpUx7DmNEM3iynjEr7BtbNscxi24Ne1hEmsbkI=s600-no)
+  
 
 - 評估指標
 
@@ -3544,10 +3432,6 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
     - AUC 指摽是分類問題常⽤的指標，通常分類問題都需要定⼀個閾值(threshold) 來決定分類的類別 (通常為機率 > 0.5 判定為 1, 機率 < 0.5 判定為 0)
     - AUC 是衡量曲線下的⾯積，因此可考量所有閾值下的準確性，因此 AUC 也廣泛地在分類問題的比賽中使⽤
 
-    ![](https://lh3.googleusercontent.com/WuhO8uADwyUc_zcO6NQUfClOSxE3kL-MpaM_tizuZS8kbthqkD2RghJBybUDwGD4YDDdexEKsnvSWxcRX_dChJDBfm_mopblXL9_AzGwtYFg1Xx18q3f5McR-pXGI2QaWD56Yu4QE8Ao5NdxjJpsu4clvxm4Q2ImAQPwP-W1siThlAnC5mCYR7VQdkB78uWeJnp6EZXpRse_4ufg96fqLP5Q0F1SWpqV_FFJoErhqekOWzIFWzc6P_sP9IHwARGkQRb4dq703zrWYp1-Hjl7LQaCjMhIzXXPZYlD0WWyQI_USaOhFLz5vXClBW3S0EtfP9RSZxNjpaYb4Bqgb5FQ2hegnfFrkwqbV8IiDkYkk4wslWcEvtBd74qlcEuPk_OkSD8151WPrAt1zkyw9fisWi1rLPWB4u-nkTWOxP22q2VxzGHmNMx-nVRu-LyXc-ANdNOG_U0T-bxITrIrwlx0aX-O5WXgc79p8p8kBJVDyH989mpG7KwV2cSJAcLUk_d03x6slHGQocVPVyGraiMjFfRLNmyfucPzmD4zt6mhfAyrSHKr7yTAY7UTcGosBG4GL_RwL0mn2ae7LxWHTubmQACVyAUvmCtv6LBxQwtAgz0Z2BIXualv84qQUP2hZ-vEu8dyUcHLhGCxWzTsPh0QWjq0oFRv5aXJiS-d9xiYucAUu-phWro30REt5VYc__2zC87hDLWB_0dxjF3ilSROyKNq=w504-h915-no)
-
-    
-
   - CAP(Cumulative Accuracy Profile)
 
     - 衡量模型整體在抓多少的人時(X軸)，能抓到多少目標客戶(Y)
@@ -3565,11 +3449,14 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
       - Very Good：80% ~ 90%
       - Too Good： 90% ~ 100%
 
-      
-
   - ROC(Receiver Operating Characteristic)
 
   - [MAP](https://medium.com/@jonathan_hui/map-mean-average-precision-for-object-detection-45c121a31173)
+
+  - 多分類問題，則可使⽤ top-k accuracy，k 代表模型預測前 k 個類別有包含正確類別即為正確 (ImageNet 競賽通常都是比 Top-5 Accuracy)
+
+    - Type I error: False Positive
+    - Type II error: false negative
 
 - https://gombru.github.io/2018/05/23/cross_entropy_loss/
 
@@ -3625,39 +3512,80 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 
 
-- - 
+### 模型驗證(Validation)
+
+- 出於理解的考量，我把模型驗證的順序放在選模型與衡量指標的後面，實際在建立模型時要先做這個步驟才開始建模。
+
+- 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
+
+- 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
+
+- 有些資料要特別注意!
+
+  - 時間序列資料
+  - 同⼀⼈有多筆資料
+
+- 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
+
+- 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
+
+- 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
+
+  - 簡單切分
+
+    - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
+
+    ```python
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+    ```
+
+  - Cross-validation
+
+    - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
+
+      如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
+
+       
+
+    - 根據切分的方法不同，交叉驗證分為下面三種：　　　
+
+      - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
+
+      - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
+
+        $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
+
+        每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
+
+      - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
+
+      ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
+
+      ```python
+      sklearn.model_selection.KFold()
+      ```
+
+  - 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
+
+    - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
+
+  
+
+
+### 參考資料
+
+- [All Models Are Wrong: Concepts of Statistical Learning](https://allmodelsarewrong.github.io/index.html)
+- [What is a good r square value in regression analysis?](https://www.researchgate.net/post/what_is_a_good_r_square_value_in_regression_analysis)
 
 ## 監督式模型
 
-- 由於大多數模型同時支持分類與回歸的任務，在這裡將兩者合併在一起說明
+- 由於大多演算法同時支持分類與回歸的任務，在這裡將兩者合併在一起說明
 - 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
-- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
+- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。
+- 但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
 
-回歸：
-
-regression
-
-分類：
-
-Logistic
-
-Cluster：
-
-kmeans
-
-Dimension Reduction：
-
-CA， PCA
-
-- 調參
-- 之前接觸到的所有模型都有超參數需要設置
-  - LASSO，Ridge: α 的⼤⼩
-  - 決策樹：樹的深度、節點最⼩樣本數
-  - 隨機森林：樹的數量
-- 這些超參數都會影響模型訓練的結果，建議先使⽤預設值，再慢慢進⾏調整
-- 超參數會影響結果，但提升的效果有限，資料清理與特徵⼯程才能最有效的提升準確率，調整參數只是⼀個加分的⼯具。
-
-#### Linear Regression
+### Linear Regression
 
 - 線性回歸通過使用最佳的擬合直線（又被稱為回歸線），建立因變數 Y 和一個或多個引數 X 之間的關係。
 - 它的運算式為：$Y = a + bX + e$  ，其中 $a$ 為直線截距，$b$ 為直線斜率，$e$ 為誤差項。如果給出了自變量 $X$ ，就能通過這個線性回歸表達式計算出預測值，即因變數 $Y$。
@@ -3699,7 +3627,7 @@ $$
   
   - [Linear Regression With Gradient Descent From Scratch.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Machine_Learning/Linear Regression With Gradient Descent From Scratch.ipynb)
 
-#### Logistics Regression
+### Logistics Regression
 
 - 雖然有回歸兩個字，但 Logsitics 是分類模型
 
@@ -3713,7 +3641,7 @@ $$
   clf.fit(X_train, y_train)
   ```
 
-#### KNN
+### KNN
 
 - 流程：
   1. Choose the number K of neighbors(default=5)
@@ -3737,7 +3665,7 @@ https://towardsdatascience.com/k-nearest-neighbors-knn-algorithm-bd375d14eec7
 
 缺點：每次predict時需要加載全部資料
 
-#### LASSO, Ridge Regression
+### LASSO, Ridge Regression
 
 - 回歸模型與正規化
 
@@ -3788,7 +3716,7 @@ https://towardsdatascience.com/k-nearest-neighbors-knn-algorithm-bd375d14eec7
   print(reg.coef_) # 印出訓練後的模型參數
   ```
 
-#### SVM_Support Vectot Machine
+### SVM_Support Vectot Machine
 
 - 依據目標變數的不同可以再進一步分為SVC，SVR
 - [Support Vector Regression](https://core.ac.uk/download/pdf/81523322.pdf)
@@ -3829,7 +3757,7 @@ classifier = SVC(kernel = 'rbf', random_state = 0)
 classifier.fit(X_train, y_train)
 ```
 
-#### Naive Bayes
+### Naive Bayes
 
 - 定理：
 
@@ -3876,7 +3804,7 @@ $$
 
   
 
-#### Decision Tree
+### Decision Tree
 
 - 可以分成分類樹(Classification Tree)和回歸樹(Regression Tree)
 
@@ -3924,7 +3852,7 @@ $$
 
 
 
-#### Random Forest
+### Random Forest
 
 - Ensemble Learning
 
@@ -3976,7 +3904,7 @@ reg = RandomForestRegressor()
 
   - [隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
 
-#### Gradient Boosting
+### Gradient Boosting
 
 - 隨機森林使⽤的集成⽅法稱為 Bagging (Bootstrap aggregating)，⽤抽樣的資料與 features ⽣成每⼀棵樹，最後再取平均
 
@@ -4034,7 +3962,7 @@ reg = RandomForestRegressor()
 - 參考資料
   - [機器/深度學習-基礎數學(二):梯度下降法(gradient descent)](https://medium.com/@chih.sheng.huang821/機器學習-基礎數學-二-梯度下降法-gradient-descent-406e1fd001f)
 
-#### XGBoost
+### XGBoost
 
 https://zhuanlan.zhihu.com/p/31182879
 
@@ -4086,13 +4014,13 @@ https://zhuanlan.zhihu.com/p/31182879
 
 
 
-#### lightgbm
+### lightgbm
 
 https://zhuanlan.zhihu.com/p/52583923
 
 The LightGBM boosting algorithm is becoming more popular by the day due to its speed and efficiency. LightGBM is able to handle huge amounts of data with ease. But keep in mind that this algorithm does not perform well with a small number of data points.
 
-#### CatBoost
+### CatBoost
 
 As the name suggests, CatBoost is a boosting algorithm that can handle categorical variables in the data. Most [machine learning algorithms](https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/?utm_source=blog&utm_medium=4-boosting-algorithms-machine-learning) cannot work with strings or categories in the data. Thus, converting categorical variables into numerical values is an essential preprocessing step.
 
@@ -4746,13 +4674,7 @@ print("Best Parameters:", best_parameters)
 
 https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitting-machine-learning/
 
-### 錯誤分析
-
-- 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
-- 舉個例子，這次比賽中，我們在錯誤分析時發現，某些樣本的兩個問句表面上很相似，但是句子最後提到的地點不一樣，所以其實它們是語義不相似的，但我們的模型卻把它誤判為相似的。比如這個樣本：
-  - Question1: Which is the best digital marketing institution in banglore?
-  - Question2: Which is the best digital marketing institute in Pune?
-- 為了讓模型可以處理這種樣本，我們將兩個問句的最長公共子串(Longest Common Sequence)去掉，用剩餘部分訓練一個新的深度學習模型，相當於告訴模型看到這種情況的時候就不要判斷為相似的了。因此，在加入這個特徵後，我們的效果得到了一些提升。
+- 
 
 ### 調參
 
@@ -4777,11 +4699,47 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 - 我們通常會為了提升模型的準確度，會盡可能的增加模型的複雜度。但是當模型的複雜度提升時伴隨而來的就是可解釋性就隨之降低。
 - 當模型很準確且無需解釋時，固然可以直接使用複雜的模型，但在商業環境中則往往會需要解釋模型發現了什麼，因為除了預測的準確度之外，公司也會希望模型協助管理，如營運績效、服務流程等等。
 - 又或者當模型的準確度不夠時會需要對模型進行診斷，找出模型犯錯的原因，來改善模型的預測結果。 
-- 
 
 ### Imbalance Data
 
 ### OverFit
+
+- 過擬合 (Over-fitting)
+
+  - 模型的訓練⽬標是將損失函數的損失降⾄最低
+
+  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
+
+- 如何知道模型已經過擬合了?
+
+  - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
+
+- 如何解決過擬合或欠擬合**
+
+  - 過擬合
+  - 增加資料量
+    - 降低模型複雜度
+  - 使⽤正規化 (Regularization)
+  - ⽋擬合
+  - 增加模型複雜度
+    - 減輕或不使⽤正規化
+
+  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
+
+- 切分完訓練測試資料需要比較兩者是否有差異
+
+  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
+  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
+
+### Underfit
+
+- 如果經過調整模型參數還是無法擬合模型，還可以嘗試 錯誤分析來提升模型效度
+
+- 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
+- 舉個例子，這次比賽中，我們在錯誤分析時發現，某些樣本的兩個問句表面上很相似，但是句子最後提到的地點不一樣，所以其實它們是語義不相似的，但我們的模型卻把它誤判為相似的。比如這個樣本：
+  - Question1: Which is the best digital marketing institution in banglore?
+  - Question2: Which is the best digital marketing institute in Pune?
+- 為了讓模型可以處理這種樣本，我們將兩個問句的最長公共子串(Longest Common Sequence)去掉，用剩餘部分訓練一個新的深度學習模型，相當於告訴模型看到這種情況的時候就不要判斷為相似的了。因此，在加入這個特徵後，我們的效果得到了一些提升。
 
 ### DataLeak
 
