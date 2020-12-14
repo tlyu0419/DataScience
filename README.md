@@ -97,6 +97,7 @@
   - [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
   - [Why Data Scientists Must Focus on Developing Product Sense](https://www.kdnuggets.com/2018/04/data-scientists-product-sense.html)
   - [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
+  - [真．資料團隊與分工](https://blog.v123582.tw/2020/10/31/%E7%9C%9F%E3%83%BB%E8%B3%87%E6%96%99%E5%9C%98%E9%9A%8A%E8%88%87%E5%88%86%E5%B7%A5/)
 
 ## 分析工具
 
@@ -490,7 +491,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 - [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/Pythonic GUIs/)
 
-# 確認專案目標
+# 設定專案目標
 
 ## 為什麼這個問題重要？
 
@@ -5017,6 +5018,29 @@ print(clf2.predict(X[0:1]))
 
 ![image-20200910111353797](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910111353797.png)
 
+## 模型案
+
+## 分析案
+
+- 考驗說故事的能力
+- 三分鐘版
+  - 第一個問題：主人翁的「目標」是什麼？ 
+  - 第二個問題：他的「阻礙」是什麼？ 
+  - 第三個問題：他如何「努力」？ 
+  - 第四個問題：「結果」如何？（通常是不好的結果。） 
+  - 第五個問題：如果結果不理想，代表努力無效，那麼，有超越努力的「意外」可以改變這一切嗎？ 
+  - 第六個問題：意外發生，情節會如何「轉彎」？ 
+  - 第七個問題：最後的「結局」是什麼？
+- 一分鐘版
+  - 努力人公式：目標→阻礙→努力→結果 
+  - 意外人公式：目標→意外→轉彎→結局 
+  - 「努力人」和「意外人」的差別在於思維方式。「努力人」偏向垂直思考；「意外人」傾向水平思考。 
+  - 努力人的故事，因為一次又一次的跌倒再站起來，而令人感動。意外人的故事則因為無法預料的意外，帶給人們驚喜。
+
+### 參考資料
+
+- **3分鐘說18萬個故事，打造影響力** – 許榮哲
+
 # 深度學習
 
 [深度学习调参有哪些技巧？](https://www.zhihu.com/question/25097993/answer/934100939)
@@ -8118,29 +8142,29 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 ## Introduction
 
-### What Are Graphs? 
+What Are Graphs? 
 
-### What Are Graph Analytics and Algorithms? 
+What Are Graph Analytics and Algorithms? 
 
-### Graph Processing, Databases, Queries, and Algorithms 
+Graph Processing, Databases, Queries, and Algorithms 
 
 - OLTP and OLAP
 
-### Why Should We Care About Graph Algorithms? 
+Why Should We Care About Graph Algorithms? 
 
-### Graph Analytics Use Cases
+Graph Analytics Use Cases
 
-### Conclusion
+Conclusion
 
 ## Graph Theory and Concepts
 
-### Terminology
+Terminology
 
-### Graph Types and Structures
+Graph Types and Structures
 
 - Random, Small-World, Scale-Free Structures 
 
-### Flavors of Graphs
+Flavors of Graphs
 
 - Connected Versus Disconnected Graphs
 - Unweighted Graphs Versus Weighted Graphs 
@@ -8149,12 +8173,284 @@ We can think of this as a powerful version of Regular Expression where we actual
 - Sparse Graphs Versus Dense Graphs
 - Monopartite, Bipartite, and k-Partite Graphs
 
-### Types of Graph Algorithms
+Types of Graph Algorithms
 
 - Pathfinding
 - Centrality
 - Community Detection
-- Summary
+
+Summary
+
+## Graph Platforms and Processing
+
+Graph Platform and Processing Considerations
+
+- Platform Considerations
+- Processing Considerations
+
+Representative Platforms
+
+- Selecting Our Platform
+- Apache Spark
+- Neo4j Graph Platform
+
+Summary
+
+## Pathnding and Graph Search Algorithms
+
+Example Data: The Transport Graph
+
+- Importing the Data into Apache Spark
+
+- Importing the Data into Neo4j
+
+Breadth First Search
+
+- Breadth First Search with Apache Spark
+
+Depth First Search
+
+Shortest Path
+
+- When Should I Use Shortest Path?
+
+- Shortest Path with Neo4j
+
+- Shortest Path (Weighted) with Neo4j
+
+- Shortest Path (Weighted) with Apache Spark
+
+- Shortest Path Variation: A*
+
+- Shortest Path Variation: Yen’s k-Shortest Paths
+
+All Pairs Shortest Path
+
+- A Closer Look at All Pairs Shortest Path
+
+- When Should I Use All Pairs Shortest Path?
+
+- All Pairs Shortest Path with Apache Spark
+
+- All Pairs Shortest Path with Neo4j
+
+Single Source Shortest Path
+
+- When Should I Use Single Source Shortest Path?
+
+- Single Source Shortest Path with Apache Spark
+
+- Single Source Shortest Path with Neo4j
+
+Minimum Spanning Tree
+
+- When Should I Use Minimum Spanning Tree?
+
+- Minimum Spanning Tree with Neo4j
+
+Random Walk
+
+- When Should I Use Random Walk?
+
+- Random Walk with Neo4j
+
+Summary
+
+## Centrality Algorithms
+
+Example Graph Data: The Social Graph
+
+- Importing the Data into Apache Spark
+
+- Importing the Data into Neo4j
+
+Degree Centrality
+
+- Reach
+
+- When Should I Use Degree Centrality?
+
+- Degree Centrality with Apache Spark
+
+Closeness Centrality
+
+- When Should I Use Closeness Centrality?
+
+- Closeness Centrality with Apache Spark
+
+- Closeness Centrality with Neo4j
+
+- Closeness Centrality Variation: Wasserman and Faust
+
+- Closeness Centrality Variation: Harmonic Centrality
+
+Betweenness Centrality
+
+- When Should I Use Betweenness Centrality?
+
+- Betweenness Centrality with Neo4j
+
+- Betweenness Centrality Variation: Randomized-Approximate Brandes
+
+PageRank
+
+- Influence
+
+- The PageRank Formula
+
+- Iteration, Random Surfers, and Rank Sinks
+
+- When Should I Use PageRank?
+
+- PageRank with Apache Spark
+
+- PageRank with Neo4j
+
+- PageRank Variation: Personalized PageRank
+
+Summary
+
+
+
+## Community Detection Algorithms
+
+Example Graph Data: The Software Dependency Graph
+
+- Importing the Data into Apache Spark 
+
+- Importing the Data into Neo4j
+
+Triangle Count and Clustering Coefficient
+
+- Local Clustering Coefficient
+
+- Global Clustering Coefficient
+
+- When Should I Use Triangle Count and Clustering Coefficient?
+
+- Triangle Count with Apache Spark
+
+- Triangles with Neo4j
+
+- Local Clustering Coefficient with Neo4j
+
+Strongly Connected Components
+
+- When Should I Use Strongly Connected Components?
+
+- Strongly Connected Components with Apache Spark
+
+- Strongly Connected Components with Neo4j 
+
+Connected Components
+
+- When Should I Use Connected Components?
+
+- Connected Components with Apache Spark
+
+- Connected Components with Neo4j
+
+Label Propagation
+
+- Semi-Supervised Learning and Seed Labels 
+
+- When Should I Use Label Propagation?
+
+- Label Propagation with Apache Spark
+
+- Label Propagation with Neo4j
+
+Louvain Modularity
+
+- When Should I Use Louvain?
+
+- Louvain with Neo4j
+
+Validating Communities
+
+Summary
+
+
+
+## Graph Algorithms in Practice
+
+Analyzing Yelp Data with Neo4j
+
+- Yelp Social Network
+
+- Data Import
+
+- Graph Model
+
+- A Quick Overview of the Yelp Data
+
+- Trip Planning App
+
+- Travel Business Consulting
+
+- Finding Similar Categories
+
+Analyzing Airline Flight Data with Apache Spark
+
+- Exploratory Analysis
+
+- Popular Airports
+
+- Delays from ORD
+
+- Bad Day at SFO
+
+- Interconnected Airports by Airline
+
+Summary
+
+## Using Graph Algorithms to Enhance Machine Learning.
+
+Machine Learning and the Importance of Context
+
+- Graphs, Context, and Accuracy
+
+Connected Feature Engineering
+
+- Graphy Features
+
+- Graph Algorithm Features
+
+Graphs and Machine Learning in Practice: Link Prediction
+
+- Tools and Data
+
+- Importing the Data into Neo4j
+
+- The Coauthorship Graph
+
+- Creating Balanced Training and Testing Datasets
+
+- How We Predict Missing Links
+
+- Creating a Machine Learning Pipeline
+
+- Predicting Links: Basic Graph Features
+
+- Predicting Links: Triangles and the Clustering Coefficient
+
+- Predicting Links: Community Detection
+
+Summary
+
+Wrapping Things Up
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
