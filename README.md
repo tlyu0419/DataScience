@@ -4939,7 +4939,7 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
   - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
 
 
- 
+
 
 ## 模型儲存
 
@@ -7344,6 +7344,8 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
   - output gate
 
 # Natural Language Precessing
+
+- 分类、生成、序列标注、句子对标注
 
 ![image-20200910164113325](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910164113325.png)
 
