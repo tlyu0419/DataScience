@@ -1096,7 +1096,9 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   select strtok('HiHi_Tony', '_', 1)
   ```
 
-  
+- QUALIFY
+
+  - 可以直接將 row over 的排序結果放在篩選條件，不用多做一次子查詢
 
 ### Hive
 
