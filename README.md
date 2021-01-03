@@ -3729,6 +3729,9 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 - [All Models Are Wrong: Concepts of Statistical Learning](https://allmodelsarewrong.github.io/index.html)
 - [What is a good r square value in regression analysis?](https://www.researchgate.net/post/what_is_a_good_r_square_value_in_regression_analysis)
+- [李宏毅⽼師線上課程/簡報](http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML17_2.html])
+- [Google 基礎機器學習線上課](https://developers.google.com/machine-learning/crash-course/)
+- [AWS Machine Learning 線上課](https://aws.amazon.com/tw/training/learn-about/machine-learning/)
 
 ## 監督式模型
 
@@ -7325,6 +7328,7 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
 
 1. [Keras 以 ResNet-50 預訓練模型建立狗與貓辨識程式](https://blog.gtwang.org/programming/keras-resnet-50-pre-trained-model-build-dogs-cats-image-classification-system/)
 2. [Img feature extraction with pretrained Resnet](https://www.kaggle.com/insaff/img-feature-extraction-with-pretrained-resnet)
+3. [Deep Learning Specialization by Andrew Ng — 21 Lessons Learned](https://towardsdatascience.com/deep-learning-specialization-by-andrew-ng-21-lessons-learned-15ffaaef627c)
 
 ## RNN_Recurrent Neural Network
 
