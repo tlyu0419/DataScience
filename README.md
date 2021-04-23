@@ -30,6 +30,9 @@
     - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
     - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
 
+- Ref
+  - [「机器学习」到底需要多少数据？](https://zhuanlan.zhihu.com/p/34523880)
+
 
 
 ## 機器學習開發流程
@@ -99,6 +102,8 @@
   - [Why so many data scientists are leaving their jobs](https://www.kdnuggets.com/2018/04/why-data-scientists-leaving-jobs.html)
   - [真．資料團隊與分工](https://blog.v123582.tw/2020/10/31/%E7%9C%9F%E3%83%BB%E8%B3%87%E6%96%99%E5%9C%98%E9%9A%8A%E8%88%87%E5%88%86%E5%B7%A5/)
 
+
+
 ## 分析工具
 
 - Anaconda
@@ -128,6 +133,8 @@
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
   - [輕鬆學習 Python：conda 的核心功能](https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025)
+
+
 
 ## 建立虛擬環境
 
@@ -493,9 +500,40 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 # 設定專案目標
 
+## ML的使用時機
+
+> ML是好工具，是達成目標的方法之一，但不要為了ML而ML
+
+### 適合
+
+- 數據量大到領域專家無法解決
+- 偵測異常、惡意檔案缺陷、異常行為分析、生產線產品
+- 大數據分類與篩選、推薦系統、客戶分群
+- 協助處理大量複雜的感官數據：自動駕駛
+
+### 不適合
+
+- 高階主管不支持時
+- 可以用簡單的規則解決問題時
+- 沒有辦法取得ML需要的資料品質和數據量時
+- 要求精準到不能容許錯誤時
+- 產品需要資訊透明，AI常常是黑盒子
+
+
+
 ## 為什麼這個問題重要？
 
 > 對於投稿 Proposal 來說，如果能說明為什麼要在這個場合發表會是很加分的事情
+
+- What problem you want to solve?
+
+- What's the customer pain point?
+
+- What value you want to deliver to your customers?
+
+- What customer need?
+
+- 
 
 - 好玩：預測⽣存 (吃雞) 遊戲誰可以活得久, [PUBG](https://www.kaggle.com/c/pubg-finish-placement-prediction)
 
@@ -645,6 +683,8 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
         - 逐字記錄訪談
         - “上對下” 地要求對方完成代辦事項
         - 後續的專案工作及結果未讓受訪者知悉
+
+
 
 # 資料收集
 
@@ -1651,7 +1691,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 ### 動態網頁爬蟲
 
 - 動態網⾴有別於靜態網⾴產⽣資料的⽅式。靜態網⾴是透過每⼀次使⽤者請求，後端會產⽣⼀次網⾴回傳，所以請求與回傳是⼀對⼀的， 有些⼈把他們稱為同步。
-  在動態網⾴的話，是透過 Ajax 的技術，來完成非同步的資料傳輸。換句話說，就是在網⾴上，任何時間點都可以發送請求給後端，後端只回傳資料，⽽不是回傳整個網⾴
+- 在動態網⾴的話，是透過 Ajax 的技術，來完成非同步的資料傳輸。換句話說，就是在網⾴上，任何時間點都可以發送請求給後端，後端只回傳資料，⽽不是回傳整個網⾴
 
 #### HTTP 動態網頁架構說明與非同步取得資料
 
@@ -1681,10 +1721,10 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   - 模擬 JavaScript 取得新資料
 
 - 法⼀：模擬使⽤者打開瀏覽器
-  - 原本靜態爬蟲的策略是模擬 Request，那我們現在可以模擬更多⼀ 點，改為模擬使⽤者從「發出 Request」到「JavaScript 動態載入資 料」的過程。也就是說，這邊的做法是從模擬使⽤者打開瀏覽器的⾏ 為，到模擬器執⾏JavaScript 動態載入 之後。
+  - 原本靜態爬蟲的策略是模擬 Request，那我們現在可以模擬更多⼀ 點，改為模擬使⽤者從「發出 Request」到「JavaScript 動態載入資料」的過程。也就是說，這邊的做法是從模擬使⽤者打開瀏覽器的⾏為，到模擬器執⾏JavaScript 動態載入之後。
 
 - 法⼆：模擬 JavaScript 取得新資料
-  - 另外⼀種⽅法是我們知道 Python 無法直接執⾏ JavaScript 的。但本 質上 JavaScript 也是透過呼叫 API 的⽅式拉資料，因此我們只要模 仿 JavaScript 呼叫 API 這個動作，改由 Python 執⾏即可。
+  - 另外⼀種⽅法是我們知道 Python 無法直接執⾏ JavaScript 的。但本質上 JavaScript 也是透過呼叫 API 的⽅式拉資料，因此我們只要模 仿 JavaScript 呼叫 API 這個動作，改由 Python 執⾏即可。
 
 #### 瀏覽器開發者工具介紹
 
@@ -2846,6 +2886,9 @@ def timer(n):
   - [Matplotlib可视化最有价值的 50 个图表](http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/)
   - [d3js](https://d3js.org/)
   - [解決Python 3 Matplotlib與Seaborn視覺化套件中文顯示問題](https://medium.com/marketingdatascience/解決python-3-matplotlib與seaborn視覺化套件中文顯示問題-f7b3773a889b)
+    - 更簡單的方法：直接複製微軟正黑體的字體至以下路徑，更名並覆蓋掉 DejaVuSans.ttf 檔案即可
+      - pythonX/lib/site-packages/matplotlib/mpl-data/matplotlibrc
+      - https://www.itread01.com/p/438241.html
 
 
 
@@ -3400,7 +3443,7 @@ from sklearn.linear_model import LassoCV
 - [Stopping stepwise: Why stepwise selection is bad and what you should use instead](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)
 - [The 5 Feature Selection Algorithms every Data Scientist should know](https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2)
 
-
+- [The Curse of Dimensionality in classification](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)
 
 # 建置模型(Modeling)
 
@@ -4185,6 +4228,10 @@ If you want to understand the math behind how these categories are converted int
 
 - [Transforming categorical features to numerical features](https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html#algorithm-main-stages_cat-to-numberic)
 
+### Time Series
+
+
+
 ## 非監督式模型
 
 ### Dimension reduction
@@ -4396,7 +4443,7 @@ t-Distributed Stochastic Neighbor Embedding
 
 
 
-
+### Cluster
 
 #### K-means
 
@@ -4504,6 +4551,8 @@ $$
 - 參考資料
   - [Hierarchical Clustering / Dendrograms](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Hierarchical_Clustering-Dendrograms.pdf)
 
+### Other
+
 #### Association Rule Learning
 
 http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
@@ -4521,7 +4570,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
     - 「規則」在資料內具有普遍性，也就是這些 A 跟 B 同時出現的機率多少。
 
   $$
-  Support = \frac{frq(A,B)}{N}
+  Support = \frac{freq(A,B)}{N}
   $$
 
   - 信賴度(confidence)：
@@ -4530,7 +4579,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
     - 「規則」要有一定的信心水準，也就是當購買 A 狀態下，也會購買 B 的條件機率。
 
   $$
-  Confidence(B|A)=\frac{P(A,B)}{P(A)}
+  Confidence(B|A)=\frac{Freq(A,B)}{Freq(A)}
   $$
 
   - 增益(Lift)：
@@ -4539,7 +4588,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
     - 越接近1表示X與Y互相獨立，越高表示關聯性越強
 
   $$
-  Lift(A->B) = \frac{P(B|A)}{P(B)}
+  Lift(A->B) = \frac{support(A,B)}{support(A)*support(B)}
   $$
 
 - 使用流程
@@ -5024,6 +5073,26 @@ print(clf2.predict(X[0:1]))
 
 ## 模型案
 
+- 維運
+  - 批次訓練的模型/online train
+  - 時間的有效性
+  - 怎麼監測上線的成效和異常狀況
+  - 異常狀況發生時要怎麼處理?
+  - 需要多少Engineer來做這個operation?
+- 成本
+  - ML的解決方案可以帶來多少效益?需要花多少成本?
+  - 要開多少機器/規格
+- 溝通
+  - 如何解釋給客戶
+  - 如何讓客戶願意把資料給你
+  - 管理階層與協作單位
+    - 解決的問題與預計帶來的效益
+    - 成本
+    - 上線時程
+    - 風險與不確定性
+    - 變動與影響
+    - 需要的協助
+
 ## 分析案
 
 - 考驗說故事的能力
@@ -5042,10 +5111,52 @@ print(clf2.predict(X[0:1]))
   - 意外人公式：目標→意外→轉彎→結局 
     - 「意外人」傾向水平思考。 
     - 因為無法預料的意外，帶給人們驚喜。
+- [【絕地求生】—— AI挖掘百萬‘雞王’的遊戲數據，讓你把把喫雞](https://www.twblogs.net/a/5edf442473095c4566934679)
 
 ### 參考資料
 
 - **3分鐘說18萬個故事，打造影響力** – 許榮哲
+
+
+
+# 多元統計分析
+
+## 時間序列模型
+
+- 重視資料的先後順序
+
+- 觀測值之間彼此不獨立
+
+- 不關注變量間的因果關係，而是變量在時間上的發展變化規律
+
+- 重要視角
+
+  - 長期趨勢(Trend)
+
+    - 長期的變化趨勢，採全局視角，不考慮局部的變動
+
+  - 循環(Cyclic)
+
+    - 較長時間的週期變化，一般來說循環時間為2-15年。循環變化一般會出現波峰和波谷，呈現一種循環往復的現象
+
+  - 季節變化(Season)
+
+    - 也是一種週期性變化，但和循環不同，季節變化的週期比較短，一般在一年中完成。雖然稱稱為季節變化，但是週期並不局限季度，也可以是月、周等其他能在一年內完成的週期
+
+  - 不規則變化(Error)
+
+    - 指時間序列中無法預計的部分。他有兩種情況，一種是序列的隨機波動，可以認為是隨機誤差，另一種是有突發事件引起的
+
+      - 對於隨機誤差，可以合理地假定他服從一定的分佈，從而進行分析
+      - 突發事件則是時間序列中一個極難的問題，也許不是統計學家可以妥善解決的
+
+  
+
+  
+  
+- Ref
+  
+  - [Classical Time Series Forecasting Methods in Python (Cheat Sheet)](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
 
 # 深度學習
 
