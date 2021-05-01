@@ -1533,11 +1533,11 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 - HTTP 協定
 
-  - HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺服器之間 溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如何傳輸資料。
+  - HyperText Transfer Protocol(HTTP) 是⼀種⽤⼾端瀏覽器和伺服端伺服器之間溝通的標準協定，規範了「客⼾端」與「伺服器端」兩者間如何傳輸資料。
 
 - Request & Response
 
-  - HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根 據請求回傳⼀個「Response 回覆」
+  - HTTP 協定簡單來說就是：使⽤者端發送⼀個「Request 請求」，伺服器端根據請求回傳⼀個「Response 回覆」
   - HTTP Status
     - 200 伺服器回應Data成功。
     - 206 取得片段資料，Http Request 中有的 Range 屬性，可以指定要取得那一段Bytes數。
@@ -1627,7 +1627,7 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 - Requests Library
 
-  - Requests 是⼀個 Python HTTP 庫，該項⽬的⽬標是使 HTTP 請求更簡單，更 ⼈性化。 
+  - Requests 是⼀個 Python HTTP 庫，該項⽬的⽬標是使 HTTP 請求更簡單，更⼈性化。 
   - 其主要⼯作作為負責網⾴爬蟲中的 HTTP Request & Respone 的部分。
 
 - BeautifulSoup Library
