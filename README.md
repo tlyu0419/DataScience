@@ -378,6 +378,19 @@ print(f'{today: %B %d, %Y}')
     pat = re.compile(r'[1-9]\d{5}')
     rst = pat.search('BIT 100081')
     ```
+    
+  - 只保留中文
+
+    ```python
+    import re
+    cop = re.compile("[^\u4e00-\u9fa5^a-z^A-Z^0-9]") # 匹配不是中文、大小寫、數字的其他字符
+    string1 = '@ad&*jfad張132（www）。。。'
+    string1 = cop.sub('', string1)
+    string1
+    >>> adjfad張132www
+    ```
+
+    
 
 - 參考資料
 
@@ -1223,7 +1236,6 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
     - 建立時會建一個單獨的表
   - 可以進行分區
     - 但不能與外部表一起使用
-  
 ## 公開資料集
 
 - 政府/企業釋出的資料集，供民眾或資料科學家進行分析、解決問題
@@ -2936,7 +2948,7 @@ def timer(n):
   - Box-plot
   
   - **平均絕對離差(Mean Absolute Deviation, MAD)**:
-  $$MAD = \frac{\Sigma^n_1|x_i- \bar x|}{n}$$
+    $$MAD = \frac{\Sigma^n_1|x_i- \bar x|}{n}$$
   
     將mean ± 9 * MAD外的值視為離群值。
 
@@ -3418,7 +3430,6 @@ from sklearn.linear_model import LassoCV
   ```python
   from sklearn.feature_selection import SelectFromModel
   ```
-  
 
 
 
@@ -4088,8 +4099,8 @@ $$
 - 使⽤ Sklearn 中的隨機森林
 
   ```python
-from sklearn.ensemble import RandomForestRegressor
-reg = RandomForestRegressor()
+  from sklearn.ensemble import RandomForestRegressor
+  reg = RandomForestRegressor()
   from sklearn.ensemble import RandomForestClassifier
   clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
   clf.fit(X_train, y_train)
@@ -4677,7 +4688,6 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
        \Delta_i(n) = \sqrt \frac{3log(n)}{2N_i(n)}
        $$
        
-   
 3. We select the ad $i$ that has the maximum UCB $\bar r_i(n) + \Delta_i(n)$.
 
 - 最終會自動找出Conversion Rate最高的campain，並推薦該campain
@@ -5437,7 +5447,6 @@ https://cvdl.cupoy.com/
   
   - CIFAR10 small image classification
 - Dataset of 50,000 32x32 color training images, labeled over 10 categories, and 10,000 test images.
-	
 ```python
 from keras.datasets import cifar10
   (x_train, y_train), (x_test, y_test) = cifar10.load_data()
@@ -6391,7 +6400,7 @@ from keras.datasets import cifar10
     ```python
     from keras import optimizers
     model = Sequential()
-  model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
+    model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
     model.add(Activation('softmax’))
                          
     #實例化⼀個優化器對象，然後將它傳入model.compile() , 可以修改參數
@@ -6415,7 +6424,7 @@ from keras.datasets import cifar10
   $$
   
     - 比對Adagrad的梯度更新規則：分⺟換成了過去的梯度平⽅的衰減平均值
-
+  
   ​```python
     keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0) 
     This optimizer is usually a good choice for recurrent neural networks.
@@ -6429,13 +6438,13 @@ from keras.datasets import cifar10
     - decay：float >= 0. Learning rate decay over each update
   
     ```python
-  from keras import optimizers
+    from keras import optimizers
     model = Sequential()
-  model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
+    model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
     model.add(Activation('softmax’))
-  #實例化⼀個優化器對象，然後將它傳入model.compile() , 可以修改參數
+    #實例化⼀個優化器對象，然後將它傳入model.compile() , 可以修改參數
     opt = optimizers.RMSprop(lr=0.001, epsilon=None, decay=0.0)
-model.compile(loss='mean_squared_error', optimizer=opt) 
+    model.compile(loss='mean_squared_error', optimizer=opt) 
     ```
   
   - Adam
@@ -6443,11 +6452,11 @@ model.compile(loss='mean_squared_error', optimizer=opt)
     - 除了像 RMSprop ⼀樣存儲了過去梯度的平⽅ vt 的指數衰減平均值，也像momentum ⼀樣保持了過去梯度 mt 的指數衰減平均值,「 t 」：
   
     $$
-  m_t=\beta_1m_t + (1-\beta_1)g_t
+    m_t=\beta_1m_t + (1-\beta_1)g_t
     $$
   
     $$
-  v_t=\beta_2m_t + (1-\beta_2)g^2_t
+    v_t=\beta_2m_t + (1-\beta_2)g^2_t
     $$
   
     - 計算梯度的指數移動平均數，m0 初始化為 0。綜合考慮之前時間步的梯度動量。
@@ -7647,7 +7656,6 @@ We can think of this as a powerful version of Regular Expression where we actual
 - [Vocabulary-and-Matching.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/01-NLP-Python-Basics/05-Vocabulary-and-Matching.ipynb)
   
   - https://spacy.io/usage/linguistic-features#section-rule-based-matching
-  
 
 ### Speech Tagging
 
@@ -9598,6 +9606,13 @@ True
 ```
 
 
+
+# 其他
+
+- [Ubuntu 20.04 LTS](https://www.microsoft.com/zh-tw/p/ubuntu-2004-lts/9n6svws3rx71)
+- [如何從Win10訪問Linux子系統中的文件](https://kknews.cc/tech/5v46vv2.html)
+- [How to Install Miniconda on Ubuntu 20.04](https://varhowto.com/install-miniconda-ubuntu-20-04/)
+- [[ Tools ] 在 Ubuntu 安裝 Node.js](https://oranwind.org/post-post-11/)
 
 # To-Do
 
