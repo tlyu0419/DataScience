@@ -379,6 +379,12 @@ print(f'{today: %B %d, %Y}')
     >>> adjfad張132www
     ```
 
+  - 用空白串接list中的資料
+
+    ```python
+    ' '.join(['Hello', 'word'])
+    ```
+
     
 
 - 參考資料
