@@ -498,4 +498,5 @@ df.to_sql('rent_591', con = db, if_exists='replace', index=None)
 
 ### PySimpleGUI
 
-- [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/Pythonic GUIs/)
+- [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)
+
