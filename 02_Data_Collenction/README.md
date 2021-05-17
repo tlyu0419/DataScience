@@ -1697,3 +1697,22 @@ def timer(n):
    		time.sleep(1) 
   ```
 
+## 網路爬蟲案例
+
+- ChinaTimes
+- Dcard
+- everylettermatters
+- Facebook
+- GooglePlay
+- GoogleTrends
+- 104人力銀行
+- 1111人力銀行
+- MoMo
+- 台灣博碩士論文網
+- 聯合新聞網
+- PChome
+- 松果購物
+- ProxyPool
+- 露天拍賣
+- USProxy
+
