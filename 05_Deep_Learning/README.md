@@ -1862,3 +1862,21 @@ class My_Callback(Callback):
 
 
 
+## RNN_Recurrent Neural Network
+
+具有記憶力的神經網絡模型
+
+- Elman Network
+  - 把 hidden layer的值，作為下一個的輸入
+- Jordan Network
+  - 把 output 的值，作為下一個的輸入
+  - 通常這個會有較好的表象，因為下一個的輸入是有目標的
+- Bidirectional RNN
+  - 訓練正反向的兩個NN，作為下一個的輸入
+- LSTM
+  - input
+    - Input Gate
+    - Memory Cell
+    - Output Gate
+    - Forget Gate
+  - output gate

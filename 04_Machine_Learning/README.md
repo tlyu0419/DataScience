@@ -1,4 +1,4 @@
-- https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)
+[TOC]
 
 # 建置模型(Modeling)
 
@@ -1476,10 +1476,6 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 ### 建立 pipeline
 
-## 模型組合
-
-- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
-
 ## 模型診斷
 
 - 我們通常會為了提升模型的準確度，會盡可能的增加模型的複雜度。但是當模型的複雜度提升時伴隨而來的就是可解釋性就隨之降低。
@@ -1489,6 +1485,12 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
   - 特徵萃取
 - 過擬合
   - 特徵選擇
+
+## 模型組合
+
+- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+
+
 
 ## Feature Construction
 

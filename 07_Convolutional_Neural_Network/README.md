@@ -487,21 +487,3 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
 2. [Img feature extraction with pretrained Resnet](https://www.kaggle.com/insaff/img-feature-extraction-with-pretrained-resnet)
 3. [Deep Learning Specialization by Andrew Ng — 21 Lessons Learned](https://towardsdatascience.com/deep-learning-specialization-by-andrew-ng-21-lessons-learned-15ffaaef627c)
 
-## RNN_Recurrent Neural Network
-
-具有記憶力的神經網絡模型
-
-- Elman Network
-  - 把 hidden layer的值，作為下一個的輸入
-- Jordan Network
-  - 把 output 的值，作為下一個的輸入
-  - 通常這個會有較好的表象，因為下一個的輸入是有目標的
-- Bidirectional RNN
-  - 訓練正反向的兩個NN，作為下一個的輸入
-- LSTM
-  - input
-    - Input Gate
-    - Memory Cell
-    - Output Gate
-    - Forget Gate
-  - output gate
