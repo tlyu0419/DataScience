@@ -486,4 +486,5 @@ New_resnet_model = Model(inputs=resnet_model.input, outputs=output)
 1. [Keras 以 ResNet-50 預訓練模型建立狗與貓辨識程式](https://blog.gtwang.org/programming/keras-resnet-50-pre-trained-model-build-dogs-cats-image-classification-system/)
 2. [Img feature extraction with pretrained Resnet](https://www.kaggle.com/insaff/img-feature-extraction-with-pretrained-resnet)
 3. [Deep Learning Specialization by Andrew Ng — 21 Lessons Learned](https://towardsdatascience.com/deep-learning-specialization-by-andrew-ng-21-lessons-learned-15ffaaef627c)
+4. [深度学习调参有哪些技巧？](https://www.zhihu.com/question/25097993/answer/934100939)
 

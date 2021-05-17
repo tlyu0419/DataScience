@@ -1,229 +1,230 @@
-# 深度學習
+# Deep Learning
 
-[深度学习调参有哪些技巧？](https://www.zhihu.com/question/25097993/answer/934100939)
+## 簡介
 
-https://keras-cn.readthedocs.io/en/latest/legacy/blog/word_embedding/
+### 類神經網絡 (Neural Network)
 
-https://cvdl.cupoy.com/
+- 在1956年的達特茅斯會議中誕⽣，以數學模擬神經傳導輸出預測，在初期⼈⼯智慧領域中就是重要分⽀
+- 因層數⼀多計算量就⼤幅增加等問題，過去無法解決，雖不斷有學者試圖改善，在歷史中仍不免⼤起⼤落
+- 直到近幾年在算法、硬體能⼒與巨量資料的改善下，多層的類神經網路才重新成為當前⼈⼯智慧的應⽤主流
+- 類神經的應⽤曾沉寂⼆三⼗年，直到 2012 年 AlexNet 在 ImageNet 圖像分類競賽獲得驚艷表現後，才重回主流舞台
 
-## 摘要
+### 類神經網路(NN)與深度學習的比較
 
-- 類神經網絡 (Neural Network)
+- 就基礎要素⽽⾔，深度學習是比較多層的類神經網路，但就實務應⽤的層次上，因著設計思路與連結架構的不同，兩者有了很⼤的差異性。
+- 算法改良
+  - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算⼒得以⽤在刀口上
+  - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導⼒
+  - 計算機硬體能⼒提升
+  - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可⾏
+- 巨量資料
 
-  - 在1956年的達特茅斯會議中誕⽣，以數學模擬神經傳導輸出預測，在初期⼈⼯智慧領域中就是重要分⽀
-  - 因層數⼀多計算量就⼤幅增加等問題，過去無法解決，雖不斷有學者試圖改善，在歷史中仍不免⼤起⼤落
-  - 直到近幾年在算法、硬體能⼒與巨量資料的改善下，多層的類神經網路才重新成為當前⼈⼯智慧的應⽤主流
-  - 類神經的應⽤曾沉寂⼆三⼗年，直到 2012 年 AlexNet 在 ImageNet 圖像分類競賽獲得驚艷表現後，才重回主流舞台
+  - 個⼈⾏動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
+- 解決問題
+  - NN: 基礎回歸問題
+  - DL:影像、⾃然語⾔處理等多樣問題
 
-- 類神經網路(NN)與深度學習的比較
+### 深度學習
 
-  - 就基礎要素⽽⾔，深度學習是比較多層的類神經網路，但就實務應⽤的層次上，因著設計思路與連結架構的不同，兩者有了很⼤的差異性。
-  - 算法改良
-    - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算⼒得以⽤在刀口上
-    - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導⼒
-    - 計算機硬體能⼒提升
-    - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可⾏
-  - 巨量資料
+- **CNN**
 
-    - 個⼈⾏動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
-  - 解決問題
-    - NN: 基礎回歸問題
-    - DL:影像、⾃然語⾔處理等多樣問題
+  - 設計⽬標：影像處理
 
-- 深度學習
+  - 結構改進：CNN 參考像素遠近省略神經元，並且⽤影像特徵的平移不變性來共⽤權重，⼤幅減少了影像計算的負擔
 
-  - **CNN**
+  - 衍伸應⽤：只要符合上述兩種特性的應⽤，都可以使⽤ CNN 來計算，例如AlphaGo 的 v18 版的兩個主網路都是 CNN
 
-    - 設計⽬標：影像處理
+    ![](./images/20181123193922202.png)
+    
+    
 
-    - 結構改進：CNN 參考像素遠近省略神經元，並且⽤影像特徵的平移不變性來共⽤權重，⼤幅減少了影像計算的負擔
+- **RNN**
 
-    - 衍伸應⽤：只要符合上述兩種特性的應⽤，都可以使⽤ CNN 來計算，例如AlphaGo 的 v18 版的兩個主網路都是 CNN
+  - 設計⽬標：時序資料處理，自然語言處理
 
-      ![](https://lh3.googleusercontent.com/-nIspNBfu9CfLh5HhbAUJzVdjFZxRiTqjNvj8P-8xnxL06njn__gz9CSXyC4qDgLXvunl1MjNVFwKtDXe73OmrJOhriU7wCf58l-pZcWHTXm5HjSg5m_iVnkKrvgOaZGf0KYbEn8fACjxcBWPP-mXTXlVpQfJXd60yRVEe9kVE7pOEQSGJmZqIJKBHpZV2jMOP-IU81FhPiWDennCBDH_7UXNPp0yeSBhZBs9NsP59-l0k5PMYhfEf7-6Phgu0kmrnEWeGrvYWxDyhjW8t5CW-kQK2CABYfmzTMGXCqC3aeLbj14WiDdzgJJSGegQ49k0HDsb4dIMFHvDovrCJlmtRAhDvShLrOc2PRg3qzPwZyoZsM9i9-twcQI5Ze2IaoHSNYZXpN9Nzz1sz186329yqyv3AOrggYkEwoUwifBZXWxndAB8tgsuerxaml1jVAsj1WYs7bdsHI842RsDgHPkbDMF9tqmnYks0dR7PnB-aBZtVoJIGJWOElPP3HkvCpJf_8xpb8fXc6ba600lRg0qnC_JgQh5j-Xoq-WXMT0-9_guMRHRZocoll32wWd6STZy6tCZjrubly3cilQb7IsuLjOrS0cVre53mtihFqDXkFxmC1PAe1TmEqrWUWGFX_NrcXWBp02WgF3TSqC2uk234HikN9dJW8uQJCOecmvJXksbdzIKTsPyA0GDIAVgiwn1cNZ6lxHN63ivVSdWtygKP9d=w904-h265-no)
+  - 結構改進：RNN 雖然看似在 NN 外增加了時序間的橫向傳遞，但實際上還是依照時間遠近省略了部分連結
 
-  - **RNN**
+  - 衍伸應⽤：只要資料是有順序性的應⽤，都可以使⽤ RNN 來計算，近年在⾃然語⾔處理 (NLP) 上的應⽤反⽽成為⼤宗
 
-    - 設計⽬標：時序資料處理，自然語言處理
-
-    - 結構改進：RNN 雖然看似在 NN 外增加了時序間的橫向傳遞，但實際上還是依照時間遠近省略了部分連結
-
-    - 衍伸應⽤：只要資料是有順序性的應⽤，都可以使⽤ RNN 來計算，近年在⾃然語⾔處理 (NLP) 上的應⽤反⽽成為⼤宗
-
-      ![](https://lh3.googleusercontent.com/2KTKuCkCCpaAoD7D2BPzMqEzChQUNF9VanLKqzSs-39AeawzYH8sX0WIEGBwD1hX8Y_48wH2fwznTexTW69LDUFNd0QMBsCTrLdqs4B43ouQnhQZHECC06lQ3YYGZA29bsN18H3IBexYnS1uBxbPMXb6hvISUIVtFdxsnOtQZsyaeFpodF8IfbcCUBzTxehV9xiZL5vVmBtCWzkPVM_gNx8XtlxsXUc7VBBfgadP6pdo7lITk73mZIeakW01cA8aZ-Gp6GnnbCdjoR2YPCuTUS4tPRkEix46lLbI7QSixKZDdK0YAf2djYM6eYJVkOClu-tB0Ke-5W6uGJtFy3lxDyxZvdTNdsC8vY0QBu9L-LcCvwtuso_fc9zXXXLqdP8sLMnu3JXI1DnPPyKlbDKP_ZEYT-vNCCAzokLBpb0_BkeOVxX0qKlRpJJjYcPw7gvS9TUKkK70YcR84VxI5Vjfw6Zi2pqVnDNXXeQ12XbsONS1zFEa4a3oSoBomh85E80CeccO6HcmQeyMxtIm7edzAC_9EI8dbqEw2kXE1jBp3iC1YKqehhfOd7e9Mq416QCHhiPceVgz7rRic5F529ur3Nnmw-JMmzW_8omCps8N7a_FYF-oWCa816e0Sx8cnPZ1lPDU3saDbJJoIjnuGxHE2Z1NnxBEw9qxK_QcJAjY8uYBFT9kLgp-pbcO4LPuQyB4NCZsaXaSsShahmqkVFvf0LIM=w871-h338-no)
+    ![](./images/0_sm-7smnbyLioThPQ.png)
 
 
 
-- 深度學習-巨觀結構
-  - 輸入層：
-    - 輸入資料進入的位置，即我們的解釋變數。
-  - 輸出層：
-    - 輸出預測值的最後⼀層，可以是連續資料，二分類資料或多分類資料。當資料是多分類的資料時，需要轉換成虛擬變數
-  - 隱藏層：
-    - 除了上述兩層外，其他層都稱為隱藏層
-    - 隱藏層的流程
-      1. 將 input 的 neuron * 權重 後加總
-      2. 將加總後的資料透過activate function 進行線性與非線性的轉換，藉以放大有用的資料，或過濾掉雜訊。
-    - 透過在 input 與 output 層之間加入Hidden Layer，每層Hidden Layer中的許多neuron，我們可以對input layer的資料做許多線性與非線性的轉換，自動做出許多特徵工程。藉以提升模型的解釋效度。
-    - 但我們仍然需要對資料做特徵工程，藉以幫助模型更好的擬合模型。
+### 深度學習-巨觀結構
 
-![](https://lh3.googleusercontent.com/_NhfhS_ZVTpiHAh1-MkwiFMOsRrkBpe8faP8k9PD9ZA1nYpF2uFuMMF4HeeN3KdcVrfA3-ocXsFLdRue9Bi9oL8E8XrnTDkJG1fM4eVb-Ucqn1NGTNhHJ3YJ-iIISZHpjPMXv-O5ntebMKpXJ6qhbgBjVQEfKzeLSF-sRIj-n0ixtfg5im_fJjoTFwsY_qwI1AgL1FpT3zNLUHc-VPDA3nD5UrP_3DqkvI13SgCwrIbkutn_4dEEjbxyJ2GmnQuV_bSR6F0MdFSPufaxOagebEUffg30Kb_UjXHwmGdSGWE1rc2QYV0L_b87lmbgB4MoAJybEthq3QSIt6Cht6VARGxtyq5mNym3cGEsfgAsS5FHtZC5hoRHGyFwIlrKLRWkQq2mPh9yTPW1mT8PwFUDjd1V_faMD3LGLM97t7d-Zi5QLA_tiESE_dPoob8QmFNsL5JxpufMZR5tO-PZxZRof6idCDOboVY6JIR2jrXyvzbNliESNEEhtyD8sIT3NEdY3AqpoNNF0WKdM34P3nE5Dssg_pbpW6MAoxFXyqLR0VJBZfc2Fxqi8bpRWl13xri_ahlnBlOK_J_pD8azOI_A1nRbK4d0lSSF7jwFyWFCPLVkcUm_NdZ_xC5w4HLi8qJ2zqHjX-LTIjtPLVTbQ4NOoRtq2GqSRn6emsKoYwTgI4R4c30iBrU4XarNRqAfMUvu_9JIoMPJqyiQqLDa199eXStV=w648-h346-no)
+- 輸入層：
+  - 輸入資料進入的位置，即我們的解釋變數
+- 輸出層：
+  - 輸出預測值的最後⼀層，可以是連續資料，二分類資料或多分類資料。當資料是多分類的資料時，需要轉換成虛擬變數
+- 隱藏層：
+  - 除了上述兩層外，其他層都稱為隱藏層
+  - 隱藏層的流程
+    1. 將 input 的 neuron * 權重 後加總
+    2. 將加總後的資料透過activate function 進行線性與非線性的轉換，藉以放大有用的資料，或過濾掉雜訊。
+  - 透過在 input 與 output 層之間加入Hidden Layer，每層Hidden Layer中的許多neuron，我們可以對input layer的資料做許多線性與非線性的轉換，自動做出許多特徵工程。藉以提升模型的解釋效度。
+  - 但我們仍然需要對資料做特徵工程，藉以幫助模型更好的擬合模型。
+
+![](./images/A-fully-connected-feedforward-NN-architecture-where-all-neurons-between-adjacent-layers.png)
 
 
 
-- 深度學習-微觀結構
+### 深度學習-微觀結構
 
-  由啟動函數轉換輸出，藉由預測與實際值差距的損失函數，⽤倒傳遞⽅式反覆更新權重，不斷縮小預測與實際結果間的落差，最終達成各種應⽤的學習⽬標。
+由啟動函數轉換輸出，藉由預測與實際值差距的損失函數，⽤倒傳遞⽅式反覆更新權重，不斷縮小預測與實際結果間的落差，最終達成各種應⽤的學習⽬標。
 
-  - **啟動函數(Activation Function)**
+- **啟動函數(Activation Function)**
 
-    位於神經元內部，將上⼀層神經元的輸入總和，轉換成這⼀個神經元輸出值的函數
+  位於神經元內部，將上⼀層神經元的輸入總和，轉換成這⼀個神經元輸出值的函數
 
-  - **損失函數(Loss Function)**
+- **損失函數(Loss Function)**
 
-    定義預測值與實際值的誤差⼤⼩
+  定義預測值與實際值的誤差⼤⼩
 
-  - **倒傳遞Back-Propagation)**
+- **倒傳遞Back-Propagation)**
 
-    將損失值倒傳遞回，轉換成類神經權重更新的⽅法
+  將損失值倒傳遞回，轉換成類神經權重更新的⽅法
 
-![](https://lh3.googleusercontent.com/KKTJNQP8DqEs5gfYISfMqq5HSbXhzcYBYF1C7yMUhg0kkxspTjindFQE_7GOKJjh64rhAJCx6HAuhTNNS6HAFaOR3QafQYSay1aRk9UUxgUsWNcc_u2pMUGd-C-7X2hZQTlXlwJu-XyvbI77E8d2txrMiEYWWtl6UFftBJEzWYH8vyI35hHV03GCgPJHL4c_85MHBBMPzARqgIPYXGg-GrZHjaIuRHsynYyf4lLxrWnrIaFI8L1scRbrsd69MXurfyIvDNRge-QEuQk1z_jxfenjhekne_0gtL3EFJgudN0tvZA0ZxR8w3A4JuvrU5pY1SVNpMv6Dnn_asFXlNw9r--2yklkCVg21OCbNKGYrw8SGJVBx59qigXpvmjC3Ki7YLlsSHEb2r_JUA673KBYFeXka7wq3DfSjyMm7ePGSVqh7NlLRwFSTULzzVgxAMrWTcfyfpmFO810Yt5s66d5xL1oNjXkNu4ivl7-Xx6_wQyz8XrFIuR-_i2aGuuyr2w3tPmufl5l6bmlyt4GLV_-c0jp0mBuDVg-czHqS-BK5z9p4jRzctZBGveUmma2rA1BtMqAVP3H1wvBpqk4obwTAO40b29xuqLnh_H1gTp28IwaJcnT6X1Q4vAxULOnpdZZwGSvg5yj5T6-Wfus8XV8sNu-L4iWYSh3JueIK8XrCUN9CKBDhAQgLBqOhT7h0Ubp4juPeR69BpdpCoWUZRjeCtKk=w736-h313-no)
+![](./images/擷取.JPG)
 
-- 參考資料
-  - [神经网络的Python实现（一）了解神经网络](https://www.jianshu.com/p/a2bc960ee325)
-  - [神经网络的Python实现（二）全连接网络](https://www.jianshu.com/p/51c92cd4eb67)
-  - [神经网络的Python实现（三）卷积神经网络](https://www.jianshu.com/p/b6b9a1b0aabf)
-  - [Understanding Neural Networks](https://towardsdatascience.com/understanding-neural-networks-19020b758230)
+### Ref
+
+- [神经网络的Python实现（一）了解神经网络](https://www.jianshu.com/p/a2bc960ee325)
+- [神经网络的Python实现（二）全连接网络](https://www.jianshu.com/p/51c92cd4eb67)
+- [神经网络的Python实现（三）卷积神经网络](https://www.jianshu.com/p/b6b9a1b0aabf)
+- [Understanding Neural Networks](https://towardsdatascience.com/understanding-neural-networks-19020b758230)
+
+
 
 ## 深度學習體驗平台
 
-- TensorFlow PlayGround 是 Google 精⼼開發的體驗網⾴，提供學習者在接觸語⾔之前，就可以對深度學習能概略了解
-  - 體驗平台網址 : https://playground.tensorflow.org
+- [TensorFlow PlayGround](https://playground.tensorflow.org/) 是 Google 精⼼開發的體驗網⾴，提供學習者在接觸語⾔之前，就可以對深度學習能概略了解
 - 平台上⽬前有 4 個分類問題與 2 個迴歸問題，要先切換右上問題種類後，再選擇左上的資料集
 
-![](https://lh3.googleusercontent.com/J-JoDiRHF79zpo2aZzaTk-vy7pLoFocuEnE22qYpflyOmm7DaobZ9HpiE63ZmiBwid-k7AP2qDHOUv6FwjsWN7ZFBmo4UgowS_TwL7jyV-9VqtnWPMCqVeaQIfQ-orWa5SJoQS06bOWIkg-M20B3JWoKY4jN10NCUC9MZVykVlizcExcZeQRVYMiHdzo08Dr1nFW3AOAyVrM1fQqCnKDy-_NrV1q5dNYtmoBOEXXE-qiZnSqslm9ItmpiWcBm1WnUFwqD9T0qywD_0I40fRSNf6tVA1aX0pqwVS_Ia3VYTlOI20zz5adA6iH7fVXGhQxK3mP1Nn0Q0MHvuc2yByUr3KphFQP3GcFmqlg-GfHkSPM1fCEUAzxzmuGsdZrWxU3x2ES1MIlHYQG4fCYaUVJqvCZqEFvQUSEFo2q-4nSLYCpGjbU0vFi8Izj6eN7LqFp2-acwD-tiGqdKefDnPIYr-Qe0IEBa6esprPLXwoRYunHHsM4YqG1y-zaFaTI5pzXUYIs2NYZ0CAysN-lcwq1Hbdhxme0kuVV3f5hBv0r9e2vpUPCMx03Fk_zvJ_NmNA8tr8rl0yMzFAZbEV5XTWqiFhGE0_egfumvuRbNqxK-rmb2Za_tdTSemuI-SLPVBQIniNQQCsmnu78IqBEpcc2XJ2CMJhpg_ioz0I04ff4CUcIHFJkr8P9K5N7YrggKHVADN7uzdnsahvEPYCKNVhrUPHY=w959-h541-no)
+![](./images/tensorflowplayground.png)
+
+
+
+### 練習1：按下啟動，觀察指標變化
+
+- 全部使⽤預設值，按下啟動按鈕，看看發⽣了什麼變化?
+  - 遞迴次數（Epoch，左上）：逐漸增加
+  - 神經元（中央）：⽅框圖案逐漸明顯，權重逐漸加粗，滑鼠移⾄上⽅會顯⽰權重
+  - 訓練/測試誤差：開始時明顯下降，幅度漸漸趨緩
+  - 學習曲線：訓練/測試誤差
+  - 結果圖像化：圖像逐漸穩定
+
+ - 後續討論觀察，如果沒有特別註明，均以訓練/測試誤差是否趨近 0 為主，這種情況我們常稱為收斂
+
+### 練習2：增減隱藏層數
 
 - 練習項目
 
-  - **練習1：按下啟動，觀察指標變化**
+  - 資料集切換：分類資料集(左下)-2 群，調整層數後啟動學習
+  - 資料集切換：分類資料集(左上)-同⼼圓，調整層數後啟動學習
+  - 資料集切換：迴歸資料集(左)-對⾓線，調整層數後啟動學習
 
-    - 全部使⽤預設值，按下啟動按鈕，看看發⽣了什麼變化?
-      - 遞迴次數（Epoch，左上）：逐漸增加
-      - 神經元（中央）：⽅框圖案逐漸明顯，權重逐漸加粗，滑鼠移⾄上⽅會顯⽰權重
-      - 訓練/測試誤差：開始時明顯下降，幅度漸漸趨緩
-      - 學習曲線：訓練/測試誤差
-      - 結果圖像化：圖像逐漸穩定
+  ![](./images/擷取2.jpg)
 
-     - 後續討論觀察，如果沒有特別註明，均以訓練/測試誤差是否趨近 0 為主，這種情況我們常稱為收斂
+- 實驗結果
 
-  - **練習2：增減隱藏層數**
+  - 2 群與對⾓線：因資料集結構簡單，即使沒有隱藏層也會收斂
+  - 同⼼圓：資料及稍微複雜 (無法線性分割)，因此最少要⼀層隱藏層才會收斂
 
-    - 練習項目
+### 練習3：增減神經元數
 
-      - 資料集切換：分類資料集(左下)-2 群，調整層數後啟動學習
-      - 資料集切換：分類資料集(左上)-同⼼圓，調整層數後啟動學習
-      - 資料集切換：迴歸資料集(左)-對⾓線，調整層數後啟動學習
+- 練習項目
 
-      ![](https://lh3.googleusercontent.com/g0p-a-z2jhfk2uW6IZe6hAVeDstOJ08iRXhU4RNUu96veogjL6jGRgtshNJp76Xr_WxinGDuOiTbVyUx0EB16KNYt9jgCDU1jpscOrzlBWPBrEVECwCkzZlcvHIFFnzhAfGzKxd6EPffbAPc-nIFbFEGDslsT7AXrcB2VFfgMb69GXBAore7jfjNJ6ZZcbSFVvvu9smAOS4nd8rFdxzHNtzN2Uu5o9k4-ujs99o_bdXgm8cD6iKr3E6IQawCSiYsvgfigmn78ET9pUBeUuCnGge0p_491JIbHbIWw2l8EHQh8uWI4r2xNAAnZBlZoWlwiTICRTofREUOjDkC4Le6PMBoTan_GvqiubEgWgE7XBtkrSMO4WTIjCromybr0ViF2BGL9ti6hksIFftDi_RWNwtPtJf_hUlve5KaAHubiA22PrE3SWatLCZhgeN6IsfU-ruPys6KFgRPJ8UkZuVNkZ-_6H0wlcIDEFeaCCj9MztdmOTW137MjkeFrs3TZQ2L4fXuR9yHCfPFTkmexLkLGEFyBaipbX1Yy9z6XmHLpip5dTqSgX2I1GLv3_Ys0aHjZ5yhFRRR7QTp2reHroGdAUm3siwCTUl7TmCxjYjVfKGQdPs1XrGCrwG8b266v7HvGi1j-STsMDGYYiW7UBje8XRdCAQ42JUBsdx2snpza-Piosrti4MXlR_46P4H-yYgCw9zZQyVp51H_Qf4kBLny1Fo=w1018-h363-no)
+  - 資料集切換：分類資料集(左上)-同⼼圓，隱藏層設為 1 後啟動學習
+  - 切換不同隱藏層神經元數量後，看看學習效果有何不同？
 
-    - 實驗結果
+- 實驗結果
 
-      - 2 群與對⾓線：因資料集結構簡單，即使沒有隱藏層也會收斂
-      - 同⼼圓：資料及稍微複雜 (無法線性分割)，因此最少要⼀層隱藏層才會收斂
+  - 當神經元少於等於兩個以下時，將無法收斂(如下圖)
 
-  - **練習3：增減神經元數**
+    ![](./images/擷取3.JPG)
 
-    - 練習項目
+### 練習4：切換不同特徵
 
-      - 資料集切換：分類資料集(左上)-同⼼圓，隱藏層設為 1 後啟動學習
-      - 切換不同隱藏層神經元數量後，看看學習效果有何不同？
+- 練習項目
 
-    - 實驗結果
+  - 資料集切換：分類資料集(左上)-同⼼圓，隱藏層 1 層，隱藏神經元 2 個
+  - 切換 任選不同的 2 個特徵 後啟動，看看學習效果有何不同?
 
-      - 當神經元少於等於兩個以下時，將無法收斂(如下圖)
+- 實驗結果
 
-        ![](https://lh3.googleusercontent.com/CPNG3ir92ZqfKRnt9BHtsb2i_zU3hVXzZZfKY59yR7BX8CLsQQwjg-rEPzRujgQ98bSXSFMq2QYlc_RxgiqsmK9Y91_wDChtZfpnxhoeRHKFaZlDG58bZV1Yxe7nLPZSg0ZKQqpy1PvoJjXIp_NA_-dLJGEpSpWbBfMCqHcVT3Emf1rzN3jZhTfQoDZ52QTroMqVdL9JTUivHVljzgxN6bIEBkLFmtYigCyVtG1X4O8t4PHSDON-tyiCcTPajTuamRkh5GZ-Wyav4VhxLHNFGGEMwYmreIrkS9xaBZ9RMaUcmbaXis3vpEYGV3VFTpn_7nsrgAP2E-Kdddy5VoJvphuj4WiJbDk-I9SzGFEBXUgQ2hru6zuUg2NOK4UycQR_UBxzqvEZ_WGPJUip9bQPXPpiiusEGr6PoNz13zeWT2CysSom9uAsNos18AApsHnKk_q3QdlxDm9rkPnBlX_rSwzTk-l-3Rm2F3wf7tBufm5VufAjpK41_WNSvuAskYouwLlNIw_qCYiBEiZazldPlKDDcyQYoj81hCi4OqcvHx4poSPqFtwdyG4v4kTpgo8_St78voRgvYi1p-MoodLFYYJU5xk3cUvs6uXxBJOE3HqkL0Ihf05yvkbBRBCIb4kbMlDbzdPSIXSCLbUyKuh-BS_RswH_l_ZCcF0GXamiAHl8uBPxTk7cvKwvoUgUS6MZcLZT4So5WifhCJkgUKoUcmlJ=w774-h286-no)
+  - 當特徵選到兩個特徵的平⽅時，即使中間只有 2 個神經元也會收斂
 
-  - **練習4：切換不同特徵**
+    ![](./images/擷取4.JPG)
 
-    - 練習項目
+### 練習 5：切換批次⼤⼩
 
-      - 資料集切換：分類資料集(左上)-同⼼圓，隱藏層 1 層，隱藏神經元 2 個
-      - 切換 任選不同的 2 個特徵 後啟動，看看學習效果有何不同?
+- 練習項目
 
-    - 實驗結果
+  - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元
+  - 調整 不同的批次⼤⼩後執⾏500次遞迴，看看學習效果有何不同?
 
-      - 當特徵選到兩個特徵的平⽅時，即使中間只有 2 個神經元也會收斂
+- 實驗結果
 
-        ![](https://lh3.googleusercontent.com/3jpTlFx9xIf5oacDXExgBVTTFswVLWD5pLjo4sZRmc2MRMPGimX0jWYMC_8DB8v5_g3HU9eqRYCQqI12G0vwsV_zFIDGbX6X9jz93e6up5P96et6kLQ5OYQ3_VlTr6i7ecFZ_7J9Mydkz2vDqmcIMw1RORRyyjYWoYHBUO00U5dDU6aSqUrzmwKxf4d3fTeks7lhQTTbx5q-gh039AuQVDUMCU6uW5qY6cdvMm-nkpMYsmNjZc5dTpswz9L2m7VM3eQbrQArT1ihsGnD-sRVL9nUFEaOjrKrgtyCf4PxOQMCV0GU6aj5DFEmJr8pSw3EbyUFULYgRvrBFN8RWt7sVpCZH-R-CtZWJKa2WOMBTQQVhpX9L1t8eCYwHOryJ0lVDJVL7F8MzXR8SmJ9L47K9ejLs4vAqLqE0Y37K0R-aUhVJdL7eR-0VT_DpN6nk4N8h9mGjx3x60FjFMmsbkNHH6mA7AMSjJ5rh2d8mUHzEbM9Mqu_unzvENsYwS0WTAfIJWRjTlCNuc3x4ta901O619doeAmmBeu2ae2gCM7WUGabQbRiDynaq3ux78s3DxO4Ax1vF3IYJ7UGXBQpkUcS7hb7PHG-3PUkUYCtpcafwd2-qQJYj-J54X_kfbL8oeECcbGQhBqebdTOgLIMUGBAbm1dB-zNhzgDD59TSIWavGStmmgrNZ_-hiD7OWoIkNu1ap58SIxmzkAb7Tu_hGgQ5X_1=w755-h285-no)
+  - 批次⼤⼩很⼩時，雖然收斂過程非常不穩定，但平均⽽⾔會收斂到較好的結果
 
-  - **練習 5：切換批次⼤⼩**
+  - 實務上，批次⼤⼩如果極⼩的效果確實比較好，但計算時間會相當久，因此通常會依照時間需要⽽折衷
 
-    - 練習項目
+    ![](./images/擷取6.jpg)
 
-      - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元
-      - 調整 不同的批次⼤⼩後執⾏500次遞迴，看看學習效果有何不同?
+### 練習 6：切換學習速率
 
-    - 實驗結果
+- 練習項目
 
-      - 批次⼤⼩很⼩時，雖然收斂過程非常不穩定，但平均⽽⾔會收斂到較好的結果
+  - 資料集切換：分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1 層 /8 神經元，批次⼤⼩固定 10
+  - 調整 不同的學習速率 後執⾏ 500 次遞迴，看看學習效果有何不同?
 
-      - 實務上，批次⼤⼩如果極⼩的效果確實比較好，但計算時間會相當久，因此通常會依照時間需要⽽折衷
+- 實驗結果
 
-        ![](https://lh3.googleusercontent.com/RyGT7m_Fvz-35onVdJ_KNNvIab5rypkuCFk8jR5S_w12ACma0y0OqMkN4WMLhooyLOIa9rXAepJ3_0XyWUuU0dkIDC1ITAJMoVP8mbITk0NuowLLC4Y30Dx88GcZP9Xca6rURzhNJFL1C9pgeRusQ5ZTdmmzxum9IlWwUU3mWNad9VHerbZcL_qNnHZqIW5-kFifhrSc_5atzl8TCyrm3ljxjuouuvwaaS34W4c4ECm1-ivu9NxXWHz80UCiCy8HbHlSssWLb5vQ89nsxFZCMgCiCV1Uc2YEgpWXAf_M2zhjyc2x6h7LgF9JDfTzQGwJLldkbuRO-BP308Q_76vU-dhdkVB42gLUQF_F_fEo74OWC5GcCtOGhtJ0_FZ3OmUlUMr01JcggSslgmyubquK2FASbXvtqCrd4U4hNtUJ82s-rwdjbVzlqszjy3EBaQ0yT0O8fvB_do43RMKAaVtdMvXI6RxdkN4X_KqNkxOu6WwGV8N0KoYdAKcHxU4D4xuLj96QaGE55LtelAl0eK8-ypQHKCUwz4LA2msP7HjSdTEvnsCSMAEq9YEle5uGbIJSY9b3FNb8vdo-3mVpb86E4qw49HkCA51g2x4sV96YkRtw4H37xF_8Mej56BLQhw0rObVwtg3xO85zeOLf2GeUFDRzqhoam5EKN5U2xUWY6Rb9Z_KmpXuZXfV8WwTpgDpwUos_vKvU-c64mkBDSLvK3c9q=w418-h184-no)
+  - 學習速率較⼤時，收斂過程會越不穩定，但會收斂到較好的結果
 
-  - **練習 6：切換學習速率**
+  - ⼤於 1 時 因為過度不穩定⽽導致無法收斂
 
-    - 練習項目
+    ![](./images/擷取7.jpg)
 
-      - 資料集切換：分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1 層 /8 神經元，批次⼤⼩固定 10
-      - 調整 不同的學習速率 後執⾏ 500 次遞迴，看看學習效果有何不同?
+### 練習 7：切換啟動函數
 
-    - 實驗結果
+- 練習項目
+  - 資料集切換 : 分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1層 /8 神經元，批次⼤⼩固定 10，學習速率固定 1
+  - 調整不同的啟動函數 後執⾏500次遞迴，看看學習效果有何不同?
+- 實驗結果
+  - 在這種極端的情形下，Tanh會無法收斂，Relu很快就穩定在很糟糕的分類狀態，惟有Sigmoid還可以收斂到不錯的結果
+  - 但實務上，Sigmoid需要⼤量計算時間，⽽Relu則相對快得很多，這也是需要取捨的，在本例中因位只有⼀層，所以狀況不太明顯
 
-      - 學習速率較⼤時，收斂過程會越不穩定，但會收斂到較好的結果
+### 練習 8：切換正規化選項與參數
 
-      - ⼤於 1 時 因為過度不穩定⽽導致無法收斂
+- 練習項目
+  - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元，批次⼤⼩固定 10，學習速率固定 0.3，啟動函數設為 Tanh
+  - 調整不同的正規化選項與參數後執⾏500次遞迴，看看學習效果有何不同?
 
-        ![](https://lh3.googleusercontent.com/K3yK4ia66stGDckpdgBi5eqAgDoAXVKOqRqYrc2tDgRtKN0gORUslM36dC74BXG2rirCGVnXC3oKQ-teSEGpBMNcD73OnzNyJDyh4GVY5Q-8rYk8pEf2EiA5IndphBSin4t_xI9tMu3uy2EszdofJ0BTHbc6eZBhNuBUy8qg78xZczzih6Hex8OM-WLw8JeBUAUf-7ND55yEgdF5Stpy1xvb2HSIyjb6le7nvNP1KEVK9KL62vEjw4ayKqE5SnqatYbw7Oykos6l8kx-wracNEbQ9Ow5f9xzmqKMFU5d6cx3lv5VQr2ozOL_l4MlmBtkqPIQKFkBUXQMpQGMOsy_4tQUwT82JAyJwZX_gpAEmGdAisXfVJn3eza0cH8nHXk6E9xS9HBGsH0szQ7cPOlZI-Jru75e1QEDzuX6R8_2oCSrQFgTm19PcQ9Z4ntkndcY0o_qJs-3gzPAYasw_ZfcivXEF8vFLGT-UBaU_U0ff89PmcE8Ypt14dmXIRM8NEIHm7E06pISOZgfWzrhWPgDCtvGPa6IyaqZcE6Ln2nRpxzItaMHVPDBH56cSZdG_7iKw5Wfv-vvVkHMOj_NdJeWaUaZJmLgDMZA-HROluUjgbz9YvQHSOrEZcbGNUwC4e_9aLjmiidlsAnnJVi4f8N8tvlbZvdpHBOV43eQj-VFlEBwfeWKnftNbfhHxvyijHg9VO_LP1oIR7ecBgJZOXSuN-mn=w417-h334-no)
+- 實驗結果
+  - 我們已經知道上述設定本來就會收斂，只是在較⼩的 L1 / L2 正規劃參數下收斂比較穩定⼀點
+  - 但正規化參數只要略⼤，反⽽會讓本來能收斂的設定變得無法收斂，這點 L1 比 L2情況略嚴重，因此本例中最適合的正規化參數是 L2 + 參數 0.001
+  - 實務上：L1 / L2 較常使⽤在非深度學習上，深度學習上效果有限
 
-  - **練習 7：切換啟動函數**
+### 重點摘錄
 
-    - 練習項目
-      - 資料集切換 : 分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1層 /8 神經元，批次⼤⼩固定 10，學習速率固定 1
-      - 調整不同的啟動函數 後執⾏500次遞迴，看看學習效果有何不同?
-    - 實驗結果
-      - 在這種極端的情形下，Tanh會無法收斂，Relu很快就穩定在很糟糕的分類狀態，惟有Sigmoid還可以收斂到不錯的結果
-      - 但實務上，Sigmoid需要⼤量計算時間，⽽Relu則相對快得很多，這也是需要取捨的，在本例中因位只有⼀層，所以狀況不太明顯
+- 雖然圖像化更直覺，但是並非量化指標且可視化不容易，故深度學習的觀察指標仍以損失函數/誤差為主
+- 對於不同資料類型，適合加深與加寬的問題都有，但加深適合的問題類型較多
+- 輸入特徵的選擇影響結果甚鉅，因此深度學習也需要考慮特徵⼯程
+- 批次⼤⼩越⼩ : 學習曲線越不穩定、但收斂越快
+- 學習速率越⼤ : 學習曲線越不穩定、但收斂越快，但是與批次⼤⼩不同的是，學習速率⼤於⼀定以上時，有可能不穩定到無法收斂
+- 當類神經網路層數不多時，啟動函數 Sigmoid / Tanh 的效果比 Relu 更好
+- L1 / L2 正規化在非深度學習上效果較明顯，⽽正規化參數較⼩才有效果
 
-  - **練習 8：切換正規化選項與參數**
+### Ref
 
-    - 練習項目
-      - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元，批次⼤⼩固定 10，學習速率固定 0.3，啟動函數設為 Tanh
-      - 調整不同的正規化選項與參數後執⾏500次遞迴，看看學習效果有何不同?
-
-    - 實驗結果
-      - 我們已經知道上述設定本來就會收斂，只是在較⼩的 L1 / L2 正規劃參數下收斂比較穩定⼀點
-      - 但正規化參數只要略⼤，反⽽會讓本來能收斂的設定變得無法收斂，這點 L1 比 L2情況略嚴重，因此本例中最適合的正規化參數是 L2 + 參數 0.001
-      - 實務上：L1 / L2 較常使⽤在非深度學習上，深度學習上效果有限
-
-- **重點摘錄**
-
-  - 雖然圖像化更直覺，但是並非量化指標且可視化不容易，故深度學習的觀察指標仍以損失函數/誤差為主
-  - 對於不同資料類型，適合加深與加寬的問題都有，但加深適合的問題類型較多
-  - 輸入特徵的選擇影響結果甚鉅，因此深度學習也需要考慮特徵⼯程
-  - 批次⼤⼩越⼩ : 學習曲線越不穩定、但收斂越快
-  - 學習速率越⼤ : 學習曲線越不穩定、但收斂越快，但是與批次⼤⼩不同的是，學習速率⼤於⼀定以上時，有可能不穩定到無法收斂
-  - 當類神經網路層數不多時，啟動函數 Sigmoid / Tanh 的效果比 Relu 更好
-  - L1 / L2 正規化在非深度學習上效果較明顯，⽽正規化參數較⼩才有效果
-
-- **參考資料**
-
-  - [深度学习网络调参技巧](https://zhuanlan.zhihu.com/p/24720954)
+- [深度学习网络调参技巧](https://zhuanlan.zhihu.com/p/24720954)
 
 
 
 ## Keras 簡介與安裝
+
+### Keras 簡介
 
 - Keras 是易學易懂的深度學習套件
 
@@ -257,6 +258,8 @@ https://cvdl.cupoy.com/
   | 主要差異 | 處理神經層   | 處理資料流                     |
   | 代表組件 | Layers/Model | Tensor / Session / Placeholder |
 
+### Keras 安裝
+
 - 安裝方法
 
   - 由於 Anaconda 已經會自動幫忙安裝 CUDA / cuDNN 因此我們只需要創造一個 tensorflow 的虛擬環境，啟動 jupyter 後輸入直接安裝 gpu 版的 tensorflow 即可!
@@ -271,24 +274,28 @@ https://cvdl.cupoy.com/
     conda install keras
     ```
 
-- Ref
 
-  - [Keras: The Python Deep Learning library](https://keras.io/)
-  - [别再使用pip安装TensorFlow了！用conda吧](https://zhuanlan.zhihu.com/p/46579831)
+### Ref
+
+- [Keras: The Python Deep Learning library](https://keras.io/)
+- [别再使用pip安装TensorFlow了！用conda吧](https://zhuanlan.zhihu.com/p/46579831)
 
 
 
-## Dataset 介紹與應⽤
+## Dataset 介紹與應用
+
+### Dataset 介紹
 
 - **CIFAR10**
 
   - CIFAR10 small image classification
-- Dataset of 50,000 32x32 color training images, labeled over 10 categories, and 10,000 test images.
-
-```python
-from keras.datasets import cifar10
-  (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-```
+  
+  - Dataset of 50,000 32x32 color training images, labeled over 10 categories, and 10,000 test images.
+  
+    ```python
+    from keras.datasets import cifar10
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+    ```
 
 - **CIFAR100**
 
@@ -326,33 +333,19 @@ from keras.datasets import cifar10
 - **Boston housing price**
 
   - Boston housing price regression dataset
+
   - Dataset taken from the StatLib library which is maintained at Carnegie Mellon University.
+
   - Samples contain 13 attributes of houses at different locations around the Boston suburbs in the late 1970s. Targets are the median values of the houses at a location (in k$).
 
-  ```python
-  from keras.datasets import boston_housing
-  (x_train, y_train), (x_test, y_test) = boston_housing.load_data()
-  ```
+    ```python
+    from keras.datasets import boston_housing
+    (x_train, y_train), (x_test, y_test) = boston_housing.load_data()
+    ```
 
 - **IMDB電影評論情緒分類**
 
   - 來⾃ IMDB 的 25,000 部電影評論的數據集，標有情緒（正⾯/負⾯）。評論已經過預處理，每個評論都被編碼為⼀系列單詞索引（整數）。
-
-  - 單詞由數據集中的整體頻率索引
-
-    - 整數“3”編碼數據中第 3 個最頻繁的單詞。
-    - “0”不代表特定單詞，⽽是⽤於編碼任何未知單詞
-
-  - 說明
-
-    - path：如果您沒有本地數據（at '~/.keras/datasets/' + path），它將被下載到此位置。
-    - num_words：整數或無。最常⾒的詞彙需要考慮。任何不太頻繁的單詞將oov_char在序列數據中顯⽰為值。
-    - skip_top：整數。最常被忽略的詞（它們將 oov_char 在序列數據中顯⽰為值）。
-    - maxlen：int。最⼤序列長度。任何更長的序列都將被截斷。
-    - 種⼦：int。⽤於可重複數據改組的種⼦。
-    - start_char：int。序列的開頭將標有此字符。設置為 1，因為 0 通常是填充字符。
-    - oov_char：int。這是因為切出字 num_words 或 skip_top 限制將這個字符替換。
-    - index_from：int。使⽤此索引和更⾼的索引實際單詞。
 
     ```python
     from keras.datasets import imdb
@@ -365,55 +358,61 @@ from keras.datasets import cifar10
                                                           oov_char=2, 
                                                           index_from=3)
     ```
-
-- 路透社新聞專題主題分類
+  
+- **路透社新聞專題主題分類**
 
   - 來⾃路透社的 11,228 條新聞專線的數據集，標註了 46 個主題。與 IMDB 數據集⼀樣，每條線都被編碼為⼀系列字索引
 
-  ```python
-  from keras.datasets import reuters
-  (x_train, y_train), (x_test, y_test) = reuters.load_data(path='reuters npz', 
-                                                           num_words=None,
-                                                           skip_top=0,
-                                                           maxlen=None,
-                                                           test_split=0.2,
-                                                           seed=113,
-                                                           start_char=1,
-                                                           oov_char=2,
-                                                           index_from=3)
-  ```
+    ```python
+    from keras.datasets import reuters
+    (x_train, y_train), (x_test, y_test) = reuters.load_data(path='reuters npz', 
+                                                             num_words=None,
+                                                             skip_top=0,
+                                                             maxlen=None,
+                                                             test_split=0.2,
+                                                             seed=113,
+                                                             start_char=1,
+                                                             oov_char=2,
+                                                             index_from=3)
+    ```
 
-- [Imagenet](http://www.image-net.org/about-stats)
+- **[Imagenet](http://www.image-net.org/about-stats)**
 
-  Imagenet數據集有1400多萬幅圖片，涵蓋2萬多個類別；其中有超過百萬的圖片有明確的類別標註和圖像中物體位置的標註。
+  - Imagenet數據集有1400多萬幅圖片，涵蓋2萬多個類別；其中有超過百萬的圖片有明確的類別標註和圖像中物體位置的標註。
 
-  Imagenet數據集是目前深度學習圖像領域應用得非常多的一個領域，關於圖像分類、定位、檢測等研究工作大多基於此數據集展開。Imagenet數據集文檔詳細，有專門的團隊維護，使用非常方便，在計算機視覺領域研究論文中應用非常廣，幾乎成為了目前深度學習圖像領域算法性能檢驗的“標準”數據集。數據集大小：~1TB（ILSVRC2016比賽全部數據）
+  - Imagenet數據集是目前深度學習圖像領域應用得非常多的一個領域，關於圖像分類、定位、檢測等研究工作大多基於此數據集展開。Imagenet數據集文檔詳細，有專門的團隊維護，使用非常方便，在計算機視覺領域研究論文中應用非常廣，幾乎成為了目前深度學習圖像領域算法性能檢驗的“標準”數據集。
+  - 數據集大小：~1TB（ILSVRC2016比賽全部數據）
 
-- [COCO](http://mscoco.org/)
+- **[COCO](http://mscoco.org/)**
 
-  COCO(Common Objects in Context)是一個新的圖像識別、分割和圖像語義數據集。
+  - COCO(Common Objects in Context)是一個新的圖像識別、分割和圖像語義數據集。
 
-  COCO數據集由微軟贊助，其對於圖像的標註信息不僅有類別、位置信息，還有對圖像的語義文本描述，COCO數據集的開源使得近兩三年來圖像分割語義理解取得了巨大的進展，也幾乎成為了圖像語義理解算法性能評價的“標準”數據集。
+  - COCO數據集由微軟贊助，其對於圖像的標註信息不僅有類別、位置信息，還有對圖像的語義文本描述，COCO數據集的開源使得近兩三年來圖像分割語義理解取得了巨大的進展，也幾乎成為了圖像語義理解算法性能評價的“標準”數據集。
 
-- 資料集應用
 
-  - 適⽤於⽂本分析與情緒分類
-    - IMDB 電影評論情緒分類
-    - 路透社新聞專題主題分類
-  - 適⽤於 Data/Numerical 學習
-    - Boston housing price regression dataset
-  - 適⽤於影像分類與識別學習
-    - CIFAR10/CIFAR100
-    - MNIST/ Fashion-MNIST
-  - 針對⼩數據集的深度學習
-    - 數據預處理與數據提升
 
-- 參考資料
 
-  1. [Keras: The Python Deep Learning library](https://github.com/keras-team/keras/)
-  2. [Keras dataset](https://keras.io/datasets/)
-  3. [Predicting Boston House Prices](https://www.kaggle.com/sagarnildass/predicting-boston-house-prices)
+### Dataset 應用
 
+- 適⽤於⽂本分析與情緒分類
+  - IMDB 電影評論情緒分類
+  - 路透社新聞專題主題分類
+- 適⽤於 Data / Numerical 學習
+  - Boston housing price regression dataset
+- 適⽤於影像分類與識別學習
+  - CIFAR10/CIFAR100
+  - MNIST/ Fashion-MNIST
+- 針對⼩數據集的深度學習
+  - 數據預處理與數據提升
+
+  
+  
+
+### 參考資料
+
+1. [Keras: The Python Deep Learning library](https://github.com/keras-team/keras/)
+2. [Keras dataset](https://keras.io/datasets/)
+3. [Predicting Boston House Prices](https://www.kaggle.com/sagarnildass/predicting-boston-house-prices)
 
 
 
