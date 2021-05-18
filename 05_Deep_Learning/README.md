@@ -4,22 +4,22 @@
 
 ### 類神經網絡 (Neural Network)
 
-- 在1956年的達特茅斯會議中誕⽣，以數學模擬神經傳導輸出預測，在初期⼈⼯智慧領域中就是重要分⽀
-- 因層數⼀多計算量就⼤幅增加等問題，過去無法解決，雖不斷有學者試圖改善，在歷史中仍不免⼤起⼤落
-- 直到近幾年在算法、硬體能⼒與巨量資料的改善下，多層的類神經網路才重新成為當前⼈⼯智慧的應⽤主流
-- 類神經的應⽤曾沉寂⼆三⼗年，直到 2012 年 AlexNet 在 ImageNet 圖像分類競賽獲得驚艷表現後，才重回主流舞台
+- 在1956年的達特茅斯會議中誕⽣，以數學模擬神經傳導輸出預測，在初期人工智慧領域中就是重要分⽀
+- 因層數⼀多計算量就大幅增加等問題，過去無法解決，雖不斷有學者試圖改善，在歷史中仍不免大起大落
+- 直到近幾年在算法、硬體能力與巨量資料的改善下，多層的類神經網路才重新成為當前人工智慧的應用主流
+- 類神經的應用曾沉寂⼆三⼗年，直到 2012 年 AlexNet 在 ImageNet 圖像分類競賽獲得驚艷表現後，才重回主流舞台
 
 ### 類神經網路(NN)與深度學習的比較
 
-- 就基礎要素⽽⾔，深度學習是比較多層的類神經網路，但就實務應⽤的層次上，因著設計思路與連結架構的不同，兩者有了很⼤的差異性。
+- 就基礎要素⽽⾔，深度學習是比較多層的類神經網路，但就實務應用的層次上，因著設計思路與連結架構的不同，兩者有了很大的差異性。
 - 算法改良
-  - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算⼒得以⽤在刀口上
-  - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導⼒
-  - 計算機硬體能⼒提升
-  - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可⾏
+  - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算力得以用在刀口上
+  - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導力
+  - 計算機硬體能力提升
+  - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可行
 - 巨量資料
 
-  - 個⼈⾏動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
+  - 個人行動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
 - 解決問題
   - NN: 基礎回歸問題
   - DL:影像、⾃然語⾔處理等多樣問題
@@ -30,9 +30,9 @@
 
   - 設計⽬標：影像處理
 
-  - 結構改進：CNN 參考像素遠近省略神經元，並且⽤影像特徵的平移不變性來共⽤權重，⼤幅減少了影像計算的負擔
+  - 結構改進：CNN 參考像素遠近省略神經元，並且用影像特徵的平移不變性來共用權重，大幅減少了影像計算的負擔
 
-  - 衍伸應⽤：只要符合上述兩種特性的應⽤，都可以使⽤ CNN 來計算，例如AlphaGo 的 v18 版的兩個主網路都是 CNN
+  - 衍伸應用：只要符合上述兩種特性的應用，都可以使用 CNN 來計算，例如AlphaGo 的 v18 版的兩個主網路都是 CNN
 
     ![](./images/20181123193922202.png)
     
@@ -44,7 +44,7 @@
 
   - 結構改進：RNN 雖然看似在 NN 外增加了時序間的橫向傳遞，但實際上還是依照時間遠近省略了部分連結
 
-  - 衍伸應⽤：只要資料是有順序性的應⽤，都可以使⽤ RNN 來計算，近年在⾃然語⾔處理 (NLP) 上的應⽤反⽽成為⼤宗
+  - 衍伸應用：只要資料是有順序性的應用，都可以使用 RNN 來計算，近年在⾃然語⾔處理 (NLP) 上的應用反⽽成為大宗
 
     ![](./images/0_sm-7smnbyLioThPQ.png)
 
@@ -70,7 +70,7 @@
 
 ### 深度學習-微觀結構
 
-由啟動函數轉換輸出，藉由預測與實際值差距的損失函數，⽤倒傳遞⽅式反覆更新權重，不斷縮小預測與實際結果間的落差，最終達成各種應⽤的學習⽬標。
+由啟動函數轉換輸出，藉由預測與實際值差距的損失函數，用倒傳遞方式反覆更新權重，不斷縮小預測與實際結果間的落差，最終達成各種應用的學習⽬標。
 
 - **啟動函數(Activation Function)**
 
@@ -78,11 +78,11 @@
 
 - **損失函數(Loss Function)**
 
-  定義預測值與實際值的誤差⼤⼩
+  定義預測值與實際值的誤差大⼩
 
 - **倒傳遞Back-Propagation)**
 
-  將損失值倒傳遞回，轉換成類神經權重更新的⽅法
+  將損失值倒傳遞回，轉換成類神經權重更新的方法
 
 ![](./images/擷取.JPG)
 
@@ -106,9 +106,9 @@
 
 ### 練習1：按下啟動，觀察指標變化
 
-- 全部使⽤預設值，按下啟動按鈕，看看發⽣了什麼變化?
+- 全部使用預設值，按下啟動按鈕，看看發⽣了什麼變化?
   - 遞迴次數（Epoch，左上）：逐漸增加
-  - 神經元（中央）：⽅框圖案逐漸明顯，權重逐漸加粗，滑鼠移⾄上⽅會顯⽰權重
+  - 神經元（中央）：方框圖案逐漸明顯，權重逐漸加粗，滑鼠移⾄上方會顯⽰權重
   - 訓練/測試誤差：開始時明顯下降，幅度漸漸趨緩
   - 學習曲線：訓練/測試誤差
   - 結果圖像化：圖像逐漸穩定
@@ -152,22 +152,22 @@
 
 - 實驗結果
 
-  - 當特徵選到兩個特徵的平⽅時，即使中間只有 2 個神經元也會收斂
+  - 當特徵選到兩個特徵的平方時，即使中間只有 2 個神經元也會收斂
 
     ![](./images/擷取4.JPG)
 
-### 練習 5：切換批次⼤⼩
+### 練習 5：切換批次大⼩
 
 - 練習項目
 
   - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元
-  - 調整 不同的批次⼤⼩後執⾏500次遞迴，看看學習效果有何不同?
+  - 調整 不同的批次大⼩後執行500次遞迴，看看學習效果有何不同?
 
 - 實驗結果
 
-  - 批次⼤⼩很⼩時，雖然收斂過程非常不穩定，但平均⽽⾔會收斂到較好的結果
+  - 批次大⼩很⼩時，雖然收斂過程非常不穩定，但平均⽽⾔會收斂到較好的結果
 
-  - 實務上，批次⼤⼩如果極⼩的效果確實比較好，但計算時間會相當久，因此通常會依照時間需要⽽折衷
+  - 實務上，批次大⼩如果極⼩的效果確實比較好，但計算時間會相當久，因此通常會依照時間需要⽽折衷
 
     ![](./images/擷取6.jpg)
 
@@ -175,44 +175,44 @@
 
 - 練習項目
 
-  - 資料集切換：分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1 層 /8 神經元，批次⼤⼩固定 10
-  - 調整 不同的學習速率 後執⾏ 500 次遞迴，看看學習效果有何不同?
+  - 資料集切換：分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1 層 /8 神經元，批次大⼩固定 10
+  - 調整 不同的學習速率 後執行 500 次遞迴，看看學習效果有何不同?
 
 - 實驗結果
 
-  - 學習速率較⼤時，收斂過程會越不穩定，但會收斂到較好的結果
+  - 學習速率較大時，收斂過程會越不穩定，但會收斂到較好的結果
 
-  - ⼤於 1 時 因為過度不穩定⽽導致無法收斂
+  - 大於 1 時 因為過度不穩定⽽導致無法收斂
 
     ![](./images/擷取7.jpg)
 
 ### 練習 7：切換啟動函數
 
 - 練習項目
-  - 資料集切換 : 分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1層 /8 神經元，批次⼤⼩固定 10，學習速率固定 1
-  - 調整不同的啟動函數 後執⾏500次遞迴，看看學習效果有何不同?
+  - 資料集切換 : 分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層 1層 /8 神經元，批次大⼩固定 10，學習速率固定 1
+  - 調整不同的啟動函數 後執行500次遞迴，看看學習效果有何不同?
 - 實驗結果
   - 在這種極端的情形下，Tanh會無法收斂，Relu很快就穩定在很糟糕的分類狀態，惟有Sigmoid還可以收斂到不錯的結果
-  - 但實務上，Sigmoid需要⼤量計算時間，⽽Relu則相對快得很多，這也是需要取捨的，在本例中因位只有⼀層，所以狀況不太明顯
+  - 但實務上，Sigmoid需要大量計算時間，⽽Relu則相對快得很多，這也是需要取捨的，在本例中因位只有⼀層，所以狀況不太明顯
 
 ### 練習 8：切換正規化選項與參數
 
 - 練習項目
-  - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元，批次⼤⼩固定 10，學習速率固定 0.3，啟動函數設為 Tanh
-  - 調整不同的正規化選項與參數後執⾏500次遞迴，看看學習效果有何不同?
+  - 資料集切換:分類資料集(右下)-螺旋雙臂，特徵全選，隱藏層1層/8神經元，批次大⼩固定 10，學習速率固定 0.3，啟動函數設為 Tanh
+  - 調整不同的正規化選項與參數後執行500次遞迴，看看學習效果有何不同?
 
 - 實驗結果
   - 我們已經知道上述設定本來就會收斂，只是在較⼩的 L1 / L2 正規劃參數下收斂比較穩定⼀點
-  - 但正規化參數只要略⼤，反⽽會讓本來能收斂的設定變得無法收斂，這點 L1 比 L2情況略嚴重，因此本例中最適合的正規化參數是 L2 + 參數 0.001
-  - 實務上：L1 / L2 較常使⽤在非深度學習上，深度學習上效果有限
+  - 但正規化參數只要略大，反⽽會讓本來能收斂的設定變得無法收斂，這點 L1 比 L2情況略嚴重，因此本例中最適合的正規化參數是 L2 + 參數 0.001
+  - 實務上：L1 / L2 較常使用在非深度學習上，深度學習上效果有限
 
 ### 重點摘錄
 
 - 雖然圖像化更直覺，但是並非量化指標且可視化不容易，故深度學習的觀察指標仍以損失函數/誤差為主
 - 對於不同資料類型，適合加深與加寬的問題都有，但加深適合的問題類型較多
-- 輸入特徵的選擇影響結果甚鉅，因此深度學習也需要考慮特徵⼯程
-- 批次⼤⼩越⼩ : 學習曲線越不穩定、但收斂越快
-- 學習速率越⼤ : 學習曲線越不穩定、但收斂越快，但是與批次⼤⼩不同的是，學習速率⼤於⼀定以上時，有可能不穩定到無法收斂
+- 輸入特徵的選擇影響結果甚鉅，因此深度學習也需要考慮特徵工程
+- 批次大⼩越⼩ : 學習曲線越不穩定、但收斂越快
+- 學習速率越大 : 學習曲線越不穩定、但收斂越快，但是與批次大⼩不同的是，學習速率大於⼀定以上時，有可能不穩定到無法收斂
 - 當類神經網路層數不多時，啟動函數 Sigmoid / Tanh 的效果比 Relu 更好
 - L1 / L2 正規化在非深度學習上效果較明顯，⽽正規化參數較⼩才有效果
 
@@ -229,21 +229,21 @@
 - Keras 是易學易懂的深度學習套件
 
   - Keras 設計出發點在於容易上⼿，因此隱藏了很多實作細節，雖然⾃由度稍嫌不夠，但很適合教學
-  - Keras 實作並優化了各式經典組件，因此即使是同時熟悉TensorFlow 與Keras 的老⼿，開發時也會兩者並⽤互補
+  - Keras 實作並優化了各式經典組件，因此即使是同時熟悉TensorFlow 與Keras 的老⼿，開發時也會兩者並用互補
 
 - Keras包含的組件有哪些?
 
-  - Keras 的組件很貼近直覺，因此我們可以⽤ TensorFlow PlayGround 體驗所學到的概念，分為兩⼤類來理解 ( 非⼀⼀對應 )
+  - Keras 的組件很貼近直覺，因此我們可以用 TensorFlow PlayGround 體驗所學到的概念，分為兩大類來理解 ( 非⼀⼀對應 )
   - 模型形狀類
     - 直覺概念：神經元數 / 隱藏層數 / 啟動函數
     - Keras組件 : Sequential Model / Functional Model / Layers
   - 配置參數類
-    - 直覺概念：學習速率 / 批次⼤⼩ / 正規化
+    - 直覺概念：學習速率 / 批次大⼩ / 正規化
     - Keras組件 : Optimier / Reguliarizes / Callbacks
 
 - 深度學習寫法封裝
 
-  - TensorFlow 將深度學習中的 GPU/CPU指令封裝起來，減少語法差異，Keras 則是將前者更進⼀步封裝成單⼀套件，⽤少量的程式便能實現經典模型
+  - TensorFlow 將深度學習中的 GPU/CPU指令封裝起來，減少語法差異，Keras 則是將前者更進⼀步封裝成單⼀套件，用少量的程式便能實現經典模型
 
 - Keras的後端
 
@@ -394,18 +394,17 @@
 
 ### Dataset 應用
 
-- 適⽤於⽂本分析與情緒分類
+- 適用於⽂本分析與情緒分類
   - IMDB 電影評論情緒分類
   - 路透社新聞專題主題分類
-- 適⽤於 Data / Numerical 學習
+- 適用於 Data / Numerical 學習
   - Boston housing price regression dataset
-- 適⽤於影像分類與識別學習
+- 適用於影像分類與識別學習
   - CIFAR10/CIFAR100
   - MNIST/ Fashion-MNIST
 - 針對⼩數據集的深度學習
   - 數據預處理與數據提升
 
-  
   
 
 ### 參考資料
@@ -418,10 +417,11 @@
 
 ## Keras Sequential API
 
-- 序列模型
+### 序列模型
 
-  - 序列模型是多個網路層的線性堆疊。
-  - Sequential 是⼀系列模型的簡單線性疊加，可以在構造函數中傳入⼀些列的網路層：
+- 序列模型是多個網路層的線性堆疊。
+
+- Sequential 是⼀系列模型的簡單線性疊加，可以在構造函數中傳入⼀些列的網路層：
 
   ```python
   from keras.models import Sequential
@@ -429,7 +429,7 @@
   model = Sequential([Dense(32, _input_shap=(784,)), Activation(“relu”)
   ```
 
-  - 也可以透過 .add 疊加
+- 也可以透過 .add 疊加
 
   ```python
   model = Sequential()
@@ -437,20 +437,22 @@
   model.add(Activation(“relu”))
   ```
 
-- Keras 框架回顧
+  
 
-  ![](https://lh3.googleusercontent.com/iFg9DGhNe0unCJaWaNzBXd0zH8PYJroNj3IevU9CQ6l0B98ySSxILtc-O--OSYuGpvQQgGSXEFCpRwVicQtPYjPJe66ab0wn-GuaiSSfxCyIMtcRc3yuxBMwGo3YVB6Lu8-gmo1fv-uTMZkJsEV-mnOuPBdCc-Wk84Z2tcAOSaA4YUMONlapCzj7mxA4kL9Ri2NLTHmgcrF3fRF5IUqmr-_fYY0P5qxdQOlRjuDKDFWnWzYhvFnuLnC-ZMFldiGihjLPledSwrUuwpcBjD4UI05ViQKixCG1QmEWQ4azMPsW_T-15dxBxNdO1a256yJJFLf9Nn4zep58Oc6FucTl6sekFcz3bkpyxbCe1mR-FxGFwB22ThoNnM1V2ftBEEN8W5kLk2wUcXW7frJ4qs7FvOGczcsucvPZ1VGWKzA-ZwFVLxVn0EY897TkrGp93C0rU2Jd9YYGzTZkxAc3F0fS8S9_V6l8TnjaZoHLVxsdEo3i207-diKILeyMaE4f-XN_GP8olxcMhzFOYAD_-LrkhuJJg2ZSRwO_ROBnpwk7iUNCL0cAApVUdzmwSt9ch3Q3QVB7lcSpt8RXwJQFLx75V_cmZZH4juoTrZ1WhvZz50YpJmzTXGDRTgSzIkdkXj3k-7WH6W1OeqgdHZ0EKeThLicQm23NbJSkVpwLLvIvfR9yL8DfVlxaEzmD5UftOzupkBYnnjri91YyjvXaNecXCEtLKJ-rELaaDQ0zCZoDyGfEQgI=w1305-h697-no)
+### Keras 框架回顧
 
-- 指定模型的輸入維度
+![](./images/擷取8.jpg)
 
-  - Sequential 的第⼀層(只有第⼀層，後⾯的層會⾃動匹配)需要知道輸入的shape
-    - 在第⼀層加入⼀個 input_shape 參數，input_shape 應該是⼀個 shape 的 tuple 資料類型。
-    - input_shape 是⼀系列整數的 tuple，某些位置可為 None
-    - input_shape 中不⽤指明 batch_size 的數⽬。
+### 指定模型的輸入維度
 
-  - 2D 的網路層，如 Dense，允許在層的構造函數的 input_dim 中指定輸入的維度。
-  - 對於某些 3D 時間層，可以在構造函數中指定 input_dim 和 input_length 來實現。
-  - 對於某些 RNN，可以指定 batch_size。這樣後⾯的輸入必須是(batch_size, input_shape)的輸入
+- Sequential 的第⼀層需要知道輸入的shape(只有第⼀層，後⾯的層會⾃動匹配)
+  - 在第⼀層加入⼀個 input_shape 參數，input_shape 應該是⼀個 shape 的 tuple 資料類型
+  - input_shape 是⼀系列整數的 tuple，某些位置可為 None
+  - input_shape 中不用指明 batch_size 的數⽬
+
+- 2D 的網路層，如 Dense，允許在層的構造函數的 input_dim 中指定輸入的維度
+- 對於某些 3D 時間層，可以在構造函數中指定 input_dim 和 input_length 來實現
+- 對於某些 RNN，可以指定 batch_size。這樣後⾯的輸入必須是(batch_size, input_shape)的輸入
 
 - 常用參數
 
@@ -460,13 +462,13 @@
     Dense(units,activation,use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros')
     ```
 
-  - Activation：對上層輸出應⽤激活函數
+  - Activation：對上層輸出應用激活函數
 
     ```python
     Activation(activation)
     ```
 
-  - Dropout：對上層輸出應⽤ dropout 以防⽌過擬合
+  - Dropout：對上層輸出應用 dropout 以防⽌過擬合
 
     ```python
     Dropout(ratio)
@@ -484,20 +486,14 @@
     Reshape(target_shape)
     ```
 
-- 前述流程 / python程式 對照
-
-  ```python
-  
-  ```
-
-- Sequential 模型
+### Sequential 模型
 
   - Sequential 序列模型為最簡單的線性、從頭到尾的結構順序，⼀路到底
   - Sequential 模型的基本元件⼀般需要：
-    1. Model 宣告
-    2. model.add，添加層
-    3. model.compile,模型訓練
-    4. model.fit，模型訓練參數設置 + 訓練
+    1. Model: 宣告
+    2. model.add: 添加層
+    3. model.compile: 模型訓練
+    4. model.fit: 模型訓練參數設置 + 訓練
     5. 模型評估
     6. 模型預測
 
@@ -518,30 +514,34 @@
   model.add(Activation('softmax'))
   ```
 
-- 參考資料
 
-  [Getting started with the Keras Sequential model](https://keras.io/getting-started/sequential-model-guide/)
+
+### 參考資料
+
+- [Getting started with the Keras Sequential model](https://keras.io/getting-started/sequential-model-guide/)
+
+- [Keras 中文文档](https://keras.io/zh/)
 
 
 
 ## Keras Functional API
 
-- Keras 函數式模型接⼝是⽤⼾定義多輸出模型、非循環有向模型或具有共享層的模型等複雜模型的途徑
+- Keras 函數式模型接⼝是用⼾定義多輸出模型、非循環有向模型或具有共享層的模型等複雜模型的途徑
 
-- 定義復雜模型（如多輸出模型、有向無環圖，或具有共享層的模型）的⽅法。
+- 定義復雜模型（如多輸出模型、有向無環圖，或具有共享層的模型）的方法。
 
-- 所有的模型都可調⽤，就像網絡層⼀樣
+- 所有的模型都可調用，就像網絡層⼀樣
 
-  - 利⽤函數式API，可以輕易地重⽤訓練好的模型：可以將任何模型看作是⼀個層，然後通過傳遞⼀個張量來調⽤它。注意，在調⽤模型時，您不僅重⽤模型的結構，還重⽤了它的權重。
-  - 具有多個輸入和輸出的模型。函數式 API 使處理⼤量交織的數據流變得容易。
+  - 利用函數式API，可以輕易地重用訓練好的模型：可以將任何模型看作是⼀個層，然後通過傳遞⼀個張量來調用它。注意，在調用模型時，您不僅重用模型的結構，還重用了它的權重。
+  - 具有多個輸入和輸出的模型。函數式 API 使處理大量交織的數據流變得容易。
     - 試圖預測 Twitter 上的⼀條新聞標題有多少轉發和點贊數
     - 模型的主要輸入將是新聞標題本⾝，即⼀系列詞語。
     - 但是為了增添趣味，我們的模型還添加了其他的輔助輸入來接收額外的數據，例如新聞標題的發布的時間等。
-    - 該模型也將通過兩個損失函數進⾏監督學習。較早地在模型中使⽤主損失函數，是深度學習模型的⼀個良好正則⽅法。
-  - 函數式API 的另⼀個⽤途是使⽤共享網絡層的模型。
-    - 來考慮推特推⽂數據集。我們想要建立⼀個模型來分辨兩條推⽂是否來⾃同⼀個⼈（例如，通過推⽂的相似性來對⽤⼾進⾏比較）。
-    - 實現這個⽬標的⼀種⽅法是建立⼀個模型，將兩條推⽂編碼成兩個向量，連接向量，然後添加邏輯回歸層；這將輸出兩條推⽂來⾃同⼀作者的概率。模型將接收⼀對對正負表⽰的推特數據。
-    - 由於這個問題是對稱的，編碼第⼀條推⽂的機制應該被完全重⽤來編碼第⼆條推⽂（權重及其他全部）。
+    - 該模型也將通過兩個損失函數進行監督學習。較早地在模型中使用主損失函數，是深度學習模型的⼀個良好正則方法。
+  - 函數式API 的另⼀個用途是使用共享網絡層的模型。
+    - 來考慮推特推⽂數據集。我們想要建立⼀個模型來分辨兩條推⽂是否來⾃同⼀個人（例如，通過推⽂的相似性來對用⼾進行比較）。
+    - 實現這個⽬標的⼀種方法是建立⼀個模型，將兩條推⽂編碼成兩個向量，連接向量，然後添加邏輯回歸層；這將輸出兩條推⽂來⾃同⼀作者的概率。模型將接收⼀對對正負表⽰的推特數據。
+    - 由於這個問題是對稱的，編碼第⼀條推⽂的機制應該被完全重用來編碼第⼆條推⽂（權重及其他全部）。
 
 - 函數式API 與 順序模型
 
@@ -552,7 +552,7 @@
     - 輸入是張量，輸出也是張量的⼀個框架就是⼀個模型，通過 Model 定義。
     - 這樣的模型可以被像 Keras 的 Sequential ⼀樣被訓練
 
-- Keras 函數式模型接⼝是⽤⼾定義多輸出模型、非循環有向模型或具有共享層的模型等複雜模型的途徑
+- Keras 函數式模型接⼝是用⼾定義多輸出模型、非循環有向模型或具有共享層的模型等複雜模型的途徑
 
 - 延伸說明
 
@@ -562,7 +562,7 @@
 
 - 如何設定
 
-  使⽤函數式模型的⼀個典型場景是搭建多輸入、多輸出的模型
+  使用函數式模型的⼀個典型場景是搭建多輸入、多輸出的模型
 
   ```python
   from keras.layers import Input
@@ -570,43 +570,44 @@
   main_input = Input(shape=(100,), dtype='int32', name='main_input')
   ```
 
-- 參考資料
 
-  [Getting started with the Keras functional API](https://keras.io/getting-started/functional-api-guide/)
+### 參考資料
+
+[Getting started with the Keras functional API](https://keras.io/getting-started/functional-api-guide/)
 
 
 
-## Multi-layer Perception
+## Multi-Layer Perception
 
-- Multi-layer Perceptron (MLP)：MLP 為⼀種監督式學習的演算法，可以使⽤非線性近似將資料分類或進⾏迴歸運算
+- Multi-Layer Perceptron (MLP)：MLP 為⼀種監督式學習的演算法，可以使用非線性近似將資料分類或進行迴歸運算
 
-- 多層感知機其實就是可以⽤多層和多個 perception 來達到最後⽬的
+- 多層感知機其實就是可以用多層和多個 perception 來達到最後⽬的
 
 - 在機器學習領域像是我們稱為 multiple classification system 或是 ensemble learning
 
-- 深度神經網路(deep neural network, DNN)，神似⼈⼯神經網路的 MLP
+- 深度神經網路(deep neural network, DNN)，神似人工神經網路的 MLP
 
 - 若每個神經元的激活函數都是線性函數，那麼，任意層數的 MLP 都可被約簡成⼀個等價的單層感知器
 
-- 多層感知機是⼀種前向傳遞類神經網路，⾄少包含三層結構(輸入層、隱藏層和輸出層)，並且利⽤到「倒傳遞」的技術達到學習(model learning)的監督式學習，以上是傳統的定義。
+- 多層感知機是⼀種前向傳遞類神經網路，⾄少包含三層結構(輸入層、隱藏層和輸出層)，並且利用到「倒傳遞」的技術達到學習(model learning)的監督式學習，以上是傳統的定義。
 
 - 現在深度學習的發展，其實MLP是深度神經網路(deep neural network, DNN)的⼀種special case，概念基本上⼀樣，DNN只是在學習過程中多了⼀些⼿法和層數會更多更深。
 
   - 以NN的組成為例
 
-    ![](https://lh3.googleusercontent.com/GnGBa_1pWSHeVGOgOY_tsmB5NG6YuL3RJGj7Z_dgbry9QOh1d6P1ni-eNFebNIZq9CK_YoS9nE9CaVu6VVgwHnG9d04TuhPKFucr8Jc_Zo2yA899tJlLIOnlI5thVFYarAy7K4ZtXufr-h5QKKmQIB7YeOo0Vmlu46C_Xl0I5QewePgFlkCEjQ2q6gvmsyJv9V2ZtItKKIRXLfflJ35NkjixOd5ylSSvOTLzOg_ww_gX24RiTnnens64-wJRZzhB_aMghCDMBqbLbBzrWo3ONdHUbNTKZXntJJEE_HitEQPq1S2LfqjfltUiOrh3lrDMuxv8wvrUGM1i3TxXj7lqdZkrdI4wwEQzTYnLYCjWjaoqVQdnADSS02aQ08Omv6AZvjg7rejeCaS1pCvpg72z-_ebWeismdZgy7euMeFutk0EfyVgTO4LYuNYBVTLLXe779TypM9ccd7K1pHtmeQegyO14dlkx7irtbMB_rvFjnx19XuPSZ2b_RTdhg3CJXMWiuWHRwvevJCibKFDkHkgvnImZEEGBh7ihbySvyLWaeas6aeoRZfOhyzsZ-O-1nkwDQQA05Y_yESMPCGIqjcbSlEUFerhhZAQc3z3CLOdJEwATyUtbjDFCmYvpU1ArA838q-hLOt84c2mKkVZPkkYH8qw-qQ1WUhxuhJ9HrlLyMa98p9PYrayBKwRZwoggtGWIOyYmUkYjn83AceNVd7GCbSa=w873-h385-no)
+    ![](./images/擷取9.jpg)
 
-  - Multi-layer Perceptron(多層感知器): NN 的結合
+  - Multi-Layer Perceptron(多層感知器): NN 的結合
 
-    ![](https://lh3.googleusercontent.com/eLjfhWJKXjRojUHbqqLb_kbKz_GetRM5K9QR8R1Rfj0IM9Fj6jf3FzFd5Wqt3fJY7UT-_MMSwHnUxl50TNyITdegGXOyuopEcl-d-Qo4YF6bkpLwq8lzb3Oe0NTyCH0Cz3ptxHvFQhhFNX-mIfolWjIXgLZ451WwECqXrmF2gCZlF4obsfEAP3lYdTuKJ_4iA36RHk-UgTaFSV7uvncxas1facXfYDurR9W4CzPuY0wykjp4OdIlDrj1nfDwIzNbsE7XpSvTOMJHiOsrSitNOLcLoGj0VxdnObi8NrrCUPg2LcxkcyfUPttdMMZCRcMj_to3K4_ADLnoxUrlWiWOr4S1an0CUpm24EWTly-3IiaHIxJVYsnYT0CRrxRzlhai2bVQUKUJHAWxBgMidQO0x69kcaeOkR8Ocx1XePamoeI2YihqRBqdzQB2K03HKjsMFXJ_Q7A3j-DilVwsFWc1w3GiG4PO9UekQCCRVj-XTKTnSrpHeDyEcx5Ufzf1uHePnAdf35-s8RU8ZZoUgxD5GbZhD7tbDZtGJFaoxKJNevao_tOY3n5W4Eq9mcDzHpKxPqzZ-Ar1XfTURfCrTPfefROKnMxQDg4-sLrepkvmobyyhG3d_syEJkJfYXyCx7lSYIU8Je0fhx76_MT6Ar-tCy-8dxO1kGcwZ-bO-ppXu7KfXBqUs6BnptK2BGiDpToeNk2ryBVxby3axOFbkl6C9-_B19BZMtTTwVPMuFSZyDQyA1U=w598-h372-no)
+    ![](./images/擷取10.jpg)
 
 - **MLP優缺點**
 
   - **優點**
-    - 有能⼒建立非線性的模型
-    - 可以使⽤ partial_fit​ 建立 realtime模型
+    - 有能力建立非線性的模型
+    - 可以使用 partial_fit​ 建立 realtime模型
   - **缺點**
-    - 擁有⼤於⼀個區域最⼩值，使⽤不同的初始權重，會讓驗證時的準確率浮動
+    - 擁有大於⼀個區域最⼩值，使用不同的初始權重，會讓驗證時的準確率浮動
     - MLP 模型需要調整每層神經元數、層數、疊代次數
     - 對於特徵的預先處理很敏感
 
@@ -620,9 +621,9 @@
 
 ## 損失函數
 
-- 機器學習中所有的算法都需要最⼤化或最⼩化⼀個函數，這個函數被稱為「⽬標函數」。其中，我們⼀般把最⼩化的⼀類函數，稱為「損失函數」。它能根據預測結果，衡量出模型預測能⼒的好壞
+- 機器學習中所有的算法都需要最大化或最小化的⼀個函數，這個函數被稱為「⽬標函數」。其中，我們⼀般把最⼩化的⼀類函數，稱為「損失函數」。它能根據預測結果，衡量出模型預測能力的好壞
 - 損失函數中的損失就是「實際值和預測值的落差」，根據不同任務會需要使用不同的損失函數，並將損失降到最低
-- 損失函數⼤致可分為：分類問題的損失函數和回歸問題的損失函數
+- 損失函數大致可分為：分類問題的損失函數和回歸問題的損失函數
 
 - 損失函數為什麼是最小化?
   - 期望：希望模型預測出來的東⻄可以跟實際的值⼀樣
@@ -639,16 +640,20 @@
 
   - **mean_squared_error**
 
-    - 就是最⼩平⽅法(Least Square) 的⽬標函數-- 預測值與實際值的差距之平方值。
-    - 另外還有其他變形的函數, 如 mean_absolute_error, mean_absolute_percentage_error, mean_squared_logarithmic_error.
+    - 就是最⼩平方法(Least Square) 的⽬標函數-- 預測值與實際值的差距之平方值。
+      $$
+      \sum (\hat y - y)^2/N
+      $$
 
-    $$
-    \sum (\hat y - y)^2/N
-    $$
+    - 另外還有其他變形的函數, 如
 
-      - 使⽤時機為處理 y 為數值資料的迴歸問題
+      - mean_absolute_error
+      - mean_absolute_percentage_error
+      - mean_squared_logarithmic_error
 
-      - Keras 上的調⽤⽅式：
+      - 使用時機為處理 y 為數值資料的迴歸問題
+
+      - Keras 上的調用方式：
 
         ```python
         from keras import losses
@@ -657,19 +662,17 @@
         keras.losses.mean_squared_error(y_true, y_ped)
         ```
 
-        
-
   - **Cross Entropy**
 
-    - 當預測值與實際值愈相近，損失函數就愈⼩，反之差距很⼤，就會更影響損失函數的值要⽤ Cross Entropy 取代 MSE，因為，在梯度下時，Cross Entropy 計算速度較快。
+    - 當預測值與實際值愈相近，損失函數就愈⼩，反之差距很大，就會更影響損失函數的值要用 Cross Entropy 取代 MSE，因為，在梯度下時，Cross Entropy 計算速度較快。
 
-    - 使⽤時機：
+    - 使用時機：
 
-      - 整數⽬標：Sparse categorical_crossentropy
-      - 分類⽬標：categorical_crossentropy
-      - ⼆分類⽬標：binary_crossentropy
+      - 整數目標：Sparse categorical_crossentropy
+      - 分類目標：categorical_crossentropy
+      - 二分類目標：binary_crossentropy
 
-    - Keras 上的調⽤⽅式：
+    - Keras 上的調用方式：
 
       ```python
       from keras import losses
@@ -682,9 +685,9 @@
 
     - 是⼀種單邊誤差，不考慮負值，同樣也有多種變形，squared_hinge, categorical_hinge
 
-    - 適⽤於『⽀援向量機』(SVM)的最⼤間隔分類法(maximum-margin classification)
+    - 適用於『⽀援向量機』(SVM)的最大間隔分類法(maximum-margin classification)
 
-    - Keras 上的調⽤⽅式：
+    - Keras 上的調用方式：
 
       ```python
       from keras import losses
@@ -693,31 +696,28 @@
       keras.losses.hinge(y_true, y_pred) 
       ```
 
-    
-
-  - **⾃定義損失函數**
+  - **自定義損失函數**
 
     - 根據問題的實際情況，定制合理的損失函數
 
-    - 舉例：預測果汁⽇銷量問題，如果預測銷量⼤於實際銷量則會損失成本；如果預測銷量⼩於實際銷量則會損失利潤。
+    - 舉例：預測果汁⽇銷量問題，如果預測銷量大於實際銷量則會損失成本；如果預測銷量小於實際銷量則會損失利潤。
 
       - 考慮重點：製造⼀盒果汁的成本和銷售⼀盒果汁的利潤不是等價的
 
-      - 需要使⽤符合該問題的⾃定義損失函數⾃定義損失函數為：
+      - 需要使用符合該問題的⾃定義損失函數⾃定義損失函數為：
         $$
         loss = \sum nf(y_, y)
         $$
-
-- 損失函數表⽰若預測結果 y ⼩於標準答案 y_ ，損失函數為利潤乘以預測結果 y 與標準答案之差
-
-- 若預測結果 y ⼤於標準答案 y_，損失函數為成本乘以預測結果 y 與標準答案之差⽤
-
-- Tensorflow 函數表⽰為：
       
-
-  ```python
-        loss = tf.reduce_sum(tf.where(tf.greater(y, y_), COST*(y-y_), PROFIT*(y_-y)))
-  ```
+    - 損失函數表⽰若預測結果 y ⼩於標準答案 y_ ，損失函數為利潤乘以預測結果 y 與標準答案之差
+    
+    - 若預測結果 y 大於標準答案 y_，損失函數為成本乘以預測結果 y 與標準答案之差用
+    
+    - Tensorflow 函數表⽰為
+      
+      ```python
+      loss = tf.reduce_sum(tf.where(tf.greater(y, y_), COST*(y-y_), PROFIT*(y_-y)))
+      ```
 
 - 參考資料
 
@@ -729,22 +729,22 @@
 
 ## 激活函數
 
-- 激活函數定義了每個節點（神經元）的輸出和輸入關係的函數為神經元提供規模化非線性化能⼒，讓神經網絡具備強⼤的擬合能⼒
+- 激活函數定義了每個節點（神經元）的輸出和輸入關係的函數為神經元提供規模化非線性化能力，讓神經網絡具備強大的擬合能力
 
-  ![](https://lh3.googleusercontent.com/y0MVNA4d2-mbKs7-sudJaUprzfYPbaETic2CF3NOAAdKrPhmxwUpLLN8Xu489mdR11Ah6XgTCm1z3xJODrZgvhiNbR-8JvQnebV6Rv8swA4l1bq3wnYnNZtH6Yveq-dcTjdyH7dCNMpqefgV83ZL5Ucj8lgJOtN1Hdk3u7qtHdcX7q6rSBC17pfKuvD1YyPz7BRbAPrBcFCyHGvMPyM1U5hl_-iRyJmvjugnIS7Aq02-oNGgCjd1OpXjRwNjnVHlH491kYPin6yJEswfXj_4OZocoFhaKheyTsbYFGOsD9No_NYK1EI3aIUx_A49IOUEtGvwabySVSwALw9DyPpaH_tPc4GqPugz2kIyKGe4Hp8SMDIqr5CQjKeNtnlsMtbIcGnJ2orBxpQ1qs7R0vLJn4iqJAkrCvgAHz0nrMUvG_jphpKl5IEsWQbtK1u0wEwZesLzb5ZjjyFp0N2-oH3o3gFAKW4eLIp0GNtyouWulrUqGNp3tsrXEel4bXKVMXZK45BRBNL5ley5egWblLBZuoBfsG0BQfY71dzTB9F-_hOxotIlKjTWBYVsUTcro8ym6cZ3IQfHoitje0T2Bl8VQBL7n3REhs4wcgZyW_r_TQExah7CZKiXI69Fjn_ExETqz7Yv6d47PVTvXMDzNOlN-vqgXxSA-zQo7Ryl89ETt2jfuEo7lIIEer7xD3EoNot7Se5oYirLcmMHd1CJVmAbKPAN=w951-h324-no)
+  ![](./images/擷取11.jpg)
 
 - 輸出值的範圍
 
-  - 當激活函數輸出值是有限的時候，基於梯度的優化⽅法會更加穩定，因為特徵的表⽰受有限權值的影響更顯著
-  - 當激活函數的輸出是無限的時候，模型的訓練會更加⾼效
+  - 當激活函數輸出值是有限的時候，基於梯度的優化方法會更加穩定，因為特徵的表⽰受有限權值的影響更顯著
+  - 當激活函數的輸出是無限的時候，模型的訓練會更加高效
 
 - 激活函數的作用
 
-  - 深度學習的基本原理是基於⼈⼯神經網絡，信號從⼀個神經元進入，經過非線性的 activation function
-  - 如此循環往復，直到輸出層。正是由於這些非線性函數的反复疊加，才使得神經網絡有⾜夠的 capacity 來抓取複雜的 pattern
-  - 激活函數的最⼤作⽤就是非線性化，如果不⽤激活函數的話，無論神經網絡有多少層，輸出都是輸入的線性組合
+  - 深度學習的基本原理是基於人工神經網絡，信號從⼀個神經元進入，經過非線性的 activation function
+  - 如此循環往復，直到輸出層。正是由於這些非線性函數的反覆疊加，才使得神經網絡有⾜夠的 capacity 來抓取複雜的 pattern
+  - 激活函數的最大作用就是非線性化，如果不用激活函數的話，無論神經網絡有多少層，輸出都是輸入的線性組合
 
-  - 激活函數的另⼀個重要特徵是：它應該是可以區分，以便在網絡中向後推進以計算相對於權重的誤差（丟失）梯度時執⾏反向優化策略，然後相應地使⽤梯度下降或任何其他優化技術優化權重以減少誤差
+  - 激活函數的另⼀個重要特徵是：它應該是可以區分，以便在網絡中向後推進以計算相對於權重的誤差（丟失）梯度時執行反向優化策略，然後相應地使用梯度下降或任何其他優化技術優化權重以減少誤差
 
 - 常用激活函數介紹
 
@@ -752,107 +752,111 @@
     $$
     \begin{cases}1, \quad if \quad x >= 0 \\0, \quad if \quad x <  0\end{cases}
     $$
+    
+  - **Sigmoid**
 
-- **Sigmoid**
+    - 特點是會把輸出限定在 0~1 之間，在 x<0 ，輸出就是 0，在 x>0，輸出就是 1，這樣使得數據在傳遞過程中不容易發散
+      - 兩個主要缺點
+        1. Sigmoid 容易過飽和，丟失梯度。這樣在反向傳播時，很容易出現梯度消失的情況，導致訓練無法完整
+        2. Sigmoid 的輸出均值不是 0
 
-  - 特點是會把輸出限定在 0~1 之間，在 x<0 ，輸出就是 0，在 x>0，輸出就是 1，這樣使得數據在傳遞過程中不容易發散
-    - 兩個主要缺點
-      1. Sigmoid 容易過飽和，丟失梯度。這樣在反向傳播時，很容易出現梯度消失的情況，導致訓練無法完整
-      2. Sigmoid 的輸出均值不是 0
+    - Sigmoid 將⼀個 real value 映射到（0,1）的區間，用來做⼆分類。
+      - 用於二分類的輸出層
+      
+      $$
+      f(z) = \frac{1}{1+exp(-z)}
+      $$
+      
+      
 
-  - Sigmoid 將⼀個 real value 映射到（0,1）的區間，⽤來做⼆分類。
-    - 用於二分類的輸出層
+  - **Softmax**
 
-  $$
-    f(z) = \frac{1}{1+exp(-z)}
-  $$
+    - Softmax 把⼀個 k 維的 real value 向量（a1,a2,a3,a4….）映射成⼀個（b1,b2,b3,b4….）其中 bi 是⼀個 0～1 的常數，輸出神經元之和為 1.0，所以可以拿來做多分類的機率預測
+      - 為什麼要取指數
+        1. 第⼀個原因是要模擬 max 的行為，所以要讓大的更大。
+        2. 第⼆個原因是需要⼀個可導的函數
+      - ⼆分類問題時 sigmoid 和 softmax 是⼀樣的，求的都是 cross entropy loss
 
-- **Softmax**
-
-  - Softmax 把⼀個 k 維的 real value 向量（a1,a2,a3,a4….）映射成⼀個（b1,b2,b3,b4….）其中 bi 是⼀個 0～1 的常數，輸出神經元之和為 1.0，所以可以拿來做多分類的機率預測
-    - 為什麼要取指數
-      1. 第⼀個原因是要模擬 max 的⾏為，所以要讓⼤的更⼤。
-      2. 第⼆個原因是需要⼀個可導的函數
-    - ⼆分類問題時 sigmoid 和 softmax 是⼀樣的，求的都是 cross entropy loss
-
-  $$
+    $$
     \sigma (z)_j = \frac {e^{zj}}{\Sigma^K_{k=1}e^{ek}}
-  $$
-
-- **Tanh(Hyperbolic Tangent)**
-
-  - 也稱為雙切正切函數，取值範圍為 [-1,1]。
-    - 在特徵相差明顯時的效果會很好，在循環過程中會不斷擴⼤特徵效果
-    - 將輸入值壓縮到 -1~1 的範圍，因此它是 0 均值的，解決了 Sigmoid 函數的非 zero-centered 問題，但是它也存在梯度消失和冪運算的問題。
-    - 幾乎所有場合都可以使用
-
-  $$
-    tanh(x)=2sigmoid(2x)-1
-  $$
-
-- **ReLU**
-
-  - 修正線性單元（Rectified linear unit，ReLU）
-
-    - 在 x>0 時導數恆為1
-      - 對於 x<0，其梯度恆為 0，這時候它也會出現飽和的現象，甚⾄使神經元直接無效，從⽽其權重無法得到更新（在這種情況下通常稱為 dying ReLU）
-      - Leaky ReLU 和 PReLU 的提出正是為了解決這⼀問題
-      - 使用時機：二分類的問題選擇sigmoid，其餘預設選ReLU
-
-    $$
-      f(x) = max(0, x)
     $$
 
-- **ELU**
+    
 
-  - ELU 函數是針對 ReLU 函數的⼀個改進型，相比於 ReLU 函數，在輸入為負數的情況下，是有⼀定的輸出的
-    - 這樣可以消除 ReLU 死掉的問題
-    - 還是有梯度飽和和指數運算的問題
+  - **Tanh(Hyperbolic Tangent)**
 
-  $$
-    f(x) =\begin{cases}x\quad \quad \quad, x > 0 \\a(e^x-1),\quad x \leq  0\end{cases}
-  $$
+    - 也稱為雙切正切函數，取值範圍為 [-1,1]。
+      - 在特徵相差明顯時的效果會很好，在循環過程中會不斷擴大特徵效果
+      - 將輸入值壓縮到 -1~1 的範圍，因此它是 0 均值的，解決了 Sigmoid 函數的非 zero-centered 問題，但是它也存在梯度消失和冪運算的問題。
+      - 幾乎所有場合都可以使用
 
-- **PReLU**
+    $$
+      tanh(x)=2sigmoid(2x)-1
+    $$
 
-  - 參數化修正線性單元（Parameteric Rectified Linear Unit，PReLU）屬於 ReLU 修正類激活函數的⼀員。
+  - **ReLU**
 
-- **Leaky ReLU**
+    - 修正線性單元（Rectified linear unit，ReLU）
 
-  - 當 α=0.1 時，我們叫 PReLU 為Leaky ReLU，算是 PReLU 的⼀種特殊情況
+      - 在 x>0 時導數恆為1
+        - 對於 x<0，其梯度恆為 0，這時候它也會出現飽和的現象，甚⾄使神經元直接無效，從⽽其權重無法得到更新（在這種情況下通常稱為 dying ReLU）
+        - Leaky ReLU 和 PReLU 的提出正是為了解決這⼀問題
+        - 使用時機：二分類的問題選擇sigmoid，其餘預設選ReLU
 
-  > PReLU 以及 Leaky ReLU 有⼀些共同點，即爲負值輸入添加了⼀個線性項。
+      $$
+        f(x) = max(0, x)
+      $$
 
-- **Maxout**
+  - **ELU**
 
-  - 是深度學習網絡中的⼀層網絡，就像池化層、卷積層⼀樣，可以看成是網絡的激活函數層
-    - 神經元的激活函數是取得所有這些「函數層」中的最⼤值
-    - 擬合能⼒是非常強的，優點是計算簡單，不會過飽和，同時⼜沒有 ReLU 的缺點
-    - 缺點是過程參數相當於多了⼀倍
+    - ELU 函數是針對 ReLU 函數的⼀個改進型，相比於 ReLU 函數，在輸入為負數的情況下，是有⼀定的輸出的
+      - 這樣可以消除 ReLU 死掉的問題
+      - 還是有梯度飽和和指數運算的問題
 
-  $$
-    f(x) = max(wT1x+b1, wT2x+b2)
-  $$
+    $$
+      f(x) =\begin{cases}x\quad \quad \quad, x > 0 \\a(e^x-1),\quad x \leq  0\end{cases}
+    $$
 
-![](https://lh3.googleusercontent.com/cZQ4cAyBhFGdA8uLvz2L0rLU26hz9J2IBpczsHBBRs4MZRETk6-IeDOlE1M_5L2cb1u17TE3vzYti1DGkIUGyW5tNurRh3ag23vHpzVQ88UPiJbQfCtJLsKLEOXORPhpd_rs_qMtlyLrf9jRyQEf5AvR2f4RQzXfTW_j_IfJMCG9Kncf4wNkyZj7amI0N0K37DVdrNToswaPVW7MgR7lRYZS-1zlKOlbrtxBSprfic7EvBC6lzD5O8nCWDfcwBVJzCoZh6eNRVT4Ps37IOLyfUtGZBQv9fVS-XuKGzO6vdJdzPHMPLZLZDMKQDr-ZVoEQ8qQvSSSQbupyen2_SG2ynRaXmZxBne38uI0qgbV3BUU1VM5-LlJvbRvcRfJU-4ys3YLAEwihkqmfS0aPHGqzP-E9zax96TRxa-Kg6Nd7PQ4ofFgOcbU9EZL5WoWGcrKFGZnVHG0tVJ8bQHgoPYCQD0RIIf3V-OnQ5gYfmhTFEbqS6MostV114_8wByuu6grIJKTydpp2PLGkndRpFvJd96ZOqtpi4HnqYC48zpsAbin0qCA7LgFG4XWPPhCq1YEP-TjaXMJoMx5Yfx4PqcsH5ni0MD1eoC8hOIhKdKvCVnLtSy04NrDAGdU0IuGEiHVKWKE-wbvPQ4SC6PslaCssRs45wIKi3Jzq0ClTatP2_tlRVQdL1_GJu4OPFrwq4LlD7cQQ7SMGhwdX8thDT6fHm7Nv6pULt19W9X6xTGoNXOnHDMnR2MEXOY=w1000-h428-no)
+  - **PReLU**
+
+    - 參數化修正線性單元（Parameteric Rectified Linear Unit，PReLU）屬於 ReLU 修正類激活函數的⼀員。
+
+  - **Leaky ReLU**
+
+    - 當 α=0.1 時，我們叫 PReLU 為Leaky ReLU，算是 PReLU 的⼀種特殊情況
+
+    > PReLU 以及 Leaky ReLU 有⼀些共同點，即爲負值輸入添加了⼀個線性項。
+
+  - **Maxout**
+
+    - 是深度學習網絡中的⼀層網絡，就像池化層、卷積層⼀樣，可以看成是網絡的激活函數層
+      - 神經元的激活函數是取得所有這些「函數層」中的最大值
+      - 擬合能力是非常強的，優點是計算簡單，不會過飽和，同時⼜沒有 ReLU 的缺點
+      - 缺點是過程參數相當於多了⼀倍
+
+    $$
+      f(x) = max(wT1x+b1, wT2x+b2)
+    $$
+
+  ![](./images/1_4ZEDRpFuCIpUjNgjDdT2Lg.png)
 
 - 如何選擇正確的激活函數
 
   - 根據各個函數的優缺點來配置
 
-    - 如果使⽤ ReLU，要⼩⼼設置 learning rate，注意不要讓網絡出現很多「dead」 神經元，如果不好解決，可以試試 Leaky ReLU、PReLU 或者Maxout
+    - 如果使用 ReLU，要⼩⼼設置 learning rate，注意不要讓網絡出現很多「dead」 神經元，如果不好解決，可以試試 Leaky ReLU、PReLU 或者Maxout
 
   - 根據問題的性質
 
-    - ⽤於分類器時，Sigmoid 函數及其組合通常效果更好
-    - 由於梯度消失問題，有時要避免使⽤ sigmoid 和 tanh 函數。ReLU 函數是⼀個通⽤的激活函數，⽬前在⼤多數情況下使⽤
+    - 用於分類器時，Sigmoid 函數及其組合通常效果更好
+    - 由於梯度消失問題，有時要避免使用 sigmoid 和 tanh 函數。ReLU 函數是⼀個通用的激活函數，⽬前在大多數情況下使用
     - 如果神經網絡中出現死神經元，那麼 PReLU 函數就是最好的選擇
-    - ReLU 函數建議只能在隱藏層中使⽤
+    - ReLU 函數建議只能在隱藏層中使用
 
   - 考慮 DNN 損失函數和激活函數
 
-    - 如果使⽤ sigmoid 激活函數，則交叉熵損失函數⼀般肯定比均⽅差損失函數好；
-    - 如果是 DNN ⽤於分類，則⼀般在輸出層使⽤ softmax 激活函數
+    - 如果使用 sigmoid 激活函數，則交叉熵損失函數⼀般肯定比均方差損失函數好；
+    - 如果是 DNN 用於分類，則⼀般在輸出層使用 softmax 激活函數
     - ReLU 激活函數對梯度消失問題有⼀定程度的解決，尤其是在CNN模型中。
 
   - 梯度消失 Vanishing gradient problem
@@ -860,9 +864,9 @@
     - 原因：前⾯的層比後⾯的層梯度變化更⼩，故變化更慢
     - 結果：Output 變化慢 -> Gradient⼩ -> 學得慢
     - Sigmoid，Tanh 都有這樣特性
-    - 不適合⽤在 Layers 多的DNN 架構
+    - 不適合用在 Layers 多的DNN 架構
 
-    ![](https://lh3.googleusercontent.com/x3CN8LTxGqX31Q4PX1ArsP4KTFLs4YHnV4rntTHfzJi96IR1QXt2n4LJz3pxU-Tr4XjZmFTppnQ_47VVA-uIeYdm3G7fjOh33YE2tU_BMb9uGhCMYZIXprGXy99MrsurSwlJyMlsgJzkKdefTyJeCereiNOjG30wT-AzFQXcvGnOOZDOKjJr-4gRvK_76kxUn2F8GDwS95pXtAQ97SEKKtMMHiVulST0k8MdZI1zy6dUqiisFvM1SgvgPbP0r-7xeZf5vs1jOgYg4sXrrJGLrgXla28jJ6EGRDby3NLyjesNm6nAzQoUiPP4hnp4zLvwtdyVxr-VmKzjGuk0gs62GzmUbqIdUXDtiA83mvxSVRkuzJrwVCZTHYtmpTW3woctaNs-7_UwsJ-ITvzu16TY3HfHBNHJY2uivi3RoEYHDroRe0tsrxonAMH5dtFYELcxaUVNxYCiPEyjg4utMR2NnTEAxmE69hDcB-W87Ppduc5eCBW3DU2aWfvg6J1WmOLwDOHg3NjU188XfVja5Vlv-8KRCqQYzOkjMNNoUTUFdlzhQIvCa4yAImSxqG-oSln1Wn98OnjRd6dUoFGm5rEMsmfi6y9UKwTO0AvVCYVa4xoRYY5b1I47TRs-XzfxNuL2snGrBpeG0o42oqpMlwv1FVc1H0rbFNyh8eb6ejeObUkpZtQBU0qXX1Q8tF1DgYb_jffmgz7YiHZK6xjZ-7G0cGYL=w565-h422-no)
+    ![](./images/擷取12.jpg)
 
 - 前述流程 / python程式對照
 
@@ -894,23 +898,23 @@
 
 ![](https://lh3.googleusercontent.com/P2ufOXOvaucTCVxEprN6gsJw6ngC_BYQ8u0CwVGybjSX1_Y5jneX2iMz0UvVK3XjL5dE6O7TZM7wSK_xMwXfHQqdO9g1ZUkSclTis6Ig1KXiWj5tPxLgdN_aKyxoe6Fm-W7pSsGmcLtXMwrUEl3oBGr3VluJwrpP3m5nBPowY1PmUX1o-ruYWrz3WsWBJkJbmWzx9e-Bd0VNL5PS0n6D6ahyv85dR4fjZRAmjZG8eKENEQ5hBRVrt9SQN2PrbqYliwRpvViYyYy4mT9zbzqrsKstQ33jxbbButqxCWJQPZrLqY2ZIHpXl1rP2me5wZnBkk4TDOhfkbDEHX6XTO-IugoBGc4e3-PYAgcM4AV12PXkhZ2lLlxxdkCoLcaev3vNiiIoEnm10XMSKGQMxDq6mVafP2NCFrSj5g9OnFx4VyN4uDQ7SWoUnCTd11MvTrDk88sdkLqoGBUg0Puaye6lfrRPq1qbbC_psvhYy226FTThYVkiOy5YH7YKa4ebiXUBUzuokOFhiesDxp1esCPZ2o2m5rWW1za5RRh1OawWqNtpE8PZCh5ryTf5sNH5Bvht_81uDV_Ehwctza_MrpwoT5wT_wSLoOEaGEZ75RaRONUPqISCc_z80Dvyv4iUiKb3TYyBX6U4RSJI8D-xrfQZihSSx2BRQvQwjRGrZLXLZJQvUiwMEhzSOeME3WTjPwAaxBJh8UVyGynL9PZfKKPan64G=w1027-h427-no)
 
-- η ⼜稱學習率，是⼀個挪動步長的基數，df(x)/dx是導函數，當離得遠的時候導數⼤，移動的就快，當接近極值時，導數非常⼩，移動的就非常⼩，防⽌跨過極值點
+- η ⼜稱學習率，是⼀個挪動步長的基數，df(x)/dx是導函數，當離得遠的時候導數大，移動的就快，當接近極值時，導數非常⼩，移動的就非常⼩，防⽌跨過極值點
 
-- Learning rate 選擇，實際上取值取決於數據樣本，如果損失函數在變⼩，說明取值有效，否則要增⼤ Learning rate
+- Learning rate 選擇，實際上取值取決於數據樣本，如果損失函數在變⼩，說明取值有效，否則要增大 Learning rate
 
-- 機器學習算法當中，優化算法的功能，是通過改善訓練⽅式，來最⼩化(或最⼤化)損失函數，當中最常用的優化算法就是梯度下降
+- 機器學習算法當中，優化算法的功能，是通過改善訓練方式，來最⼩化(或最大化)損失函數，當中最常用的優化算法就是梯度下降
 
-  - 通過尋找最⼩值，控制⽅差，更新模型參數，最終使模型收斂
+  - 通過尋找最⼩值，控制方差，更新模型參數，最終使模型收斂
 
     - 梯度下降法的過程
 
       - ⾸先需要設定⼀個初始參數值，通常情況下將初值設為零(w=0)，接下來需要計算成本函數 cost
       - 然後計算函數的導數-某個點處的斜率值，並設定學習效率參數(lr)的值。
-      - 重複執⾏上述過程，直到參數值收斂，這樣我們就能獲得函數的最優解
+      - 重複執行上述過程，直到參數值收斂，這樣我們就能獲得函數的最優解
 
       ![](https://lh3.googleusercontent.com/CC-uYdn_fZGk1DvGv8T5nWD7RrZH4bUSlGOmoVkwDhp9Jc3rLzgJAplUvK3KtutQp-0fgi1QGd66g69nIJLTnRJvB_uC3ukERZU6cc-CP867UEQF1WxVOn7ueeuDfMHRWEDDA-0G-J_iH52FiH-_UB0Si6kYIXBcjPev-Bz-RQ3WEZid1CNGqmrfYbpC5jJnTjVhl7ObTUyMrnZ_wvVhFd1qHL8SOr_CmkOEs729q_JH5xYBZZCNUzicRZXfSOFp7dxxS6iTtfv3l54Qz1VvYpRdshhVqUdSHIjsKU79O7JsgvlvyL42_O-prcjfhvOnhRGe7dp0SN_jSu4Uq_lE4rc2W1CJcMTijyBirEV06qVGSoZU_ceKkPQWxU5OPZW7pbNmSdV7jFucDxmeeV3odIZn13MQgxHA-rAqJuZ-7Yonbfn54dse2K_9hXJp5_oLLDL3sJFTe-8tiMxBxFLNPv6gEgjs---3H26NzWjO45aNudxjMZcNY6GF_2rZSX8EexUWGSD6R8_LZQKv2oFzfNEf-dZhocYiQJ9D2XYz8W1RBLdzp5UBnkcCzC_u0OafQX4RBjX9lif0INkuJoLRzdVBssXAOF0psy3VaNikl8YjSNbPkfwS_8UKQ4-YXFoyD8cHu_Om0iWLA4ldqZHO0jMeEldrWIn0D0ygwCb8Os642Mm9VUmBUCMLemBri0wdjndESfcAunD5nll04dscG3oM=w757-h323-no)
 
-  - ⽬的：沿著⽬標函數梯度下降的⽅向搜索極⼩值（也可以沿著梯度上升的⽅向搜索極⼤值）
+  - ⽬的：沿著⽬標函數梯度下降的方向搜索極⼩值（也可以沿著梯度上升的方向搜索極大值）
 
   - 要計算 Gradient Descent，考慮
 
@@ -939,10 +943,10 @@
   - Gradient descent never guarantee global minima
   - Different initial point will be caused reach different minima, so different results
 
-- 在訓練神經網絡的時候，通常在訓練剛開始的時候使⽤較⼤的 learning rate，隨著訓練的進⾏，我們會慢慢的減⼩ learning rate ，具體就是每次迭代的時候減少學習率的⼤⼩，更新公式
+- 在訓練神經網絡的時候，通常在訓練剛開始的時候使用較大的 learning rate，隨著訓練的進行，我們會慢慢的減⼩ learning rate ，具體就是每次迭代的時候減少學習率的大⼩，更新公式
 
   - 學習率較⼩時，收斂到極值的速度較慢。
-  - 學習率較⼤時，容易在搜索過程中發⽣震盪
+  - 學習率較大時，容易在搜索過程中發⽣震盪
   - 相關參數:
     - decayed_learning_rate 哀減後的學習率
     - learning_rate 初始學習率
@@ -950,13 +954,13 @@
     - global_step 當前的 step
     - decay_steps 哀減週期
 
-- η ⼜稱學習率，是⼀個挪動步長的基數，df(x)/dx是導函數，當離得遠的時候導數⼤，移動的就快，當接近極值時，導數非常⼩，移動的就非常⼩，防⽌跨過極值點
+- η ⼜稱學習率，是⼀個挪動步長的基數，df(x)/dx是導函數，當離得遠的時候導數大，移動的就快，當接近極值時，導數非常⼩，移動的就非常⼩，防⽌跨過極值點
 
 - 學習率對梯度下降的影響
 
   - 學習率定義了每次疊代中應該更改的參數量。換句話說，它控制我們應該收斂到最低的速度或速度。
 
-  - ⼩學習率可以使疊代收斂，⼤學習率可能超過最⼩值
+  - ⼩學習率可以使疊代收斂，大學習率可能超過最⼩值
 
     ![](https://lh3.googleusercontent.com/yzU1_yVv-CP0T3gGicaPdMjSO4Ppo9wOpgpWiZ7I_81vlGlzqrxQc9eW8EKTaUYKxEoz7KgF1ey1grQQSOmUbNe0G__lUO7BFw9Wwcd3Kdyao8LPkYw9Dp7a7VsNqpYrb-U6-DJ_EinUd9CQCl1ld6CIJI2n6RM_kJiwJ6xa0sY8DoOCEm5G_ABDiFyTyZOth-0V0m-2Ynnp4X2_al0Axku5X_CCTokrS3czLz3z3iHjVuaR_PUdaI1uTDwRLX6Uf39fn76akqB3-MjvzMnOdWcn0nqHQGcrywjbJeXu1U0My1Ltgf-51aEhzFhy2yM3NhYxtjgRKP-T3AUVTLPMWfmNYi7uC5dC2s3fEKNy_rtbNsfSXJ5mO1S_gxzKGn4awbPUEaR2lcvixJn9WS2X8neCa7AcuuG3Z7pUTRGOMZlgdHsnhTuGAZSWG6UVqUB2RVeAJDvKNj3x5qy5qf3WDk0p3sbwfzEfZVtmFqHsTl2E94X5qdU_AbGmmUh7vKS67ND5NcoiqkXlSULGxtv5MvlQhNlpMlbMisgmyTBjsxUK8JL4BH7ocAvjSv40O9wp7VdxY8kQmHvCbBgzdKd-kFtnkxg5XmYEQ1stCSr_9loJxPTO8WBAgfQXQGHv6Q-d6P1Mxf_eGVNCF2fUwxo-BTHEDbVgfJin6AOuTVPXAnzakc4MZ6xbcvtCtc2uWUdHtrg2d328wmnlH2WRFKpg-9qY=w1031-h276-no)
 
@@ -972,17 +976,17 @@
 
       > decay 越⼩，學習率衰減地越慢，當 decay = 0時，學習率保持不變
       >
-      > decay 越⼤，學習率衰減地越快，當 decay = 1時，學習率衰減最快
+      > decay 越大，學習率衰減地越快，當 decay = 1時，學習率衰減最快
 
-  - 使⽤ momentum 是梯度下降法中⼀種常⽤的加速技術。Gradient Descent 的實現：SGD, 對於⼀般的SGD，其表達式為
+  - 使用 momentum 是梯度下降法中⼀種常用的加速技術。Gradient Descent 的實現：SGD, 對於⼀般的SGD，其表達式為
 
     - 隨著 iteration 改變 Learning
-      - 衰減越⼤，學習率衰減地越快。 衰減確實能夠對震盪起到減緩的作⽤
+      - 衰減越大，學習率衰減地越快。 衰減確實能夠對震盪起到減緩的作用
 
   - momentum
 
-    - 如果上⼀次的 momentum 與這⼀次的負梯度⽅向是相同的，那這次下降的幅度就會加⼤，所以這樣做能夠達到加速收斂的過程
-    - 如果上⼀次的 momentum 與這⼀次的負梯度⽅向是相反的，那這次下降的幅度就會縮減，所以這樣做能夠達到減速收斂的過程
+    - 如果上⼀次的 momentum 與這⼀次的負梯度方向是相同的，那這次下降的幅度就會加大，所以這樣做能夠達到加速收斂的過程
+    - 如果上⼀次的 momentum 與這⼀次的負梯度方向是相反的，那這次下降的幅度就會縮減，所以這樣做能夠達到減速收斂的過程
 
   $$
   X ← x -a * dx
@@ -1000,22 +1004,22 @@
 
   
 
-  - 其中 ß 即 momentum 係數，通俗的理解上⾯式⼦就是，如果上⼀次的 momentum（即ß ）與這⼀次的負梯度⽅向是相同的，那這次下降的幅度就會加⼤，所以這樣做能夠達到加速收斂的過程
+  - 其中 ß 即 momentum 係數，通俗的理解上⾯式⼦就是，如果上⼀次的 momentum（即ß ）與這⼀次的負梯度方向是相同的，那這次下降的幅度就會加大，所以這樣做能夠達到加速收斂的過程
 
 ![](https://lh3.googleusercontent.com/na5BUBlKpeVl5D7ka3yaYVZZnPlyD87vReJ0sag9DlARk0pBqPmwzcbM6XNf5njtnpYNzDls59s64kHCrbTaqmINw4K-N6DTtLFZeqP6lLFySMOFGKaAsnAJ3zn2czG504P9yqhPJvYKmUx0Z8FyDkK9tPywCq3Gnd97Vj_SubPwH22C1T_qdmcxJiY_7lb-KsHFFa86v2UsRbdRn3RKVBl588dHBrkWtQ-9SiPkNAH3IbatBTewW0CxZ2SvCuuPWOEqfD42fd8LNab9nOf--4vPqdpmyGU2JTHU5aJZU0wK9yHsE3y4mdBosrpmYXs4k8o5pVAA6YN6XmEKOPPU6P0PhlGB_B_x71-ZeNtJFJjLM_aLYK3gSEH2FhRjN9P13upQ3HBFd-I0D2p7ubVAdvOHNsKXB7r6P1QpaoeXuGTsCUBt5PjBCacwWOPolCUJRXk8QtNcX_hQUuMgsJiGdVV7Sr9qd6YL8UrRkmikbNtFCTtZi-22B9h-0wa6J6tzSmkYmFWPoXN8Tnmxqn6akj6PQ7HgWMsZYSMESfS439t5rGTuQgsVjfIpe_oUYEB5pPR9lxKHMFzqBKlcxjGCPtkXevIvVDHGKdUJuCToy7kK-mgrdKok7ihNAB1dEBMfS9UROA1kWJ4cVHZ-o0kgC3DY1b2MufUD08_sES0g3zfs6Zb_NX8W0opxR2mFGqxHeqjG2iuk5Nsz3U6ieuxs5goM=w924-h411-no)
 
 
 
-- 要使⽤梯度下降法找到⼀個函數的局部極⼩值，必須向函數上當前點對應梯度（或者是近似梯度）的反⽅向的規定步長距離點進⾏疊代搜索。
+- 要使用梯度下降法找到⼀個函數的局部極⼩值，必須向函數上當前點對應梯度（或者是近似梯度）的反方向的規定步長距離點進行疊代搜索。
   - avoid local minima
-    - Item-1：在訓練神經網絡的時候，通常在訓練剛開始的時候使⽤較⼤的learning rate，隨著訓練的進⾏，我們會慢慢的減⼩ learning rate
+    - Item-1：在訓練神經網絡的時候，通常在訓練剛開始的時候使用較大的learning rate，隨著訓練的進行，我們會慢慢的減⼩ learning rate
       - 學習率較⼩時，收斂到極值的速度較慢。
-      - 學習率較⼤時，容易在搜索過程中發⽣震盪
+      - 學習率較大時，容易在搜索過程中發⽣震盪
     - Item-2：隨著 iteration 改變 Learning
-      - 衰減越⼤，學習率衰減地越快。 衰減確實能夠對震盪起到減緩的作⽤
+      - 衰減越大，學習率衰減地越快。 衰減確實能夠對震盪起到減緩的作用
     - Item-3：momentum
-      - 如果上⼀次的 momentum 與這⼀次的負梯度⽅向是相同的，那這次下降的幅度就會加⼤，所以這樣做能夠達到加速收斂的過程
-      - 如果上⼀次的 momentum 與這⼀次的負梯度⽅向是相反的，那這次下降的幅度就會縮減，所以這樣做能夠達到減速收斂的過程
+      - 如果上⼀次的 momentum 與這⼀次的負梯度方向是相同的，那這次下降的幅度就會加大，所以這樣做能夠達到加速收斂的過程
+      - 如果上⼀次的 momentum 與這⼀次的負梯度方向是相反的，那這次下降的幅度就會縮減，所以這樣做能夠達到減速收斂的過程
 
 - 參考資料
   - [知乎 - Tensorflow中learning rate decay](https://zhuanlan.zhihu.com/p/32923584)
@@ -1031,21 +1035,21 @@
 
 ## BackPropagation
 
-- 反向傳播（BP：Backpropagation）是「誤差反向傳播」的簡稱，是⼀種與最優化⽅法（如梯度下降法）結合使⽤的該⽅法對網路中所有權重計算損失函數的梯度。這個梯度會反饋給最優化⽅法，⽤來更新權值以最⼩化損失函數。
-- 反向傳播要求有對每個輸入值想得到的已知輸出，來計算損失函數梯度。因此，它通常被認為是⼀種監督式學習⽅法，可以對每層疊代計算梯度。反向傳播要求⼈⼯神經元（或「節點」）的啟動函數可微
+- 反向傳播（BP：Backpropagation）是「誤差反向傳播」的簡稱，是⼀種與最優化方法（如梯度下降法）結合使用的該方法對網路中所有權重計算損失函數的梯度。這個梯度會反饋給最優化方法，用來更新權值以最⼩化損失函數。
+- 反向傳播要求有對每個輸入值想得到的已知輸出，來計算損失函數梯度。因此，它通常被認為是⼀種監督式學習方法，可以對每層疊代計算梯度。反向傳播要求人工神經元（或「節點」）的啟動函數可微
 - BP 神經網路是⼀種按照逆向傳播算法訓練的多層前饋神經網路
-  - 優點：具有任意複雜的模式分類能⼒和優良的多維函數映射能⼒，解決了簡單感知器
+  - 優點：具有任意複雜的模式分類能力和優良的多維函數映射能力，解決了簡單感知器
     不能解決的異或或者⼀些其他的問題。
     - 從結構上講，BP 神經網路具有輸入層、隱含層和輸出層。
-    - 從本質上講，BP 算法就是以網路誤差平⽅⽬標函數、採⽤梯度下降法來計算⽬標函數的最⼩值。
+    - 從本質上講，BP 算法就是以網路誤差平方⽬標函數、採用梯度下降法來計算⽬標函數的最⼩值。
 
   - 缺點：
     - 學習速度慢，即使是⼀個簡單的過程，也需要幾百次甚⾄上千次的學習才能收斂。
     - 容易陷入局部極⼩值。
     - 網路層數、神經元個數的選擇沒有相應的理論指導。
-    - 網路推廣能⼒有限。
+    - 網路推廣能力有限。
 
-  - 應⽤：
+  - 應用：
     - 函數逼近。
     - 模式識別。
     - 分類。
@@ -1074,49 +1078,49 @@
 
 - 什麼是Optimizer
 
-  - 機器學習算法當中，⼤部分算法的本質就是建立優化模型，通過最優化⽅法對⽬標函數進⾏優化從⽽訓練出最好的模型
-  - 優化算法的功能，是通過改善訓練⽅式，來最⼩化(或最⼤化)損失函數 E(x)
-  - 優化策略和算法，是⽤來更新和計算影響模型訓練和模型輸出的網絡參數，使其逼近或達到最優值
+  - 機器學習算法當中，大部分算法的本質就是建立優化模型，通過最優化方法對⽬標函數進行優化從⽽訓練出最好的模型
+  - 優化算法的功能，是通過改善訓練方式，來最⼩化(或最大化)損失函數 E(x)
+  - 優化策略和算法，是用來更新和計算影響模型訓練和模型輸出的網絡參數，使其逼近或達到最優值
 
 - 常用的優化算法
 
   - Gradient Descent
 
-    - 最常⽤的優化算法是梯度下降
+    - 最常用的優化算法是梯度下降
 
-      - 這種算法使⽤各參數的梯度值來最⼩化或最⼤化損失函數E(x)。
+      - 這種算法使用各參數的梯度值來最⼩化或最大化損失函數E(x)。
 
-    - 通過尋找最⼩值，控制⽅差，更新模型參數，最終使模型收斂
+    - 通過尋找最⼩值，控制方差，更新模型參數，最終使模型收斂
 
     - 複習⼀下，前面提到的 Gradient Descent
 
       > wi+1 = wi - di·ηi, i=0,1,…
       >
-      > - 參數 η 是學習率。這個參數既可以設置為固定值，也可以⽤⼀維優化⽅法沿著訓練的⽅向逐步更新計算
-      > - 參數的更新分為兩步：第⼀步計算梯度下降的⽅向，第⼆步計算合適的學習
+      > - 參數 η 是學習率。這個參數既可以設置為固定值，也可以用⼀維優化方法沿著訓練的方向逐步更新計算
+      > - 參數的更新分為兩步：第⼀步計算梯度下降的方向，第⼆步計算合適的學習
 
   - Momentum
 
-    > ⼀顆球從⼭上滾下來，在下坡的時候速度越來越快，遇到上坡，⽅向改變，速度下降
+    > ⼀顆球從⼭上滾下來，在下坡的時候速度越來越快，遇到上坡，方向改變，速度下降
 
     $$
     V_t ← \beta V_{t-1}-\eta \frac{\partial L}{\partial w}
     $$
 
     - $V_t$:方向速度，會跟上一次的更新相關
-    - 如果上⼀次的梯度跟這次同⽅向的話，|Vt|(速度)會越來越⼤(代表梯度增強)，W參數的更新梯度便會越來越快，
-    - 如果⽅向不同，|Vt|便會比上次更⼩(梯度減弱)，W參數的更新梯度便會變⼩
+    - 如果上⼀次的梯度跟這次同方向的話，|Vt|(速度)會越來越大(代表梯度增強)，W參數的更新梯度便會越來越快，
+    - 如果方向不同，|Vt|便會比上次更⼩(梯度減弱)，W參數的更新梯度便會變⼩
 
     $$
     w ← w + V_t
     $$
 
-    - 加入 $V_t$ 這⼀項，可以使得梯度⽅向不變的維度上速度變快，梯度⽅向有所改變的維度上的更新速度變慢，這樣就可以加快收斂並減⼩震盪
+    - 加入 $V_t$ 這⼀項，可以使得梯度方向不變的維度上速度變快，梯度方向有所改變的維度上的更新速度變慢，這樣就可以加快收斂並減⼩震盪
 
   - SGD
 
     - SGD-隨機梯度下降法(stochastic gradient decent)
-    - 找出參數的梯度(利⽤微分的⽅法)，往梯度的⽅向去更新參數(weight)
+    - 找出參數的梯度(利用微分的方法)，往梯度的方向去更新參數(weight)
 
     $$
     w ← w - \eta \frac{\partial L}{\partial w}
@@ -1126,7 +1130,7 @@
     - L 為損失函數(loss function)， 
     - η 是學習率(learning rate)， 
     - ∂L/∂W 是損失函數對參數的梯度(微分)
-    - 優點：SGD 每次更新時對每個樣本進⾏梯度更新， 對於很⼤的數據集來說，可能會有相似的樣本，⽽ SGD ⼀次只進⾏⼀次更新，就沒有冗餘，⽽且比較快
+    - 優點：SGD 每次更新時對每個樣本進行梯度更新， 對於很大的數據集來說，可能會有相似的樣本，⽽ SGD ⼀次只進行⼀次更新，就沒有冗餘，⽽且比較快
     - 缺點： 但是 SGD 因為更新比較頻繁，會造成 cost function 有嚴重的震盪。
 
     ```python
@@ -1134,9 +1138,9 @@
     ```
 
     - lr：學習率
-    - Momentum 動量：⽤於加速 SGD 在相關⽅向上前進，並抑制震盪。
+    - Momentum 動量：用於加速 SGD 在相關方向上前進，並抑制震盪。
     - Decay(衰變)： 每次參數更新後學習率衰減值。
-    - nesterov：布爾值。是否使⽤ Nesterov 動量
+    - nesterov：布爾值。是否使用 Nesterov 動量
 
     ```python
     from keras import optimizers
@@ -1148,7 +1152,7 @@
     sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(loss='mean_squared_error', optimizer=sgd)
                          
-    # 通過名稱來調⽤優化器，將使⽤優化器的默認參數。
+    # 通過名稱來調用優化器，將使用優化器的默認參數。
     model.compile(loss='mean_squared_error', optimizer='sgd')
     ```
 
@@ -1203,8 +1207,8 @@
 
   - mini-batch gradient descent
 
-    - batch-gradient，其實就是普通的梯度下降算法但是採⽤批量處理。
-      - 當數據集很⼤（比如有100000個左右時），每次 iteration 都要將1000000 個數據跑⼀遍，機器帶不動。於是有了 mini-batch-gradient——將 1000000 個樣本分成 1000 份，每份 1000 個，都看成⼀組獨立的數據集，進⾏ forward_propagation 和 backward_propagation。
+    - batch-gradient，其實就是普通的梯度下降算法但是採用批量處理。
+      - 當數據集很大（比如有100000個左右時），每次 iteration 都要將1000000 個數據跑⼀遍，機器帶不動。於是有了 mini-batch-gradient——將 1000000 個樣本分成 1000 份，每份 1000 個，都看成⼀組獨立的數據集，進行 forward_propagation 和 backward_propagation。
 
   - 在整個算法的流程中，cost function 是局部的，但是W和b是全局的。
 
@@ -1215,13 +1219,13 @@
 
     - 參數說明
 
-      - batchsize：批量⼤⼩，即每次訓練在訓練集中取batchsize個樣本訓練；
+      - batchsize：批量大⼩，即每次訓練在訓練集中取batchsize個樣本訓練；
       - batchsize=1;
         - batchsize = mini-batch;
         - batchsize = whole training set
-      - iteration：1個 iteration 等於使⽤ batchsize 個樣本訓練⼀次；
+      - iteration：1個 iteration 等於使用 batchsize 個樣本訓練⼀次；
 
-    - epoch：1個 epoch 等於使⽤訓練集中的全部樣本訓練⼀次；
+    - epoch：1個 epoch 等於使用訓練集中的全部樣本訓練⼀次；
 
       > Example:
       > features is (50000, 400)
@@ -1234,14 +1238,14 @@
 
     - Mini-batch sizes，簡稱為「batch sizes」，是算法設計中需要調節的參數。
       - 較⼩的值讓學習過程收斂更快，但是產⽣更多噪聲。
-      - 較⼤的值讓學習過程收斂較慢，但是準確的估計誤差梯度。
-      - batch size 的默認值最好是 32 盡量選擇 2 的冪次⽅，有利於 GPU 的加速
+      - 較大的值讓學習過程收斂較慢，但是準確的估計誤差梯度。
+      - batch size 的默認值最好是 32 盡量選擇 2 的冪次方，有利於 GPU 的加速
     - 調節 batch size 時，最好觀察模型在不同 batch size 下的訓練時間和驗證誤差的學習曲線
     - 調整其他所有超參數之後再調整 batch size 和學習率
 
   - Adagrad
 
-    - 對於常⾒的數據給予比較⼩的學習率去調整參數，對於不常⾒的數據給予比較⼤的學習率調整參數
+    - 對於常⾒的數據給予比較⼩的學習率去調整參數，對於不常⾒的數據給予比較大的學習率調整參數
 
       - 每個參數都有不同的 learning rate,
 
@@ -1297,7 +1301,7 @@
     r^t = (1-p)(g^t)^2+pr^{t-1}
   $$
   
-    - 比對Adagrad的梯度更新規則：分⺟換成了過去的梯度平⽅的衰減平均值
+    - 比對Adagrad的梯度更新規則：分⺟換成了過去的梯度平方的衰減平均值
   
   ​```python
     keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0) 
@@ -1326,7 +1330,7 @@
 
   - Adam
 
-    - 除了像 RMSprop ⼀樣存儲了過去梯度的平⽅ vt 的指數衰減平均值，也像momentum ⼀樣保持了過去梯度 mt 的指數衰減平均值,「 t 」：
+    - 除了像 RMSprop ⼀樣存儲了過去梯度的平方 vt 的指數衰減平均值，也像momentum ⼀樣保持了過去梯度 mt 的指數衰減平均值,「 t 」：
 
     $$
     m_t=\beta_1m_t + (1-\beta_1)g_t
@@ -1340,11 +1344,11 @@
 
     - β1 係數為指數衰減率，控制權重分配（動量與當前梯度），通常取接近於1的值。默認為 0.9
 
-    - 其次，計算梯度平⽅的指數移動平均數，v0 初始化為 0。β2 係數為指數衰減率，控制之前的梯度平⽅的影響情況。類似於 RMSProp 算法，對梯度平⽅進⾏加權均值。默認為 0.999 
+    - 其次，計算梯度平方的指數移動平均數，v0 初始化為 0。β2 係數為指數衰減率，控制之前的梯度平方的影響情況。類似於 RMSProp 算法，對梯度平方進行加權均值。默認為 0.999 
 
-    - 由於 m0 初始化為 0，會導致 mt 偏向於 0，尤其在訓練初期階段。所以，此處需要對梯度均值 mt 進⾏偏差糾正，降低偏差對訓練初期的影響。
+    - 由於 m0 初始化為 0，會導致 mt 偏向於 0，尤其在訓練初期階段。所以，此處需要對梯度均值 mt 進行偏差糾正，降低偏差對訓練初期的影響。
 
-    - 與 m0 類似，因為 v0 初始化為 0 導致訓練初始階段 vt 偏向 0，對其進⾏糾正
+    - 與 m0 類似，因為 v0 初始化為 0 導致訓練初始階段 vt 偏向 0，對其進行糾正
 
     $$
     \hat m_t = \frac{m_t}{1-\beta_1^t}
@@ -1354,9 +1358,9 @@
     \hat v_t = \frac{v_t}{1-\beta_2^t}
     $$
 
-    - 更新參數，初始的學習率 lr 乘以梯度均值與梯度⽅差的平⽅根之比。其中默認學習率lr =0.001, eplison (ε=10^-8)，避免除數變為 0。
+    - 更新參數，初始的學習率 lr 乘以梯度均值與梯度方差的平方根之比。其中默認學習率lr =0.001, eplison (ε=10^-8)，避免除數變為 0。
 
-    - 對更新的步長計算，能夠從梯度均值及梯度平⽅兩個⾓度進⾏⾃適應地調節，⽽不是直接由當前梯度決定
+    - 對更新的步長計算，能夠從梯度均值及梯度平方兩個⾓度進行⾃適應地調節，⽽不是直接由當前梯度決定
 
     ```python
     from keras import optimizers
@@ -1372,7 +1376,7 @@
     - beta_1：float, 0 < beta < 1. 通常接近於 1。
     - beta_2：float, 0 < beta < 1. 通常接近於 1。
     - epsilon：float >= 0. 模糊因數. 若為 None, 默認為 K.epsilon()。
-    - amsgrad：boolean. 是否應⽤此演算法的 AMSGrad 變種，來⾃論⽂ 「On the Convergence of Adam and Beyond」
+    - amsgrad：boolean. 是否應用此演算法的 AMSGrad 變種，來⾃論⽂ 「On the Convergence of Adam and Beyond」
     - decay：float >= 0. 每次參數更新後學習率衰減值
 
 
@@ -1381,27 +1385,27 @@
 
   - 隨機梯度下降（Stochastic Gradient Descent）
 
-    SGD 指的是 mini batch gradient descent 優點：針對⼤數據集，訓練速度很快。從訓練集樣本中隨機選取⼀個 batch 計算⼀次梯度，更新⼀次模型參數。
+    SGD 指的是 mini batch gradient descent 優點：針對大數據集，訓練速度很快。從訓練集樣本中隨機選取⼀個 batch 計算⼀次梯度，更新⼀次模型參數。
 
     - 缺點：
-      - 對所有參數使⽤相同的學習率。對於稀疏數據或特徵，希望盡快更新⼀些不經常出現的特徵，慢⼀些更新常出現的特徵。所以選擇合適的學習率比較困難。
-      - 容易收斂到局部最優 Adam：利⽤梯度的⼀階矩估計和⼆階矩估計動態調節每個參數的學習率。
+      - 對所有參數使用相同的學習率。對於稀疏數據或特徵，希望盡快更新⼀些不經常出現的特徵，慢⼀些更新常出現的特徵。所以選擇合適的學習率比較困難。
+      - 容易收斂到局部最優 Adam：利用梯度的⼀階矩估計和⼆階矩估計動態調節每個參數的學習率。
     - 優點：
       - 經過偏置校正後，每⼀次迭代都有確定的範圍，使得參數比較平穩。善於處理稀疏梯度和非平穩⽬標。
       - 對內存需求⼩
       - 對不同內存計算不同的學習率
 
-  - AdaGrad 採⽤改變學習率的⽅式
+  - AdaGrad 採用改變學習率的方式
 
-  - RMSProp：這種⽅法是將 Momentum 與 AdaGrad 部分相結合，⾃適應調節學習率。對學習率進⾏了約束，適合處理非平穩⽬標和 RNN。
+  - RMSProp：這種方法是將 Momentum 與 AdaGrad 部分相結合，⾃適應調節學習率。對學習率進行了約束，適合處理非平穩⽬標和 RNN。
 
-    - 如果數據是稀疏的，就⽤⾃適⽤⽅法，如：Adagrad, RMSprop, Adam。
+    - 如果數據是稀疏的，就用⾃適用方法，如：Adagrad, RMSprop, Adam。
 
   - Adam 
 
     結合 AdaGrad 和 RMSProp 兩種優化算法的優點，在 RMSprop 的基礎上加了 bias-correction 和momentum，隨著梯度變的稀疏，Adam 比 RMSprop 效果會好。
 
-    對梯度的⼀階矩估計（First Moment Estimation，即梯度的均值）和⼆階矩估計（SecondMoment Estimation，即梯度的未中⼼化的⽅差）進⾏綜合考慮，計算出更新步長。
+    對梯度的⼀階矩估計（First Moment Estimation，即梯度的均值）和⼆階矩估計（SecondMoment Estimation，即梯度的未中⼼化的方差）進行綜合考慮，計算出更新步長。
 
 - 參考資料
 
@@ -1421,7 +1425,7 @@
 
 - Validation and overfit
 
-  - Overfitting：訓練⼀個模型時，使⽤過多參數，導致在訓練集上表現極佳，但⾯對驗證/測試集時，會有更⾼的錯誤率。
+  - Overfitting：訓練⼀個模型時，使用過多參數，導致在訓練集上表現極佳，但⾯對驗證/測試集時，會有更高的錯誤率。
 
     ![](https://lh3.googleusercontent.com/wySmre4Z4or2gnibj57qWRWZuo6kaADcnuD-2McBnAg-DuqT5LkPZhYFwL1Mrt6oBOv-WrAE8OOaxav5U_CQ1fKes3l63YoljkduOzXqhNnvhE2kyTc4TUx5hk6MRviqaESPetK865aHpt7sjyAkJ2uyLMSWZc6xmqkTrk-9pFSL1XN0y5jgi8SNOIWX78i5rqCSTiIAlrUoOzMQ2LHBqn0gUpEbADWv7toequIDS6Fhfsthpn1cjZ35MWTIKkpuulPgavdAZTp46EHr9j_GVhyLSTUnRJ1pgoL2tL9ErvYzzq38Y-_KdFpyhHNGu0q31lFuM8t8Dqcly-tiV-TFD9yLzsC77s7jpHNKT_W7r1835hcmTgsaUnSvqoWvEfGxBtljNNE3ntToIiHSg3ERkI3S5FfIvN1SgfyQqJpc_hqARwzkpuIj1JgTB2TnHxBig4H-dqtkcdNGUXV9Why1y7G1VAYN78urhVqXAMXkp1QANAftf-XXEOfGQ789JVbg5cRpa2cmVNUP6skO0f9dXv9y1b9PaQvxPSCZ-6oH0lZhvlMHbpRMYWZJJheLucmSz4TzRe6T9qMEBVRuccOP4hGkRjA97Q1NiGwQWb-D7XMlZ1OQ2DGsYIrvvNWIEKtQT1Z3r4B_PGrV85fZ5e1IWv62uj17mfJ6ThsaVWzgy0XwmVZt6nBMEFZBVGFZ0DJbNjCl6fnf6j0AJDoLCDC8BIPJ=w406-h340-no)
 
@@ -1449,7 +1453,7 @@
               shuffle=True) # 每epoch後，將資料順序打亂
     ```
 
-    > 注意：使⽤ validation_split 與 shuffle 時，Keras 是先⾃ x_train/y_train 取最後 (1-x)% 做為驗證集使⽤，再⾏ shuffle
+    > 注意：使用 validation_split 與 shuffle 時，Keras 是先⾃ x_train/y_train 取最後 (1-x)% 做為驗證集使用，再行 shuffle
 
   - 在訓練完成後，將 training loss 與 validation loss 取出並繪圖
 
@@ -1473,25 +1477,25 @@
 
 - 訓練模型前的檢查
 
-  - 訓練模型的時間跟成本都很⼤ (如 GPU quota & 你/妳的⼈⽣)
+  - 訓練模型的時間跟成本都很大 (如 GPU quota & 你/妳的人⽣)
 
   - 要做哪些檢查
 
-    1. 使⽤的裝置：是使⽤ CPU or GPU / 想要使⽤的 GPU 是否已經被別⼈佔⽤?
+    1. 使用的裝置：是使用 CPU or GPU / 想要使用的 GPU 是否已經被別人佔用?
 
-       - nvidia-smi 可以看到⽬前可以取得的GPU 裝置使⽤狀態
+       - nvidia-smi 可以看到⽬前可以取得的GPU 裝置使用狀態
 
          > windows作業系統的nvidia-smi在以下路徑，進入該路徑後輸入nvidia-smi即可使用
          >
          > ![](https://lh3.googleusercontent.com/Aih5DxOZU1a-woo1a6_VhqDnX__WD6LDjTYmkpi33vll6Xd-rZbSmkzwShlQD3aQ09uwNZOBReeZDRJzC3aSL283DXMyrJ7sTNq4EL37n67_K_fjpvvkW401dxkHMfmrONMUiHskQ8XOLRu_HbGAiR1Y0AzcluB8yRVV01NmT0jQ_q3I5GFnPEgE9do8-HykIOXJw95aGkrkbO9QSU1hY_5hR8dhHwf_UNtu6sdzBzKY-_vPj9spwC_hTP8Qw3IUBggnIlFw9zju1lBVNJSyICrquamYKsaJyh-iskKKzplILoF6QedfU30SF5m8v1c9A7FzKjslqt4Ct71bxWgLKO-PwDlkT7O_1VcjYUPidKMoo57BzoXHl6HVvEqX163Rlg-YKVVbo9RS55WW4hy1Vy_CoMXJL9d7iepMJNs_VLe8V3yLqxBQe7tvpFI6aOlDsmxP2LtB1zWYt5lul5URHamxeqcJiPD-0gteNAyaGzjjB0TDac3J4YPhajh8W5WYHVdIuu5bpY8joNOe92J8bFxkbvSK5w-kOxCSKY_DAahBLEYSEX_i5oqGHHDGDIPzb4Nuy7mOILMHDJNYEPHuMERoEiYv0Ye0PESUoQI22zodcG7xIUtcwesaU0-19Lbu66sEHeV0D06SvF5r40v47s3Wh-h2N-sguUUMk7UOvXPGYvBcNufXlWFuVkQvnlZqGxOJCvdILERI96cOO3s_tuhW=w653-h423-no)
 
-    2. Input preprocessing：資料 (Xs) 是否有進⾏過適當的標準化?
+    2. Input preprocessing：資料 (Xs) 是否有進行過適當的標準化?
 
-       透過 Function 進⾏處理，⽽非在 Cell 中單獨進⾏避免遺漏、錯置
+       透過 Function 進行處理，⽽非在 Cell 中單獨進行避免遺漏、錯置
 
     3. Output preprocessing：⽬標 (Ys) 是否經過適當的處理?(如 onehotencoded)
 
-       透過 Function 進⾏處理，⽽非在 Cell 中單獨進⾏避免遺漏、錯置
+       透過 Function 進行處理，⽽非在 Cell 中單獨進行避免遺漏、錯置
 
     4. Model Graph：模型的架構是否如預期所想?
 
@@ -1499,7 +1503,7 @@
 
     5. 超參數設定(Hyperparameters)：訓練模型的相關參數是否設定得當?
 
-       將模型/程式所使⽤到的相關參數集中管理，避免散落在各處
+       將模型/程式所使用到的相關參數集中管理，避免散落在各處
 
   - 參考資料
 
@@ -1509,18 +1513,18 @@
 
 - Learning rate effect
 
-  - 學習率過⼤：每次模型參數改變過⼤，無法有效收斂到更低的損失平⾯
+  - 學習率過大：每次模型參數改變過大，無法有效收斂到更低的損失平⾯
 
   - 學習率過⼩：每次參數的改變量⼩，導致
 
     1. 損失改變的幅度⼩
-    2. 平原區域無法找到正確的⽅向
+    2. 平原區域無法找到正確的方向
 
     ![](https://lh3.googleusercontent.com/PTMBO-EvAdGWmYwCXXJwfog7zX3RKk1Eucro_zCNSdpsP0zL7wvHzJERYZXaAFctNBilQj1OWTDLhxWvIHrdZuyPfQ3DAMMIO9crEa5tGiBs_jf8hG2_CD4-8RoTSBCeyOMH2KfPWNgbOCxW7W6ivmwO4oAKyJc_nLJjA02c1533_ihyEDsH6W9MbO8oTXeY4N1UpIE6nfVGEeKeAWMU8pu0ytFzzVUk2HOOZxSjkq6Cy2qPGQAEelGGbGqGU8NGPU-aCiSGedGnkPr5-3uNqSTgDmScBuF8aS6YrgoHP8pqpVKjYUpNDpj-udf_7VxXBfuGlJb6pkeF0efnf42TOJ9mQZm3nB0uZA0gkzNcoc9oj4abMglGubk3oOEG_I4MaAHoMzJyvZNuIdkqDsWeOdPmJn-NzN_mdrfMzPoRL86x0ijqKv4m52DzlwKZcLMJaRGmvMzErs1-i3ZaDXkxlfRoqbV2G2_H84um4VNC-AVQ7brz-VFTy2wvf8s6K4GuRNkFGDckpffC3OTMsDK5S0Gjzj_wly3YsjN3JnD8lYtvg5OsPXjyVUCJOa_j8o9LnQ9DeUMG-CzrwpNTKhZ_8Ke7LO56-uDh2MQsgEXyehYnVDnzt5vnA7_EjYIoe_hCPo8BAKVsTuc8bE8vXzGRiONgOefRQP749yj5b4pSqKY6uM0gF3sqffvfVB8hfclnOnDRJALkgDWUrb60DJbCEDkU=w1029-h349-no)
 
   - Options in SGD optimizer 
 
-    - Momentum：動量 – 在更新⽅向以外，加上⼀個固定向量，使得真實移動⽅向會介於算出來的 gradient step 與 momentum 間。
+    - Momentum：動量 – 在更新方向以外，加上⼀個固定向量，使得真實移動方向會介於算出來的 gradient step 與 momentum 間。
 
       - Actual step = momentum step + gradient step
 
@@ -1532,9 +1536,9 @@
 
       ![](https://lh3.googleusercontent.com/Y-oEhhWLyFGrfALnvn-9KpR_R23c8pDkE5h2KUxL1eNokjwC_LXAP0QoXW0cLIsi6Slrcc057wH45VU80m441RtY6VOWeBCBJfGnAEeGmonX0u9oBApYfvlUnah0NTpfLGMGW2XJ3vyVCE5nrMBMW_pACUAb24f1cvPdAOpo-IAJgbe4BGqt-cVST8a1FZlb_qYBwzY1Pwt2WrRytVIbfn5e1Z2l_zAtU-8lr4TlbCzRniWAGooX4aSaIAzdplXR4HczqOeAGbsyGMXDbGiTzluk7dJ7o3XF-pJGfQsXJYUdxV1H2NxxvI6CT0pAVUZTRV00VwnyEQd1AkkXzW8JRvdy_f1UOrqz86_fbhufezO927YgvRTyTOyW7NZp6rNEVhRyKJSsMRc3VvjV_As_KU_feCuJvoIaLq0vGWJlX1R6S87DgR6AyLP8D7FOn2Wkd8HyfSToumyOZ33FvgIkYKDkpYKSqdWYcOdUD0OMWSeI1OWDacOXv0_bP2W32nRp5w8ZblukMgEjN_uL3IFS2WS4-2lWH5nDh8i_LtvUdBPp26DR9s71SquD6iQul8RguwXd0HCqxBU2szbU-T2aKtZrfoFJlgKqErTVcZtHeGE7ux3dU3NaqRPqgXVXhBPOiApFkuAt2jzbxbNV1qonAropAYUSBLZwnTR3QV_Pw0OiCqvONY1MBrBxlmuYzsGqNeFH2gTrYIvtzCYMy6coFfsa=w1063-h301-no)
 
-  - 在 SGD 中的動量⽅法
+  - 在 SGD 中的動量方法
 
-    - 在損失⽅向上，加上⼀定比率的動量協助擺脫平原或是⼩⼭⾕
+    - 在損失方向上，加上⼀定比率的動量協助擺脫平原或是⼩⼭⾕
 
   - 參考資料
 
@@ -1544,7 +1548,7 @@
 
   - Cost function = Loss + Regularization
   - 透過 regularization，可以使的模型的weights 變得比較⼩
-  - Regularizer 的效果：讓模型參數的數值較⼩ – 使得 Inputs 的改變不會讓 Outputs 有⼤幅的改變。
+  - Regularizer 的效果：讓模型參數的數值較⼩ – 使得 Inputs 的改變不會讓 Outputs 有大幅的改變。
   - wi 較⼩ 
     ➔ Δxi 對 ŷ 造成的影響(Δ̂ y)較⼩ 
     ➔ 對 input 變化比較不敏感
@@ -1567,10 +1571,10 @@
 
 - Dropout
 
-  - Dropout：在訓練時隨機將某些參數暫時設為 0(刻意讓訓練難度提升)，強迫模型的每個參數有更強的泛化能⼒，也讓網路能在更多參數組合的狀態下習得表徵。
+  - Dropout：在訓練時隨機將某些參數暫時設為 0(刻意讓訓練難度提升)，強迫模型的每個參數有更強的泛化能力，也讓網路能在更多參數組合的狀態下習得表徵。
   - 在訓練過程中，在原本全連結的前後兩層 layers ，隨機拿掉⼀些連結(weights 設為 0)
-    - 解釋1：增加訓練的難度 – 當你知道你的同伴中有豬隊友時，你會變得要更努⼒學習
-    - 解釋2：被視為⼀種 model ⾃⾝的ensemble ⽅法，因為 model 可以有 2^n 種 weights combination
+    - 解釋1：增加訓練的難度 – 當你知道你的同伴中有豬隊友時，你會變得要更努力學習
+    - 解釋2：被視為⼀種 model ⾃⾝的ensemble 方法，因為 model 可以有 2^n 種 weights combination
 
   ![](https://lh3.googleusercontent.com/vkLYD68AKR-OcpD4tS2tCWvwt-6hZ4qy8MM6RajC2guOV4jWp_2_NtCIhBJRiuU9uDEfCiKweWeolok69vWGSgWruASv4mdzjEMAxrEp6aZ8hXGJQxrySirZOdT00_ol4qWArYMTNtVjCZWJiTyp631G5RSK6iraVun38qxiI8ksOXGsAHePv0iL5UGDZ8GYFx9gp4D-Ys1lRntokQ5x2NORUiFGaiH2cHUILjJadMTac9sCwxu6_z-Ac9O3FOBl7cCgKaPBFFugH6Fd9_lvfb8phe0335-8RR-lZlYd6oSR_wYzM8hd09WWby9iUt-vuPt_5nEac1HSB7zzrJ7Q9cQ8P62GIlMDsZW-dfkmE6sQihnfICkZnpDffzbgFNIpdgvLzTsJBXJjxnMWkle2oT9NF4em8IPOfr-sOeM_MSkVaIFJQrssCFOS2UAQQmIvemgiVNJHURzMxPmkkfYjR1BVLv4P5tRfT9VLLXnkjFhpjIE_qCTV5O4O0WOxJlldwLdYzYBSnRZhULusRD5BP-N9NTG4al82GVOdj4ftJJWxYBrASdbtirq53oShQk17VQPiURdVEHw5rnMFufmVyMXByXwZGdKewCAszDWGJfRTvJcYpX1OF16aGMNjI8JhZ5zzOwqWxtiQ0heGJ5O3JQ90STvVgLfFSaJKlk3mrYW-Afo_9HxzYJet4aq41hcZZcf1Sews-J_nY74jZ9MclN4o=w725-h334-no)
 
@@ -1603,15 +1607,15 @@
   - Batch normalization：除了在 Inputs 做正規化以外，批次正規層讓我們能夠將每⼀層的輸入/輸出做正規化
   - 各層的正規化使得 Gradient 消失 (gradient vanish)或爆炸 (explode) 的狀況得以減輕 (但最近有 paper對於這項論點有些不同意)
   - 每個 input feature 獨立做 normalization
-  - 利⽤ batch statistics 做 normalization ⽽非整份資料
+  - 利用 batch statistics 做 normalization ⽽非整份資料
   - 同⼀筆資料在不同的 batch 中會有些微不同
   - BN：將輸入經過 t 轉換後輸出
-    - 訓練時：使⽤ Batch 的平均值
-    - 推論時：使⽤ Moving Average
+    - 訓練時：使用 Batch 的平均值
+    - 推論時：使用 Moving Average
   - 可以解決 Gradient vanishing 的問題
-  - 可以⽤比較⼤的 learning rate加速訓練
+  - 可以用比較大的 learning rate加速訓練
   - 取代 dropout & regularizes
-    - ⽬前⼤多數的 Deep neural network 都會加
+    - ⽬前大多數的 Deep neural network 都會加
 
   ```python
   from keras.layers import BatchNormalization
@@ -1660,14 +1664,14 @@
 
 - ModelCheckPoint
 
-  - 為何要使⽤ Model Check Point?
+  - 為何要使用 Model Check Point?
     - ModelCheckPoint：⾃動將⽬前最佳的模型權重存下
   - Model checkpoint：根據狀況隨時將模型存下來，如此可以保證
     - 假如不幸訓練意外中斷，前⾯的功夫不會⽩費。我們可以從最近的⼀次繼續重新開始。
     - 我們可以透過監控 validation loss 來保證所存下來的模型是在 validation set表現最好的⼀個
   - 假如電腦突然斷線、當機該怎麼辦? 難道我只能重新開始?
     - 假如不幸斷線 : 可以重新⾃最佳的權重開始
-    - 假如要做 Inference :可以保證使⽤的是對 monitor metric 最佳的權重
+    - 假如要做 Inference :可以保證使用的是對 monitor metric 最佳的權重
 
   ```python
   from keras.callbacks import ModelCheckpoint
@@ -1690,11 +1694,11 @@
 
 - Reduce Learning Rate
 
-  - Reduce learning rate on plateau：模型沒辦法進步的可能是因為學習率太⼤導致每次改變量太⼤⽽無法落入較低的損失平⾯，透過適度的降低，就有機會得到更好的結果
-  - 因為我們可以透過這樣的監控機制，初始的 Learning rate 可以調得比較⾼，讓訓練過程與 callback 來做適當的 learning rate 調降。
+  - Reduce learning rate on plateau：模型沒辦法進步的可能是因為學習率太大導致每次改變量太大⽽無法落入較低的損失平⾯，透過適度的降低，就有機會得到更好的結果
+  - 因為我們可以透過這樣的監控機制，初始的 Learning rate 可以調得比較高，讓訓練過程與 callback 來做適當的 learning rate 調降。
   - Reduce Learning Rate: 隨訓練更新次數，將 Learning rate 逐步減⼩
     - 因為通常損失函數越接近⾕底的位置，開⼝越⼩ – 需要較⼩的Learning rate 才可以再次下降
-  - 可⾏的調降⽅式
+  - 可行的調降方式
     - 每更新 n 次後，將 Learning rate 做⼀次調降 – schedule decay
     - 當經過幾個 epoch 後，發現 performance 沒有進步 – Reduce on plateau
 
@@ -1723,7 +1727,7 @@
 
 - 撰寫自己的callbacks 函數
 
-  - Callbacks 可以在模型訓練的過程中，進⾏監控或介入。Callbacks 的時機包含
+  - Callbacks 可以在模型訓練的過程中，進行監控或介入。Callbacks 的時機包含
     - on_train_begin：在訓練最開始時
     - on_train_end：在訓練結束時
     - on_batch_begin：在每個 batch 開始時
@@ -1766,20 +1770,20 @@ class My_Callback(Callback):
 
 - Loss function
 
-  - 在 Keras 中，除了使⽤官⽅提供的 Loss function 外，亦可以⾃⾏定義/修改 loss function
-  - 在 Keras 中，我們可以⾃⾏定義函式來進⾏損失的運算。⼀個損失函數必須
+  - 在 Keras 中，除了使用官方提供的 Loss function 外，亦可以⾃行定義/修改 loss function
+  - 在 Keras 中，我們可以⾃行定義函式來進行損失的運算。⼀個損失函數必須
     - 有 y_true 與 y_pred 兩個輸入
     - 必須可以微分
-    - 必須使⽤ tensor operation，也就是在 tensor 的狀態下，進⾏運算。如K.sum …
+    - 必須使用 tensor operation，也就是在 tensor 的狀態下，進行運算。如K.sum …
   - 所定義的函數
     - 最內層函式的參數輸入須根據 output tensor ⽽定，舉例來說，在分類模型中需要有 y_true, y_pred
-    - 需要使⽤ tensor operations – 即在 tensor 上運算⽽非在 numpy array上進⾏運算
+    - 需要使用 tensor operations – 即在 tensor 上運算⽽非在 numpy array上進行運算
     - 回傳的結果是⼀個 tensor
 
   ```python
   import keras.backend as K
   def dice_coef(y_true, y_pred, smooth):
-      # 皆須使⽤ tensor operations
+      # 皆須使用 tensor operations
       y_pred = y_pred >= 0.5
       y_true_f = K.flatten(y_true)
       y_pred_f = K.flatten(y_pred)
@@ -1802,29 +1806,29 @@ class My_Callback(Callback):
 
 ## 傳統電腦視覺與影像辨識
 
-> - 了解⽤傳統電腦來做影像辨識的過程
-> - 如何⽤顏⾊直⽅圖提取圖片的顏⾊特徵
+> - 了解用傳統電腦來做影像辨識的過程
+> - 如何用顏⾊直方圖提取圖片的顏⾊特徵
 
-- 影像辨識的傳統⽅法是特徵描述及檢測，需要辦法把影像像素量化為特徵（特徵⼯程），然後把特徵丟給我們之前學過的機器學習算法來做分類或回歸。
+- 影像辨識的傳統方法是特徵描述及檢測，需要辦法把影像像素量化為特徵（特徵工程），然後把特徵丟給我們之前學過的機器學習算法來做分類或回歸。
 
 ![](https://lh3.googleusercontent.com/obqRVJFHA5BjE2xl8veo5Ctmjw8NHmekXAUyRy-uJVPEYtaYDFTekBzvuqdfH06VdvIOSv_d4pqBPiN3oe5_sopPH2eZ6QLCbdUZ4Yfc_pKuObFRzXugdXKnGQelbr-4i2_baD6p8xOWziehQjZty6zaMZAh5JVdCqKA3K2uxMtXKc0qX3NVK46Xq5Xh5YCkr21j6dUdbsE0PVSWBUlyxy1Boz3v6_NXUc36IBbsQumtdYH1ttv8o_1Fr7D13pugYNpb1ge8pXl2nAcLdSwlCxhuKgJYFTZAP5YeNq_wiRCj4uMwf__Ex0IR6PoWXk2QpnChaKfXXyB7lGHgVnn_k1t9VE-oW8bimk2FaRe5tF8kj902RiJA4KQJ2xv3oxPi8fXYSWHQXlyE2kNTKFx90mvLlwgUs8KJSUx9ZNL1YUAO6Dyb9cB6stCm1D0K342zQrFh3t8GM-lsDdmMkLjFfrici4w02u8nWiXrnjKYaHF7vCrem5RsvpVh4Kg5gUfOaHoTpHVV6BVCqw8bd4MTMtDqpY-0HnMFT8_CLGHfBitP6M57iN0RALSD9XblGl7X-LDaP40oMhsw7edzoLX5Kr3kR99D-VAQ3BIjHSsI2lH-bErzeYrVE2_hUG66gZRX9JqSwqeoYtkboZRZ_-7y4Rlze6DoNbG_xYXtX8IVABwk3_M8B-PW4vBt7U3EOZnHKmUNH2vtpdeGgAjj-EbjH4OQ=w1013-h226-no)
 
-### 傳統電腦視覺提取特徵的⽅法
+### 傳統電腦視覺提取特徵的方法
 
-- 為了有更直觀的理解，這裡介紹⼀種最簡單提取特徵的⽅法
+- 為了有更直觀的理解，這裡介紹⼀種最簡單提取特徵的方法
 
   - 如何描述顏⾊？
-  - 顏⾊直⽅圖
+  - 顏⾊直方圖
 
-- 顏⾊直⽅圖是將顏⾊信息轉化為特徵⼀種⽅法，將顏⾊值 RGB 轉為直⽅圖值，來描述⾊彩和強度的分佈情況。舉例來說，⼀張彩⾊圖有 3 個channel， RGB，顏⾊值都介於 0-255 之間，最⼩可以去統計每個像素值出現在圖片的數量，也可以是⼀個區間如 (0 - 15)、(16 - 31)、...、(240 -255)。可表⽰如下圖
+- 顏⾊直方圖是將顏⾊信息轉化為特徵⼀種方法，將顏⾊值 RGB 轉為直方圖值，來描述⾊彩和強度的分佈情況。舉例來說，⼀張彩⾊圖有 3 個channel， RGB，顏⾊值都介於 0-255 之間，最⼩可以去統計每個像素值出現在圖片的數量，也可以是⼀個區間如 (0 - 15)、(16 - 31)、...、(240 -255)。可表⽰如下圖
 
   ![](https://lh3.googleusercontent.com/jA_qqEPxxF2wmpYIlWpgg2t3eJpFgjaqfUABumhFitJXkNHbGMrZx4EDr3Muk9LNUej5JFxsNa9AXsgURxjnCRY80_qJsqg6YTKg1SjIPC4p9RnSHtyu8OpBJuw9KJiO7uhLTUtx5zGrMs37LgAMvGI6QuCeKgnkWBusUspqS6isUMdWia4hYoQ-IAwYoqh7IK1RpYFQtoZ8vR_xxMTMh34mTGUz0r39y1EE2gU4aFu0bkGnbcvTkCTauVDJM1VKhcq6As8nwV--SYa7sqPWqmq7apdgVQhrq_JVJVhPEQQqqAU5DtZ3s2OpvGXOdbXp0Q8kFs71WSxFHZqRY6Q73FNUCTfvzM0pPMvhDuqM2nQfoMVwRXfI-uUhcFIhLRgHErG4y65FOuZk_Mu6uR5Eyg_MZV1Kc-GjHSTBUB0HsGzBBw01FGIdW1N8yTDfr5bJVPAq3bbmThP35SQmJBFjWlHFhWklwi0q-LxVJD8yiCkUQwTvRbHWdmY9EdFXmsA8_NTfeKWYNmik39wZiljHDQs49KwZ9DAhsqR8P5AWmG9nW1Kn8x_z8DZgl-ibiIpd3S_hNx2JTQEKNBzsU1NzlzXp70iXmt0CGLlmf_lk-2HqByuS7D37GAdaQ-rJqPXhyXT_dAf4wxM-5jyZGFBWGBVhvQ5Z9zj5yKYZf8aOZSNlVIHS4hbLt8WT7RE67kHOw9rJdHQe4jJb6KMT7XsZ8OhN=w623-h485-no)
 
 ### 重要知識點複習
 
-- 傳統影像視覺描述特徵的⽅法是⼀個非常「⼿⼯」的過程， 可以想像本⽇知識點提到的顏⾊直⽅圖在要辨認顏⾊的場景就會非常有⽤
-- 但可能就不適合⽤來做邊緣檢測的任務，因為從顏⾊的分佈沒有考量到空間上的信息。
-- 不同的任務，我們就要想辦法針對性地設計特徵來進⾏後續影像辨識的任務。
+- 傳統影像視覺描述特徵的方法是⼀個非常「⼿工」的過程， 可以想像本⽇知識點提到的顏⾊直方圖在要辨認顏⾊的場景就會非常有用
+- 但可能就不適合用來做邊緣檢測的任務，因為從顏⾊的分佈沒有考量到空間上的信息。
+- 不同的任務，我們就要想辦法針對性地設計特徵來進行後續影像辨識的任務。
 
 ### 參考資料
 
@@ -1835,15 +1839,15 @@ class My_Callback(Callback):
 
 ## 傳統電腦視覺與影像辨識_HOG
 
-> - 體驗使⽤不同特徵來做機器學習分類問題的差別
-> - 知道 hog 的調⽤⽅式
-> - 知道 svm 在 opencv 的調⽤⽅式
+> - 體驗使用不同特徵來做機器學習分類問題的差別
+> - 知道 hog 的調用方式
+> - 知道 svm 在 opencv 的調用方式
 
-- 嘗試比較⽤ color histogram 和 HOG 特徵分類 cifar10 準確度各在 training 和 testing data 的差別
+- 嘗試比較用 color histogram 和 HOG 特徵分類 cifar10 準確度各在 training 和 testing data 的差別
 
 ### 重要知識點複習
 
-- 靠⼈⼯設計的特徵在簡單的任務上也許是堪⽤，但複雜的情況，比如說分類的類別多起來，就能明顯感覺到這些特徵的不⾜之處
+- 靠人工設計的特徵在簡單的任務上也許是堪用，但複雜的情況，比如說分類的類別多起來，就能明顯感覺到這些特徵的不⾜之處
 - 體會這⼀點能更幫助理解接下來的卷積神經網路的意義。
 
 ### 參考資料

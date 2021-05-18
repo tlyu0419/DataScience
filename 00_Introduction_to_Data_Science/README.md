@@ -128,7 +128,8 @@
   - Autopep8: 自動排版程式碼
   - variable inspector
   - ExecuteTime
-
+  - [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
+  
 - Ref
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
@@ -176,7 +177,10 @@
   conda env remove --name myenv
   ```
 
+## Jupyter 插件
 
+- 
+- 
 
 ## Python basic
 
