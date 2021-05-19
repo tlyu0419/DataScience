@@ -588,7 +588,7 @@
     - 是採⽤boxcox轉換函數，函數的 lambda(λ) 參數為 0 時等於 log 函數，lambda(λ) 為 0.5 時等於開根號 (即sqrt)，因此可藉由參數的調整更靈活地轉換數值，但要特別注意 Y 的輸入數值必須要為正 (不可為0)
     - 使⽤ box-cox 分布去偏時，除了注意 λ 參數要介於 0 到 0.5 之間，並且要注意轉換前的數值不可⼩於等於 0
 
-### 參考資料
+#### 參考資料
 
 - [Ways to Detect and Remove the Outliers](https://towardsdatascience.com/ways-to-detect-and-remove-the-outliers-404d16608dba)
 
@@ -635,9 +635,17 @@
 - **不處理**
   - 採用可以處理遺漏值的演算法，如XGBoost，LightGBM。
 
-Ref
+#### FAQ
 
-- [【Python数据分析基础】: 数据缺失值处理](https://juejin.im/post/5b5c4e6c6fb9a04f90791e0c)
+- **Is replacing by the mean the best strategy to handle missing values?**
+
+  It is a good strategy but not the best one always. It depends on your business problem, on the way your data is distributed and on the number of missing values.
+
+  For example you have a lot of missing values, then mean substitution is not the best thing. Other strategies include "median" imputation, "most frequent" imputation or prediction imputation. 
+
+  Prediction Imputation is actually another great strategy that is recommended. The strategy that is even better than mean imputation: you take your feature column that contains the missing values and you set this feature column as the dependent variable, while setting the other columns as the independent variables. Then you split your dataset into a Training set and a Test set where the Training set contains all the observations (the lines) where your feature column that you just set as the dependent variable has no missing value and the Test set contains all the observations where your dependent variable column contains the missing values. Then you perform a classification model (a good one for this situation is k-NN) to predict the missing values in the test set. And eventually you replace your missing values by the predictions.
+
+- 
 
 ## Feature Scaling
 
@@ -772,6 +780,16 @@ $$
 $$
 \frac {(x-min(x))}{max(x)-min(x)}
 $$
+
+### FAQ
+
+- **Do we really have to apply Feature Scaling on the dummy variables?** 
+
+  Yes, if you want to optimize the accuracy of your model predictions. 
+  No, if you want to keep the most interpretation as possible in your model.
+
+- **When should we use Standardization and Normalization?**
+  Generally you should normalize (normalization) when the data is normally distributed, and scale (standardization) when the data is not normally distributed. In doubt, you should go for standardization. However what is commonly done is that the two scaling methods are tested.
 
 ### 參考資料
 

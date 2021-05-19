@@ -8,6 +8,12 @@
 
 - 了解專案的⽬標是甚麼樣的分類問題並選⽤適當的模型訓練
 
+- 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
+
+- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。
+
+- 但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
+
 - Supervised Learning
 
   - where we have inputs, and one (or more) response variable(s).
@@ -340,18 +346,13 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 - [Google 基礎機器學習線上課](https://developers.google.com/machine-learning/crash-course/)
 - [AWS Machine Learning 線上課](https://aws.amazon.com/tw/training/learn-about/machine-learning/)
 
-## 監督式模型
-
-- 由於大多演算法同時支持分類與回歸的任務，在這裡將兩者合併在一起說明
-- 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
-- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。
-- 但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
+## Regression
 
 ### Linear Regression
 
+- 依據解釋變數的數量可以再細分成 Simple Linear Regression 和 Multiple Linear Regression，當只有一個解釋變數時為Simple，有兩個以上是則是 Multiple
 - 線性回歸通過使用最佳的擬合直線（又被稱為回歸線），建立因變數 Y 和一個或多個引數 X 之間的關係。
 - 它的運算式為：$Y = a + bX + e$  ，其中 $a$ 為直線截距，$b$ 為直線斜率，$e$ 為誤差項。如果給出了自變量 $X$ ，就能通過這個線性回歸表達式計算出預測值，即因變數 $Y$。
-
 - 透過最小平方法(Ordinal Least Square, OLS)期望將$\sum(Y-\hat{Y})^2$最小化
 
 $$
@@ -805,6 +806,8 @@ If you want to understand the math behind how these categories are converted int
 ### Time Series
 
 
+
+## Classification
 
 ## 非監督式模型
 
@@ -1942,3 +1945,16 @@ print(clf2.predict(X[0:1]))
     - 確認目標變數的資料是否存在離群值
     - 將複雜模型替換為簡單的模型，降低模型的複雜度
 
+
+
+## FAQ
+
+- What is the p-value? 
+  To understand the P-value, we need to start by understanding the null hypothesis: the null hypothesis is the assumption that the parameters associated to your independent variables are equal to zero. Therefore under this hypothesis, your observations are totally random, and don’t follow a certain pattern. The P-value is the probability that the parameters associated to your independent variables have certain nonzero values, given that the null hypothesis is True. The most important thing to keep in mind about the P-Value is that it is a statistical metric: the lower is the P-Value, the more statistically significant is an independent variable, that is the better predictor it will be.
+
+- What are the Multiple Linear Regression assumptions in more details? 
+  - Linearity: There must be a linear relationship between the dependent variable and the independent variables. Scatterplots can show whether there is a linear or curvilinear relationship. 
+  - Homoscedasticity: This assumption states that the variance of error terms is similar across the values of the independent variables. A plot of standardized residuals versus predicted values can show whether points are equally distributed across all values of the independent variables. 
+  - Multivariate Normality: Multiple Linear Regression assumes that the residuals (the differences between the observed value of the dependent variable y and the predicted value yˆ are normally distributed. 
+  - Independence of errors: Multiple Linear Regression assumes that the residuals (the differences between the observed value of the dependent variable y and the predicted value yˆ are independent. 
+  - Lack of multicollinearity: Multiple Linear Regression assumes that the independent variables are not highly correlated with each other. This assumption is tested using Variance Inflation Factor (VIF) values.

@@ -725,3 +725,9 @@ We can think of this as a powerful version of Regular Expression where we actual
 - 鉴别垃圾邮件和非垃圾邮件
 - 自动标注客户问询
 - 将新闻文章按主题分类
+
+
+
+### 文本摘要
+
+- [【NLP】文本生成评价指标的进化与推翻](https://cloud.tencent.com/developer/article/1650473)
