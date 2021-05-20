@@ -386,6 +386,32 @@ $$
 
 - 雖然線性模型相較其他模型不容易有overfitinng的問題，但當參數一多時仍然會有overfit的問題
 
+- Backward Elimination in Python
+
+  ```python
+  import statsmodels.formula.api as sm
+  def backwardElimination(x, sl):
+      numVars = len(x[0])
+      for i in range(0, numVars):
+          regressor_OLS = sm.OLS(y, x).fit()
+          maxVar = max(regressor_OLS.pvalues).astype(float)
+          if maxVar > sl:
+              for j in range(0, numVars - i):
+                  if (regressor_OLS.pvalues[j].astype(float) == maxVar):
+                      x = np.delete(x, j, 1)
+      regressor_OLS.summary()
+      return x
+  
+  
+  SL = 0.05
+  X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+  X_Modeled = backwardElimination(X_opt, SL)
+  ```
+  
+  
+  
+- 
+
 - Ref
 
   - [Linear Regression With Gradient Descent From Scratch.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Machine_Learning/Linear Regression With Gradient Descent From Scratch.ipynb)
@@ -479,7 +505,7 @@ https://towardsdatascience.com/k-nearest-neighbors-knn-algorithm-bd375d14eec7
   print(reg.coef_) # 印出訓練後的模型參數
   ```
 
-### SVM_Support Vectot Machine
+### Support Vector Machine
 
 - 依據目標變數的不同可以再進一步分為SVC，SVR
 - [Support Vector Regression](https://core.ac.uk/download/pdf/81523322.pdf)
@@ -1949,12 +1975,168 @@ print(clf2.predict(X[0:1]))
 
 ## FAQ
 
-- What is the p-value? 
-  To understand the P-value, we need to start by understanding the null hypothesis: the null hypothesis is the assumption that the parameters associated to your independent variables are equal to zero. Therefore under this hypothesis, your observations are totally random, and don’t follow a certain pattern. The P-value is the probability that the parameters associated to your independent variables have certain nonzero values, given that the null hypothesis is True. The most important thing to keep in mind about the P-Value is that it is a statistical metric: the lower is the P-Value, the more statistically significant is an independent variable, that is the better predictor it will be.
+### Linear Regression
 
-- What are the Multiple Linear Regression assumptions in more details? 
+- **What is the p-value?** 
+  - To understand the P-value, we need to start by understanding the null hypothesis: the null hypothesis is the assumption that the parameters associated to your independent variables are equal to zero. 
+  - Therefore under this hypothesis, your observations are totally random, and don’t follow a certain pattern. The P-value is the probability that the parameters associated to your independent variables have certain nonzero values, given that the null hypothesis is True. The most important thing to keep in mind about the P-Value is that it is a statistical metric: the lower is the P-Value, the more statistically significant is an independent variable, that is the better predictor it will be.
+
+- **What are the Multiple Linear Regression assumptions in more details?** 
   - Linearity: There must be a linear relationship between the dependent variable and the independent variables. Scatterplots can show whether there is a linear or curvilinear relationship. 
   - Homoscedasticity: This assumption states that the variance of error terms is similar across the values of the independent variables. A plot of standardized residuals versus predicted values can show whether points are equally distributed across all values of the independent variables. 
   - Multivariate Normality: Multiple Linear Regression assumes that the residuals (the differences between the observed value of the dependent variable y and the predicted value yˆ are normally distributed. 
   - Independence of errors: Multiple Linear Regression assumes that the residuals (the differences between the observed value of the dependent variable y and the predicted value yˆ are independent. 
   - Lack of multicollinearity: Multiple Linear Regression assumes that the independent variables are not highly correlated with each other. This assumption is tested using Variance Inflation Factor (VIF) values.
+
+- **How is the coefficient b0 related to the dummy variable trap?**
+
+  - Since $D2 = 1 − D1$ then if you include both $D1$ and $D2$ you get:
+    $$
+    \begin{equation}\begin{split} 
+    y& = b_0 + b_1x_1 + b_2x_2 + b_3x_3 + b_4D_1 + b_5D_2\\
+    &= b_0 + b_1x_1 + b_2x_2 + b_3x_3 + b_4D_1 + b_5(1 − D_1)\\
+    &= b_0 + b_5 + b_1x_1 + b_2x_2 + b_3x_3 + (b_4 − b_5)D_1\\
+    &= b^∗_0 + b_1x_1 + b_2x_2 + b_3x_3 + b^∗_4D_1
+    \end{split}\end{equation}
+    $$
+
+  - with $b^∗_0 = b_0 + b_5$ and  $b^∗_4 = b_4 − b_5$ 
+
+  - Therefore the information of the redundant dummy variable $D2$ is going into the constant $b_0$.
+
+### Decision Tree Regression
+
+- **How does the algorithm split the data points?** 
+  - It uses reduction of standard deviation of the predictions. In other words, the standard deviation is decreased right after a split. Hence, building a decision tree is all about finding the attribute that returns the highest standard deviation reduction (i.e., the most homogeneous branches).
+
+- **What is the Information Gain and how does it work in Decision Trees?**
+  - The Information Gain in Decision Tree Regression is exactly the Standard Deviation Reduction we are looking to reach. We calculate by how much the Standard Deviation decreases after each split. Because the more the Standard Deviation is decreased after a split, the more homogeneous the child nodes will be.
+
+- **What is the Entropy and how does it work in Decision Trees?**
+  - The Entropy measures the disorder in a set, here in a part resulting from a split. So the more homogeneous is your data in a part, the lower will be the entropy. The more you have splits, the more you have chance to find parts in which your data is homogeneous, and therefore the lower will be the entropy (close to 0) in these parts. However you might still find some nodes where the data is not homogeneous, and therefore the entropy would not be that small.
+
+### Random Forest Regression
+
+- **What is the advantage and drawback of Random Forests compared to Decision Trees?** 
+  - Advantage: Random Forests can give you a better predictive power than Decision Trees. 
+  - Drawback: Decision Tree will give you more interpretability than Random Forests, because you can plot the graph of a Decision Tree to see the different splits leading to the prediction, as seen in the Intuition Lecture. That’s something you can’t do with Random Forests.
+
+- **When to use Random Forest and when to use the other models?**
+  - First, you need to figure out whether your problem is linear or non linear. 
+  - Then: If your problem is linear, you should go for Simple Linear Regression if you only have one feature, and Multiple Linear Regression if you have several features. If your problem is non linear, you should go for Polynomial Regression, SVR, Decision Tree or Random Forest. 
+
+### Evaluating Regression Models Performance
+
+- **What are Low/High Bias/Variance in Machine Learning?** 
+  - Low Bias is when your model predictions are very close to the real values. 
+  - High Bias is when your model predictions are far from the real values. 
+  - Low Variance: when you run your model several times, the different predictions of your observation points won’t vary much. 
+  - High Variance: when you run your model several times, the different predictions of your observation points will vary a lot.
+  - What you want to get when you build a model is: Low Bias and Low Variance.
+
+###  Logistic Regression
+
+- **Is Logistic Regression a linear or non linear model?**
+  - It is a linear model. You will visualize this at the end of the section when seeing that the classifier’s separator is a straight line
+
+- **What are the Logistic Regression assumptions?**
+  - First, binary logistic regression requires the dependent variable to be binary and ordinal logistic regression requires the dependent variable to be ordinal. 
+  - Second, logistic regression requires the observations to be independent of each other. In other words, the observations should not come from repeated measurements or matched data. 
+  - Third, logistic regression requires there to be little or no multicollinearity among the independent variables. This means that the independent variables should not be too highly correlated with each other. 
+  - Fourth, logistic regression assumes linearity of independent variables and log odds. although this analysis does not require the dependent and independent variables to be related linearly, it requires that the independent variables are linearly related to the log odds.
+
+### K-Nearest Neighbors (K-NN)
+
+- **Is K-NN a linear model?**
+  - No, K-NN is a non linear model, as you will see in the practical sections of this course.
+- **What number of neighbors should we choose?**
+  - The more you have neighbors, the more this team of neighbors has chance to find correct predictions, and therefore the more your model accuracy has chance to increase. 
+  - However be careful, if you have too many neighbors, that will cause overfitting on the training set and the predictions will be poor on new observations in the test set.
+
+### Support Vector Machine (SVM)
+
+- **Is SVM a linear model?** 
+  - Yes, SVM is a linear model. You will see that easily in the practical sections of this course, when visualizing the results on the graph (you will notice that the prediction boundary is a straight line). However we can make the SVM a non linear model, by adding a kernel, which you will see in the next section.
+
+- **Why does we see the support vectors as vectors not as points?**
+  - The vectors are points in 2-D space (as in this example), but in real-world problems we have data-sets of higher dimensions. In an n-dimensional space, vectors make more sense and it is easier to do vector arithmetic and matrix manipulations rather than considering them as points. This is why we generalize the data-points to vectors. This also enables us to think of them in an N-dimensional space.
+
+### Naive Bayes
+
+- **Is Naive Bayes a linear model or a non linear model?** 
+  - Naive Bayes is a non linear model. You will see that very clearly in Python or R when plotting the prediction boundary which will be a very nice curve well separating the non linearly distributed observations.
+
+- **How does the algorithm decide the circle?**
+  - In the Intuition lecture we see that a circle is drawn to create a collection of data points similar to the new datapoint. The new datapoint was roughly at the center of the circle and hence we saw that number of green points were lesser than the number of red points and hence the new point went to the red category. 
+  - But if we had drawn the circle a little differently around the new datapoint, then the number of green points could have been more than red. So how is that circle chosen? There is a parameter in the model that decides the radius of the circle, just like there is a parameter that chooses the number of neighbors in K-NN.
+
+### Decision Tree Classification
+
+### Random Forest Classification
+
+### Evaluating Classification Models Performance
+
+### K-Means Clustering
+
+- **Where can we apply clustering algorithm in real life?** 
+  - You can apply them for different purposes: 
+    - Market Segmentation
+    - Medicine with for example tumor detection
+    - Fraud detection
+    - to simply identify some clusters of your customers in your company or business.
+
+### Hierarchical Clustering
+
+- **What is the point of Hierarchical Clustering if it always leads to one cluster per observation point?** 
+  - The main point of Hierarchical Clustering is to make the dendrogram, because you need to start with one single cluster, then work your way down to see the different combinations of clusters until having a number of clusters equal to the number of observations. And it’s the dendrogram itself that allows to find the best clustering configuration.
+- **When you are comparing the distance between two clusters or a cluster and a point, how exactly is it measured?** 
+  - Are you taking the centroid in the cluster and measuring the distance? Exactly, the metric is the euclidean distance between the centroid of the first cluster and the point, (or the centroid of the other cluster for the distance between two clusters).
+
+- **Do we also need to perform feature scaling for Hierarchical Clustering**
+  - Yes because the equations of the clustering problems involve the Euclidean Distance. Anytime the model equations involve the Euclidean Distance, you should apply feature scaling.
+
+- **Should we use the dendrogram or the elbow method to find that optimal number of clusters?** 
+  - You should use both (it’s faster to try both than you think thanks to the templates), just to double check that optimal number. However if you really only have time for one, I would recommend the elbow method. The dendrogram is not always the easiest way to find the optimal number of clusters. But with the elbow method it’s very easy, since the elbow is most of the time very obvious to spot.
+
+### Association Rule Learning
+
+- **What are the three essential relations between the support, confidence and lift?**
+
+  - Given two movies M1 and M2, here are the three essential relations to remember: Relation between the support and the confidence
+    $$
+    confidence(M_1 \to M_2) = \frac{support(M_1,M_2)}{support(M_1)}
+    $$
+    
+
+  - Relation between the lift and the support:
+    $$
+    lift(M_1\to M_2) = \frac{support(M_1, M_2)}{support(M_1)×support(M_2)}
+    $$
+    
+
+  - Relation between the lift and the confidence (consequence of the two previous equations):
+    $$
+    lift(M_1 \to M_2) = \frac{confidence(M_1, M_2)}{support(M_2)}
+    $$
+
+- **Are the confidence and lift symmetrical functions?**
+
+  - Given the three equations of the previous question, we can easily see that: Confidence is non symmetrical:
+    $$
+    confidence(M_1 \to M_2) \ne confidence(M_2 \to M_1)
+    $$
+
+  - Lift is symmetrical:
+    $$
+    lift(M_1 \to M_2) = lift(M_2 \to M_1) 
+    $$
+
+- **In real time scenario what is the ideal time period we should consider to make a good Market Basket Analysis model?And should it be done on each store separately or region wise? **
+
+  - One month is a good time period. However you could also consider 3-6 months to normalize the seasonality effect, or you can run the same model every month, which I would rather do to catch the specificities of each month (season, tourism rate, etc.). Then Market Basket Analysis should be done on each store separately, since it depends on the customer behaviors within a specific neighborhood. Basically customers might behave differently across different neighborhoods.
+
+### Eclat
+
+- **When should we use Eclat rather than Apriori?** 
+  - The only advantage of Eclat compared to Apriori is that it is simpler and faster to use. However if you need to run a deep analysis of your market basket, then you should definitely go for Apriori.
+

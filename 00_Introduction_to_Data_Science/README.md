@@ -277,6 +277,25 @@ myfile.readlines()
     - [Creating Series and DataFrames](https://github.com/guipsamora/pandas_exercises#creating-series-and-dataframes)
     - [Time Series](https://github.com/guipsamora/pandas_exercises#time-series)
     - [Deleting](https://github.com/guipsamora/pandas_exercises#deleting)
+    
+  - Save you data to different excel sheets
+
+    ```python
+    import pandas as pd
+    import xlsxwriter
+    df = pd.DataFrame({'Fruits': ["Apple","Orange","Mango","Kiwi"],
+                         'City' : ["Shimla","Sydney","Lucknow","Wellington"]
+                      })
+    print(df)
+    excel_writer = pd.ExcelWriter('pandas_df.xlsx', engine='xlsxwriter')
+    df.to_excel(excel_writer, sheet_name='first_sheet')
+    df.to_excel(excel_writer, sheet_name='second_sheet')
+    df.to_excel(excel_writer, sheet_name='third_sheet')
+    excel_writer.save()
+    ```
+
+    
+
   - Ref
 
     - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
