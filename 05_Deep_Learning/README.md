@@ -1847,6 +1847,98 @@ def dice_loss(smooth, thresh):
 
 
 
+# FAQ
+
+### Natural Language Processing
+
+- **Why does the Bag of Words model replace all the capital letters by the lower cases?** 
+  - Many computer languages, in particular Python and R, treat capitals and lower case letters as completely different symbols. So if we won’t convert everything to lower cases then we are to take into account that some words may contain capitalized letters and include additional code for them. Much more simpler to replace all capitals by lower cases.
+
+- **What is sparsity?**
+  - sparsity occurs when you have lots and lots of zeros in your matrix (therefore called a sparse matrix). So when we reduce sparsity, that means we reduce the proportion of zeros in the matrix.
+- **Why do we delete ’NOT’, given that "Crust is good" is not the same as "Crust is not good"?**
+  - It also works the other way: "Crust is bad" is not the same as "Crust is not bad". Hence, this is not usually taken into account. Hence we believe/hope that on average, the number of misconceptions caused by this would be less in total.
+- **After we are done with cleaning and getting our bag of words model, why are we doing classification?**
+  - We are doing classification on the reviews to predict the outcome of new ones, exactly like sentiment analysis. Only to make these predictions in the best conditions, we need to apply the bag of words model first. That will prepare the data in a correct format for it to be fitted to the classifier.
+- **Why do we remove punctuation from the text? At first they look like they don’t contain information. But why we won’t let classification algorithm to decide?**
+  - It is usually a trade-off between dimensionality and information. We remove punctuation to make the dataset more manageable with less dimensions. 
+  - Moreover, the punctuation doesn’t really carry as much discriminatory information as words in usual classification processes. 
+  - Through experience, cross-validation has pointed towards removing punctuation performing better. 
+  - However yes, we could let the classification algorithm decide. Maybe some datasets perform better with punctuation but as a general-rule, punctuation is better to be avoided.
+
+### Artificial Neural Networks
+
+- **How does the Neural Network figure out what the optimal weights are. When does it stop its learning?**
+  - It figures out the optimal weights based on an optimization algorithm employed to minimize the loss function w.r.t. all the input datapoints. It stops when the training loss goes very close to 0. Besides we usually pick a certain number of epochs which is the number of times the neural network is trained. After the last epoch, the training is over. There is also what we call "Early Stopping" which is a technique that stops the training once we get a too small loss reduction on a validation set over the epochs. In that case, the training stops before the last epoch
+
+- **Why should the cost function be reduced?**
+  - The cost function is a numerical estimate of how wrong our neural network predictions are. If we reduce the cost function, it means we are reducing the mistakes made by the neural network, in-turn making it predict more accurately
+
+- **How is the weight calculated for each neuron?**
+  - At the beginning of the training, the weights are initialized close to zero. Then, over each of many iterations (or epochs), the weights are updated through gradient descent, in the direction that decreases the most the loss error (or cost function) between the predictions and the targets.
+
+- **Could you please recap on the process of each training iteration?**
+  - After the weights are initialized randomly with values close to zero, the training goes over many iterations (the number of iterations, also called the number of epochs, is usually decided in the implementation). Here is the process of each iteration
+    1. Forward Propagation: the input is forward propagated inside the neural network which at the end returns the prediction.
+    2. We compare that prediction to the target (the real value which we have because we are dealing with the training set) and we compute the loss error between the prediction and the target.
+    3. That loss error is back-propagated inside the neural network.
+    4. Through Gradient Descent or Stochastic Gradient Descent, the weights are updated in the directions that reduce the most the loss error (since in fact the loss error is a cost function of the weights). 
+    5. We thus get new weights, ready to make a new prediction at the next iteration. Then the same whole process goes again, until the loss error stops reducing (early stopping) or until the training reaches the last epoch.
+
+- **Why are we using Sequential and Dense?**
+  - Basically it’s very simple: 
+    - Sequential is used to initialize the Deep Learning model as a sequence of layers (as opposed to a computational graph).
+    - Dense is used to add one layer of neurons in the neural network
+
+- **How can we decide the number of hidden layers?**
+  - There is no rule of thumb and generally more hidden layers can give you higher accuracy but can also give you overfitting so you need to be cautious. The key is intuition and experience. 
+- **What does the rectifier activation function do?**
+  - Since Deep Learning is used to solve non linear problems, the models need to be non linear. And the use of the rectifier function is to actually make it non linear. By applying it you are breaking the linearity between the output neurons and the input neurons.
+- **Where do all the hyperparameters come from? How did we choose the number of layers, the number of neurons in each layer, and all the other parameters?**
+  - Through a lot of research and experimentation. There is no rule of thumb as to choose such numbers. Usually you can find some ready to use neural networks architectures online which prove to get good results. But you can experiment by tuning your model manually with other parameter values. And lastly, you can use some parameter tuning techniques like Grid Search with k-Fold Cross Validation to find the optimal values. You will learn how to do that in Part 10 - Model Selection.
+
+- **Python or R for Deep Learning?**
+  - Python. Without a doubt. Python is used by all the best Deep Learning scientists today and it has amazing libraries (Tensorflow, Keras, PyTorch) developed for powerful applications (Image Classification, Computer Vision, Artificial Intelligence, ChatBots, Machine Translation, etc.)
+
+### Convolutional Neural Networks
+
+- **What are the differences between the CNN and the ANN? Is the CNN applied to image classification only?** 
+  - ANN means neural networks in general. So a CNN is a ANN. 
+  - CNNs are not only used for Image Processing, they can also be applied to Text like Text Comprehension. Down to how much the image size will be reduced for the feature detector? In the practical section it will be reduced down to 64 by 64 dimensions.
+
+- **What is the purpose of the feature maps?**
+  - We are building feature maps with each convolutional filter, meaning we are making features that help us classify the object. The example shown in the Intuition Lecture is like a one-dimensional edge detection filter. That is one feature map. So we want our model to "activate" in a feature map only where there is an edge. We will have several feature maps like this which when all put together will help us identify the object. This is helped by removing the black or the negative values.
+
+- **What is the purpose of the ReLU?**
+  - The biggest reason why we use ReLU is because we want to increase the non-linearity in our image. And ReLU acts as a function which breaks up linearity. And the reason why we want to break up linearity in our network is because images themselves are highly non-linear. Indeed they have a lot of non-linear elements like the transitions between pixels.
+
+- **Why does Max-Pooling consider only 4 values to take a maximum from and not 2 or 8 values? Also in convolution how is the feature detector formed?**
+  - Because a maximum is taken from a spot on the image which is represented by a 2x2 square on our image. Therefore it covers 4 pixels.
+
+- **After flattening, are we going to get one long vector for all pooled layers or a vector for each pooled layer?** 
+  - It will be one long vector gathering all the pooled layers.
+
+- **How much images are required to train a good model? Is there any rule of thumb for this decision?** 
+  - 10,000 is a good number. No rule of thumbs, just the more you have, the better chance you’ll have to get a good accuracy.
+
+- **Could you please explain the numbers 0, 1, 2, 3 and 4 in the feature maps?**
+  - When the 3x3 feature detector is covering one part of the input image, it gets: 
+    - 0 if there is no 1 in common between the 3x3 subtable of the input image and the 3x3 feature detector, 
+    - 1 if there is one 1 in common between the 3x3 subtable of the input image and the 3x3 feature detector, 
+    - 2 if there is two 1 in common between the 3x3 subtable of the input image and the 3x3 feature detector, 
+    - 3 if there is three 1 in common between the 3x3 subtable of the input image and the 3x3 feature detector, 
+    - 4 if there is four 1 in common between the 3x3 subtable of the input image and the 3x3 feature detector.
+
+- **Could you please recap the forward propagation of the input images happening inside the CNN by describing in a few words the classes we use in Python?**
+  - Sure, here is the process with the essential descriptions of the classes used: 
+    - Sequential is first used to specify we introduce a sequence of layers, as opposed to a computational graph. 
+    - Convolution2D is then used to add the convolutional layer. 
+    - MaxPooling2D is then used to apply Max Pooling to the input images. 
+    - Flatten is then used to flatten the pooled images. 
+    - Dense is used to add the output layer with softmax.
+
+
+
 ## RNN_Recurrent Neural Network
 
 具有記憶力的神經網絡模型

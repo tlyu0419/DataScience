@@ -430,29 +430,7 @@ $$
   clf.fit(X_train, y_train)
   ```
 
-### KNN
 
-- 流程：
-  1. Choose the number K of neighbors(default=5)
-  2. Take the K nearest neighbors of the new data point, according to the Euclidean distance.
-  3. Among these K neghbors, count the number of data points in each category
-  4. Assign the new data point to the category where you counted the most neighbors.
-
-```python
-from sklearn.neighbors import KNeighborsClassifier
-clf = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
-clf.fit(X_train, y_train)
-```
-
-- 參數
-  - n_neighbors：要用幾個點
-  - wright：這些點的權重。全部等於1 or 距離越近越重要...
-
-https://www.analyticsvidhya.com/blog/2017/09/30-questions-test-k-nearest-neighbors-algorithm/
-
-https://towardsdatascience.com/k-nearest-neighbors-knn-algorithm-bd375d14eec7
-
-缺點：每次predict時需要加載全部資料
 
 ### LASSO, Ridge Regression
 
@@ -835,18 +813,42 @@ If you want to understand the math behind how these categories are converted int
 
 ## Classification
 
-## 非監督式模型
+### KNN
 
-### Dimension reduction
+- 流程：
+  1. Choose the number K of neighbors(default=5)
+  2. Take the K nearest neighbors of the new data point, according to the Euclidean distance.
+  3. Among these K neghbors, count the number of data points in each category
+  4. Assign the new data point to the category where you counted the most neighbors.
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
+clf.fit(X_train, y_train)
+```
+
+- 參數
+  - n_neighbors：要用幾個點
+  - wright：這些點的權重。全部等於1 or 距離越近越重要...
+
+https://www.analyticsvidhya.com/blog/2017/09/30-questions-test-k-nearest-neighbors-algorithm/
+
+https://towardsdatascience.com/k-nearest-neighbors-knn-algorithm-bd375d14eec7
+
+缺點：每次predict時需要加載全部資料
+
+
+
+## Dimensionality reduction
 
 > - 降低維度的好處，及其應⽤領域
 > - 主成分分析 (PCA) 概念簡介
 
-#### CA
+### CA
 
 https://www.princexml.com/doc/troubleshooting/
 
-#### PCA
+### PCA
 
 - Feature Extraction technique
 
@@ -935,7 +937,7 @@ X_test = pca.transform(X_test)
 explained_variance = pca.explained_variance_ratio_
 ```
 
-##### Kernel PCA
+### Kernel PCA
 
 ```python
 from sklearn.decomposition import KernelPCA
@@ -946,7 +948,7 @@ X_test = kpca.transform(X_test)
 
 
 
-##### Linear Discriminant Analysis
+### Linear Discriminant Analysis
 
 - Used as a dimensionality reduction technique
 
@@ -996,7 +998,7 @@ X_test = kpca.transform(X_test)
 
   
 
-##### t-SNE
+### t-SNE
 
 t-Distributed Stochastic Neighbor Embedding
 
@@ -1046,9 +1048,9 @@ t-Distributed Stochastic Neighbor Embedding
 
 
 
-### Cluster
+## Clustering
 
-#### K-means
+### K-means
 
 - 當問題不清楚或是資料未有標註的情況下，可以嘗試⽤分群算法幫助瞭解資料結構，⽽其中⼀個⽅法是運⽤ K-means 聚類算法幫助分群資料
 
@@ -1124,9 +1126,9 @@ $$
   y_kmeans = kmeans.fit_predict(X)
   ```
 
-#### PAM
+### PAM
 
-#### Hierarchical Clustering
+### Hierarchical Clustering
 
 - ⼀種構建 cluster 的層次結構的算法。該算法從分配給⾃⼰ cluster 的所有資料點開始。然後，兩個距離最近的 cluster 合併為同⼀個 cluster。最後，當只剩下⼀個 cluster 時，該算法結束。
 - K-means vs. 階層分群
@@ -1159,9 +1161,9 @@ $$
 - 參考資料
   - [Hierarchical Clustering / Dendrograms](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Hierarchical_Clustering-Dendrograms.pdf)
 
-### Other
+## Other
 
-#### Association Rule Learning
+### Association Rule Learning
 
 http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
 
@@ -1243,7 +1245,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
   - https://kknews.cc/news/pvy9ke2.html 
   - https://www.twblogs.net/a/5c9a2e99bd9eee4250080ad1
 
-#### Eclat
+### Eclat
 
 - Simplified Version of Aprior Rules, only care about support value
 - 使用流程
@@ -1251,7 +1253,7 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
   2. Take all the subsets in transactions having higher support than minimum support
   3. Sort these subsets by decreasing supprt
 
-#### Reinforcement Learning
+### Reinforcement Learning
 
 - Train the dog walk
 
@@ -1419,23 +1421,9 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
 
 - [Awesome Gradient Boosting Papers](https://awesomeopensource.com/project/benedekrozemberczki/awesome-gradient-boosting-papers)
 
-### 模型選擇與評估
-
-- Type of parameter
-  - parameter：The model learns that is the parameters that were changed and found optimal values by running the model 
-  - Hyperparameter: We chose ourselves,nor learned by the modelWe need to figure out by gridsearch or randomsearch. For example the kernel parameter in the kernel as we model and these parameters.
-- There is still room to improve the model because we can still choose some optimal values for these hyperparameters.
-
-```python
-from sklearn.model_selection import cross_val_score
-accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
-```
 
 
-
-### 超參數調整方法與步驟
+## Model tunning
 
 - 超參數調整方法
 
@@ -1489,10 +1477,6 @@ print("Best Parameters:", best_parameters)
 
 https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitting-machine-learning/
 
-- 
-
-### 調參
-
 在訓練模型前，我們需要預設一些參數來確定**模型結構**（比如樹的深度）和**優化過程**（比如學習率），這種參數被稱為超參（Hyper-parameter），不同的參數會得到的模型效果也會不同。總是說調參就像是在“煉丹”，像一門“玄學”，但是根據經驗，還是可以找到一些章法的：
 
 1. 根據經驗，選出對模型效果**影響較大的超參**。
@@ -1502,6 +1486,24 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 3. 選擇**搜索演算法**，比如Random Search、Grid Search和一些啟發式搜索的方法。
 
 4. **驗證模型**的泛化能力
+
+## Model Selection
+
+- Type of parameter
+  - parameter：The model learns that is the parameters that were changed and found optimal values by running the model 
+  - Hyperparameter: We chose ourselves,nor learned by the modelWe need to figure out by gridsearch or randomsearch. For example the kernel parameter in the kernel as we model and these parameters.
+- There is still room to improve the model because we can still choose some optimal values for these hyperparameters.
+
+```python
+from sklearn.model_selection import cross_val_score
+accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
+print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
+```
+
+
+
+4. 
 
 ### 建立 pipeline
 
@@ -2140,3 +2142,97 @@ print(clf2.predict(X[0:1]))
 - **When should we use Eclat rather than Apriori?** 
   - The only advantage of Eclat compared to Apriori is that it is simpler and faster to use. However if you need to run a deep analysis of your market basket, then you should definitely go for Apriori.
 
+### Upper Confidence Bound (UCB)
+
+### Thompson Sampling
+
+- **How is Thompson Sampling better than UCB?** 
+  - Thompson Sampling is better than UCB in terms of convergence of the regret. The regret is the difference between the optimal reward and the reward you accumulate with your algorithm. Thompson Sampling shows a better regret curve than UCB in my experience. Also, the fact that UCB is deterministic as opposed to Thompson Sampling being stochastic, helps making Thompson Sampling outperform UCB. Besides you will see in the practical sections that Thompson Sampling finds the best ad faster and with more certainty than UCB.
+
+- **How Thompson Sampling can accept delayed feedback.**
+  - When doing Thompson Sampling, we can still perform updates in our algorithm (like making new guesses for the distributions with existing data, sampling from the guessed distribution, etc) while we are waiting for the results of an experiment in the real world. This would not hinder our algorithm from working. This is why it can accept delayed feedback.
+
+- **What are further examples of Thompson Sampling applications?**
+  - Another potential application of Multi-armed bandits (MAB) can be the online testing of algorithms. For example, let’s suppose you are running an e-commerce website and you have at your disposal several Machine Learning algorithms to provide recommendations to users (of whatever the website is selling), but you don’t know which algorithm leads to the best recommendations. 
+  - You could consider your problem as a MAB problem and define each Machine Learning algorithm as an "arm": at each round when one user requests a recommendation, one arm (i.e. one of the algorithms) will be selected to make the recommendations, and you will receive a reward. In this case, you could define your reward in various ways, a simple example is "1" if the user clicks/buys an item and "0" otherwise. Eventually your bandit algorithm will converge and end up always choosing the algorithm which is the most efficient at providing recommendations. This is a good way to find the most suitable model in an online problem. Another example coming to my mind is finding the best clinical treatment for patients: each possible treatment could be considered as an "arm", and a simple way to define the reward would be a number between 0 (the treatment has no effect at all) and 1 (the patient is cured perfectly). 
+  - In this case, the goal is to find as quickly as possible the best treatment while minimizing the cumulative regret (which is equivalent to say you want to avoid as much as possible selecting "bad" or even sub-optimal treatments during the process).
+
+###  Principal Component Analysis (PCA)
+
+- **What is the true purpose of PCA?** 
+  - The true purpose is mainly to decrease the complexity of the model. It is to simplify the model while keeping relevance and performance. Sometimes you can have datasets with hundreds of features so in that case you just want to extract much fewer independent variables that explain the most the variance.
+- **What is the difference between PCA and Factor Analysis?**
+  - Principal component analysis involves extracting linear composites of observed variables. 
+  - Factor analysis is based on a formal model predicting observed variables from theoretical latent factors. PCA is meant to maximize the total variance to look for distinguishable patterns, and Factor analysis looks to maximize the shared variance for latent constructs or variables.
+- **Should I apply PCA if my dataset has categorical variables?**
+  - You could try PCA, but I would be really careful, because categorical values can have high variances by default and will usually be unstable to matrix inversion. 
+  - Apply PCA and do cross validation to see if it can generalize better than the actual data. If it does, then PCA is good for your model. (Your training matrix is numerically stable). However, I am certain that in most cases, PCA does not work well in datasets that only contain categorical data. Vanilla PCA is designed based on capturing the covariance in continuous variables. There are other data reduction methods you can try to compress the data like multiple correspondence analysis and categorical PCA etc.
+
+- **Is it better to use Feature Extraction or Feature Selection, or both? If both, in which order?**
+  - Feature Extraction and Feature Selection are two great dimensionality reduction techniques, and therefore you should always consider both. 
+  - What I recommend is doing first Feature Selection to only keep the relevant features, and then apply Feature Extraction on these selected relevant features to reduce even more the dimensionality of your dataset while keeping enough variance.
+
+- **How much total variance ratio do we need to use? Is there any threshold for good total variance ratio?** 
+  - Generally a good threshold is 50%. But 60% is more recommended.
+
+- **Is it more common to use exactly 2 independent variables to build a classifier, or do people typically use more than that?** 
+  - In general people just extract a number of independent variables that explain a sufficient proportion of the variance (typically 60%). So it’s not always two. It can be more. And if it’s two that is great because then you can visualize better.
+
+### Linear Discriminant Analysis (LDA)
+
+- **Could you please explain in a more simpler way the difference between PCA and LDA?** 
+  - A simple way of viewing the difference between PCA and LDA is that PCA treats the entire data set as a whole while LDA attempts to model the differences between classes within the data. Also, PCA extracts some components that explain the most the variance, while LDA extracts some components that maximize class separability.
+- **Feature Selection or Feature Extraction?**
+  - You would rather choose feature selection if you want to keep all the interpretation of your problem, your dataset and your model results. But if you don’t care about the interpretation and only car about getting accurate predictions, then you can try both, separately or together, and compare the performance results. So yes feature selection and feature extraction can be applied simultaneously in a given problem.
+
+- **Can we use LDA for Regression?**
+  - LDA is Linear Discriminant Analysis. It is a generalization of Fisher’s linear discriminant, a method used in statistics, pattern recognition and machine learning to find a linear combination of features that characterizes or separates two or more classes of objects or events. The resulting combination may be used as a linear classifier, or, more commonly, for dimensionality reduction before later classification. However, for regression, we have to use ANOVA, a variation of LDA. LDA is also closely related to principal component analysis (PCA) and factor analysis in that they both look for linear combinations of variables which best explain the data. LDA explicitly attempts to model the difference between the classes of data. PCA on the other hand does not take into account any difference in class, and factor analysis builds the feature combinations based on differences rather than similarities. Discriminant analysis is also different from factor analysis in that it is not an interdependence technique: a distinction between independent variables and dependent variables (also called criterion variables) must be made. LDA works when the measurements made on independent variables for each observation are continuous quantities. When dealing with categorical independent variables, the equivalent technique is discriminant correspondence analysis.
+
+### Kernel PCA
+
+- **Should Kernel PCA be used to convert non-linearly separable data into linearly separable data?** 
+  - That’s right, but you don’t need to use Kernel PCA with a non linear classifier since the data will be linearly separable after applying Kernel PCA, and therefore a linear classifier will be sufficient.
+- **When should we use PCA vs Kernel PCA?** 
+  - You should start with PCA. Then if you get poor results, try Kernel PCA.
+
+- **How do I know if my data is linearly separable or not?** 
+  - A good trick is to train a Logistic Regression model on it first. If you get a really good accuracy, it should be (almost) linearly separable.
+
+- **Is there a huge difference and what is better to use between Kernel PCA + SVM vs PCA + Kernel SVM?** 
+  - Yes there is a difference. 
+    - Use Kernel PCA + SVM when you can transform your data into a non-linear low dimensional manifold where the points are separable. 
+    - Use PCA + Kernel SVM when you need to transform your data through a linear transformation into a low dimensional manifold, using these points to be transformed into a non-linear space where they are separable.
+
+- **How do we decide which kernel is best for Kernel PCA?**
+  - The RBF Kernel is a great kernel, and is the best option in general. But the best way to figure out what kernel you need to apply is to do some Parameter Tuning with Grid Search and k-Fold Cross Validation. 
+
+### k-Fold Cross Validation
+
+- **What is low/high bias/variance?** 
+  - These concepts are important to understand k-Fold Cross Validation: 
+    - Low Bias is when your model predictions are very close to the real values. 
+    - High Bias is when your model predictions are far from the real values. 
+    - Low Variance: when you run your model several times, the different predictions of your observation points won’t vary much. 
+    - High Variance: when you run your model several times, the different predictions of your observation points will vary a lot.
+
+- **Does k-Fold Cross Validation improve the model or is it just a method of validation?**
+  - k-Fold Cross Validation is used to evaluate your model. It doesn’t necessarily improve your model, but improves your understanding of the model. However you can use it to improve your model by combining it with some Parameter Tuning techniques like Grid Search.
+
+- **What is the difference between a parameter and a hyperparameter?** 
+  - Hyper parameters and parameters are very similar but not the exact same thing. 
+  - A parameter is a configurable variable that is internal to a model whose value can be estimated from the data. 
+  - A hyperparameter is a configurable value external to a model whose value cannot be determined by the data, and that we are trying to optimize (find the optimal value) through Parameter Tuning techniques like Random Search or Grid Search.
+
+- **What is a good/best value of k to choose when performing k-Fold Cross Validation?** 
+  - We strongly recommend 10.
+
+- **What does this Standard Deviation tell us exactly?** 
+  - The Standard Deviation of the model’s accuracy simply shows the variance of the model accuracy is 6%. This means the model can vary about 6%, which means that if I run my model on new data and get an accuracy of 86%, I know that this is like within 80-92% accuracy. Bias and accuracy sometimes don’t have an obvious relationship, but most of the time you can spot some bias in the validation or testing of your model when it does not preform properly on new data.
+- **How to calculate the F1 score, Recall or Precision from k-Fold Cross Validation?** 
+  - You can use sklearn’s metrics library for this. Here is a link.
+
+### Grid Search
+
+- **How do we know which values we should test in the Grid Search?** 
+  - A good start is to take default values and experiment with values around them. For example, the default value of the penalty parameter C is 10, so some relevant values to try would be 1, 10 and 100.
+- 
