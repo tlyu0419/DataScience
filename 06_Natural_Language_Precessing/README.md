@@ -2,8 +2,6 @@
 
 - 分类、生成、序列标注、句子对标注
 
-![image-20200910164113325](C:\Users\TL_Yu\AppData\Roaming\Typora\typora-user-images\image-20200910164113325.png)
-
 - [Python 文本数据分析初学指南](https://datartisan.gitbooks.io/begining-text-mining-with-python/content/)
 
 - Often when performing analysis, lot of data is numerical, such as sales numbers, physical measuremets, quantifiable categories.Computers are very good at handling direct numerical information.
@@ -731,3 +729,4 @@ We can think of this as a powerful version of Regular Expression where we actual
 ### 文本摘要
 
 - [【NLP】文本生成评价指标的进化与推翻](https://cloud.tencent.com/developer/article/1650473)
+
