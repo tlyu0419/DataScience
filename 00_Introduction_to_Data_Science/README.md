@@ -184,6 +184,8 @@
 
 ## Python basic
 
+- [Data Types in Python](https://www.analyticsvidhya.com/blog/2021/05/data-types-in-python/)
+
 ### Work with txt file
 
 - read mode
@@ -301,6 +303,7 @@ myfile.readlines()
     - [pandas_exercises](https://github.com/guipsamora/pandas_exercises)
     - [資料科學家的 pandas 實戰手冊：掌握 40 個實用數據技巧](https://leemeng.tw/practical-pandas-tutorial-for-aspiring-data-scientists.html)
     - [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+    - [Pandas 魔法筆記(1)-常用招式總覽](https://www.finlab.tw/pandas-%e9%ad%94%e6%b3%95%e7%ad%86%e8%a8%981-%e5%b8%b8%e7%94%a8%e6%8b%9b%e5%bc%8f%e7%b8%bd%e8%a6%bd/)
 
 
 ### Numpy
