@@ -16,3 +16,4 @@
 - 因此我們也可以考慮直接把電腦的作業係統改成linux~
 - Ref
   - [Ubuntu 20.04 LTS 桌面版详细安装指南](https://www.sysgeek.cn/install-ubuntu-20-04-lts-desktop/)
+  - 
