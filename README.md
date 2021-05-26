@@ -7,7 +7,7 @@ Hi and welcome!  Here is my data science note.
   - TLYu0419@gmail.com
   - https://www.facebook.com/tlyu0419
 
-# Notes
+# **Notes**
 
 ## [Introduction to Data Science](https://github.com/TLYu0419/DataScience/tree/master/00_Introduction_to_Data_Science)
 
