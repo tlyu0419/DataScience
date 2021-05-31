@@ -1,11 +1,103 @@
-## 時間序列模型
+# 時間序列模型
 
 - 重視資料的先後順序
 - 觀測值之間彼此不獨立
 - 不關注變量間的因果關係，而是變量在時間上的發展變化規律
 
-## Prophet套件
+## 應用面向
 
+預測金融股市、人力安排等等
+
+## 預測方法
+
+### 樸素估計
+
+使用最後一個時間點的值估測後面一段時間的值
+$$
+\hat y_{t+1} = y_t
+$$
+![](./images/v2-f00b7db9252624774eb4ddbf16f0e983_720w.jpg)
+
+### 簡單平均
+
+用歷史的均值來估測後面一段時間的值
+$$
+\hat y_{x+1} = \frac{1}{x} \sum_i^x y_i
+$$
+![](./images/v2-0e72bb631f082dbe0a23c93d5dab1f44_720w.jpg)
+
+
+
+### 移動平均
+
+使用之前一定時間段的平均值作為這個時間點的值，或使用加權的移動平均
+
+- 之前一段時間的平均
+  $$
+  \hat y_i = \frac{1}{p}(y_{i-1}+y_{i-2}+y_{i-3}+......+y_{i-p})
+  $$
+
+- 移動加權平均
+  $$
+  \hat y_i = \frac{1}{m}(w_1*y_{i-1}+w_2*y_{i-2}+w_3*y_{i-3}+...+w_m*y_{i-m})
+  $$
+
+![](./images/v2-d66dc5d50e41932c563616a89ee6b8b5_720w.jpg)
+
+### 簡單指數平滑
+
+```python
+from statsmodels.tsa.api import ExponentialSmoothing, SimpleExpSmoothing, Holt
+y_hat_avg = test.copy()
+fit2 = SimpleExpSmoothing(np.asarray(train['Count'])).fit(
+smoothing_level=0.6,optimized=False)
+y_hat_avg['SES'] = fit2.forecast(len(test))
+```
+
+### Holt's線性趨勢方法
+
+```python
+import statsmodels.api as sm
+sm.tsa.seasonal_decompose(train.Count).plot()
+result = sm.tsa.stattools.adfuller(train.Count)
+```
+
+### Holt-winters 方法
+
+```python
+y_hat_avg = test.copy()
+fit1 = ExponentialSmoothing(np.asarray(train['Count']) ,
+seasonal_periods=7 ,trend='add', seasonal='add',).fit()
+y_hat_avg['Holt_Winter'] = fit1.forecast(len(test))
+```
+
+### Arima
+
+ARIMA模型（Autoregressive Integrated Moving Average model）整合移動平均自回歸模型
+
+ARIMA(p, d, q)由3個部分組成
+
+- AR(p)：AR是autoregressive的縮寫，表示自回歸模型，含義是當前時間點的值等於過去若干個時間點的值的回歸——因為不依賴於別的解釋變量，只依賴於自己過去的歷史值，故稱為**自回歸**；如果依賴過去最近的p個歷史值，稱**階數**為p，記為`AR(p)`模型。
+- I(d)：I是integrated的縮寫，含義是模型對時間序列進行了差分；因為時間序列分析要求平穩性，不平穩的序列需要通過一定手段轉化為平穩序列，一般採用的手段是差分；d表示**差分的階數**，t時刻的值減去t-1時刻的值，得到新的時間序列稱為1階差分序列；1階差分序列的1階差分序列稱為2階差分序列，以此類推；另外，還有一種特殊的差分是季節性差分S，即一些時間序列反應出一定的周期T，讓t時刻的值減去tT時刻的值得到季節性差分序列。
+- MA(q)：MA是moving average的縮寫，表示移動平均模型，含義是當前時間點的值等於過去若干個時間點的**預測誤差**的回歸；**預測誤差=模型預測值-真實值**；如果序列依賴過去最近的q個歷史預測誤差值，稱階數為q，記為`MA(q)`模型。
+
+```python
+y_hat_avg = test.copy()
+fit1 = sm.tsa.statespace.SARIMAX(train.Count, order=(2, 1, 
+4),seasonal_order=(0,1,1,7)).fit()
+y_hat_avg['SARIMA'] = fit1.predict(start="2013-11-1", 
+end="2013-12-31", dynamic=True)
+```
+
+- Ref
+  - [ARIMA模型详解](https://danzhuibing.github.io/ml_arima_basic.html)
+  - [7 methods to perform Time Series forecasting (with Python codes)](https://www.analyticsvidhya.com/blog/2018/02/time-series-forecasting-methods/)
+  - [利用Auto ARIMA构建高性能时间序列模型（附Python和R代码）](https://zhuanlan.zhihu.com/p/49746642)
+
+### Prophet套件
+
+- Facebook提出的一種方法，與Holt-winters類似，主要想法是" 時間序列的分解（Decomposition of Time Series），它把時間序列分成幾個部分，分別是季節項，趨勢項，剩餘項，與Holt -winters方法類似。
+  
 - 在Prophet算法裡面，作者同時考慮了季節項、趨勢項、節假日項與剩餘項
   $$
   y(t) = g(t) + s(t) + h(t) + \varepsilon_t
@@ -18,11 +110,11 @@
 
 - Prophet 的算法就是通過擬合這幾個項，然後把他們累加起來得到時間序列的預測值
 
-### 趨勢項$g(t)$
+#### 趨勢項$g(t)$
 
-### 季節性趨勢
+#### 季節性趨勢
 
-### 節假日效應
+#### 節假日效應
 
 - 在現實環境中，除了週末同樣有很多節假日，而且不同的國家有著不同的假期。在 Prophet 裡面，通過維基百科裡面對各個國家的節假日描述，hdays 收集了各個國家的特殊節假日。除了節假日之外，使用者還可以根據自身的情況來設置必要的假期，例如雙十一網購節、年終大促等等。
 
@@ -31,7 +123,7 @@
 
 
 
-### 模型擬合(Model Fitting)
+#### 模型擬合(Model Fitting)
 
 在 Prophet 中，用戶一般可以設置以下四種參數，如果不想設置的話，使用 Prophet 默認的參數即可
 
@@ -49,8 +141,7 @@
 
    
 
-```python
-```
+
 
 
 
