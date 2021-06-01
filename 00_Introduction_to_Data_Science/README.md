@@ -129,6 +129,7 @@
   - variable inspector
   - ExecuteTime
   - [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
+    - [Automatic cell execution timing in jupyter lab](https://stackoverflow.com/questions/56843745/automatic-cell-execution-timing-in-jupyter-lab)
   
 - Ref
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
