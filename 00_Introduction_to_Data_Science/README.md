@@ -123,14 +123,6 @@
     - `conda deactivate` 回到 base 工作環境
     - `conda env export --name ENVIRONMENT --file ENVIRONMENT.yml` 將指定工作環境之設定匯出為 .yml 檔藉此複製且重現工作環境
     - `conda remove --name ENVIRONMENT --all` 移除指定工作環境
-- Jupyter extensions
-  - Table of Content
-  - Autopep8: 自動排版程式碼
-  - variable inspector
-  - ExecuteTime
-  - [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
-    - [Automatic cell execution timing in jupyter lab](https://stackoverflow.com/questions/56843745/automatic-cell-execution-timing-in-jupyter-lab)
-  
 - Ref
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
@@ -180,8 +172,12 @@
 
 ## Jupyter 插件
 
-- 
-- 
+- Table of Content
+- Autopep8: 自動排版程式碼
+- variable inspector
+- ExecuteTime
+- [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
+  - [Automatic cell execution timing in jupyter lab](https://stackoverflow.com/questions/56843745/automatic-cell-execution-timing-in-jupyter-lab)
 
 ## Python basic
 
