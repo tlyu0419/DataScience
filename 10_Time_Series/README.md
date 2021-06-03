@@ -150,10 +150,12 @@ end="2013-12-31", dynamic=True)
 - Ref
   - [Classical Time Series Forecasting Methods in Python (Cheat Sheet)](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
   - [FACEBOOK 时间序列预测算法 PROPHET 的研究](https://zr9558.com/2018/11/30/timeseriespredictionfbprophet/)
-
-
-
-
+  - [11 Classical Time Series Forecasting Methods in Python (Cheat Sheet)](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
+  - [ARIMA——從案列出發，讓你徹底懂得時間序列模型](https://www.twblogs.net/a/5b8318ed2b717766a1eb09fd)
+  - [TIME SERIES FORECAST AND DECOMPOSITION – 101 GUIDE PYTHON](https://datasciencebeginners.com/2020/11/25/time-series-forecast-and-decomposition-101-guide-python/)
+  - [预测： 方法与实践](https://otexts.com/fppcn/index.html)
+  - [How to Convert a Time Series to a Supervised Learning Problem in Python](https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/)
+  - [利用python进行时间序列分析——数据挖掘](https://zhuanlan.zhihu.com/p/35128342)
 
 - 方法介紹
 - 使用方式
