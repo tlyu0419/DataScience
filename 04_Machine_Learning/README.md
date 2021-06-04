@@ -738,6 +738,7 @@ $$
 
 - 參考資料
   - [機器/深度學習-基礎數學(二):梯度下降法(gradient descent)](https://medium.com/@chih.sheng.huang821/機器學習-基礎數學-二-梯度下降法-gradient-descent-406e1fd001f)
+  - [GBDT调优详解](https://7125messi.github.io/post/gbdt%E8%B0%83%E4%BC%98%E8%AF%A6%E8%A7%A3/)
 
 ### XGBoost
 
@@ -1487,6 +1488,8 @@ https://www.analyticsvidhya.com/blog/2020/02/underfitting-overfitting-best-fitti
 
 4. **驗證模型**的泛化能力
 
+
+
 ## Model Selection
 
 - Type of parameter
@@ -1503,8 +1506,6 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 
 
-4. 
-
 ### 建立 pipeline
 
 ## 模型診斷
@@ -1516,102 +1517,43 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
   - 特徵萃取
 - 過擬合
   - 特徵選擇
-
-## 模型組合
-
-- 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+  
+  ![](./images/88104188_1453591268135516_255250267178532864_o.png)
 
 
 
-## Feature Construction
+### OverFit
 
-> - 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
-> - 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
+- 過擬合 (Over-fitting)
 
-- 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
+  - 模型的訓練⽬標是將損失函數的損失降⾄最低
 
-- 我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
+  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
 
-- 那問題來了，怎麼去發現特徵呢？光盯著資料集肯定是不行的。如果你是新手，可以先耗費一些時間在Forum上，看看別人是怎麼做Feature Extraction的，並且多思考。雖然Feature Extraction特別講究經驗，但其實還是有章可循的：
-  1. 對於Numerical Variable，可以通過**線性組合、多項式組合**來發現新的Feature。
-  2. 對於文本資料，有一些常規的Feature。比如，文本長度，Embeddings，TF-IDF，LDA，LSI等，你甚至可以用深度學習提取文本特徵（隱藏層）。
-  3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
-  4. 通過**錯誤分析**也可以發現新的特徵。
+- 如何知道模型已經過擬合了?
 
+  - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
 
+- 如何解決過擬合或欠擬合**
 
-### Features Interaction
+  - 過擬合
+  - 增加資料量
+    - 降低模型複雜度
+  - 使⽤正規化 (Regularization)
+  - ⽋擬合
+  - 增加模型複雜度
+    - 減輕或不使⽤正規化
 
-- 假設你有 `A` 和 `B` 兩個 continuous 特徵，你可以用 `A + B`、`A - B`、`A * B` 或 `A / B` 之類的方式建立新的特徵。
-- 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
-- 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
+  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)
 
-### Feature Combination 
+- 切分完訓練測試資料需要比較兩者是否有差異
 
-- 特徵組合主要是針對 categorical 特徵，特徵交互則是適用於 continuous 特徵。但是兩者的概念是差不多的，就是把兩個以上的特徵透過某種方式結合在一起，變成新的特徵。通常用來解決一般的線性模型沒辦法學到非線性特徵的問題。
-
-- 群聚編碼(Group by Encoding)
-
-  均值編碼是計算各個類別在目標變數的平均值，而群聚編碼則是針對其他數值變數計算類別平均值 (Mean)、中位數 (Median)，眾數(Mode)，最⼤值(Max)，最⼩值(Min)，次數(Count)...等。
-
-- 群聚編碼的使用時機是，先以 領域知識 或 特徵重要性 挑選強⼒特徵後, 再將特徵組成更強的特徵
-
-- 可以依照領域知識挑選,或亂槍打⿃後再以特徵重要性挑選
-
-- 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
-
-- 假設 C 是 categorical 特徵，N 是 continuous 特徵，以下有幾種有意義的組合：
-
-  - `median(N) GROUP BY C` 中位數
-  - `mean(N) GROUP BY C` 算術平均數
-  - `mode(N) GROUP BY C` 眾數
-  - `min(N) GROUP BY C` 最小值
-  - `max(N) GROUP BY C` 最大值
-  - `std(N) GROUP BY C` 標準差
-  - `var(N) GROUP BY C` 方差
-  - `N - median(N) GROUP BY C`
-
-### Feature Extraction
-
-通常就是指 dimensionality reduction。
-
-- Principal Component Analysis (PCA)
-- Latent Dirichlet Allocation (LDA)
-- Latent Semantic Analysis (LSA)
-
-### Feature Learning
-
-- 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
-
-- 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
-
-- 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
-
-- 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
-
-  ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
-
-- 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
-
-  - 實際結果也證明，在分類預測中使⽤樹狀模型，再對這些擬合完的樹狀模型進⾏
-    葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
-
-  ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
-
-  - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
-
-### 參考資料
-
-- [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
-- [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html#example-ensemble-plot-feature-transformation-py)
-- [CTR预估: Algorithm-GBDT Encoder](https://zhuanlan.zhihu.com/p/31734283)
-- [三分鐘了解推薦系統中的分解機方法](https://kknews.cc/code/62k4rml.html)
+  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
+  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
 
 
 
-
-
-## Feature Selection
+#### Feature Selection
 
 - 在做特徵抽取的時候，我們是盡可能地抽取更多的Feature，但過多的Feature會造成冗餘，雜訊，容易過擬合等問題，因此我們需要進行特徵篩選。特徵選擇能剔除不相關(irrelevant)或冗餘(redundant)的特徵，從而達到減少特徵個數，提高模型精確度，減少執行時間的目的。
 
@@ -1637,29 +1579,25 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 
 
-### 過濾法(Filter)
+##### 過濾法(Filter)
 
 按照發散性或者相關性對各個特徵進行評分，設定閾值或者待選擇閾值的個數選擇特徵。
 
-#### 方差選擇
+- 方差選擇
+  先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵
 
-- 先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵
+  ```python
+  from sklearn.feature_selection import VarianceThreshold
+  
+  #方差选择法，返回值为特征选择后的数据
+  #参数threshold为方差的阈值
+  VarianceThreshold(threshold=3).fit_transform(iris.data)
+  ```
 
-```python
-from sklearn.feature_selection import VarianceThreshold
+- 相關係數
+  - 皮爾森相關係數是一種最簡單的，能説明理解特徵和回應變數之間關係的方法，該方法衡量的是變數之間的線性相關性，結果的取值區間為 $-1$ 至 $1$  ， $-1$ 表示完全的負相關(這個變數下降，那個就會上升)，$+1$ 表示完全的正相關，$0$ 表示沒有線性相關。
 
-#方差选择法，返回值为特征选择后的数据
-#参数threshold为方差的阈值
-VarianceThreshold(threshold=3).fit_transform(iris.data)
-```
-
-
-
-#### 相關係數
-
-- 皮爾森相關係數是一種最簡單的，能説明理解特徵和回應變數之間關係的方法，該方法衡量的是變數之間的線性相關性，結果的取值區間為 $-1$ 至 $1$  ， $-1$ 表示完全的負相關(這個變數下降，那個就會上升)，$+1$ 表示完全的正相關，$0$ 表示沒有線性相關。
-
-- Pearson相關係數的一個明顯缺陷是，作為特徵排序機制，他只對線性關係敏感。如果關係是非線性的，即便兩個變數具有一一對應的關係，Pearson相關性也可能會接近 $0$
+  - Pearson相關係數的一個明顯缺陷是，作為特徵排序機制，他只對線性關係敏感。如果關係是非線性的，即便兩個變數具有一一對應的關係，Pearson相關性也可能會接近 $0$
 
   ```python
   from sklearn.feature_selection import SelectKBest
@@ -1673,115 +1611,98 @@ VarianceThreshold(threshold=3).fit_transform(iris.data)
 
   
 
-#### 卡方檢驗(K-Best)
+- 卡方檢驗(K-Best)
+  - 傳統的卡方檢驗是檢驗類別變數對類別目標變數的相關性。假設自變數有 $N$ 種取值，目標變數有 $M$ 種取值，考慮自變數等於 $i$ 且目標變數等於 $j$ 的樣本頻數的觀察值與期望的差距，構建統計量：
 
-- 傳統的卡方檢驗是檢驗類別變數對類別目標變數的相關性。假設自變數有 $N$ 種取值，目標變數有 $M$ 種取值，考慮自變數等於 $i$ 且目標變數等於 $j$ 的樣本頻數的觀察值與期望的差距，構建統計量：
+  $$
+  \chi^2 = \sum \frac{(A-E)^2}{E}
+  $$
 
-$$
-\chi^2 = \sum \frac{(A-E)^2}{E}
-$$
+  ```python
+  from sklearn.datasets import load_iris
+  from sklearn.feature_selection import SelectKBest
+  from sklearn.feature_selection import chi2
+  iris = load_iris()
+  X, y = iris.data, iris.target
+  X.shape
+  # (150, 4)
+  # 迴歸：f_regression
+  # 分類：chi2, f_classif
+  X_new = SelectKBest(chi2, k=2).fit_transform(X, y)
+  X_new.shape
+  # (150, 2)
+  ```
 
-```python
-from sklearn.datasets import load_iris
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-iris = load_iris()
-X, y = iris.data, iris.target
-X.shape
-# (150, 4)
-# 迴歸：f_regression
-# 分類：chi2, f_classif
-X_new = SelectKBest(chi2, k=2).fit_transform(X, y)
-X_new.shape
-# (150, 2)
-```
+  
 
 
 
-### 包装法(Wrapper)
+##### 包装法(Wrapper)
 
 包裹型是指把特徵選擇看做一個特徵子集搜索問題，根據目標函數（通常是預測效果評分），每次選擇/刪除若干特徵，藉以評估效果。
 
-#### Forward Selection(向前搜索)
+- Forward Selection(向前搜索)
+  1. 先設定一個顯著水準/重要性
+  2. 逐一針對，每個 X 變數對 Y 建立模型，從中保留最顯著 / 重要性最高的變數
+  3. 逐一針對其餘的 X變數並加入保留下來的變數，對Y建立模型，從中保留最顯著/最重要的變數
+  4. 觀測模型的效果是否有提升，若有則重複第3個步驟
+  5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
 
-1. 先設定一個顯著水準/重要性
-2. 逐一針對，每個 X 變數對 Y 建立模型，從中保留最顯著 / 重要性最高的變數
-3. 逐一針對其餘的 X變數並加入保留下來的變數，對Y建立模型，從中保留最顯著/最重要的變數
-4. 觀測模型的效果是否有提升，若有則重複第3個步驟
-5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
+- Backwark Elimination(向後搜索)
 
-#### Backwark Elimination(向後搜索)
+  最快速，而且看得到過程
 
-最快速，而且看得到過程
+  1. 先設定一個顯著水準/重要性
+  2. 將全部變數投入到模型中
+  3. 找出最不顯著(p值最高)/重要性最低的變數，並移除該變數，並重新建模
+  4. 觀測移除後的模型表現是否有較移除前提升，若有，回到第3個步驟繼續執行
+  5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
 
-1. 先設定一個顯著水準/重要性
-2. 將全部變數投入到模型中
-3. 找出最不顯著(p值最高)/重要性最低的變數，並移除該變數，並重新建模
-4. 觀測移除後的模型表現是否有較移除前提升，若有，回到第3個步驟繼續執行
-5. 最後只會留下最佳解釋效果的變數，並藉以建出的模型
+- Bidirectional Elimination(遞歸特徵消除法)
 
-#### Bidirectional Elimination(遞歸特徵消除法
+  結合前兩種方法，由於模型在新增變數時會影響到其他變數的顯著性/重要性，因此在新增變數後同步確認時候有變數變得不顯著，此時需要將這類變數從模型中移除。後只會留下最佳解釋效果的變數，並藉以建出的模型。
 
-結合前兩種方法，由於模型在新增變數時會影響到其他變數的顯著性/重要性，因此在新增變數後同步確認時候有變數變得不顯著，此時需要將這類變數從模型中移除。後只會留下最佳解釋效果的變數，並藉以建出的模型。
-
-1. 設定要選入變數/移除變數的閾值(顯著水準/重要性)
-2. 執行 Forward Selection 找出最重要的變數加入至模型中
-3. 針對目前選入的變數執行 Backwark Elimination，確認所有變數的閾值都有符合設定的條件，執行完後回到步驟2，繼續找新變數。
-4. 直到沒有變數可以新增/移除後才結束
-
-
-
-#### Recursive feature elimination
-
-- RFE
+  1. 設定要選入變數/移除變數的閾值(顯著水準/重要性)
+  2. 執行 Forward Selection 找出最重要的變數加入至模型中
+  3. 針對目前選入的變數執行 Backwark Elimination，確認所有變數的閾值都有符合設定的條件，執行完後回到步驟2，繼續找新變數。
+  4. 直到沒有變數可以新增/移除後才結束
 
   ```python
+  # RFE
   from sklearn.feature_selection import RFE
-  ```
-
-- REFCV
-
-  ```python
+  # EFCV
    from sklearn.feature_selection import RFECV
   ```
 
   
 
-### 嵌入法(Embedded)
+##### 嵌入法(Embedded)
 
-- 先使用某些機器學習的演算法和模型進行訓練，得到各個特徵的權值係數，根據係數從大到小選擇特徵。
+先使用某些機器學習的演算法和模型進行訓練，得到各個特徵的權值係數，根據係數從大到小選擇特徵。類似於Filter方法，但是是通過訓練來確定特徵的優劣。
 
-  - 類似於Filter方法，但是是通過訓練來確定特徵的優劣。
+
+
+- 基於懲罰項的特徵選擇法(Lasso)
+  - 通過L1正則項來選擇特徵：L1正則方法具有稀疏解的特性，因此天然具備特徵選擇的特性，但是要注意，L1沒有選到的特徵不代表不重要，原因是兩個具有高相關性的特徵可能只保留了一個，如果要確定哪個特徵重要應再通過L2正則方法交叉檢驗。
+
+  - 對於SVM和logistic回歸來說，參數C控制著稀疏性：C越小，選擇到的features就越少。而對於Lasso，alpha的值越大，則選擇到的features越少。
+
+  - L1懲罰項降維的原理在於保留多個對目標值具有同等相關性的特徵中的一個，所以沒選到的特徵不代表不重要。故可結合L2懲罰項來優化。
+    - L1正則化是指權值向量w中各個元素的絕對值之和,L1正則化可以產生稀疏權值矩陣，即產生一個稀疏模型，可以用於特徵選擇
+    - L2正則化是指權值向量w中各個元素的平方和然後再求平方根L2正則化可以防止模型過擬合（overfitting）。當然，一定程度上，L1也可以防止過擬合
 
   ```python
-  from sklearn.feature_selection import SelectFromModel
+  from sklearn.linear_model import LassoCV
   ```
 
   
 
-#### 基於懲罰項的特徵選擇法(Lasso)
+- 基於模型的特徵選擇法(Model based ranking)
+  - 直接使用機器學習演算法，針對每個單獨的特徵和目標變數建立預測模型。假如某個特徵和目標變數之間的關係是非線性的，可以用基於樹的方法（決策樹、隨機森林）、或者擴展的線性模型等。基於樹的方法比較易於使用，因為他們對非線性關係的建模比較好，並且不需要太多的調試。但要注意過擬合問題，因此樹的深度最好不要太大，再就是運用交叉驗證。通過這種訓練對特徵進行打分獲得相關性後再訓練最終模型。
 
-- 通過L1正則項來選擇特徵：L1正則方法具有稀疏解的特性，因此天然具備特徵選擇的特性，但是要注意，L1沒有選到的特徵不代表不重要，原因是兩個具有高相關性的特徵可能只保留了一個，如果要確定哪個特徵重要應再通過L2正則方法交叉檢驗。
+  - 使⽤梯度提升樹擬合後，以特徵在節點出現的頻率當作特徵重要性，以此刪除重要性低於⾨檻的特徵
 
-- 對於SVM和logistic回歸來說，參數C控制著稀疏性：C越小，選擇到的features就越少。而對於Lasso，alpha的值越大，則選擇到的features越少。
-
-- L1懲罰項降維的原理在於保留多個對目標值具有同等相關性的特徵中的一個，所以沒選到的特徵不代表不重要。故可結合L2懲罰項來優化。
-  - L1正則化是指權值向量w中各個元素的絕對值之和,L1正則化可以產生稀疏權值矩陣，即產生一個稀疏模型，可以用於特徵選擇
-  - L2正則化是指權值向量w中各個元素的平方和然後再求平方根L2正則化可以防止模型過擬合（overfitting）。當然，一定程度上，L1也可以防止過擬合
-
-```python
-from sklearn.linear_model import LassoCV
-```
-
-
-
-#### 基於模型的特徵選擇法(Model based ranking)
-
-- 直接使用機器學習演算法，針對每個單獨的特徵和目標變數建立預測模型。假如某個特徵和目標變數之間的關係是非線性的，可以用基於樹的方法（決策樹、隨機森林）、或者擴展的線性模型等。基於樹的方法比較易於使用，因為他們對非線性關係的建模比較好，並且不需要太多的調試。但要注意過擬合問題，因此樹的深度最好不要太大，再就是運用交叉驗證。通過這種訓練對特徵進行打分獲得相關性後再訓練最終模型。
-
-- 使⽤梯度提升樹擬合後，以特徵在節點出現的頻率當作特徵重要性，以此刪除重要性低於⾨檻的特徵
-
-- 特徵選擇中，計算時間較長，但是能排除共線性且比較穩定的⽅式是梯度提升樹嵌入法
+  - 特徵選擇中，計算時間較長，但是能排除共線性且比較穩定的⽅式是梯度提升樹嵌入法
 
   ```python
   from sklearn.feature_selection import SelectFromModel
@@ -1789,77 +1710,142 @@ from sklearn.linear_model import LassoCV
 
 
 
-#### 排列重要性 (permutation Importance)
+- 排列重要性 (permutation Importance)
+  - 特徵重要性計算方法
+    - 在樹模型中特徵的分支次數：weight
+    - 特徵覆蓋度：cover
+    - 損失函數降低量：gain
+  - 雖然特徵重要性相當實⽤，然⽽計算原理必須基於樹狀模型，於是有了可延伸⾄非樹狀模型的排序重要性
+  - 排序重要性計算，是打散單⼀特徵的資料排序順序，再⽤原本模型重新預測，觀察打散前後誤差會變化多少
 
-- 特徵重要性計算方法
-  - 在樹模型中特徵的分支次數：weight
-  - 特徵覆蓋度：cover
-  - 損失函數降低量：gain
-- 雖然特徵重要性相當實⽤，然⽽計算原理必須基於樹狀模型，於是有了可延伸⾄非樹狀模型的排序重要性
-- 排序重要性計算，是打散單⼀特徵的資料排序順序，再⽤原本模型重新預測，觀察打散前後誤差會變化多少
+- Ref
+  - [谈谈 L1 与 L2-正则项](https://liam.page/2017/03/30/L1-and-L2-regularizer/)
 
-### 參考資料
+  - [Permutation Importances](https://www.kaggle.com/dansbecker/permutation-importance?utm_medium=email&utm_source=mailchimp&utm_campaign=ml4insights)
+  - [干货：结合Scikit-learn介绍几种常用的特征选择方法](https://www.zhihu.com/question/28641663)
+  - [特征工程到底是什么？](https://www.zhihu.com/question/29316149)
+  - [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
 
-- [谈谈 L1 与 L2-正则项](https://liam.page/2017/03/30/L1-and-L2-regularizer/)
+  - [Stopping stepwise: Why stepwise selection is bad and what you should use instead](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)
+  - [The 5 Feature Selection Algorithms every Data Scientist should know](https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2)
 
-- [Permutation Importances](https://www.kaggle.com/dansbecker/permutation-importance?utm_medium=email&utm_source=mailchimp&utm_campaign=ml4insights)
-- [干货：结合Scikit-learn介绍几种常用的特征选择方法](https://www.zhihu.com/question/28641663)
-- [特征工程到底是什么？](https://www.zhihu.com/question/29316149)
-- [Kaggle競賽-鐵達尼號生存預測(前16%排名)]([https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC4-1%E8%AC%9B-kaggle%E7%AB%B6%E8%B3%BD-%E9%90%B5%E9%81%94%E5%B0%BC%E8%99%9F%E7%94%9F%E5%AD%98%E9%A0%90%E6%B8%AC-%E5%89%8D16-%E6%8E%92%E5%90%8D-a8842fea7077](https://medium.com/jameslearningnote/資料分析-機器學習-第4-1講-kaggle競賽-鐵達尼號生存預測-前16-排名-a8842fea7077))
-
-- [Stopping stepwise: Why stepwise selection is bad and what you should use instead](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)
-- [The 5 Feature Selection Algorithms every Data Scientist should know](https://towardsdatascience.com/the-5-feature-selection-algorithms-every-data-scientist-need-to-know-3a6b566efd2)
-
-- [The Curse of Dimensionality in classification](
+  - [The Curse of Dimensionality in classification](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)
 
 
 
 
-
-### Imbalance Data
-
-### OverFit
-
-- 過擬合 (Over-fitting)
-
-  - 模型的訓練⽬標是將損失函數的損失降⾄最低
-
-  - 過擬合代表模型可能學習到資料中的噪⾳，導致在實際應⽤時預測失準
-
-- 如何知道模型已經過擬合了?
-
-  - 保留⼀些測試資料，觀察模型對於訓練資料的誤差與測試資料的誤差，是否有改變的趨勢(學習曲線 Learning curve)
-
-- 如何解決過擬合或欠擬合**
-
-  - 過擬合
-  - 增加資料量
-    - 降低模型複雜度
-  - 使⽤正規化 (Regularization)
-  - ⽋擬合
-  - 增加模型複雜度
-    - 減輕或不使⽤正規化
-
-  ![](https://lh3.googleusercontent.com/LX_68rjUR9qhcmgY6IKZaBFmoEG_xsOiHx8scVquqB7nrwHHSvlB8JJ74OpZxlPOS4Vyv04LRc2bTChyXOVx5eZQl2v6s2DGyhdCHy_UFD7QzZOlsPNFhZ-Ogxi0uP0RevdIe0qQs0YMu4XiOYpoR8KY1rPH9oci-z0W0-lx2JLeopj2gAZUpbvol2uwUqS0aR29-5DnfWka5Bp6ua5Urkb9ai0BWMejvG3ZiJDgAANypm0qrBbQvWFTQCS79qyxalNL3HoQvZlrimGf_IviHUADpDOMnyxNUrXOzAthzdht3CqpDZ6UgL2TDQtXs9W6xXYdhp4cZPKZhAOHKOT7KDhQfrHVrCAmFCFy7rbubY6VTAreKknnK--GAHct3UDoOWVA7aFmNFkwqYUjPLaq4IzRhDqfvP2HSeoTij0GtfvpNIbQP7RSr08Qmf1P-lkdxQnP_JBydYLvwufPi0OKle5sFXIlgn6ugR1yzg9HxAxAsOf7iVZi17ZLprA5VVEEWds__ZEBBYfp3dxuBi5rj4cYZRSc0OgYob4MYPcNkP1J9a54mAups7xNxwyQdySBBYmMgsMetfd056fIS88iPPbMQhqUT15NaxOBNNS1X8T44MixoiI4maFwxU5PWZFJwZuUq6R_YWPoAI5QC2lZ_m2Nj-VtU5ZTHkhlurasDP3JlEFj6x-vnXs1a35qlmkzaqlBaJbMPoJY3bWpPMXBKjUD=w958-h333-no)![](https://lh3.googleusercontent.com/LA1abn1F_n40dlXpyklARRRrUWHXlzUhMYtIaGCqBHjv1iTKOG6XpYVuL2ZngUaGS8Wac-p5QHY9ha6SIz_P7CGgXVZNX7Nch7BR9fujqJ9s_RtXnN5fvh4qOVxeFqRA1tLLihcHqLAQ7zTfpHxwHnCasMY1AxMXM5veAgp6hmEP9JlfcJ7exawUANicocMnichhWA-yElSNvOj7ULcW35-F6YHuG82XyjKVtRFub5Mla_EgzOm8YdjYHRUwQngGPWFDeF8mDlSvMfIt11UhDFn8f3xCaznRiZ0YFwIW2TFeDscg8e1aIfnjqn3LsgJqfrL95-oy6JxUXOSstO3HzSzsuv0p3uJGqgXhVbDuxBqYAVHbORsTWO-eoWJtEJaAdN8S3k3aag6vWh8U-5NUTBBjVjkppa6BAvxmyYImi3Obo3MwCzMEeBtnVvKyDVgjiJXlJzwDRle3Ax75I4TekcioornsnZ_noz6CfRaPuYRi27fgROZRzjtsAqh_pLoO_zlDHighwQ7CUeNkawfaj6bGfIAuuiKYYeGhdu2SQK_jG2pY0on2GgrmNvfw0fbV6I6a-Ic7wHxkeJcljtrpMWGiBKHlt0LdYXpSzERQU0grSLazQn22lyFqbY8YmeRdbPlAdeHIZE0Y4acuriphc3Can99FrYjt0cCSKWoU1Dukd9a_u1MuI6EucxPbJDsnW0zNyC4pDBnKiZo7DvbzH2-AUHNib7D4K5cWVNiwTrzqSuDQ=s929-no)
-
-- 切分完訓練測試資料需要比較兩者是否有差異
-
-  - 將切出的訓練/測試資料作為 Y 標籤來建置 RandomForest模型，看模型能不能準確區分出兩者
-  - 如果能就將該模型的重要變數丟掉，並在後續的建模流程中排除
 
 ### Underfit
 
 - 如果經過調整模型參數還是無法擬合模型，還可以嘗試 錯誤分析來提升模型效度
-
 - 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
 - 舉個例子，這次比賽中，我們在錯誤分析時發現，某些樣本的兩個問句表面上很相似，但是句子最後提到的地點不一樣，所以其實它們是語義不相似的，但我們的模型卻把它誤判為相似的。比如這個樣本：
   - Question1: Which is the best digital marketing institution in banglore?
   - Question2: Which is the best digital marketing institute in Pune?
 - 為了讓模型可以處理這種樣本，我們將兩個問句的最長公共子串(Longest Common Sequence)去掉，用剩餘部分訓練一個新的深度學習模型，相當於告訴模型看到這種情況的時候就不要判斷為相似的了。因此，在加入這個特徵後，我們的效果得到了一些提升。
+- 模型組合
+  - 把不同模型的預測結果當成解釋變數，藉此預測 Y 的結果，
+
+
+
+#### Feature Construction
+
+> - 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
+> - 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
+
+- 使用統計或領域知識，以各種組合調整方式，生成新特徵以提升模型預測力
+
+- 我們應該盡可能多地抽取特徵，只要你認為某個特徵對解決問題有説明，它就可以成為一個特徵。特徵抽取需要不斷反覆運算，是最為燒腦的環節，它會在整個比賽週期折磨你，但這是比賽取勝的關鍵，它值得你耗費大量的時間。
+
+- 那問題來了，怎麼去發現特徵呢？光盯著資料集肯定是不行的。如果你是新手，可以先耗費一些時間在Forum上，看看別人是怎麼做Feature Extraction的，並且多思考。雖然Feature Extraction特別講究經驗，但其實還是有章可循的：
+  1. 對於Numerical Variable，可以通過**線性組合、多項式組合**來發現新的Feature。
+  2. 對於文本資料，有一些常規的Feature。比如，文本長度，Embeddings，TF-IDF，LDA，LSI等，你甚至可以用深度學習提取文本特徵（隱藏層）。
+  3. 如果你想對資料有更深入的瞭解，可以通過思考資料集的構造過程來發現一些magic feature，這些特徵有可能會大大提升效果。
+  4. 通過**錯誤分析**也可以發現新的特徵。
+
+
+
+#### Features Interaction
+
+- 假設你有 `A` 和 `B` 兩個 continuous 特徵，你可以用 `A + B`、`A - B`、`A * B` 或 `A / B` 之類的方式建立新的特徵。
+- 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
+- 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
+
+#### Feature Combination 
+
+- 特徵組合主要是針對 categorical 特徵，特徵交互則是適用於 continuous 特徵。但是兩者的概念是差不多的，就是把兩個以上的特徵透過某種方式結合在一起，變成新的特徵。通常用來解決一般的線性模型沒辦法學到非線性特徵的問題。
+
+- 群聚編碼(Group by Encoding)
+
+  均值編碼是計算各個類別在目標變數的平均值，而群聚編碼則是針對其他數值變數計算類別平均值 (Mean)、中位數 (Median)，眾數(Mode)，最⼤值(Max)，最⼩值(Min)，次數(Count)...等。
+
+- 群聚編碼的使用時機是，先以 領域知識 或 特徵重要性 挑選強⼒特徵後, 再將特徵組成更強的特徵
+
+- 可以依照領域知識挑選,或亂槍打⿃後再以特徵重要性挑選
+
+- 以前是以非樹狀模型為主, 為了避免共線性, 會很注意類似的特徵不要增加太多，但現在強⼒的模型都是樹狀模型, 所以只要有可能就通通可以做成特徵嘗試!
+
+- 假設 C 是 categorical 特徵，N 是 continuous 特徵，以下有幾種有意義的組合：
+
+  - `median(N) GROUP BY C` 中位數
+  - `mean(N) GROUP BY C` 算術平均數
+  - `mode(N) GROUP BY C` 眾數
+  - `min(N) GROUP BY C` 最小值
+  - `max(N) GROUP BY C` 最大值
+  - `std(N) GROUP BY C` 標準差
+  - `var(N) GROUP BY C` 方差
+  - `N - median(N) GROUP BY C`
+
+
+
+#### Feature Extraction
+
+通常就是指 dimensionality reduction。
+
+- Principal Component Analysis (PCA)
+- Latent Dirichlet Allocation (LDA)
+- Latent Semantic Analysis (LSA)
+
+#### Feature Learning
+
+- 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
+
+- 概念是將每棵樹都視為⼀個新特徵，樹下的 n 個節點則作為新特徵的 n 個類別值，由於每個葉節點的性質接近，因此可視為資料的⼀種分組⽅式。
+
+- 雖然不適合直接沿⽤樹狀模型機率，但分組⽅式有代表性，因此按照葉點將資料離散化 ，會比之前提過的離散化⽅式跟有助於提升精確度
+
+- 葉編碼的結果，是⼀組模型產⽣的新特徵，我們可以使⽤邏輯斯回歸，重新賦予機率 (如下葉圖)，也可以與其他算法結合 (例如 : 分解機 Factorization Machine )使資料獲得新⽣，最後再以邏輯斯迴歸合併預測
+
+  ![](https://lh3.googleusercontent.com/Fu1ppabaRpOcfZ1EsWvGRBxVtLz113i_INBrujwkufjo9-xUvXbVrTruCUgSx04xMaJxOxlNb5jaXOganmyGA32mlcSAUIlNb4Po5qD-GRCWl9-khVuWx-5xAkF_jtmbUkc53PNsRZZCBr2PvzxCYlICqEzY_iaVVSjifprLrsosFhZjmkPhYlkO8u_wT1P80E4T65-XsKx9x-Wvk4M7ht9lD6NyV7iTGRjYtD1fsGBd8ILmIbVmMTswrjL6xiTt-EEGr6ZrW3hVqELLzoVFZ9jHk7uRA6BofNiEkZ2MCRiqpcDu8zlY_55pEmVQmB2GhRVl_fA7SH4TdL9U2UqHZSpbkPxXMAj4VIf75FdXadqudS6sJLTHPixaeQGOIkYBko_tuz-lWRj4uUNJNjYTrUTgbPrcPQRn_RLVN6UXWrrnnNMycPaifC2-9WRrR1Yip0pxlGW6GdhhekdMvEmQyrZYjG0mzWyaJjNGjSze6YFZeRRefmWakyK_mOqIBxUIub9zV_-VlNn43-MAte2RvuTGHWQ06Y8_TtixmQuHAnssN9DuQVU6B_x7nnMM5wec_6Bk2W6IBAnqHmZ_c2yt6cE7VBj5EeIGYHqMHg4AwTM3MJNXgl0cHE-mR5lHYWyzdrLsHC8knlwNiBUHvGowl5M6ZgFeXDDoNXMTdiFXKgTX3kAJmbzgAZwEUtyxFyprkn2VjxFkdL0j9N57OWDkO3SK=w459-h365-no)
+
+- 葉編碼需要先對樹狀模型擬合後才能⽣成，如果這步驟挑選了較佳的參數，後續處理效果也會較好，這點與特徵重要性類似
+
+  - 實際結果也證明，在分類預測中使⽤樹狀模型，再對這些擬合完的樹狀模型進⾏
+    葉編碼+邏輯斯迴歸，通常會將預測效果再進⼀步提升
+
+  ![](https://lh3.googleusercontent.com/UJ3qH8VF0i7DwMoG-5z24kopMAUon2gJzhNZ7uSKRGjEBBiJ_ATsXVrPl91IY8_uOlDq3QYrwtyu6klfXDz-3f5FhhS4kaxZl_gHGnMsfPD6kReUWYmJfOCs6Z5YkIXaxypD1YB8nxrN3DtnqW4TQ9TePasZ-59MNuZ7TeRc1N1wHl-WoE5eNr3IiyAUceVppDykQBw4rj7iSWlD1DD88R3QffNXuvnZV8DHI410XJJQ33YNuzuqY4XBpigkgM1XKeG2_Cg1nb0WohxoU9-sAnT8IA-fqKrIoUDYPq0Xbz4lZC2Kp12Tt0QxbLndap32oPIsaxQHoOMpkd91SAdHGaAypSPEzfyplfTJyPjdB4ccJdWcyaUYpw20UlfaYcM1BOMhYkNAFzZoy03VSVjDMMmwrAhTK0URhul8KvbxKXdG_df31w8hi40Syk-8Uk0YlMux2C5kOrp3vg4laCNAMOgJTf49d-T4GuOu__JQkK6DiMa5uph4NKrEbbBgnrh7bRSGQe0_oSRfTQr6t642bQzZH4TotOFmWW-BOJpKb0QhOwavihWO5P-VSeQ5b9D7nJaMau7ulBd8DVhARxzcTblALuR6aIpmIZ0EuWUCxu5GLtUlNxjSv0ICEWS5p9kISoUUhP3o779fwyKdBvLET9jwWunrc38ud8YYROabd1cefarrwQFfxGkE0p42k7a8WGbC7IjJP0zMCf2d5Qk0jZLq=w660-h242-no)
+
+  - 葉編碼編完後，因為特徵數量較多，通常搭配邏輯斯回歸或者分解機做預測，其他模型較不適合
+
+- Ref
+  - [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+  - [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html#example-ensemble-plot-feature-transformation-py)
+  - [CTR预估: Algorithm-GBDT Encoder](https://zhuanlan.zhihu.com/p/31734283)
+  - [三分鐘了解推薦系統中的分解機方法](https://kknews.cc/code/62k4rml.html)
+
+
+
+### Imbalance Data
+
+- [Imbalanced data & why you should NOT use ROC curve](https://www.kaggle.com/lct14558/imbalanced-data-why-you-should-not-use-roc-curve)
+
+
 
 ### DataLeak
 
 - 本來不應該出現在X裡的、和目標y有關的資料，出現在了X中。如此一來，機器學習演算法就會有好到不真實的表現。
+
+
 
 #### 資料洩露的種類以及影響分析
 
@@ -1899,7 +1885,7 @@ from sklearn.linear_model import LassoCV
 
 這類資料可能會導致過擬合。
 
-
+### 解釋模型
 
 - Ref
   - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
@@ -2109,18 +2095,16 @@ print(clf2.predict(X[0:1]))
     confidence(M_1 \to M_2) = \frac{support(M_1,M_2)}{support(M_1)}
     $$
     
-
   - Relation between the lift and the support:
     $$
     lift(M_1\to M_2) = \frac{support(M_1, M_2)}{support(M_1)×support(M_2)}
     $$
     
-
   - Relation between the lift and the confidence (consequence of the two previous equations):
     $$
     lift(M_1 \to M_2) = \frac{confidence(M_1, M_2)}{support(M_2)}
     $$
-
+  
 - **Are the confidence and lift symmetrical functions?**
 
   - Given the three equations of the previous question, we can easily see that: Confidence is non symmetrical:
