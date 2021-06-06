@@ -62,6 +62,9 @@ ImageNet Challenge 是電腦視覺的競賽，需要對影像進⾏ 1000 個類�
 
   ![](https://lh3.googleusercontent.com/TL-Uar2ZnG9ksRMP1ujhOzs4A8nM0vVaNypSOdcg9N-Ktc2N2gZa8M79gkcTM95bnOmYrsw3MMCi50bTP4U2dVcISYVlofD_AuXAEEEBk3NHzjLS15kyHLI9IMe4BwDf2_gea0eBYfavSs4aAsIY14f6iQ6cmQ9EGxxUVB6REbUrQAklxkzUnIUeMxjbUpFKF4BmHWIudo1y6fi2TJ39oNQphWg8lz6WXY9ymKkoG7p2iJewOR5SX7kh-qDUjGC4UXXkA4HcOoreX4Ik7VQmVPO6b2o07TbhyA_j8tmNH1GvxJQUZLkDaAHVPUBGRtmssZZ5kc0t5wQOfalFqseGIAmEI_q8dAWjH848NkhtqthMhymzGZRprtxiRwh-pV6iJp0yaq3LNywhjTHzJCTu9uAv6j6abgbbHDkjLEZVEqlaMpp9DlO10ze1wpQUVSjwIgCB4OUc5YE4Gw0NZ7QKD5Az-VGIy9zOS389SvH9MoGM2ssMlcqPgeLo3Sd-ac_eL3SuBI6BMeuOzY_6bkqt5yJcxEAJZeWcNAF4AgJLabU_UzXwjEHbrxTb6jF6_ai0-cB7GXTdkZJtbUQClxiKvgyMSWB3XmDBhUJj74-03mCve60pfbpze4_BpV4erdOG3bVfxz7ArudyNUdAUTV6GP8hJCJxTL5eVy-tBakYizy3iNoM_WLFTTaG3fhGEjWEeSmp_9ZsNHUbPYyPV14B8EsE=w667-h432-no)
 
+- Ref
+  - [Visualising Filters and Feature Maps for Deep Learning](https://towardsdatascience.com/visualising-filters-and-feature-maps-for-deep-learning-d814e13bd671)
+
 ### 重要知識點複習
 
 - 卷積神經網路⽬前在多數電腦視覺的任務中，都有優於⼈類的表現
