@@ -118,6 +118,7 @@
 - Ref
 
   - [Data Types: A Better Way to Think about Data Types for Machine Learning](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)
+  - [How to Auto-Detect Errors in a Dataset](https://towardsdatascience.com/how-to-auto-detect-format-errors-in-a-dataset-6609a9e9aacc)
 
 ### 資料分佈
 
@@ -499,7 +500,29 @@
 
    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/50_Parallel_Coordinates_Matplotlib_Pandas-min.png)
 
+- plot lineplot with error bounds
+
+  ```python
+  import seaborn as sns; sns.set()
+  import matplotlib.pyplot as plt
+  
+  fmri = sns.load_dataset("fmri")
+  fmri_stats = fmri.groupby(['timepoint']).describe()
+  
+  x = fmri_stats.index
+  medians = fmri_stats[('signal', '50%')]
+  medians.name = 'signal'
+  quartiles1 = fmri_stats[('signal', '25%')]
+  quartiles3 = fmri_stats[('signal', '75%')]
+  
+  ax = sns.lineplot(x, medians) 
+  ax.fill_between(x, quartiles1, quartiles3, alpha=0.3); 
+  ```
+
+  ![](./images/avlE8.png)
+
 - Ref
+  
   - [Top 50 matplotlib Visualizations – The Master Plots (with full python code)](https://www.machinelearningplus.com/plots/top-50-matplotlib-visualizations-the-master-plots-python/)
   - [Matplotlib可视化最有价值的 50 个图表](http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/)
   - [d3js](https://d3js.org/)
