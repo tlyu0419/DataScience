@@ -174,7 +174,7 @@
 
 - Table of Content
 - Autopep8: 自動排版程式碼
-- variable inspector
+- [variable inspector](https://github.com/lckr/jupyterlab-variableInspector)
 - ExecuteTime
 - [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
   - [Automatic cell execution timing in jupyter lab](https://stackoverflow.com/questions/56843745/automatic-cell-execution-timing-in-jupyter-lab)
@@ -277,6 +277,10 @@ myfile.readlines()
     - [Time Series](https://github.com/guipsamora/pandas_exercises#time-series)
     - [Deleting](https://github.com/guipsamora/pandas_exercises#deleting)
     
+- spread data: pd.pivot
+
+- gather data: pd.melt
+
   - Save you data to different excel sheets
 
     ```python
