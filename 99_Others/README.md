@@ -17,3 +17,11 @@
 - Ref
   - [Ubuntu 20.04 LTS 桌面版详细安装指南](https://www.sysgeek.cn/install-ubuntu-20-04-lts-desktop/)
   - 
+
+
+
+### 打包專案
+
+- [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
+
+  [如何开发自己的 Python 库](https://zhuanlan.zhihu.com/p/60836179)

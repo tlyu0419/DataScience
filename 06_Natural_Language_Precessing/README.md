@@ -730,3 +730,14 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - [【NLP】文本生成评价指标的进化与推翻](https://cloud.tencent.com/developer/article/1650473)
 
+### 文本生成
+
+- [直觀理解 GPT-2 語言模型並生成金庸武俠小說](https://leemeng.tw/gpt2-language-model-generate-chinese-jing-yong-novels.html)
+
+
+
+
+
+- [NLP民工的乐园: 几乎最全的中文NLP资源库](https://github.com/fighting41love/funNLP)
+- [Text Mining with R](https://www.tidytextmining.com/)
+
