@@ -29,7 +29,13 @@
   - 強化學習
     - 增強式學習是透過定義環境(Environment)、代理機器⼈ (Agent)及獎勵 (Reward)，讓機器⼈透過與環境的互動學習如何獲取最⾼的獎勵。
     - Alpha GO 就是透過增強式學習的⽅式訓練，增強式學習近幾年在棋類、遊戲類都取得巨⼤的進展，是⽬前非常熱⾨的研究領域。應用在下圍棋、打電玩。
-
+- 跟統計分析的差別
+  - 統計講因果，機器學習重視預測的準確度
+  - 不重視因果關係很容易得到奇怪的結論，如
+    - 基地台的數量與癌症人數正相關
+      - 所以我應該搬到沒有基地台的地方嗎?
+    - 員工人數和公司營收正相關
+      - 所以我應該建議公司盡量多招募些員工嗎?
 - Ref
   - [「机器学习」到底需要多少数据？](https://zhuanlan.zhihu.com/p/34523880)
 
@@ -178,6 +184,8 @@
 - ExecuteTime
 - [jupyterlab-execute-time](https://github.com/deshaw/jupyterlab-execute-time)
   - [Automatic cell execution timing in jupyter lab](https://stackoverflow.com/questions/56843745/automatic-cell-execution-timing-in-jupyter-lab)
+- https://towardsdatascience.com/5-extensions-that-will-make-you-switch-to-jupyter-lab-32c6b66ac755
+- [Auto-completion](https://github.com/kiteco/jupyterlab-kite)
 
 ## Python basic
 
@@ -267,15 +275,30 @@ myfile.readlines()
   - Pandas exercises
 
     - [Getting and knowing](https://github.com/guipsamora/pandas_exercises#getting-and-knowing)
+    
     - [Filtering and Sorting](https://github.com/guipsamora/pandas_exercises#filtering-and-sorting)
+    
     - [Grouping](https://github.com/guipsamora/pandas_exercises#grouping)
+    
     - [Apply](https://github.com/guipsamora/pandas_exercises#apply)
+    
     - [Merge](https://github.com/guipsamora/pandas_exercises#merge)
+    
     - [Stats](https://github.com/guipsamora/pandas_exercises#stats)
+    
     - [Visualization](https://github.com/guipsamora/pandas_exercises#visualization)
+    
     - [Creating Series and DataFrames](https://github.com/guipsamora/pandas_exercises#creating-series-and-dataframes)
+    
     - [Time Series](https://github.com/guipsamora/pandas_exercises#time-series)
+    
     - [Deleting](https://github.com/guipsamora/pandas_exercises#deleting)
+    
+    - melt
+    
+    - ```
+      pandas.set_option('display.max_rows', None)
+      ```
     
 - spread data: pd.pivot
 
