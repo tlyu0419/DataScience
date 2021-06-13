@@ -830,7 +830,18 @@
   response = r.text
   ```
 
-  
+
+#### parse html code
+
+```python
+string = '/pycontw/?refid=18&_ft_=top_level_post_id.10161302929498438%3Acontent_owner_id_new.160712400714277%3Apage_id.160712400714277%3Astory_location.6%3Astory_attachment_style.question%3Atds_flgs.3%3Aott.AX_CdJrLpsZIe7E7%3Apage_insights.%7B%22160712400714277%22%3A%7B%22page_id%22%3A160712400714277%2C%22page_id_type%22%3A%22page%22%2C%22actor_id%22%3A160712400714277%2C%22dm%22%3A%7B%22isShare%22%3A0%2C%22originalPostOwnerID%22%3A0%7D%2C%22psn%22%3A%22EntGroupQuestionCreationStory%22%2C%22post_context%22%3A%7B%22object_fbtype%22%3A657%2C%22publish_time%22%3A1622258227%2C%22story_name%22%3A%22EntGroupQuestionCreationStory%22%2C%22story_fbid%22%3A%5B10161302929498438%5D%7D%2C%22role%22%3A1%2C%22sl%22%3A6%2C%22targets%22%3A%5B%7B%22actor_id%22%3A160712400714277%2C%22page_id%22%3A160712400714277%2C%22post_id%22%3A10161302929498438%2C%22role%22%3A1%2C%22share_id%22%3A0%7D%5D%7D%2C%22197223143437%22%3A%7B%22page_id%22%3A197223143437%2C%22page_id_type%22%3A%22group%22%2C%22actor_id%22%3A160712400714277%2C%22dm%22%3A%7B%22isShare%22%3A0%2C%22originalPostOwnerID%22%3A0%7D%2C%22psn%22%3A%22EntGroupQuestionCreationStory%22%2C%22post_context%22%3A%7B%22object_fbtype%22%3A657%2C%22publish_time%22%3A1622258227%2C%22story_name%22%3A%22EntGroupQuestionCreationStory%22%2C%22story_fbid%22%3A%5B10161302929498438%5D%7D%2C%22role%22%3A1%2C%22sl%22%3A6%7D%7D&__tn__=%7E%7E-R'
+
+import urllib
+urllib.parse.unquote(string)
+>'/pycontw/?refid=18&_ft_=top_level_post_id.10161302929498438:content_owner_id_new.160712400714277:page_id.160712400714277:story_location.6:story_attachment_style.question:tds_flgs.3:ott.AX_CdJrLpsZIe7E7:page_insights.{"160712400714277":{"page_id":160712400714277,"page_id_type":"page","actor_id":160712400714277,"dm":{"isShare":0,"originalPostOwnerID":0},"psn":"EntGroupQuestionCreationStory","post_context":{"object_fbtype":657,"publish_time":1622258227,"story_name":"EntGroupQuestionCreationStory","story_fbid":[10161302929498438]},"role":1,"sl":6,"targets":[{"actor_id":160712400714277,"page_id":160712400714277,"post_id":10161302929498438,"role":1,"share_id":0}]},"197223143437":{"page_id":197223143437,"page_id_type":"group","actor_id":160712400714277,"dm":{"isShare":0,"originalPostOwnerID":0},"psn":"EntGroupQuestionCreationStory","post_context":{"object_fbtype":657,"publish_time":1622258227,"story_name":"EntGroupQuestionCreationStory","story_fbid":[10161302929498438]},"role":1,"sl":6}}&__tn__=~~-R'
+```
+
+
 
 #### 參考資料
 
