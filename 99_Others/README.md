@@ -16,7 +16,9 @@
 - 因此我們也可以考慮直接把電腦的作業係統改成linux~
 - Ref
   - [Ubuntu 20.04 LTS 桌面版详细安装指南](https://www.sysgeek.cn/install-ubuntu-20-04-lts-desktop/)
-  - 
+  - [Window10开发环境搭建(1) | 详细演示WSL2的安装](https://www.youtube.com/watch?v=BEVcW4kz1Kg)
+  - [Windows10开发环境搭建(2) | Terminal和VS Code](https://www.youtube.com/watch?v=0NjYngJ0HB0)
+  - [Windows10开发环境搭建(5) | WSL+VS Code 搭建Python开发环境](https://www.youtube.com/watch?v=BX7XwxQ1xlQ)
 
 
 
@@ -24,4 +26,25 @@
 
 - [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
 
-  [如何开发自己的 Python 库](https://zhuanlan.zhihu.com/p/60836179)
+- [如何开发自己的 Python 库](https://zhuanlan.zhihu.com/p/60836179)
+
+- [How to upload new versions of project to PyPI with twine?](https://stackoverflow.com/questions/52016336/how-to-upload-new-versions-of-project-to-pypi-with-twine)
+
+- freeze package
+
+  ```python
+  pip freeze
+  ```
+
+  
+
+```bash
+# python3 -m build
+python3 setup.py sdist bdist_wheel
+
+# python3 -m twine upload --repository testpypi dist/*
+#twine upload --skip-existing dist/*
+```
+
+
+
