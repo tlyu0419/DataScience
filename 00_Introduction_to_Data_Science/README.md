@@ -176,6 +176,19 @@
   conda env remove --name myenv
   ```
 
+
+
+- 常用
+
+  ```python
+  conda create --name xxxxx
+  conda activate xxxxx
+  conda install -c conda-forge jupyterlab
+  pip install pandas
+  ```
+
+  
+
 ## Jupyter 插件
 
 - Table of Content
@@ -303,6 +316,15 @@ myfile.readlines()
 - spread data: pd.pivot
 
 - gather data: pd.melt
+
+- explode: Pandas expand rows from list data available in column
+
+  - https://stackoverflow.com/questions/39011511/pandas-expand-rows-from-list-data-available-in-column
+
+  
+
+  
+
 
   - Save you data to different excel sheets
 
