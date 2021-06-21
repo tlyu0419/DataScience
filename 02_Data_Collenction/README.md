@@ -454,6 +454,73 @@
 
   - 可以直接將 row over 的排序結果放在篩選條件，不用多做一次子查詢
 
+
+
+- ### sqlite3
+
+  ```python
+  import sqlite3
+  mydb = sqlite3.connect('mydb')
+  creat_table='creat table tableA (columnA varchar(512), columnB varchar(128))'
+  mydb.execute(creat_table)
+  ```
+
+  ```python
+  # 使用Python 連結資料庫
+  import sqlite3 as lite
+  con = lite.connect('test.sqlite')
+  cur = con.cursor()
+  cur.execute('SELECT SQLITE_VERSION()')
+  data = cur.fetchone()
+  print(data)
+  con.close()
+  ```
+
+  ```python
+  # 透過SQLite 做資料新增、查詢
+  import sqlite3 as lite
+  with lite.connect("test.sqlite") as con:
+  cur = con.cursor()
+  cur.execute("DROP TABLE IF EXISTS PhoneAddress")
+  cur.execute("CREATE TABLE PhoneAddress(phone CHAR(10) PRIMARY KEY, address TEXT, name TEXT unique, age INT
+  NOT NULL)")
+  cur.execute("INSERT INTO PhoneAddress VALUES('0912173381','United State','Jhon Doe',53)")
+  cur.execute("INSERT INTO PhoneAddress VALUES('0928375018','Tokyo Japan','MuMu Cat',6)")
+  cur.execute("INSERT INTO PhoneAddress VALUES('0957209108','Taipei','Richard',29)")
+  cur.execute("SELECT phone,address FROM PhoneAddress")
+  data = cur.fetchall()
+  for rec in data:
+  print(rec[0], rec[1])
+  ```
+
+  ```python
+  # 使用Pandas 儲存資料
+  # 建立DataFrame
+  import sqlite3 as lite
+  import pandas
+  employee = [{'name':'Mary',
+               'age':23 ,
+               'gender': 'F'},
+              {'name':'John',
+               'age':33 ,
+               'gender': 'M'}]
+  df = pandas.DataFrame(employee)
+  # 使用Pandas 儲存資料
+  with lite.connect('test.sqlite') as db:
+  df.to_sql(name='employee', index=False, con=db,
+  if_exists='replace')
+  ```
+
+  ```python
+  # 存儲資料到資料庫
+  import sqlite3 as lite
+  import pandas
+  with lite.connect('house.sqlite') as db:
+  df.to_sql('rent_591', con = db, if_exists='replace', index=None)
+  ```
+
+  ### 
+
 ### Hive
 
 - 可以透過SQL語言作資料查詢
@@ -538,6 +605,8 @@
     - 建立時會建一個單獨的表
   - 可以進行分區
     - 但不能與外部表一起使用
+
+- rlike: 相當於 sql 中的 like any
 
 ## 公開資料集
 
