@@ -41,58 +41,6 @@
 
 
 
-## 機器學習開發流程
-
-1. 商業主題，要解決什麼問題
-   - 定義⽬標與評估準則：要預測的⽬標是甚麼? 
-     - 回歸問題?
-     - 分類問題?
-   - 要⽤什麼資料來進⾏預測? (predictor 或 x)
-2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
-3. 資料處理：
-   - 缺失值填補
-   - 離群值
-   - 常態化
-   - 特徵工程
-4. 建置模型：
-   1. 將資料分為
-      - 訓練集, training set
-      - 驗證集, validation set
-      - 測試集, test set
-   2. 設定評估準則
-      - 回歸問題 (預測值為實數)
-        - RMSE, Root Mean Square Error
-        - Mean Absolute Error
-        - R-Square
-      - 分類問題 (預測值為類別)
-        - Accuracy
-        - F1-score
-        - AUC, Area Under Curve
-   3. 建立模型並調整參數
-      - 根據設定⽬標建立機器學習模型
-        - Regression, 回歸模型
-        - Tree-based model, 樹模型
-        - Neural network, 神經網路
-      - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
-      - 如果有資料不平衡的問題，可以用 Upsampling, DownSampling, SMOTE 等方式建立新資料集再建模
-   4. 透過CV調整最佳參數
-5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
-
-- 導入
-  - 建立資料搜集、前處理等流程
-  - 送進模型進⾏預測
-  - 輸出預測結果
-  - 視專案需求整合前後端
-    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
-  - 如何確立⼀個機器學習模型的可⽤性？
-    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
-
-- Ref
-  - [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
-  - [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
-  - [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
-  - [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
-
 
 
 ## 角色與職務分工
@@ -282,7 +230,7 @@
 ### How to choose the right position?
 
 - It may change in different periods of your life.
-
+- 薪水很重要，但不應該是唯一考量的指標
 - Ref
   - [Data Scientist vs Data Engineer](https://www.datacamp.com/community/blog/data-scientist-vs-data-engineer)
   - [Data Scientist、Data Analyst、Data Engineer 的区别是什么?](https://www.zhihu.com/question/23946233)
@@ -332,6 +280,7 @@
 - 用手拍的瀑布會晃，但可以改用AI生成永遠的不停止的瀑布
 - Gmail 的 smart reply
 - 偵測空汙，用照相的方式
+- Grammarly 的 情感評分
 
 ### 交通
 
@@ -366,6 +315,62 @@
 - NLU & NLG
   - 機器翻譯
     聊天機器人
+
+## 機器學習開發流程
+
+1. 商業主題，要解決什麼問題
+   - 定義⽬標與評估準則：要預測的⽬標是甚麼? 
+     - 回歸問題?
+     - 分類問題?
+   - 要⽤什麼資料來進⾏預測? (predictor 或 x)
+2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
+3. 資料處理：
+   - 缺失值填補
+   - 離群值
+   - 常態化
+   - 特徵工程
+4. 建置模型：
+   1. 將資料分為
+      - 訓練集, training set
+      - 驗證集, validation set
+      - 測試集, test set
+   2. 設定評估準則
+      - 回歸問題 (預測值為實數)
+        - RMSE, Root Mean Square Error
+        - Mean Absolute Error
+        - R-Square
+      - 分類問題 (預測值為類別)
+        - Accuracy
+        - F1-score
+        - AUC, Area Under Curve
+   3. 建立模型並調整參數
+      - 根據設定⽬標建立機器學習模型
+        - Regression, 回歸模型
+        - Tree-based model, 樹模型
+        - Neural network, 神經網路
+      - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
+      - 如果有資料不平衡的問題，可以用 Upsampling, DownSampling, SMOTE 等方式建立新資料集再建模
+   4. 透過CV調整最佳參數
+5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
+
+- 導入
+  - 建立資料搜集、前處理等流程
+  - 送進模型進⾏預測
+  - 輸出預測結果
+  - 視專案需求整合前後端
+    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
+  - 如何確立⼀個機器學習模型的可⽤性？
+    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
+
+- Ref
+  - [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
+  - [ML Lecture 0-1: Introduction of Machine Learning](https://www.youtube.com/watch?v=CXgbekl66jc)
+  - [機器學習的機器是怎麼從資料中「學」到東西的？](https://kopu.chat/2017/07/28/機器是怎麼從資料中「學」到東西的呢/)
+  - [我們如何教導電腦看懂圖像](https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures?language=zh-tw)
+
+
+
+
 
 ## 分析工具
 
