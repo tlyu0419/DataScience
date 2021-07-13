@@ -921,6 +921,7 @@ urllib.parse.unquote(string)
   - [淺談 HTTP Method：表單中的 GET 與 POST 有什麼差別？](https://blog.toright.com/posts/1203/%E6%B7%BA%E8%AB%87-http-method%EF%BC%9A%E8%A1%A8%E5%96%AE%E4%B8%AD%E7%9A%84-get-%E8%88%87-post-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%EF%BC%9F.html)
   - [[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)
   - 介紹常見的五種HTTP Method
+- [HTML URL Encoding Reference](https://www.w3schools.com/tags/ref_urlencode.ASP)
 
 ### 靜態網頁爬蟲
 
