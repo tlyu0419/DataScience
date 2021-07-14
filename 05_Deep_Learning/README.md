@@ -277,6 +277,9 @@
 
 ### Ref
 
+- https://keras.io/
+- https://www.tensorflow.org/guide/keras/train_and_evaluate
+- https://www.tensorflow.org/tutorials/distribute/keras
 - [Keras: The Python Deep Learning library](https://keras.io/)
 - [别再使用pip安装TensorFlow了！用conda吧](https://zhuanlan.zhihu.com/p/46579831)
 
