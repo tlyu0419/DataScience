@@ -156,7 +156,8 @@ end="2013-12-31", dynamic=True)
   - [预测： 方法与实践](https://otexts.com/fppcn/index.html)
   - [How to Convert a Time Series to a Supervised Learning Problem in Python](https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/)
   - [利用python进行时间序列分析——数据挖掘](https://zhuanlan.zhihu.com/p/35128342)
-
+  - [How to Create an ARIMA Model for Time Series Forecasting in Python](https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/)
+  
 - 方法介紹
 - 使用方式
 - 成效
