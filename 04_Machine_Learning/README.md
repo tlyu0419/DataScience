@@ -70,7 +70,7 @@
 
 
 
-### Evaluation Method
+## Evaluation Method
 
 https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
 
@@ -100,28 +100,35 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
   - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
   - F1 - Score (Precision, Recall), 範圍: [0, 1]
 
-#### 回歸模型
+### 回歸模型
 
 - 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
 
   - MAE, Mean Absolute Error, 範圍: [-∞, ∞]
-
-  - MSE, Mean Square Error, 範圍: [-∞, ∞]
-
+    $$
+    \frac{1}{m}\sum_{i=1}^m\vert (y_i-\hat y)\vert
+    $$
+    MSE, Mean Square Error, 範圍: [-∞, ∞]
+    $$
+    \frac{1}{m}\sum_{i=1}^m(y_i-\hat y)^2
+    $$
+  
   - R-square, 範圍: [0, 1]
-
+  
+    
+  
   - Adjust R-square
-
+  
     - R^2會隨著變數數量的增加而提升，進而容易有Overfit的問題，而adjust R^2 則會針對變數數量進行懲罰，可以幫助我們找出最合適的變數數量
-
+  
     $$
     AdjR^2 = 1 - (1-R^2)\frac{n-1}{n-p-1}
     $$
-
+  
     - p: number of independent variable
     - n: sample size
 
-#### 分類模型
+### 分類模型
 
 - 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
 
@@ -222,7 +229,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
 - https://gombru.github.io/2018/05/23/cross_entropy_loss/
 
-#### Cluster
+### Cluster
 
 - 輪廓分析(Silhouette analysis)
 
@@ -270,7 +277,7 @@ https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error
 
       - 平均值觀察 計算分群的輪廓分數總平均，分的群數越多應該分數越⼩，如果總平均值沒有隨著分群數增加⽽變⼩，就說明了那些分組數較不洽當
 
-#### Dimension Reduction
+### Dimension Reduction
 
 - KMO球型檢定
 - Compenent Loading
@@ -1424,6 +1431,12 @@ http://www.cc.ntu.edu.tw/chinese/epaper/0036/20160321_3606.html
 
 
 
+## 建模流程
+
+- 設定評估指標
+- 切分訓練測試資料
+- 
+
 ## Model tunning
 
 - 超參數調整方法
@@ -1672,7 +1685,7 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
   # RFE
   from sklearn.feature_selection import RFE
   # EFCV
-   from sklearn.feature_selection import RFECV
+  from sklearn.feature_selection import RFECV
   ```
 
   

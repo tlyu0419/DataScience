@@ -168,6 +168,7 @@
 ### 視覺化
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件
+- [样式美化matplotlib.pyplot.style.use定制画布风格 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/37891729)
 
 #### Correlation
 

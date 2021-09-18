@@ -85,6 +85,12 @@ https://zhuanlan.zhihu.com/p/25928551
 
 ## Libraries
 
+### re
+
+[Regular Expressions Cheat Sheet by DaveChild - Download free from Cheatography - Cheatography.com: Cheat Sheets For Every Occasion](https://cheatography.com/davechild/cheat-sheets/regular-expressions/)
+
+[regex101: build, test, and debug regex](https://regex101.com/)
+
 ### NLTK
 
 - NLTK- Natural Language Toolkit is a very popular open source.
@@ -741,3 +747,4 @@ We can think of this as a powerful version of Regular Expression where we actual
 - [NLP民工的乐园: 几乎最全的中文NLP资源库](https://github.com/fighting41love/funNLP)
 - [Text Mining with R](https://www.tidytextmining.com/)
 
+- [自然语言处理中句向量获取方式的简要综述 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/350957155)

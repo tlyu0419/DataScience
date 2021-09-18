@@ -199,9 +199,9 @@
 
     > 下架的 1,100 多萬則中，有 32 萬則接獲申訴，其中近半審查後重新上架。
 
-  - [Nature 論⽂遭受嚴重質疑：實驗⽅法有根本缺陷」](https://zhuanlan.zhihu.com/p/71129104)
+  - [Nature 論⽂遭受嚴重質疑：實驗⽅法有根本缺陷](https://zhuanlan.zhihu.com/p/71129104)
 
-    > 「演算法在測試集上的表現，遠遠超過了訓練集，這不是有資料洩漏嗎？
+    > 「演算法在測試集上的表現，遠遠超過了訓練集，這不是有資料洩漏嗎？」
 
   - [Science：有调查有真相！某些AI领域多年无实际进展](https://mp.weixin.qq.com/s?__biz=MzA5ODEzMjIyMA==&mid=2247502265&idx=1&sn=a173d8b0348e742c4e8f348ba7eff0db&chksm=9094c02aa7e3493c7f209257423ccad044a1cccb3f709610b9961ae5e0ef23b1eb76f448da15#rd)
 
@@ -323,12 +323,15 @@
      - 回歸問題?
      - 分類問題?
    - 要⽤什麼資料來進⾏預測? (predictor 或 x)
+   
 2. 蒐集資料：針對這個主題，我們要定義出具體的指標，以及在這個主題之下相關的解釋變數。
+
 3. 資料處理：
    - 缺失值填補
    - 離群值
    - 常態化
    - 特徵工程
+   
 4. 建置模型：
    1. 將資料分為
       - 訓練集, training set
@@ -351,16 +354,19 @@
       - 各模型都有其超參數需調整，根據經驗與對模型了解、訓練情形等進⾏調參
       - 如果有資料不平衡的問題，可以用 Upsampling, DownSampling, SMOTE 等方式建立新資料集再建模
    4. 透過CV調整最佳參數
+   
 5. 專案佈署：檢視模型實施後是否能有良好的預測、解釋效果。並且也可以在這個階段找出進一步優化模型的客能。
 
-- 導入
-  - 建立資料搜集、前處理等流程
-  - 送進模型進⾏預測
-  - 輸出預測結果
-  - 視專案需求整合前後端
-    - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
-  - 如何確立⼀個機器學習模型的可⽤性？
-    - 當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
+   - 導入	
+     - 建立資料搜集、前處理等流程
+     - 送進模型進⾏預測
+     - 輸出預測結果
+     - 視專案需求整合前後端
+     - 建議統⼀資料格式，⽅便讀寫 (.json, .csv)
+
+   - 如何確立⼀個機器學習模型的可⽤性？
+
+     當我們訓練好⼀個機器學習模型，為了驗證其可⾏性，多半會讓模型正式上線，觀察其在實際資料進來時的結果；有時也會讓模型跟專家進⾏PK，挑⼀些真實資料讓模型與專家分別測試，評估其準確率。
 
 - Ref
   - [The 7 Steps of Machine Learning (AI Adventures)](https://www.youtube.com/watch?v=nKW8Ndu7Mjw)
@@ -376,7 +382,6 @@
 
 - Anaconda
   - 適合電腦空間大，預先安裝 720 多個 Python 套件，所占容量約 3.0 Gb
-
 - miniconda
 - 適合電腦空有限，可自由控制需要安裝的 Python 套件，所占容量約 600 Mb
   - Cheatsheet
@@ -391,6 +396,10 @@
     - `conda deactivate` 回到 base 工作環境
     - `conda env export --name ENVIRONMENT --file ENVIRONMENT.yml` 將指定工作環境之設定匯出為 .yml 檔藉此複製且重現工作環境
     - `conda remove --name ENVIRONMENT --all` 移除指定工作環境
+- IDE
+  - VSCODE
+  - Jupyter
+    - [十大至简规则，用Jupyter Notebook写代码应该这样来](https://zhuanlan.zhihu.com/p/75547694)
 - Ref
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
@@ -570,6 +579,8 @@ myfile.readlines()
     - [Deleting](https://github.com/guipsamora/pandas_exercises#deleting)
     
     - melt
+    
+    - pivot
     
     - ```
       pandas.set_option('display.max_rows', None)
