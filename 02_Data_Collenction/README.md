@@ -1498,7 +1498,7 @@ r.text
 
 
 
-#### 反爬
+### 反爬
 
 - 瀏覽器標頭與基本資訊
 
@@ -1661,6 +1661,19 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
   - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 、https://www.us-proxy.org/
   - 中國：http://cn-proxy.com/
+
+#### 滑動圖片
+
+1. 利用python+opencv拆解缺塊位置
+   1. 利用cv2將圖片讀取到程式中
+   2. 判斷圖片中的物體邊緣輪廓
+   3. 取出缺塊所在的位置
+2. 利用Python+selenium模擬滑動行爲
+   1. 打開瀏覽器前往網頁下載原始圖片
+   2. 找出按鈕元素
+   3. 模擬使用者拖拉方塊行爲
+
+
 
 
 

@@ -4,15 +4,14 @@
 
 ## 簡介
 
-### 模型選擇
+機器學習模型的專案可以依據「是否有目標變數」以及「模型的產出為數值或分類資料」，將模型區分為以下四個類型
 
-- 了解專案的⽬標是甚麼樣的分類問題並選⽤適當的模型訓練
+- 分類模型
+- 回歸模型
+- 分群模型
+- 降維模型
 
-- 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
-
-- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。
-
-- 但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
+![](C:/Users/TLYu0419/Documents/Github/DataScience/images/four-corners.png)
 
 - Supervised Learning
 
@@ -46,20 +45,12 @@
 
       非結構化資料如⽂字、影像等，可以藉由⼀些非監督式學習的技術，幫助呈現及描述資料。
 
-![](C:/Users/TLYu0419/Documents/Github/DataScience/images/intro-learning-paradigms.png)
+- 機器學習模型有很多，當訓練成本很小的時候，建議均作嘗試，不僅可以測試效果，還可以學習各種模型的使用技巧。
+- 幸運的是，這些模型都已經有現成的工具（如scikit-learn、XGBoost、LightGBM等）可以使用，不用自己重複造輪子。
+- 但是我們應該要知道各個模型的原理，這樣在調參的時候才會遊刃有餘。
 
-- 可以再依據目標變數屬於數值資料還是類別資料，將模型區分為
+- 調參
 
-  - 分類模型
-  - 回歸模型
-  - 分群模型
-  - 降維模型
-
-  ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/four-corners.png)
-
-
-
-### 調參
 
 - 之前接觸到的所有模型都有超參數需要設置
   - LASSO，Ridge: α 的⼤⼩
@@ -69,289 +60,6 @@
 - 超參數會影響結果，但提升的效果有限，資料清理與特徵⼯程才能最有效的提升準確率，調整參數只是⼀個加分的⼯具。
 
 
-
-## Evaluation Method
-
-https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
-
-機器學習模型中的⽬標函數
-
-- 機器學習模型的⽬標函數中有兩個非常重要的元素
-
-  - 損失函數 (Loss function)
-
-    損失函數衡量預測值與實際值的差異，讓模型能往正確的⽅向學習
-
-  - 正則化 (Regularization)
-
-    - 正則化是為了解決過擬合問題，分為 L1 和 L2 正則化。主要通過修正損失函數，加入模型複雜性評估
-
-    - 正則化是符合**奧卡姆剃刀原理**：在所有可能的模型中，能夠很好的解釋已知數據並且十分簡單的才是最好的模型。
-
-定義⼀個⽬標函數 (Objective function) 也可稱作損失函數 (Loss function)，來衡量模型的好壞，Loss 越⼤，代表這組參數的模型預測出的 ŷ 越不準，也代表不應該選這組參數的模型
-
-- **分類模型**：觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
-
-  - Accuracy
-   - AUC, Area Under Curve
-
-  - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
-
-  - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
-  - F1 - Score (Precision, Recall), 範圍: [0, 1]
-
-### 回歸模型
-
-- 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
-
-  - MAE, Mean Absolute Error, 範圍: [-∞, ∞]
-    $$
-    \frac{1}{m}\sum_{i=1}^m\vert (y_i-\hat y)\vert
-    $$
-    MSE, Mean Square Error, 範圍: [-∞, ∞]
-    $$
-    \frac{1}{m}\sum_{i=1}^m(y_i-\hat y)^2
-    $$
-  
-  - R-square, 範圍: [0, 1]
-  
-    
-  
-  - Adjust R-square
-  
-    - R^2會隨著變數數量的增加而提升，進而容易有Overfit的問題，而adjust R^2 則會針對變數數量進行懲罰，可以幫助我們找出最合適的變數數量
-  
-    $$
-    AdjR^2 = 1 - (1-R^2)\frac{n-1}{n-p-1}
-    $$
-  
-    - p: number of independent variable
-    - n: sample size
-
-### 分類模型
-
-- 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
-
-  - 會透過混淆矩陣 (Confusion Matrix)來衡量模型的效度
-
-  - 因應預測與實際結果的不一致，會產生TP，TN，FP，FN等4種情況
-
-    (英文的命名可以從預測的角度來理解)
-
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/confusion_matrix_1.png)
-
-  
-
-- 評估指標
-
-  - Accuracy：
-
-    - Accuracy in classification problems is the **number of correct predictions** made by the model divided by the **total number of predictions.**
-
-      $\frac{(TP + TN)}{Total Sample}$
-
-    - Accuracy Paradox
-
-      - 樣本極度不平衡時，直接將所有樣本預測成多數的類別即可獲得高 Accuracy rate
-      - 優點：直觀；缺點：沒有考量不同類型犯錯的成本差異
-
-  - Precision： 則是針對某類別進⾏評估
-
-    - Ability of a classification model to identify **only** the relevant data points.
-    - Precision is defined as the number of **true positives divided by the number of true positives plus the number of false positives.** 
-    - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
-
-  - Recall
-
-    - Ability of a model to find **all** the relevant cases within a dataset. 
-    - The precise definition of recall is the **number of true positives divided by the number of true positives plus the number of false negatives.** 
-    - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
-      (以瑕疵檢測為例，若為 recall=1 則代表所有瑕疵都被找到)
-    - Often you have a trade-off between Recall and Precision.
-    - While recall expresses the ability to find all relevant instances in a dataset, precision expresses the proportion of the data points our model says was relevant actually were relevant.
-
-  - F1 - Score (Precision, Recall), 範圍: [0, 1]
-
-    - In cases where we want to find an optimal blend of precision and recall we can combine the two metrics using what is called the F1 score.
-
-    - The F1 score is the harmonic mean of precision and recall taking both metrics into account in the following equation:
-
-      $F_1=2*\frac{precision*recall}{precision+recall}$
-
-    - We use the harmonic mean instead of a simple average because it punishes extreme values. 
-
-    - A classifier with a precision of 1.0 and a recall of 0.0 has a simple average of 0.5 but an F1 score of 0. 
-
-    - Precision and Recall typically make more sense in the context of a confusion matrix.
-
-    - F1 是 Precision, Recall 的調和平均數
-
-    - 分類問題中，我們有時會對某⼀類別的準確率特別有興趣。例如瑕疵/正常樣本分類，我們希望任何瑕疵樣本都不能被漏掉。
-
-    - 衍生指標
-
-      - F1-Score是指准确率和召回率一样重要；
-
-      - F2-Score是指召回率比准确率重要一倍；
-
-      - F0.5-Score是指准确率比召回率重要一倍。
-
-  - AUC, Area Under Curve, 範圍: [0, 1]
-
-    - AUC 指摽是分類問題常⽤的指標，通常分類問題都需要定⼀個閾值(threshold) 來決定分類的類別 (通常為機率 > 0.5 判定為 1, 機率 < 0.5 判定為 0)
-    - AUC 是衡量曲線下的⾯積，因此可考量所有閾值下的準確性，因此 AUC 也廣泛地在分類問題的比賽中使⽤
-
-  - CAP(Cumulative Accuracy Profile)
-
-    - 衡量模型整體在抓多少的人時(X軸)，能抓到多少目標客戶(Y)
-    - 隨機抓時抓多少%的客戶就會找到多少%的目標客戶，如果曲線越接近左上表示模型的效果越好
-
-    - X軸放樣本的預測機率*-1
-
-    - y軸放累積抓到的人數
-
-    - 衡量指標(抓50%的樣本時，找到的目標百分比)
-
-      - Rubbish：< 60%
-      - Poor ： 60% ~ 70%
-      - Good：70% ~ 80%
-      - Very Good：80% ~ 90%
-      - Too Good： 90% ~ 100%
-
-  - ROC(Receiver Operating Characteristic)
-
-  - [MAP](https://medium.com/@jonathan_hui/map-mean-average-precision-for-object-detection-45c121a31173)
-
-  - 多分類問題，則可使⽤ top-k accuracy，k 代表模型預測前 k 個類別有包含正確類別即為正確 (ImageNet 競賽通常都是比 Top-5 Accuracy)
-
-    - Type I error: False Positive
-    - Type II error: false negative
-
-- https://gombru.github.io/2018/05/23/cross_entropy_loss/
-
-### Cluster
-
-- 輪廓分析(Silhouette analysis)
-
-  - 歷史
-
-    - 最早由 Peter J. Rousseeuw 於 1986 提出。它同時考慮了群內以及相鄰群的距離，除了可以評估資料點分群是否得當，也可以⽤來評估不同分群⽅式對於資料的分群效果
-
-  - 設計精神
-
-    - 同⼀群的資料點應該很近，不同群的資料點應該很遠，所以設計⼀種當 同群資料點越近 / 不同群資料點越遠 時越⼤的分數
-    - 當資料點在兩群交界附近，希望分數接近 0
-
-  - 分群模型的評估
-
-    - 與監督模型不同，非監督因為沒有⽬標值，因此無法使⽤⽬標值的預估與實際差距，來評估模型的優劣
-
-  - 輪廓分析
-
-    - 輪廓分數是⼀種同群資料點越近 / 不同群資料點越遠時會越⼤的分數，除了可以評估資料點分群是否得當，也可以⽤來評估分群效果
-    - 要以輪廓分析觀察 K -mean，除了可以將每個資料點分組觀察以評估資料點分群是否得當，也可⽤平均值觀察評估不同 K 值的分群效果
-
-  - 評估⽅式類型
-
-    - 有⽬標值的分群
-
-      - 如果資料有⽬標值，只是先忽略⽬標值做非監督學習，則只要微調後，就可以使⽤原本監督的測量函數評估準確性
-    - 無⽬標值的分群
-
-    - 但通常沒有⽬標值/⽬標值非常少才會⽤非監督模型，這種情況下，只能使⽤資料本⾝的分布資訊，來做模型的評估
-
-    - 單點輪廓值
-
-      - 對任意單⼀資料點 i，「與 i 同⼀群」 的資料點，距離 i 的平均稱為 ai
-      - 「與 i 不同群」 的資料點中，不同群距離 i 平均中，最⼤的稱為bi ( 其實就是要取第⼆靠近 i 的那⼀群平均，滿⾜交界上分數為0 的設計)
-
-  - i 點的輪廓分數 si : (bi-ai) / max{bi, ai}
-
-    - 其實只要不是刻意分錯，bi 通常會⼤於等於 ai，所以上述公式在此條件下可以化簡為 1 - ai / bi 
-
-    - 整體的輪廓分析
-
-      - 分組觀察 如下圖，左圖依照不同的類別，將同類別的輪廓分數排序後顯⽰，可以發現黃綠兩組的輪廓值⼤多在平均以下，且比例上接近 0的點也比較多，這些情況都表⽰這兩組似乎沒分得那麼開 (可對照下圖)
-
-        ![](https://lh3.googleusercontent.com/gjSeS-QxeX7aQgk6qeimUFxEGdbgRik64dDZttLGBmZf06fjfAfwxG1rS0nZIYO-pUVcVFj_0jGSEOWERzUqc-iL_qcCjLwyggqHeVroC2V4HmknH1N9l_8BEadADJ9s27t1txj81mLitKe59iGX89qTOQepLAazDMGSR64LTNKBqVLFDFsXpI1zegCA8SOT6y7mrKSM8xd6UfnnI0TIDT8Wt2Y-41vxCe1vG3BTYVFcg6XGqOXqqhjTXuhHytSuSASZisaJG9NlqX1wsfCWYEc8fTDCdeve0zxESyEpPBqsHLPsFXKtiT0M0BDxpwNuIaJJZZa5lBIv-vTx3H7YoYGoaSE_pxVNgFvT57H3yrditWvqbnQhs7ta2oJvAn7NFi4K2d1MC5awNweBXDldfhSBQA3uEhYY694ayyXPYzo00f2Nad0Jz6NGCfi9QRpJjs31cdAaSu4_4FplN8O32q2FalgQWF4gRRVKBSsAep860lL3gCiijqU3ZrpZSzBnqF6OHVOVpdeWKXggHFn-JcVSxl0f7MAO5TAury_bnwa7K2hL93-nnvsc6869Ev5JPKJFrtQsYITFSXI0D0Byj7Hpc4s6CpVdDngEcXGij0Vyqd9u3RHgw5Ev8PDze93qrDaTO6ch21j-QQb5nmD04ytzftOgGd-VnfsxSL30zoOp9DC8eHSS80EAvWGYekRcx0HP_yEPj0LvmLo1tg76-B81AWLhe78ykgPz62lsA-eW7nY=w996-h414-no)
-
-      - 平均值觀察 計算分群的輪廓分數總平均，分的群數越多應該分數越⼩，如果總平均值沒有隨著分群數增加⽽變⼩，就說明了那些分組數較不洽當
-
-### Dimension Reduction
-
-- KMO球型檢定
-- Compenent Loading
-
-
-
-### 模型驗證(Validation)
-
-- 出於理解的考量，我把模型驗證的順序放在選模型與衡量指標的後面，實際在建立模型時要先做這個步驟才開始建模。
-
-- 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
-
-- 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
-
-- 有些資料要特別注意!
-
-  - 時間序列資料
-  - 同⼀⼈有多筆資料
-
-- 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
-
-- 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
-
-- 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
-
-  - 簡單切分
-
-    - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
-
-    ```python
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    ```
-
-  - Cross-validation
-
-    - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
-
-      如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
-
-       
-
-    - 根據切分的方法不同，交叉驗證分為下面三種：　　　
-
-      - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
-
-      - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
-
-        $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
-
-        每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
-
-      - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
-
-      ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
-
-      ```python
-      sklearn.model_selection.KFold()
-      ```
-
-  - 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
-
-    - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
-
-  
-
-
-### 參考資料
-
-- [All Models Are Wrong: Concepts of Statistical Learning](https://allmodelsarewrong.github.io/index.html)
-- [What is a good r square value in regression analysis?](https://www.researchgate.net/post/what_is_a_good_r_square_value_in_regression_analysis)
-- [李宏毅⽼師線上課程/簡報](http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML17_2.html])
-- [Google 基礎機器學習線上課](https://developers.google.com/machine-learning/crash-course/)
-- [AWS Machine Learning 線上課](https://aws.amazon.com/tw/training/learn-about/machine-learning/)
 
 ## Regression
 
@@ -1518,6 +1226,291 @@ A Restricted Boltzmann Machine is called restricted because it has intra-layer c
 GANs are used for generating new data. A GAN comprises of 2 parts, a discriminator and a generator. The generator is like a reverse Convolutional Neural Network, it takes a small amount of data (random noise) and up scales it to generate input. The discriminator takes this input and predicts whether it belongs to the dataset.The two components are engaged in a zero-sum game to come up with new data, for example, GANs have been used to generate paintings.Python Tutorial
 
 - [Python Tutorial](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
+
+## Evaluation Method
+
+https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/
+
+機器學習模型中的⽬標函數
+
+- 機器學習模型的⽬標函數中有兩個非常重要的元素
+
+  - 損失函數 (Loss function)
+
+    損失函數衡量預測值與實際值的差異，讓模型能往正確的⽅向學習
+
+  - 正則化 (Regularization)
+
+    - 正則化是為了解決過擬合問題，分為 L1 和 L2 正則化。主要通過修正損失函數，加入模型複雜性評估
+
+    - 正則化是符合**奧卡姆剃刀原理**：在所有可能的模型中，能夠很好的解釋已知數據並且十分簡單的才是最好的模型。
+
+定義⼀個⽬標函數 (Objective function) 也可稱作損失函數 (Loss function)，來衡量模型的好壞，Loss 越⼤，代表這組參數的模型預測出的 ŷ 越不準，也代表不應該選這組參數的模型
+
+- **分類模型**：觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
+
+  - Accuracy
+   - AUC, Area Under Curve
+
+  - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
+
+  - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
+  - F1 - Score (Precision, Recall), 範圍: [0, 1]
+
+### 回歸模型
+
+- 觀察「預測值」 (Prediction) 與「實際值」 (Ground truth) 的差距
+
+  - MAE, Mean Absolute Error, 範圍: [-∞, ∞]
+    $$
+    \frac{1}{m}\sum_{i=1}^m\vert (y_i-\hat y)\vert
+    $$
+    MSE, Mean Square Error, 範圍: [-∞, ∞]
+    $$
+    \frac{1}{m}\sum_{i=1}^m(y_i-\hat y)^2
+    $$
+
+  - R-square, 範圍: [0, 1]
+
+    
+
+  - Adjust R-square
+
+    - R^2會隨著變數數量的增加而提升，進而容易有Overfit的問題，而adjust R^2 則會針對變數數量進行懲罰，可以幫助我們找出最合適的變數數量
+
+    $$
+    AdjR^2 = 1 - (1-R^2)\frac{n-1}{n-p-1}
+    $$
+
+    - p: number of independent variable
+    - n: sample size
+
+### 分類模型
+
+- 觀察「預測值」 (prediction) 與「實際值」 (Ground truth) 的正確程度
+
+  - 會透過混淆矩陣 (Confusion Matrix)來衡量模型的效度
+
+  - 因應預測與實際結果的不一致，會產生TP，TN，FP，FN等4種情況
+
+    (英文的命名可以從預測的角度來理解)
+
+    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/confusion_matrix_1.png)
+
+  
+
+- 評估指標
+
+  - Accuracy：
+
+    - Accuracy in classification problems is the **number of correct predictions** made by the model divided by the **total number of predictions.**
+
+      $\frac{(TP + TN)}{Total Sample}$
+
+    - Accuracy Paradox
+
+      - 樣本極度不平衡時，直接將所有樣本預測成多數的類別即可獲得高 Accuracy rate
+      - 優點：直觀；缺點：沒有考量不同類型犯錯的成本差異
+
+  - Precision： 則是針對某類別進⾏評估
+
+    - Ability of a classification model to identify **only** the relevant data points.
+    - Precision is defined as the number of **true positives divided by the number of true positives plus the number of false positives.** 
+    - Precision: 模型判定瑕疵，樣本確實為瑕疵的比例
+
+  - Recall
+
+    - Ability of a model to find **all** the relevant cases within a dataset. 
+    - The precise definition of recall is the **number of true positives divided by the number of true positives plus the number of false negatives.** 
+    - Recall: 模型判定的瑕疵，佔樣本所有瑕疵的比例
+      (以瑕疵檢測為例，若為 recall=1 則代表所有瑕疵都被找到)
+    - Often you have a trade-off between Recall and Precision.
+    - While recall expresses the ability to find all relevant instances in a dataset, precision expresses the proportion of the data points our model says was relevant actually were relevant.
+
+  - F1 - Score (Precision, Recall), 範圍: [0, 1]
+
+    - In cases where we want to find an optimal blend of precision and recall we can combine the two metrics using what is called the F1 score.
+
+    - The F1 score is the harmonic mean of precision and recall taking both metrics into account in the following equation:
+
+      $F_1=2*\frac{precision*recall}{precision+recall}$
+
+    - We use the harmonic mean instead of a simple average because it punishes extreme values. 
+
+    - A classifier with a precision of 1.0 and a recall of 0.0 has a simple average of 0.5 but an F1 score of 0. 
+
+    - Precision and Recall typically make more sense in the context of a confusion matrix.
+
+    - F1 是 Precision, Recall 的調和平均數
+
+    - 分類問題中，我們有時會對某⼀類別的準確率特別有興趣。例如瑕疵/正常樣本分類，我們希望任何瑕疵樣本都不能被漏掉。
+
+    - 衍生指標
+
+      - F1-Score是指准确率和召回率一样重要；
+
+      - F2-Score是指召回率比准确率重要一倍；
+
+      - F0.5-Score是指准确率比召回率重要一倍。
+
+  - AUC, Area Under Curve, 範圍: [0, 1]
+
+    - AUC 指摽是分類問題常⽤的指標，通常分類問題都需要定⼀個閾值(threshold) 來決定分類的類別 (通常為機率 > 0.5 判定為 1, 機率 < 0.5 判定為 0)
+    - AUC 是衡量曲線下的⾯積，因此可考量所有閾值下的準確性，因此 AUC 也廣泛地在分類問題的比賽中使⽤
+
+  - CAP(Cumulative Accuracy Profile)
+
+    - 衡量模型整體在抓多少的人時(X軸)，能抓到多少目標客戶(Y)
+    - 隨機抓時抓多少%的客戶就會找到多少%的目標客戶，如果曲線越接近左上表示模型的效果越好
+
+    - X軸放樣本的預測機率*-1
+
+    - y軸放累積抓到的人數
+
+    - 衡量指標(抓50%的樣本時，找到的目標百分比)
+
+      - Rubbish：< 60%
+      - Poor ： 60% ~ 70%
+      - Good：70% ~ 80%
+      - Very Good：80% ~ 90%
+      - Too Good： 90% ~ 100%
+
+  - ROC(Receiver Operating Characteristic)
+
+  - [MAP](https://medium.com/@jonathan_hui/map-mean-average-precision-for-object-detection-45c121a31173)
+
+  - 多分類問題，則可使⽤ top-k accuracy，k 代表模型預測前 k 個類別有包含正確類別即為正確 (ImageNet 競賽通常都是比 Top-5 Accuracy)
+
+    - Type I error: False Positive
+    - Type II error: false negative
+
+- https://gombru.github.io/2018/05/23/cross_entropy_loss/
+
+### Cluster
+
+- 輪廓分析(Silhouette analysis)
+
+  - 歷史
+
+    - 最早由 Peter J. Rousseeuw 於 1986 提出。它同時考慮了群內以及相鄰群的距離，除了可以評估資料點分群是否得當，也可以⽤來評估不同分群⽅式對於資料的分群效果
+
+  - 設計精神
+
+    - 同⼀群的資料點應該很近，不同群的資料點應該很遠，所以設計⼀種當 同群資料點越近 / 不同群資料點越遠 時越⼤的分數
+    - 當資料點在兩群交界附近，希望分數接近 0
+
+  - 分群模型的評估
+
+    - 與監督模型不同，非監督因為沒有⽬標值，因此無法使⽤⽬標值的預估與實際差距，來評估模型的優劣
+
+  - 輪廓分析
+
+    - 輪廓分數是⼀種同群資料點越近 / 不同群資料點越遠時會越⼤的分數，除了可以評估資料點分群是否得當，也可以⽤來評估分群效果
+    - 要以輪廓分析觀察 K -mean，除了可以將每個資料點分組觀察以評估資料點分群是否得當，也可⽤平均值觀察評估不同 K 值的分群效果
+
+  - 評估⽅式類型
+
+    - 有⽬標值的分群
+
+      - 如果資料有⽬標值，只是先忽略⽬標值做非監督學習，則只要微調後，就可以使⽤原本監督的測量函數評估準確性
+    - 無⽬標值的分群
+
+    - 但通常沒有⽬標值/⽬標值非常少才會⽤非監督模型，這種情況下，只能使⽤資料本⾝的分布資訊，來做模型的評估
+
+    - 單點輪廓值
+
+      - 對任意單⼀資料點 i，「與 i 同⼀群」 的資料點，距離 i 的平均稱為 ai
+      - 「與 i 不同群」 的資料點中，不同群距離 i 平均中，最⼤的稱為bi ( 其實就是要取第⼆靠近 i 的那⼀群平均，滿⾜交界上分數為0 的設計)
+
+  - i 點的輪廓分數 si : (bi-ai) / max{bi, ai}
+
+    - 其實只要不是刻意分錯，bi 通常會⼤於等於 ai，所以上述公式在此條件下可以化簡為 1 - ai / bi 
+
+    - 整體的輪廓分析
+
+      - 分組觀察 如下圖，左圖依照不同的類別，將同類別的輪廓分數排序後顯⽰，可以發現黃綠兩組的輪廓值⼤多在平均以下，且比例上接近 0的點也比較多，這些情況都表⽰這兩組似乎沒分得那麼開 (可對照下圖)
+
+        ![](https://lh3.googleusercontent.com/gjSeS-QxeX7aQgk6qeimUFxEGdbgRik64dDZttLGBmZf06fjfAfwxG1rS0nZIYO-pUVcVFj_0jGSEOWERzUqc-iL_qcCjLwyggqHeVroC2V4HmknH1N9l_8BEadADJ9s27t1txj81mLitKe59iGX89qTOQepLAazDMGSR64LTNKBqVLFDFsXpI1zegCA8SOT6y7mrKSM8xd6UfnnI0TIDT8Wt2Y-41vxCe1vG3BTYVFcg6XGqOXqqhjTXuhHytSuSASZisaJG9NlqX1wsfCWYEc8fTDCdeve0zxESyEpPBqsHLPsFXKtiT0M0BDxpwNuIaJJZZa5lBIv-vTx3H7YoYGoaSE_pxVNgFvT57H3yrditWvqbnQhs7ta2oJvAn7NFi4K2d1MC5awNweBXDldfhSBQA3uEhYY694ayyXPYzo00f2Nad0Jz6NGCfi9QRpJjs31cdAaSu4_4FplN8O32q2FalgQWF4gRRVKBSsAep860lL3gCiijqU3ZrpZSzBnqF6OHVOVpdeWKXggHFn-JcVSxl0f7MAO5TAury_bnwa7K2hL93-nnvsc6869Ev5JPKJFrtQsYITFSXI0D0Byj7Hpc4s6CpVdDngEcXGij0Vyqd9u3RHgw5Ev8PDze93qrDaTO6ch21j-QQb5nmD04ytzftOgGd-VnfsxSL30zoOp9DC8eHSS80EAvWGYekRcx0HP_yEPj0LvmLo1tg76-B81AWLhe78ykgPz62lsA-eW7nY=w996-h414-no)
+
+      - 平均值觀察 計算分群的輪廓分數總平均，分的群數越多應該分數越⼩，如果總平均值沒有隨著分群數增加⽽變⼩，就說明了那些分組數較不洽當
+
+### Dimension Reduction
+
+- KMO球型檢定
+- Compenent Loading
+
+
+
+### 模型驗證(Validation)
+
+- 出於理解的考量，我把模型驗證的順序放在選模型與衡量指標的後面，實際在建立模型時要先做這個步驟才開始建模。
+
+- 機器學習模型需要資料才能訓練，若將⼿上所有資料都送進模型訓練，這樣就沒有額外資料來評估模型訓練情形！
+
+- 機器學習模型可能會有過擬合 (Over-fitting) 的情形發⽣，需透過驗證/測試集評估模型是否過擬合
+
+- 有些資料要特別注意!
+
+  - 時間序列資料
+  - 同⼀⼈有多筆資料
+
+- 若僅做⼀次訓練/測試集切分，有些資料會沒有被拿來訓練過，因此後續就有 cross-validation 的⽅法，可以讓結果更為穩定，Ｋ為 fold 數量
+
+- 每筆資料都曾經當過⼀次驗證集，再取平均得到最終結果。
+
+- 在Test Data的標籤未知的情況下，我們需要自己構造測試資料來驗證模型的泛化能力，因此把Train Data分割成Train Set和Valid Set兩部分，Train Set用於訓練，Valid Set用於驗證。
+
+  - 簡單切分
+
+    - 將Train Data按一定方法分成兩份，比如隨機取其中70%的資料作為Train Set，剩下30%作為Valid Set，每次都固定地用這兩份資料分別訓練模型和驗證模型。這種做法的缺點很明顯，它沒有用到整個訓練資料，所以驗證效果會有偏差。通常只會在訓練資料很多，模型訓練速度較慢的時候使用。
+
+    ```python
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+    ```
+
+  - Cross-validation
+
+    - 交叉驗證是將整個訓練資料隨機分成K份，訓練K個模型，每次取其中的K-1份作為Train Set，留出1份作為Valid Set，因此也叫做**K-fold**。至於這個K，你想取多少都可以，但一般選在3～10之間。我們可以用K個模型得分的mean和std，來評判模型得好壞（mean體現模型的能力，std體現模型是否容易過擬合），並且用K-fold的驗證結果通常會比較可靠。
+
+      如果資料出現Label不均衡情況，可以使用Stratified K-fold，這樣得到的Train Set和Test Set的Label比例是大致相同。
+
+       
+
+    - 根據切分的方法不同，交叉驗證分為下面三種：　　　
+
+      - 簡單交叉驗證，所謂的簡單，是和其他交叉驗證方法相對而言的。首先，我們隨機的將樣本資料分為兩部分（比如： 70%的訓練集，30%的測試集），然後用訓練集來訓練模型，在測試集上驗證模型及參數。接著，我們再把樣本打亂，重新選擇訓練集和測試集，繼續訓練資料和檢驗模型。最後我們選擇損失函數評估最優的模型和參數。　
+
+      - 第二種是 S 折交叉驗證（ S-Folder Cross Validation），和第一種方法不同， S 折交叉驗證先將資料集 D 隨機劃分為 S 個大小相同的互斥子集，即
+
+        $$D=D_1\cup D_2\cup ...\cup D_S,D_i\cap D_j=\varnothing(i\ne j)$$
+
+        每次隨機的選擇 份作為訓練集，剩下的1份做測試集。當這一輪完成後，重新隨機選擇 份來訓練資料。若干輪（小於 ）之後，選擇損失函數評估最優的模型和參數。注意，交叉驗證法評估結果的穩定性和保真性在很大程度上取決於 取值。
+
+      - 第三種是留一交叉驗證（Leave-one-out Cross Validation），它是第二種情況的特例，此時 S 等於樣本數 N ，這樣對於 N 個樣本，每次選擇 N-1 個樣本來訓練資料，留一個樣本來驗證模型預測的好壞。此方法主要用於樣本量非常少的情況，比如對於通適中問題， N 小於 50 時，一般採用留一交叉驗證。
+
+      ![](https://lh3.googleusercontent.com/Q8wUvU5LNtUC-KfgXi6onDlAYzhwzrMtJLqAETx9lxiICpwMQ6avrzQZeZuTbk4jLfy8yLzQE8GtQVPhvwQLLgBCwHahR80HYHnhk9HFYw2XFXojQJyN1aCx4xGwIKHXws0zaCJhfP2fvpcaRcjyX6qpeyTANWU6x8PgTaG7QZibxwBa0HhRGkZvFGJvgpEg8cQRENu7O3tVghzmIrTMDl_DT1R71SLi5cuC8nRWwfgy2mC7k5QZQemELATPskGnC9m8ocq6j526DKheHdUzg_H-RNnsXW4VSZ0SAmtrxM2wYv4Yr-giyt2aKau593Ed7IV052HnELmbfAK02ytqJ4STKzgQODjgydWn686EgWfb2XsEjg-_pppEbeNL5PGbHxGdSrrGVLSH_njIWlA6AGnT5Zl5N6EaCYvqqOmz_d3bF2I1uXyHEBdW9DLk-Biw-I7wfoe-1VYG7PVzQuNNYktqS59V3jq71PbMB0JlwnoYq0NeFEBHiAr4LlSCNLkRUnNLIx36BM7yWvCANBz7ueVNnSrdp6wXachkE5i9CGqkZHodJTs1L05ztMF3e-quBPhd87tfa_zwRO74sE44PofvkH38qvFE0--rQJnXHWZZ9n88ilp12CYyxrhRLWEoCMpDA3ZQPlTk9yARiH-Em5EfHu8xppfFGz5gdf6zvROpAxFtbrVKMmHKkchUIG9x79xLl7ZYzNesryK6qLirr41EH-Dd2S29eGEBkEMFHLiQ8fQ=w665-h303-no)
+
+      ```python
+      sklearn.model_selection.KFold()
+      ```
+
+  - 驗證集 (validation set) 與測試集 (testing set)有甚麼差異？
+
+    - 驗證集常⽤來評估不同超參數或不同模型的結果。⽽測試集則是在機器學習專案開始前先保留⼀⼩部分資料，專案進⾏中都不能使⽤，最終再拿來做測試。
+
+  
+
+
+### 參考資料
+
+- [All Models Are Wrong: Concepts of Statistical Learning](https://allmodelsarewrong.github.io/index.html)
+- [What is a good r square value in regression analysis?](https://www.researchgate.net/post/what_is_a_good_r_square_value_in_regression_analysis)
+- [李宏毅⽼師線上課程/簡報](http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML17_2.html])
+- [Google 基礎機器學習線上課](https://developers.google.com/machine-learning/crash-course/)
+- [AWS Machine Learning 線上課](https://aws.amazon.com/tw/training/learn-about/machine-learning/)
+
+
 
 ## Anomaly detection
 

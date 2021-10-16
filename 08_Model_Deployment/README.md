@@ -2,6 +2,28 @@
 
 ## 模型案
 
+### Git
+
+#### Clone
+
+- You can clone a project from github, you can clone it by following script
+
+  - Sample Project: [TLYu0419/DataScience: My Data Science Note (github.com)](https://github.com/TLYu0419/DataScience)
+
+  ```git
+  git clone git@github.com:TLYu0419/DataScience.git
+  ```
+
+#### Push
+
+```git
+git add .
+gi commit -m 'Update'
+git push -u origin main
+```
+
+
+
 - 維運
   - 批次訓練的模型/online train
   - 時間的有效性
@@ -21,6 +43,10 @@
     - 風險與不確定性
     - 變動與影響
     - 需要的協助
+
+- Ref
+  - [Git基本原理介绍(1)——代码仓库的初始化 - YouTube](https://www.youtube.com/watch?v=O5Dy4hxKFvE&list=PLfQqWeOCIH4BXVnYaPgjR9_f8YF3WNAz0)
+  - 
 
 ## 分析案
 
