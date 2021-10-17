@@ -157,7 +157,7 @@
       - 強相關：0.6~0.79
       - 非常強相關：0.8~1.0
 
-      ![](https://lh3.googleusercontent.com/N-1nRtfzQQeEcCPhB2BsDKPxbe_aeJlbTJoC505odQ17jlKGSJsJa6r5YX6dpXHGnq2fp2FWeaX9TSMvg1TnFo_9e-zkOBOuEQIlQN1BGeyiDEvmTZSs0pNHjkNvsqK5luViqDP1ynIsulYMipiU-okEvH7scYkov9JVPXRmDu0pKVT2lGckVD7QWEASrVSmh_kN7DOQii2_TQZ2h7nPDVbW0lyU_wlLWU8WvzglHFLh85whTee_lQ7WpiT1SJHRc0689kW9TjDch2m_TsWkpENZMTXGB3bXkdsWwZ-mIEuc-KVlW0SBrZqqjPnAsDQyAUIXzx8sbHsWZu8cPCRekKXmxX0VjCMNkACgwTkIIxIUDv0PQ1iB2w8UIqC-dIUGuKUnfvFP2l5HXMysm5_fZjr8qxcm8KSY9t9cvsk6mHkbFZTP7AOEelgtcfrrFdKIJkKsqC2nOMPuv78Pmec7KxwryQrF97bVAx7ns0nwBDBcwNOP_nmgg24eqasI_hi5gwfKwYryswSZ0nVTWjHNeb8el05No6L66O8lQ7Aux7i6cdMfvd1kT56mn8wSy5O8PGitRkHjupyiqEWkX9NCgEeMkPnaM__Ztg2_r2Dq3HL6QfE1zK2tAHpaTCkwyA836NlEjpb617IA3dL3C-Jty_9iCGY-YYvs6RvQbXrtoYMs_vpzORSn1CAqel4tF6x_OVSLpn0PfN_OT0fnR9rh9hj7=w742-h326-no)
+      ![](./images/correlation.jpg)
 
 - 參考資料
 
