@@ -178,59 +178,59 @@
 
    - Scatteplot is a classic and fundamental plot used to study the relationship between two variables. If you have multiple groups in your data you may want to visualise each group in a different color. In `matplotlib`, you can conveniently do this using `plt.scatterplot()`
 
-     ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/1_Scatterplot_Matplotlib-min.png)
+     ![](./images/1_Scatterplot_Matplotlib-min.png)
 
 2. Bubble plot with Encircling: 
 
    - Sometimes you want to show a group of points within a boundary to emphasize their importance. In this example, you get the records from the dataframe that should be encircled and pass it to the `encircle()` described in the code below.
 
-     ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/2_Bubble_Plot-min.png)
+     ![](./images/2_Bubble_Plot-min.png)
 
 3. Scatter plot with line of best fit
 
    - If you want to understand how two variables change with respect to each other, the line of best fit is the way to go. The below plot shows how the line of best fit differs amongst various groups in the data. To disable the groupings and to just draw one line-of-best-fit for the entire dataset, remove the `hue='cyl'` parameter from the `sns.lmplot()` call below.
 
-     ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/3_1_Scatterplot_with_linesofbestfit_Seaborn-min.png)
+     ![](./images/3_1_Scatterplot_with_linesofbestfit_Seaborn-min.png)
 
    - Alternately, you can show the best fit line for each group in its own column. You cando this by setting the `col=groupingcolumn` parameter inside the `sns.lmplot()`.
 
-     ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/3_2_Scatterplot_with_lineofbestfit_Seaborn-min.png)
+     ![](./images/3_2_Scatterplot_with_lineofbestfit_Seaborn-min.png)
 
 4. Jittering with stripplot
 
    - Often multiple datapoints have exactly the same X and Y values. As a result, multiple points get plotted over each other and hide. To avoid this, jitter the points slightly so you can visually see them. This is convenient to do using seaborn’s `stripplot()`.
 
-     ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/4_Jittering_with_Stripplot_Seaborn-min.png)
+     ![](./images/4_Jittering_with_Stripplot_Seaborn-min.png)
 
 5. Counts Plot
 
    - Another option to avoid the problem of points overlap is the increase the size of the dot depending on how many points lie in that spot. So, larger the size of the point more is the concentration of points around that.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/5_Counts_plot_Matplotlib-min.png)
+   ![](./images/5_Counts_plot_Matplotlib-min.png)
 
 6. Marginal Histogram
 
    - Marginal histograms have a histogram along the X and Y axis variables. This is used to visualize the relationship between the X and Y along with the univariate distribution of the X and the Y individually. This plot if often used in exploratory data analysis (EDA).
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/6_Marginal_histogram_Matplotlib-min.png)
+   ![](./images/6_Marginal_histogram_Matplotlib-min.png)
 
 7. Marginal Boxplot
 
    - Marginal boxplot serves a similar purpose as marginal histogram. However, the boxplot helps to pinpoint the median, 25th and 75th percentiles of the X and the Y.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/7_Marginal_boxplot_Matplotlib-min.png)
+   ![](./images/7_Marginal_boxplot_Matplotlib-min.png)
 
 8. Correlogram
 
    - Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe (or 2D array).
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/8_Correlogram_Matplotlib-min.png)
+   ![](./images/8_Correlogram_Matplotlib-min.png)
 
 9. Pairwise Plot
 
    - Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. It is a must have tool for bivariate analysis.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/9_Pairplot_lines_Seaborn-min.png)
+   ![](./images/9_Pairplot_lines_Seaborn-min.png)
 
 #### Deviation
 
@@ -238,31 +238,31 @@
 
    - If you want to see how the items are varying based on a single metric and visualize the order and amount of this variance, the diverging bars is a great tool. It helps to quickly differentiate the performance of groups in your data and is quite intuitive and instantly conveys the point.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/10_Diverging_bars_Matplotlib-min.png)
+   ![](./images/10_Diverging_bars_Matplotlib-min.png)
 
 2. Diverging Texts
 
    - Diverging texts is similar to diverging bars and it preferred if you want to show the value of each items within the chart in a nice and presentable way.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/11_Diverging_Textbars_Matplotlib-min.png)
+   ![](./images/11_Diverging_Textbars_Matplotlib-min.png)
 
 3. Diverging Dot Plot
 
    - Divering dot plot is also similar to the diverging bars. However compared to diverging bars, the absence of bars reduces the amount of contrast and disparity between the groups.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/12_Diverging_DotPlot_Matplotlib-min.png)
+   ![](./images/12_Diverging_DotPlot_Matplotlib-min.png)
 
 4. Diverging Lollipop Chart with Markers
 
    - Lollipop with markers provides a flexible way of visualizing the divergence by laying emphasis on any significant datapoints you want to bring attention to and give reasoning within the chart appropriately.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/13_Diverging_Lollipop_Matplotlib-min.png)
+   ![](./images/13_Diverging_Lollipop_Matplotlib-min.png)
 
 5. Area Chart
 
    - By coloring the area between the axis and the lines, the area chart throws more emphasis not just on the peaks and troughs but also the duration of the highs and lows. The longer the duration of the highs, the larger is the area under the line.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/14_AreaChart_Matplotlib-min.png)
+   ![](./images/14_AreaChart_Matplotlib-min.png)
 
 #### Ranking
 
@@ -270,31 +270,31 @@
 
    - Ordered bar chart conveys the rank order of the items effectively. But adding the value of the metric above the chart, the user gets the precise information from the chart itself.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/15_Ordered_Barchart_Matplotlib-min.png)
+   ![](./images/15_Ordered_Barchart_Matplotlib-min.png)
 
 2. Lollipop Chart
 
    - Lollipop chart serves a similar purpose as a ordered bar chart in a visually pleasing way.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/16_Lollipop_Chart_Matplotlib-min.png)
+   ![](./images/16_Lollipop_Chart_Matplotlib-min.png)
 
 3. Dot Plot
 
    - The dot plot conveys the rank order of the items. And since it is aligned along the horizontal axis, you can visualize how far the points are from each other more easily.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/17_DotPlot_Matplotlib-min.png)
+   ![](./images/17_DotPlot_Matplotlib-min.png)
 
 4. Slope Chart
 
    - Slope chart is most suitable for comparing the ‘Before’ and ‘After’ positions of a given person/item.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/18_Slopechart_Matplotlib-min.png)
+   ![](./images/18_Slopechart_Matplotlib-min.png)
 
 5. Dumbbell Plot
 
    - Dumbbell plot conveys the ‘before’ and ‘after’ positions of various items along with the rank ordering of the items. Its very useful if you want to visualize the effect of a particular project / initiative on different objects.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/19_Dumbbell_Chart_Matplotlib-min.png)
+   ![](./images/19_Dumbbell_Chart_Matplotlib-min.png)
 
 #### Distribution
 
@@ -302,68 +302,68 @@
 
    - Histogram shows the frequency distribution of a given variable. The below representation groups the frequency bars based on a categorical variable giving a greater insight about the continuous variable and the categorical variable in tandem.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/20_Histogram_Continuous_Matplotlib-min.png)
+   ![](./images/20_Histogram_Continuous_Matplotlib-min.png)
 
 2. Histogram for Categorical Variable
 
    - The histogram of a categorical variable shows the frequency distribution of a that variable. By coloring the bars, you can visualize the distribution in connection with another categorical variable representing the colors.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/21_Histogram_Barchart_Matplotlib-min.png)
+   ![](./images/21_Histogram_Barchart_Matplotlib-min.png)
 
 3. Density Plot
 
    - Density plots are a commonly used tool visualise the distribution of a continuous variable. By grouping them by the ‘response’ variable, you can inspect the relationship between the X and the Y. The below case if for representational purpose to describe how the distribution of city mileage varies with respect the number of cylinders.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/22_DensityPlot_Matplotlib-min.png)
+   ![](./images/22_DensityPlot_Matplotlib-min.png)
 
 4. Density Curves with Histogram
 
    - Density curve with histogram brings together the collective information conveyed by the two plots so you can have them both in a single figure instead of two.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/23_DensityPlot_With_Histogram_Matplotlib-min.png)
+   ![](./images/23_DensityPlot_With_Histogram_Matplotlib-min.png)
 
 5. Joy Plot
 
    - Joy Plot allows the density curves of different groups to overlap, it is a great way to visualize the distribution of a larger number of groups in relation to each other. It looks pleasing to the eye and conveys just the right information clearly. It can be easily built using the `joypy` package which is based on `matplotlib`.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/24_JoyPlot_joypy-min.png)
+   ![](./images/24_JoyPlot_joypy-min.png)
 
 6. Distributed Dot Plot
 
    - Distributed dot plot shows the univariate distribution of points segmented by groups. The darker the points, more is the concentration of data points in that region. By coloring the median differently, the real positioning of the groups becomes apparent instantly.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/25_Distributed_Dotplot_Matplotlib-min.png)
+   ![](./images/25_Distributed_Dotplot_Matplotlib-min.png)
 
 7. Box Plot
 
    - Box plots are a great way to visualize the distribution, keeping the median, 25th 75th quartiles and the outliers in mind. However, you need to be careful about interpreting the size the boxes which can potentially distort the number of points contained within that group. So, manually providing the number of observations in each box can help overcome this drawback.
    - For example, the first two boxes on the left have boxes of the same size even though they have 5 and 47 obs respectively. So writing the number of observations in that group becomes necessary.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/26_Boxplots_Matplotlib-min.png)
+   ![](./images/26_Boxplots_Matplotlib-min.png)
 
 8. Dot + Box Plot
 
    - Dot + Box plot Conveys similar information as a boxplot split in groups. The dots, in addition, gives a sense of how many data points lie within each group.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/27_Dot_Box_Plot_Seaborn-min.png)
+   ![](./images/27_Dot_Box_Plot_Seaborn-min.png)
 
 9. Violin Plot
 
    - Violin plot is a visually pleasing alternative to box plots. The shape or area of the violin depends on the number of observations it holds. However, the violin plots can be harder to read and it not commonly used in professional settings.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/28_Violin_Plot_Seaborn-min.png)
+   ![](./images/28_Violin_Plot_Seaborn-min.png)
 
 10. Population Pyramid
 
     - Population pyramid can be used to show either the distribution of the groups ordered by the volumne. Or it can also be used to show the stage-by-stage filtering of the population as it is used below to show how many people pass through each stage of a marketing funnel.
 
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/29_PyramidPlot_Matplotlib-min.png)
+    ![](./images/29_PyramidPlot_Matplotlib-min.png)
 
 11. Categorical Plots
 
     - Categorical plots provided by the `seaborn` library can be used to visualize the counts distribution of 2 ore more categorical variables in relation to each other.
 
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/30_CatPlots_1_Seaborn-min.png)
+    ![](./images/30_CatPlots_1_Seaborn-min.png)
 
 #### Composition
 
@@ -371,29 +371,29 @@
 
    - The `waffle` chart can be created using the `pywaffle` package and is used to show the compositions of groups in a larger population.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/31_WaffleChart_1_Pywaffle-min.png)
+   ![](./images/31_WaffleChart_1_Pywaffle-min.png)
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/31_WaffleChart_2_PyWaffle-min.png)
+   ![](./images/31_WaffleChart_2_PyWaffle-min.png)
 
 2. Pie Chart
 
    - Pie chart is a classic way to show the composition of groups. However, its not generally advisable to use nowadays because the area of the pie portions can sometimes become misleading. So, if you are to use pie chart, its highly recommended to explicitly write down the percentage or numbers for each portion of the pie.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/32_PieChart_1_Matplotlib-min.png)
+   ![](./images/32_PieChart_1_Matplotlib-min.png)
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/32_PieChart_2_Matplotlib-min.png)
+   ![](./images/32_PieChart_2_Matplotlib-min.png)
 
 3. Treemap
 
    - Tree map is similar to a pie chart and it does a better work without misleading the contributions by each group.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/33_Treemap_squarify-min.png)
+   ![](./images/33_Treemap_squarify-min.png)
 
 4. Bar Chart
 
    - Bar chart is a classic way of visualizing items based on counts or any given metric. In below chart, I have used a different color for each item, but you might typically want to pick one color for all items unless you to color them by groups. The color names get stored inside `all_colors` in the code below. You can change the color of the bars by setting the `color` parameter in `plt.plot()`.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/34_BarChart_Matplotlib-min.png)
+   ![](./images/34_BarChart_Matplotlib-min.png)
 
 #### Change
 
@@ -401,13 +401,13 @@
 
    - Time series plot is used to visualise how a given metric changes over time. Here you can see how the Air Passenger traffic changed between 1949 and 1969.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/35_TimeSeries_Matplotlib-min.png)
+   ![](./images/35_TimeSeries_Matplotlib-min.png)
 
 2. Time Series with Peaks and Troughs Annotated
 
    - The below time series plots all the the peaks and troughs and annotates the occurence of selected special events.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/36_TimeSeries_Peaks_Troughs_Matplotlib-min.png)
+   ![](./images/36_TimeSeries_Peaks_Troughs_Matplotlib-min.png)
 
 3. Autocorrelation (ACF) and Partial Autocorrelation (PACF) Plot
 
@@ -416,64 +416,64 @@
    - For AirPassengers, we see upto 14 lags have crossed the blue line and so are significant. This means, the Air Passengers traffic seen upto 14 years back has an influence on the traffic seen today.
    - PACF on the other had shows the autocorrelation of any given lag (of time series) against the current series, but with the contributions of the lags-inbetween removed.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/37_ACF_PACF_Plot_Matplotlib_Statmodels-min.png)
+   ![](./images/37_ACF_PACF_Plot_Matplotlib_Statmodels-min.png)
 
 4. Cross Correlation Plot
 
    - Cross correlation plot shows the lags of two time series with each other.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/38_CCFPlot_Statmodels_Matplotlib-min.png)
+   ![](./images/38_CCFPlot_Statmodels_Matplotlib-min.png)
 
 5. Time Series Decomposition Plot
 
    - Time series decomposition plot shows the break down of the time series into trend, seasonal and residual components.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/39_TimeSeries_Decomposition_Statmodels_Matplotlib-min.png)
+   ![](./images/39_TimeSeries_Decomposition_Statmodels_Matplotlib-min.png)
 
 6. Multiple Time Series
 
    - You can plot multiple time series that measures the same value on the same chart as shown below.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/40_Multiple_Timeseries_in_Same_Plot_Matplotlib-min.png)
+   ![](./images/40_Multiple_Timeseries_in_Same_Plot_Matplotlib-min.png)
 
 7. Plotting with different scales using secondary Y axis
 
    - If you want to show two time series that measures two different quantities at the same point in time, you can plot the second series againt the secondary Y axis on the right.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/41_Timeseries_of_Different_Scales_On_Secondary_Y_Axis_Matplotlib-min.png)
+   ![](./images/41_Timeseries_of_Different_Scales_On_Secondary_Y_Axis_Matplotlib-min.png)
 
 8. Time Series with Error Bands
 
    - Time series with error bands can be constructed if you have a time series dataset with multiple observations for each time point (date / timestamp). Below you can see a couple of examples based on the orders coming in at various times of the day. And another example on the number of orders arriving over a duration of 45 days.
    - In this approach, the mean of the number of orders is denoted by the white line. And a 95% confidence bands are computed and drawn around the mean.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/42_TimeSeries_with_ErrorBands_1_Matplotlib-min.png)
+   ![](./images/42_TimeSeries_with_ErrorBands_1_Matplotlib-min.png)
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/42_TimeSeries_with_ErrorBands_2_Matplotlib-min.png)
+   ![](./images/42_TimeSeries_with_ErrorBands_2_Matplotlib-min.png)
 
 9. Stacked Area Chart
 
    - Stacked area chart gives an visual representation of the extent of contribution from multiple time series so that it is easy to compare against each other.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/43_Stacked_Area_Chart_Matplotlib-min.png)
+   ![](./images/43_Stacked_Area_Chart_Matplotlib-min.png)
 
 10. Area Chart Unstacked
 
     - An unstacked area chart is used to visualize the progress (ups and downs) of two or more series with respect to each other. In the chart below, you can clearly see how the personal savings rate comes down as the median duration of unemployment increases. The unstacked area chart brings out this phenomenon nicely.
 
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/44_Unstacked_Area_Chart_Matplotlib-min.png)
+    ![](./images/44_Unstacked_Area_Chart_Matplotlib-min.png)
 
 11. Calendar Heat Map
 
     - Calendar map is an alternate and a less preferred option to visualise time based data compared to a time series. Though can be visually appealing, the numeric values are not quite evident. It is however effective in picturising the extreme values and holiday effects nicely.
 
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/45_Calendar_Heatmap_Matplotlib_Calmap-min.png)
+    ![](./images/45_Calendar_Heatmap_Matplotlib_Calmap-min.png)
 
 12. Seasonal Plot
 
     - The seasonal plot can be used to compare how the time series performed at same day in the previous season (year / month / week etc).
 
-    ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/46_Seasonal_Plot_Matplotlib-min.png)
+    ![](./images/46_Seasonal_Plot_Matplotlib-min.png)
 
 #### Groups
 
@@ -481,25 +481,25 @@
 
    - A Dendrogram groups similar points together based on a given distance metric and organizes them in tree like links based on the point’s similarity.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/47_Dendrogram_Matplotlib-min.png)
+   ![](./images/47_Dendrogram_Matplotlib-min.png)
 
 2. Cluster Plot
 
    - Cluster Plot canbe used to demarcate points that belong to the same cluster. Below is a representational example to group the US states into 5 groups based on the USArrests dataset. This cluster plot uses the ‘murder’ and ‘assault’ columns as X and Y axis. Alternately you can use the first to principal components as rthe X and Y axis.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/48_Cluster_Plot_Matplotlib-min.png)
+   ![](./images/48_Cluster_Plot_Matplotlib-min.png)
 
 3. Andrews Curve
 
    - Andrews Curve helps visualize if there are inherent groupings of the numerical features based on a given grouping. If the features (columns in the dataset) doesn’t help discriminate the group (`cyl)`, then the lines will not be well segregated as you see below.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/49_Andrews_Curves_On_Mtcars-min.png)
+   ![](./images/49_Andrews_Curves_On_Mtcars-min.png)
 
 4. Parallel Coordinates
 
    - Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
 
-   ![](C:/Users/TLYu0419/Documents/Github/DataScience/images/50_Parallel_Coordinates_Matplotlib_Pandas-min.png)
+   ![](./images/50_Parallel_Coordinates_Matplotlib_Pandas-min.png)
 
 - plot lineplot with error bounds
 
