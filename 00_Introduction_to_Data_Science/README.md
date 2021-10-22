@@ -400,6 +400,8 @@
   - VSCODE
   - Jupyter
     - [十大至简规则，用Jupyter Notebook写代码应该这样来](https://zhuanlan.zhihu.com/p/75547694)
+  - PyCharm
+    - 
 - Ref
   - [Miniconda 手把手安裝教學 輕量化 Anaconda 客製化自由選擇](https://www.1989wolfe.com/2019/07/miniCONDAwithPython.html)
   - [15个好用到爆炸的Jupyter Lab插件](https://zhuanlan.zhihu.com/p/101070029)
