@@ -376,7 +376,166 @@
 
 
 
+## 人工智慧開發在實務上的挑戰
 
+- AI is more than a model: Four steps to complete workflow success
+- Modelins is an important step in the workflow, bit the model is note the end og the journey.
+
+### Date preparation
+
+- Data cleansing and preparation
+- Human insight
+- simulation-generated data
+
+
+
+### AI modeling
+
+- Model design and selection
+- model tuning(transfer learning)
+- hardware accelerated training(ex: CPU, GPU, TPU)
+- interoperability
+
+### Simulation and Test
+
+- Integration with complex system
+- System simulation
+- System verification and validation
+
+### Deployment
+
+- Embedded devices
+- enterprise systems
+- edge, cloud, desktop
+
+## AI 應用成功的三大要素
+
+### Data
+
+- 在Paperwithcode 的網站列出的開源資料庫高達4539個，和影像相關的達到1444個，這些是否符合現實實際應用的狀況? No!
+- AI迷思(對於AI的期許會太高)
+  - 人看的出來的東西，數據有類似的資料AI就應該可以辨識的出來?
+    - AI看的是數字，不是看圖
+      - 把原本是熊貓的照片加上雜訊後反而變成是長臂猿
+    - Google 的影像辨識把黑人辨識成大猩猩，因為涉及種族的議題，導致Google被罰錢
+  - 收集的數據不符合現實實際狀況會造成模型誤判的問題
+    - 把obama的照片降低解析度再透過AI模型還原，結果黑人變成白人
+  - 測試透過模型自動捕捉足球比賽的鏡頭，結果模型一直不小心把裁判的光頭誤判成足球而追蹤到錯誤的位置
+- 多少資料量才夠進行AI應用?資料量越多越好，越多AI越準?
+  - 數據需要強調的是質，並非量
+  - 問題在於資料的母體是什麼?
+  - 202109 Gartner 針對 AI 的 Hypr Cycle 提出的四個趨勢
+    - 負責任的AI(Responsible AI)
+    - **小而廣的數據方法(Small and Wide Data)**
+      - 問題在於資料的母體是什麼? 
+      - 要盡量確保抽樣後的資料能接近現實世界的真實分佈
+      - 有沒有辦法讓AI專案盡量收集到近似於真實世界中的data pool?
+        - 沒有辦法，因為母體是未知的，只能盡量去更新資料集&模型，盡量滿足實務上的應用
+    - AI平台的操作性(Operationliaztion of AI Platforms)
+    - 有效利用資源(Efficient Use of Resources)
+- Edge AI 要成功應用
+  - 輕量化
+  - 偵測準確
+    - Data is a new oil(electricity) and ML is a way to produce it.
+  - 在如何收集和有效的取得Data
+    - Definition
+    - Collection
+    - Labeling
+    - Selection
+    - Augmentation
+  - AI專案進行最強調的是資料
+    - 場景收集定義、有效標註工具與方法、有效的資料選擇演算法
+      - 需要分成不同的情境抽樣與標註
+  - 專案流程
+    - 資料庫的資料訓練AI模型 > 部署到邊緣裝置 >  應用 > 從邊緣裝置收集新&未標註的資料 > 重新人工標註資料 > 放回資料庫供下次訓練模型
+  - 如何有小的資料選擇演算法
+    - 怎麼選資料來標註
+      - Active Learning: Measure the uncertainty/disagreement between the models
+      - 把不確定性高的樣本拿去訓練模型反而會讓模型不容易學習，可以先透過模型過濾掉不確定性高的樣本，接著再進行模型訓練
+    - 什麼才是應該要拿出來標註的資料
+    - 傳統機器學習採用 Activate Learning
+
+### Computing Resource
+
+- Cloud
+  - 高效能計算
+  - 非同步(高延遲)結果推論
+  - 巨量資料傳輸(影像傳輸封包過大)
+  - 成本過高
+- Edge
+  - 低延遲
+  - 高隱私
+  - 較低成本
+
+- 雲端計算後會將模型部署給邊緣裝置，而邊緣裝置則會上傳偵測結果回雲端運算環境
+- 以 30FPS(1920*1920)的相機，要監控車流的即時情況為例
+  - Cloud: 上傳原始影響需要100MB的傳輸，一分鐘需要5.8GB，一天8.2TB，即時降低解析傳輸仍需約0.5TB
+  - Edge: 僅需要上傳每分鐘車流數據
+- 到底要Cloud或Edge還是取決於你的應用方式
+  - Computation Limitation: 單位時間計算能力
+  - Memory Limitation: 模型參數量、精度
+  - Power Consumption Limition: 主晶片、周邊元件功耗
+  - 開發框架限制
+    - OS: Windows, Linux, RTOS
+    - AI engine: Pytorch, Tensorflow, Caffe, Mxnet,...
+    - Inference NN Accelerator: CMSIS-NN, TensorFlow Lite, Openvino, TensorRT, Onnxruntime
+  - 價格限制
+- 評估指標
+  - 偵測的準確度
+  - 偵測的即時性
+  - AI影響判讀: 準確度高，但即時性要求低
+  - 交通、車流: 準確度和即時性都高
+  - 人臉識別
+
+- Edge 要做到 Realtime 需考慮的面向(Barrier)
+  - Model Inference
+    - Edge AI Model: Mobilenet, CspNet, or TinyML
+    - Inference Platform
+      - GPU
+      - NPU
+      - AI Accelerator
+  - Post-Processing
+    - Data bandwidth
+    - Non-Maximum Suppression
+    - Tracking(Algorithm)
+    - Database寫入和上傳
+    - Display/Log-Upload
+  - 
+
+### Learning Algorithm
+
+- Which AI Algorithm?
+
+  - ML
+    - Linear Classifier
+    - SVM
+    - XGBoost
+  - DL
+    - VGG
+    - ResNet
+    - Inception
+    - DenseNet
+    - MobileNet
+
+  
+
+  - [Machine Learning Models Explained - AI Wiki (paperspace.com)](https://docs.paperspace.com/machine-learning/wiki/machine-learning-models-explained)
+
+- 到底要怎麼挑&挑哪個?
+
+  - 其實都不重要，重要的是要用AI來做什麼事情，絕對不是事事都深度學習
+  - Classification
+  - Semantic Segmentation
+  - Object detection
+  - Instance Segmentation
+
+- AI開源模型或自建模型
+
+- Deep learning model structure 建置就像在組積木
+
+  - 自己用積木建立一個模型
+  - 採用文獻的模型
+  - 依據不同文獻來建立自己的模型
 
 ## 分析工具
 
