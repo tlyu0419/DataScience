@@ -48,6 +48,10 @@ git push -u origin main
   - [Git基本原理介绍(1)——代码仓库的初始化 - YouTube](https://www.youtube.com/watch?v=O5Dy4hxKFvE&list=PLfQqWeOCIH4BXVnYaPgjR9_f8YF3WNAz0)
   - [互联网人都该懂点 Git](https://www.youtube.com/watch?v=29q6zwRGywk&list=PLK2w-tGRdrj5jO9Y1k2iAPCw7iSo6YVdx)
 
+### Publish
+
+[Using GitHub Actions to publish releases to pip/pypi (Developer demo) - YouTube](https://www.youtube.com/watch?v=U-aIPTS580s)
+
 ## 分析案
 
 ### 考驗說故事的能力

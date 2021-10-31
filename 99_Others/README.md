@@ -2,24 +2,64 @@
 
 ## ubuntu
 
-- 很多語法基於 linux 來開發的語法在 windows 上會遇到不能執行的指令，雖然可以安裝很多的 windows 開發者工具來盡可能處理，但還是有解不完的bug
-- 這時候就可以直接在windows 10 上安裝 linux 的子系統 -- ubuntu，直接在windows下建立linux的環境來執行程式~
-- 
+1. 安裝WSL2
+   - [Ubuntu 20.04 LTS 桌面版详细安装指南](https://www.sysgeek.cn/install-ubuntu-20-04-lts-desktop/)
+   - [Window10开发环境搭建(1) | 详细演示WSL2的安装](https://www.youtube.com/watch?v=BEVcW4kz1Kg)
+     - [Install WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
+2. 設定IDE
+   - [Windows10开发环境搭建(2) | Terminal和VS Code](https://www.youtube.com/watch?v=0NjYngJ0HB0)
+
+3. 客製化設定
+
+   ```linux
+   sudo apt update
+   
+   sudo apt install zsh
+   
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   
+   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+   
+   # Find .zshrc file in ~/.zshrc folder
+   # And change the ZSH_THEME to "powerlevel10k/powerlevel10k" 
+   # ZSH_THEME="powerlevel10k/powerlevel10k"
+   
+   ```
+
+   
+
+   - [Windows10开发环境搭建(4) | 给WSL配置漂亮且强大的zsh - YouTube](https://www.youtube.com/watch?v=1fFWHyzYWls)
+
+     - [zsh-users/zsh-autosuggestions: Fish-like autosuggestions for zsh (github.com)](https://github.com/zsh-users/zsh-autosuggestions)
+     - [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+     - [Make your WSL or WSL2 terminal awesome - with Windows Terminal, zsh, oh-my-zsh and Powerlevel10k - YouTube](https://www.youtube.com/watch?v=235G6X5EAvM)
+     - [romkatv/powerlevel10k: A Zsh theme (github.com)](https://github.com/romkatv/powerlevel10k)
+
+   - QA
+
+     - zsh: command not found: node?
+
+       > -- add following script to .zshrc file
+       >
+       > export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+       > [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+     - zsh: command not found: hexo?
+
+       > -- add hexo/node_modules to path
+       >
+       > export PATH=$HOME/bin:/usr/local/bin:/home/tlyu0419/github/hexo/node_modules/.bin:$PATH
+
+4. [Windows10开发环境搭建(5) | WSL+VS Code 搭建Python开发环境](https://www.youtube.com/watch?v=BX7XwxQ1xlQ)
+
 - Ref
   - [Ubuntu 20.04 LTS](https://www.microsoft.com/zh-tw/p/ubuntu-2004-lts/9n6svws3rx71)
   - [如何從Win10訪問Linux子系統中的文件](https://kknews.cc/tech/5v46vv2.html)
-  - [How to Install Miniconda on Ubuntu 20.04](https://varhowto.com/install-miniconda-ubuntu-20-04/)
   - [[ Tools ] 在 Ubuntu 安裝 Node.js](https://oranwind.org/post-post-11/)
   - Ref
-    - [Ubuntu 20.04 LTS 桌面版详细安装指南](https://www.sysgeek.cn/install-ubuntu-20-04-lts-desktop/)
-    - [Window10开发环境搭建(1) | 详细演示WSL2的安装](https://www.youtube.com/watch?v=BEVcW4kz1Kg)
-      - [Install WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
-    - [Windows10开发环境搭建(2) | Terminal和VS Code](https://www.youtube.com/watch?v=0NjYngJ0HB0)
-    - [Windows10开发环境搭建(4) | 给WSL配置漂亮且强大的zsh - YouTube](https://www.youtube.com/watch?v=1fFWHyzYWls)
-      - [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
-      - [zsh-users/zsh-autosuggestions: Fish-like autosuggestions for zsh (github.com)](https://github.com/zsh-users/zsh-autosuggestions)
-      - [Make your WSL or WSL2 terminal awesome - with Windows Terminal, zsh, oh-my-zsh and Powerlevel10k - YouTube](https://www.youtube.com/watch?v=235G6X5EAvM)
-    - [Windows10开发环境搭建(5) | WSL+VS Code 搭建Python开发环境](https://www.youtube.com/watch?v=BX7XwxQ1xlQ)
+    - 
+    - - 
+    - 
 
 ## linux
 
