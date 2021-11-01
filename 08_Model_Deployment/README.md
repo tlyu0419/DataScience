@@ -52,6 +52,10 @@ git push -u origin main
 
 [Using GitHub Actions to publish releases to pip/pypi (Developer demo) - YouTube](https://www.youtube.com/watch?v=U-aIPTS580s)
 
+### Auto-generate documentation 
+
+[docsify](https://docsify.js.org/#/) 
+
 ## 分析案
 
 ### 考驗說故事的能力
