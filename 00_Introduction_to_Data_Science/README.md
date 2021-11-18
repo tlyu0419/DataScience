@@ -572,39 +572,22 @@
 
 在開發 Python 專案時，很常遇見的問題是不同專案會需要不同的 Python 版本與不同的 package ，因此這時候就會需要建立出不同的環境進行開發，避免彼此在使用時收到影響。
 
-- 確認目前有哪些虛擬環境
+- conda
 
   ```python
+  # 確認目前有哪些虛擬環境
   conda env list
-  ```
-
-- 建立虛擬環境
-
-  以建置 python 3.5版本的環境，並將環境命名為myenv為例
-
-  ```python
+  
+  # 建立虛擬環境 以建置 python 3.5版本的環境，並將環境命名為myenv為例
   conda create --name myenv python=3.5
-  ```
-
-- 啟動虛擬環境
-
-  ```python
+  
+  # 啟動虛擬環境
   activate myenv
-  ```
-
   
-
-- 離開虛擬環境
-
-  ```python
+  # 離開虛擬環境
   deactivate
-  ```
-
   
-
-- 刪除虛擬環境
-
-  ```python
+  # 刪除虛擬環境
   conda env remove --name myenv
   ```
 
@@ -619,7 +602,19 @@
   pip install pandas
   ```
 
+- pip
+
+  ```linux
+  python3 -m venv dyu_tm_workshop
+  source dyu_tm_workshop/bin/activate
+  pip install jupyterlab
+  jupyter lab
+  ```
+
   
+
+  - [12. 虛擬環境與套件 — Python 3.10.0 說明文件](https://docs.python.org/zh-tw/3/tutorial/venv.html)
+
 
 ## Jupyter 插件
 

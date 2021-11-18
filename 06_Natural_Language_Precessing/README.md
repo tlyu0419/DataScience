@@ -1,5 +1,7 @@
 # Natural Language Precessing
 
+
+
 - 分类、生成、序列标注、句子对标注
 
 - [Python 文本数据分析初学指南](https://datartisan.gitbooks.io/begining-text-mining-with-python/content/)
@@ -740,11 +742,9 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - [直觀理解 GPT-2 語言模型並生成金庸武俠小說](https://leemeng.tw/gpt2-language-model-generate-chinese-jing-yong-novels.html)
 
-
-
-
-
 - [NLP民工的乐园: 几乎最全的中文NLP资源库](https://github.com/fighting41love/funNLP)
 - [Text Mining with R](https://www.tidytextmining.com/)
 
 - [自然语言处理中句向量获取方式的简要综述 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/350957155)
+
+- [ownthink/Jiagu: Jiagu深度学习自然语言处理工具 知识图谱关系抽取 中文分词 词性标注 命名实体识别 情感分析 新词发现 关键词 文本摘要 文本聚类 (github.com)](https://github.com/ownthink/Jiagu)

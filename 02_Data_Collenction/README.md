@@ -519,7 +519,8 @@
   df.to_sql('rent_591', con = db, if_exists='replace', index=None)
   ```
 
-  ### 
+
+
 
 ### Hive
 
@@ -607,6 +608,107 @@
     - 但不能與外部表一起使用
 
 - rlike: 相當於 sql 中的 like any
+
+
+
+### SPARK
+
+SPARK都是在記憶體裡面執行，所以速度會比較快
+
+RDD、YARN、
+
+Shuffle
+
+- Row-oriented
+
+  - inset/ update/delete都很快和輕量
+
+  - 有做index的dataframe
+  - 建index會犧牲建立資料表的時間，換取insert/update/delete的效率
+- Column-Oriend
+  - 用在大數據的資料處理
+  - 方便做資料壓縮，儲存
+- SparkUI
+
+#### Tutorial 1
+
+```python
+!pip install pyspark
+
+import pyspark
+import pandas as pd
+pd.read_csv('test1.csv')
+
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName('Practise').getOrCreate()
+
+df_pyspark=spark.read.csv('test1.csv')
+df_pyspark
+
+df_pyspark.show()
+
+# Set header to true
+df_pyspark = spark.read.option('header','true').csv('test1.csv').show()
+df_pyspark
+
+type(df_pyspark)
+
+df_pyspark.head(3)
+
+df_pyspark.printSchema()
+```
+
+
+
+#### Tutorial 2
+
+```python
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName('Dataframe').getOrCreate()
+spark
+
+# Pyspark Dataframe
+spark.read.option('header','true').csv('test1.csv')
+
+spark.read.option('header','true').csv('test1.csv').show()
+
+df_pyspark = spark.read.option('header','true').csv('test1.csv')
+df_pyspark.printSchema()
+
+
+df_pyspark = spark.read.option('header','true').csv('test1.csv', inferSchema=True)
+df_pyspark.printSchema()
+
+df_pyspark = spark.read.csv('test1.csv', header=True, inferSchema=True)
+df_pyspark.show()
+
+# Selecting Columns And Indexing
+df_pyspark.columns
+
+df_pyspark.head(3)
+
+df_pyspark.show()
+df_pyspark.select('Name')
+df_pyspark.select(['Name', 'Experience'])
+
+df_pyspark.dtypes
+
+df_pyspark.describe()
+# Check Describe option similar to Pandas
+df_pyspark.describe().show()
+# Adding Columns
+df_pyspark = df_pyspark.withColumn('Experience After 2 year', df_pyspark['Experience']+2)
+df_pyspark
+
+# Dropping columns
+df_pyspark = df_pyspark.drop('Experience After 2 year').show()
+df_pyspark
+
+# Rename the column
+df_pyspark.withColumnRenamed('Name', 'New Name')
+```
+
+
 
 ## 公開資料集
 
