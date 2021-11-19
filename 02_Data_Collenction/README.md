@@ -705,7 +705,71 @@ df_pyspark = df_pyspark.drop('Experience After 2 year').show()
 df_pyspark
 
 # Rename the column
-df_pyspark.withColumnRenamed('Name', 'New Name')
+df_pyspark.withColumnRenamed('Name', 'New Name').show()
+```
+
+
+
+#### Tutorial 3
+
+```python
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName('Practise').getOrCreate()
+
+df_pyspark=spark.read.csv('test2.csv', header=True, inferSchema=True)
+df_pyspark.show()
+
+# drop rows with missing data
+df_pyspark.na.drop(how='any', thresh=2).show()
+
+df_pyspark.na.drop(how='any', subset=['Experience']).show()
+
+# Filling the Missing Value
+df_pyspark.na.fill('Missing Values').show()
+
+df_pyspark.na.fill('Missing Values', ['Experience','age']).show()
+
+from pyspark.ml.feature import Imputer
+imputer = Imputer(
+    inputCols=['age', 'Experience', 'Salary'],
+    outputCols=['{}_imputed'.format(c) for c in ['age', 'Experience', 'Salary']]
+    ).setStrategy('mean')
+# Add imputation cols to df
+imputer.fit(df_pyspark).transform(df_pyspark).show()
+```
+
+
+
+#### Tutorial4
+
+Filter operation
+
+```python
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName('dataframe').getOrCreate()
+df_pyspark=spark.read.csv('test1.csv', header=True, inferSchema=True)
+df_pyspark.show()
+
+# Salary of the people less than or equal to 20000
+df_pyspark.filter(df_pyspark['Salary']<=20000).show()
+
+# And
+df_pyspark.filter((df_pyspark['Salary']<=20000) & df_pyspark['Salary']>=15000)).show()
+
+# OR
+df_pyspark.filter((df_pyspark['Salary']<=20000) | df_pyspark['Salary']>=15000)).show()
+
+# not
+df_pyspark.filter(~(df_pyspark['Salary']<=20000)).show()
+```
+
+
+
+#### Tutorial 5
+
+groupby and aggregate functions
+
+```python
 ```
 
 
