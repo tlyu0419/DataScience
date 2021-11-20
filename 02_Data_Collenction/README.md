@@ -628,151 +628,47 @@ Shuffle
 - Column-Oriend
   - 用在大數據的資料處理
   - 方便做資料壓縮，儲存
-- SparkUI
 
-#### Tutorial 1
+- Installation
 
-```python
-!pip install pyspark
+  ```python
+  !pip install pyspark
+  ```
 
-import pyspark
-import pandas as pd
-pd.read_csv('test1.csv')
+- Load Data
 
-from pyspark.sql import SparkSession
-spark=SparkSession.builder.appName('Practise').getOrCreate()
+- Preprocessing
 
-df_pyspark=spark.read.csv('test1.csv')
-df_pyspark
+  - select column
+  - add  column
+  - drop column
+  - rename column
+  - drop na
 
-df_pyspark.show()
+- Feature engineer
 
-# Set header to true
-df_pyspark = spark.read.option('header','true').csv('test1.csv').show()
-df_pyspark
+  - Fill na
+    - specific value
+  - Fill na
+    - statistic value
+  - Filter operation
+    - single rule
+    - and
+    - or
+    - not
+  - groupBy
+    - sum
+    - mean
+    - count
+  - agg
 
-type(df_pyspark)
+- Modeling
 
-df_pyspark.head(3)
+- Evaluation
 
-df_pyspark.printSchema()
-```
+#### FAQ
 
-
-
-#### Tutorial 2
-
-```python
-from pyspark.sql import SparkSession
-spark=SparkSession.builder.appName('Dataframe').getOrCreate()
-spark
-
-# Pyspark Dataframe
-spark.read.option('header','true').csv('test1.csv')
-
-spark.read.option('header','true').csv('test1.csv').show()
-
-df_pyspark = spark.read.option('header','true').csv('test1.csv')
-df_pyspark.printSchema()
-
-
-df_pyspark = spark.read.option('header','true').csv('test1.csv', inferSchema=True)
-df_pyspark.printSchema()
-
-df_pyspark = spark.read.csv('test1.csv', header=True, inferSchema=True)
-df_pyspark.show()
-
-# Selecting Columns And Indexing
-df_pyspark.columns
-
-df_pyspark.head(3)
-
-df_pyspark.show()
-df_pyspark.select('Name')
-df_pyspark.select(['Name', 'Experience'])
-
-df_pyspark.dtypes
-
-df_pyspark.describe()
-# Check Describe option similar to Pandas
-df_pyspark.describe().show()
-# Adding Columns
-df_pyspark = df_pyspark.withColumn('Experience After 2 year', df_pyspark['Experience']+2)
-df_pyspark
-
-# Dropping columns
-df_pyspark = df_pyspark.drop('Experience After 2 year').show()
-df_pyspark
-
-# Rename the column
-df_pyspark.withColumnRenamed('Name', 'New Name').show()
-```
-
-
-
-#### Tutorial 3
-
-```python
-from pyspark.sql import SparkSession
-spark=SparkSession.builder.appName('Practise').getOrCreate()
-
-df_pyspark=spark.read.csv('test2.csv', header=True, inferSchema=True)
-df_pyspark.show()
-
-# drop rows with missing data
-df_pyspark.na.drop(how='any', thresh=2).show()
-
-df_pyspark.na.drop(how='any', subset=['Experience']).show()
-
-# Filling the Missing Value
-df_pyspark.na.fill('Missing Values').show()
-
-df_pyspark.na.fill('Missing Values', ['Experience','age']).show()
-
-from pyspark.ml.feature import Imputer
-imputer = Imputer(
-    inputCols=['age', 'Experience', 'Salary'],
-    outputCols=['{}_imputed'.format(c) for c in ['age', 'Experience', 'Salary']]
-    ).setStrategy('mean')
-# Add imputation cols to df
-imputer.fit(df_pyspark).transform(df_pyspark).show()
-```
-
-
-
-#### Tutorial4
-
-Filter operation
-
-```python
-from pyspark.sql import SparkSession
-spark=SparkSession.builder.appName('dataframe').getOrCreate()
-df_pyspark=spark.read.csv('test1.csv', header=True, inferSchema=True)
-df_pyspark.show()
-
-# Salary of the people less than or equal to 20000
-df_pyspark.filter(df_pyspark['Salary']<=20000).show()
-
-# And
-df_pyspark.filter((df_pyspark['Salary']<=20000) & df_pyspark['Salary']>=15000)).show()
-
-# OR
-df_pyspark.filter((df_pyspark['Salary']<=20000) | df_pyspark['Salary']>=15000)).show()
-
-# not
-df_pyspark.filter(~(df_pyspark['Salary']<=20000)).show()
-```
-
-
-
-#### Tutorial 5
-
-groupby and aggregate functions
-
-```python
-```
-
-
+[Pyspark: Exception: Java gateway process exited before sending the driver its port number — SparkByExamples](https://sparkbyexamples.com/pyspark/pyspark-exception-java-gateway-process-exited-before-sending-the-driver-its-port-number/)
 
 ## 公開資料集
 
