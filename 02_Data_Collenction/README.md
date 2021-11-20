@@ -635,36 +635,31 @@ Shuffle
   !pip install pyspark
   ```
 
-- Load Data
+- [Tutorial](https://github.com/TLYu0419/DataScience/blob/master/02_Data_Collenction/Pyspark_Tutorial.ipynb)
 
-- Preprocessing
-
-  - select column
-  - add  column
-  - drop column
-  - rename column
-  - drop na
-
-- Feature engineer
-
-  - Fill na
-    - specific value
-  - Fill na
-    - statistic value
-  - Filter operation
-    - single rule
-    - and
-    - or
-    - not
+  - Load Data
+  - Preprocessing
+    - select column
+    - add  column
+    - drop column
+    - rename column
+    - drop na
+  - Feature engineer
+    - Fill na
+      - specific value
+      - statistic value
+    - Filter operation
+      - single rule
+      - and
+      - or
+      - not
   - groupBy
     - sum
     - mean
     - count
   - agg
-
-- Modeling
-
-- Evaluation
+  - Modeling
+  - Evaluation
 
 #### FAQ
 
