@@ -2205,7 +2205,19 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 
 
-### 建立 pipeline
+## 建立 pipeline
+
+```python
+pipr_lr = Pipeline(steps=[('cv', CountVectorizer()), ('lr', LogisticRegression())])
+
+from sklearn import set_config
+set_config(display='diagram')
+
+#Accuracy
+pipr_lr.score(x_test, y_test)
+```
+
+
 
 ## 模型診斷
 

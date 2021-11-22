@@ -663,7 +663,8 @@ Shuffle
 
 #### FAQ
 
-[Pyspark: Exception: Java gateway process exited before sending the driver its port number — SparkByExamples](https://sparkbyexamples.com/pyspark/pyspark-exception-java-gateway-process-exited-before-sending-the-driver-its-port-number/)
+- [Pyspark: Exception: Java gateway process exited before sending the driver its port number — SparkByExamples](https://sparkbyexamples.com/pyspark/pyspark-exception-java-gateway-process-exited-before-sending-the-driver-its-port-number/)
+- [Apache Spark Tutorial | Spark tutorial | Python Spark - YouTube](https://www.youtube.com/watch?v=IQfG0faDrzE)
 
 ## 公開資料集
 
