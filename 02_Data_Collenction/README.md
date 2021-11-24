@@ -16,7 +16,7 @@
 
 > - [ ] TO DO: 開一個 SQLlite 的專案來練習 SQL
 
-- 中/大型的公司通常會採購資料庫，藉此統一存放公司各項業務的資料表
+- 中/大型的公司通常會建置資料庫，藉此統一存放公司各項業務的資料表
 
 - MySQL
 
@@ -27,20 +27,15 @@
 - create table
 
   ```sql
-  CREATE TABLE TMP.LEO_XXXXXXXXXXXXX_01 AS
+  CREATE TABLE bands AS
   (
-  SELECT
-     TXN_DATE AS "日期"
-    ,MERCHANT_NAME AS "商店"
-    ,COUNT(DISTINCT CUSTOMER_ID) AS "客戶數"
-    ,SUM(TXN_AMT) AS "總金額"
-    ,AVG(TXN_AMT) AS "平均金額"
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE '%百貨%'
-  HAVING AVG(TXN_AMT) > 1000
-  GROUP BY 1,2
+      id int not null auto_increment,
+      name varchar(255) not null,
+      primary key (id)
   ) WITH DATA;
   ```
+
+
 
 - drop table
 
@@ -48,6 +43,41 @@
   DROP TABLE 
   TMP.LEO_XXXXXXXXXXXXX_01;
   ```
+
+
+
+- ALTER
+
+  ```sql
+  ALTER TABLE test
+  ADD ANOTHER_COLUMN VARCHAR(255);
+  ```
+
+
+
+- INSERT
+
+  ```sql
+  INSERT INTO BANDS(NAME, RELEASE_YEAR, BAND_ID)
+  VALUES ('DEUCE', 1985, 1), ('AVENGED SEVENFOLD', 1992, 2), ('ANKOR', 2001, 3);
+  ```
+
+- UPDATE
+
+  ```SQL
+  UPDATE ALBUMS
+  SET RELEASE_YEAR = 1982
+  WHERE ID =1;
+  ```
+
+- DELETE
+
+  ```sql
+  DELETE FROM ALBUMS
+  WHERE ID = 5
+  ```
+
+  
 
 - select
 
@@ -112,6 +142,8 @@
   - <>: 不等於
   - \>=: 大於等於
   - <=：小於等於
+
+
 
 - AND/OR
 
@@ -385,6 +417,11 @@
   WHERE B.CALL_NBR <> ''
   ```
 
+- INNER JOIN
+
+  ```SQL
+  ```
+
   
 
 - REPLACE
@@ -454,7 +491,8 @@
 
   - 可以直接將 row over 的排序結果放在篩選條件，不用多做一次子查詢
 
-
+- HAVING
+  - 
 
 - ### sqlite3
 
