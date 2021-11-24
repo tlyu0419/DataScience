@@ -14,8 +14,6 @@
 
 ## 資料庫
 
-> - [ ] TO DO: 開一個 SQLlite 的專案來練習 SQL
-
 - 中/大型的公司通常會建置資料庫，藉此統一存放公司各項業務的資料表
 
 - MySQL
@@ -24,117 +22,28 @@
 
 ### SQL
 
+[SQL_Tutorial](https://github.com/TLYu0419/DataScience/blob/master/02_Data_Collenction/SQL_Tutorial.ipynb)
+
 - create table
-
-  ```sql
-  CREATE TABLE bands AS
-  (
-      id int not null auto_increment,
-      name varchar(255) not null,
-      primary key (id)
-  ) WITH DATA;
-  ```
-
 
 
 - drop table
 
-  ```sql
-  DROP TABLE 
-  TMP.LEO_XXXXXXXXXXXXX_01;
-  ```
-
-
-
 - ALTER
-
-  ```sql
-  ALTER TABLE test
-  ADD ANOTHER_COLUMN VARCHAR(255);
-  ```
-
-
 
 - INSERT
 
-  ```sql
-  INSERT INTO BANDS(NAME, RELEASE_YEAR, BAND_ID)
-  VALUES ('DEUCE', 1985, 1), ('AVENGED SEVENFOLD', 1992, 2), ('ANKOR', 2001, 3);
-  ```
-
 - UPDATE
-
-  ```SQL
-  UPDATE ALBUMS
-  SET RELEASE_YEAR = 1982
-  WHERE ID =1;
-  ```
 
 - DELETE
 
-  ```sql
-  DELETE FROM ALBUMS
-  WHERE ID = 5
-  ```
+- SELECT
 
-  
+- AS
 
-- select
+- ORDER BY
 
-  ```sql
-  SELECT 
-    CUSTOMER_ID
-    ,TXN_DATE 
-    ,MERCHANT_NAME
-    ,TXN_AMT 
-  FROM EVENT_CC_TXN;
-  ```
-
-  
-
-- as
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  ```
-
-  
-
-- order by
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  ORDER BY TXN_DATE DESC
-           TXN_AMT ASC;
-  ```
-
-  
-
-- where
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE TXN_DATE = ‘2015-11-01’; 
-  ```
-
-  
-
-- 判斷式
+- WHERE
 
   - =：等於
   - \>:大於
@@ -143,419 +52,85 @@
   - \>=: 大於等於
   - <=：小於等於
 
+  - AND/OR
 
+  - IN/NOT IN
 
-- AND/OR
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE TXN_DATE = ‘2015-11-01’
-        AND TXN_AMT > 10000; 
-  ```
-
-  
-
-- IN/NOT IN
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE TXN_DATE IN (‘2015-11-01’)
-        AND TXN_AMT > 10000; 
-  ```
-
-  
 
 - BETWEEN
 
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE TXN_DATE 
-        BETWEEN ‘2015-11-01’
-        AND ‘2015-11-30’
-        AND TXN_AMT > 10000; 
-  ```
-
-  
-
 - LIKE
 
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’; 
-  ```
-
-  ```sql
-  SELECT 
-    CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ANY (‘%百貨%’,'小吃'); 
-  ```
-
-  
+- LIKE ANY
 
 - GROUP BY
 
-  ```sql
-  SELECT 
-     CUSTOMER_ID AS “客戶”
-    ,TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,TXN_AMT AS “金額”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  GROUP BY 1,2,3,4 
-  ```
-
-  
-
 - COUNT
-
-  ```sql
-  SELECT
-     TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,COUNT(CUSTOMER_ID) AS “客戶數”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  GROUP BY 1,2;
-  ```
-
-  
 
 - DISTINCT
 
-  ```sql
-  SELECT
-     TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  GROUP BY 1,2;
-  ```
-
-  
-
 - SUM
-
-  ```sql
-  SELECT
-     TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
-    ,SUM(TXN_AMT) AS “總金額”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  GROUP BY 1,2;
-  ```
-
-  
 
 - AVG
 
-  ```sql
-  SELECT
-     TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
-    ,SUM(TXN_AMT) AS “總金額”
-    ,AVG(TXN_AMT) AS “平均金額”
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  GROUP BY 1,2;
-  ```
+- HAVING
 
-  
+- UNION
 
-- 函式條件
-
-  ```SQL
-  SELECT
-     TXN_DATE AS “日期”
-    ,MERCHANT_NAME AS “商店”
-    ,COUNT(DISTINCT CUSTOMER_ID) AS “客戶數”
-    ,SUM(TXN_AMT) AS “總金額”
-    ,AVG(TXN_AMT) AS “平均金額”
-    ,"總金額"/"客戶數" AS "總金額/客戶數"
-  FROM EVENT_CC_TXN
-  WHERE MERCHANT_NAME LIKE ‘%百貨%’
-  HAVING AVG(TXN_AMT) > 1000
-  GROUP BY 1,2;
-  ```
-
-  
-
-- UNION/UNION ALL
-
-  - UNION: 去除重複的串接
-  - UNIONALL： 不去除重複的串接
-
-  ```SQL
-  SELECT * FROM TABLE1
-  UNION
-  SELECT * FROM TABLE1
-  UNION
-  SELECT * FROM TABLE3
-  ```
-
-  
+- UNION ALL
 
 - CAST
 
   - 文字形態轉數字
 
-  ```SQL
-  SELECT CAST('1   ' AS DEC(4,0))
-  ```
-
   - 數字形態轉文字
-
-  ```SQL
-  SELECT CAST(1 AS VARCHAR(4))
-  ```
 
   - 文字轉時間
 
-  ```SQL
-  SELECT CAST('153330' AS TIME(0) FORMAT 'HHMISS');
-  ```
-
   - 文字轉日期
-
-  ```python
-  SELECT CAST ('20191201' as date format 'yyyymmdd') as yyyymmdd
-  ```
 
 - 日期運算
 
-  ```SQL
-  SELECT CAST ('20191201' as date format 'yyyymmdd') as yyyymmdd -- 轉為日期格式
-  		, add_months(yyyymmdd, 1) as yyyymmdd2 -- 加1個月
-  		, extract(year from yyyymmdd2) -- 萃取年的資訊
-  		, extract(month from yyyymmdd2) -- 萃取月的資訊
-  		, extract(day from yyyymmdd2) -- 萃取日的資訊
-  ```
-
   - 將時間轉為timestamp format
 
-    ```SQL
-    SELECT CAST(KEYIN_DATE||' '||KEYIN_TIME AS TIMESTAMP(0) FORMAT 'YYYY-MM-DDbHH:MI:SS')
-    FROM TABLEA
-    ```
-
   - 計算兩個timeformat的時間差距
-
-    ```SQL
-    SELECT (MAX_TIME - MIN_TIME) HOUR(4) TO SECOND AS DIFF_SEC AS DIFF_SEC -- 計算兩個時間差了幾個小時、分鐘與秒
-    		, EXTRACT(HOUR FROM DIFF_SEC) * 3600 + EXTRACT(MINUTE FROM DIFF_SEC) * 60 + EXTRACT(SECOND FROM DIFF_SEC) AS USAGE_TIME
-    ```
-
-    
 
 - LPAD/RPAD
 
   - 補0
 
-    ```SQL
-    SELECT LPAD('12345', 8, '0')
-    ```
-
-    
-
 - CASE WHEN
-
-  ```SQL
-  SELECT CUSTOMER_ID
-  		, AGE
-          , CASE WHEN AGE < 20 THEN '20-'
-           		WHEN AGE < 30 THEN '30-'
-           		WHEN AGE < 40 THEN '40-'
-          		ELSE '40+' END AS AGE2
-  FROM PARTY_DRV_DEMO
-  ```
-
-  
 
 - QUANTILE
 
-  ```SQL
-  SELECT CUSTOMER_ID, PURCHASE_AMT, QUANTILE(100, PURCHASE_AMT) AS nPURCHASE_AMT
-  FROM bacc_temp.NT86000_CHATBOT_CUSTATR
-  ```
-
-  
-
 - JOIN
 
-  ```SQL
-  SELECT * FROM EVENT_CTI_CALL_TYPE_TXN A
-  LEFT JOIN (SELECT * FROM EVENT_CTI_INBOND_TXN202001) B
-  ON A.CALL_NBR=B.CALL_NBR
-  WHERE B.CALL_NBR <> ''
-  ```
-
-- INNER JOIN
-
-  ```SQL
-  ```
-
-  
+  - INNER JOIN
+  - LEFT JOIN
 
 - REPLACE
 
-  ```SQL
-  SELECT REPLACE (REGION_NAME, 'AST', 'ASTERN')
-  FROM GEOGRAPHY
-  ```
-
-  
-
 - 宣告變數
-
-  ```SQL
-  WITH VARIABLES AS
-  (
-  	SELECT '2019-05-01' AS MINDATE,
-      	   '2019-05-02' AS MAXDATE
-  )
-  SELECT *
-  FROM EVENT_ICS_QRY_FLOW_LOG201905, VARIABLES
-  WHERE KEYIN_DATE >= VARIABLES.MINDATE AND KEYIN_DATE <= VARIABLES.MINDATE
-  ```
-
-  
 
 - 萃取時間
 
   - 當天日期
 
-    ```SQL
-    SELECT DATE
-    ```
-
   - 當年
-
-    ```SQL
-    SELECT EXTRACT (YEAR FROM DATE)
-    ```
 
   - 當月
 
-    ```SQL
-    SELECT EXTRACT (MONTH FROM DATE)
-    ```
-
   - 當號
-
-    ```SQL
-    SELECT EXTRACT (DAY FROM DATE)
-    SELECT EXTRACT (HOUR FROM '12:34:56')
-    SELECT EXTRACT (MINUTE FROM '12:34:56')
-    SELECT EXTRACT (SECOND FROM '12:34:56')
-    ```
-
-  
 
 - STRTOK
 
   - 用底線切割字串，並取第一個值
 
-  ```SQL
-  select strtok('HiHi_Tony', '_', 1)
-  ```
-
 - QUALIFY
 
   - 可以直接將 row over 的排序結果放在篩選條件，不用多做一次子查詢
 
-- HAVING
-  - 
 
-- ### sqlite3
-
-  ```python
-  import sqlite3
-  mydb = sqlite3.connect('mydb')
-  creat_table='creat table tableA (columnA varchar(512), columnB varchar(128))'
-  mydb.execute(creat_table)
-  ```
-
-  ```python
-  # 使用Python 連結資料庫
-  import sqlite3 as lite
-  con = lite.connect('test.sqlite')
-  cur = con.cursor()
-  cur.execute('SELECT SQLITE_VERSION()')
-  data = cur.fetchone()
-  print(data)
-  con.close()
-  ```
-
-  ```python
-  # 透過SQLite 做資料新增、查詢
-  import sqlite3 as lite
-  with lite.connect("test.sqlite") as con:
-  cur = con.cursor()
-  cur.execute("DROP TABLE IF EXISTS PhoneAddress")
-  cur.execute("CREATE TABLE PhoneAddress(phone CHAR(10) PRIMARY KEY, address TEXT, name TEXT unique, age INT
-  NOT NULL)")
-  cur.execute("INSERT INTO PhoneAddress VALUES('0912173381','United State','Jhon Doe',53)")
-  cur.execute("INSERT INTO PhoneAddress VALUES('0928375018','Tokyo Japan','MuMu Cat',6)")
-  cur.execute("INSERT INTO PhoneAddress VALUES('0957209108','Taipei','Richard',29)")
-  cur.execute("SELECT phone,address FROM PhoneAddress")
-  data = cur.fetchall()
-  for rec in data:
-  print(rec[0], rec[1])
-  ```
-
-  ```python
-  # 使用Pandas 儲存資料
-  # 建立DataFrame
-  import sqlite3 as lite
-  import pandas
-  employee = [{'name':'Mary',
-               'age':23 ,
-               'gender': 'F'},
-              {'name':'John',
-               'age':33 ,
-               'gender': 'M'}]
-  df = pandas.DataFrame(employee)
-  # 使用Pandas 儲存資料
-  with lite.connect('test.sqlite') as db:
-  df.to_sql(name='employee', index=False, con=db,
-  if_exists='replace')
-  ```
-
-  ```python
-  # 存儲資料到資料庫
-  import sqlite3 as lite
-  import pandas
-  with lite.connect('house.sqlite') as db:
-  df.to_sql('rent_591', con = db, if_exists='replace', index=None)
-  ```
 
 
 
@@ -667,37 +242,46 @@ Shuffle
   - 用在大數據的資料處理
   - 方便做資料壓縮，儲存
 
+[Tutorial](https://github.com/TLYu0419/DataScience/blob/master/02_Data_Collenction/Pyspark_Tutorial.ipynb)
+
 - Installation
 
   ```python
   !pip install pyspark
   ```
 
-- [Tutorial](https://github.com/TLYu0419/DataScience/blob/master/02_Data_Collenction/Pyspark_Tutorial.ipynb)
+- Load Data
 
-  - Load Data
-  - Preprocessing
-    - select column
-    - add  column
-    - drop column
-    - rename column
-    - drop na
-  - Feature engineer
-    - Fill na
-      - specific value
-      - statistic value
-    - Filter operation
-      - single rule
-      - and
-      - or
-      - not
-  - groupBy
-    - sum
-    - mean
-    - count
-  - agg
-  - Modeling
-  - Evaluation
+- Preprocessing
+
+  - select column
+  - add  column
+  - drop column
+  - rename column
+  - drop na
+
+- Feature engineer
+
+  - Fill na
+    - specific value
+    - statistic value
+  - Filter operation
+    - single rule
+    - and
+    - or
+    - not
+
+- groupBy
+
+  - sum
+  - mean
+  - count
+
+- agg
+
+- Modeling
+
+- Evaluation
 
 #### FAQ
 
