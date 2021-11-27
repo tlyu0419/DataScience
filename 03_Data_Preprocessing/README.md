@@ -165,6 +165,41 @@
   - [List of probability distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions)
   - [Guess The Correlation](http://guessthecorrelation.com/)
 
+### pandas
+
+```python
+import pandas
+pd.read_csv
+head()
+tail()
+shape
+size
+columns
+dtypes
+info()
+duplicate()
+deop_duplicated()
+insull()
+isin()
+str.contains()
+dtypes
+to_datetime
+value_counts()
+groupby()
+newcolumn
+filter
+dropna()
+unique()
+str.split()
+max()
+min
+mean()
+agg
+sort_values()
+```
+
+
+
 ### 視覺化
 
 - 有句話「⼀畫勝千⾔」，除了數字，視覺化的⽅式也是⼀種很好觀察資料分佈的⽅式，可參考 python 中常⽤的視覺化套件

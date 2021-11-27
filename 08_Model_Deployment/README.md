@@ -56,6 +56,12 @@ git push -u origin main
 
 [docsify](https://docsify.js.org/#/) 
 
+
+
+## API
+
+- [Building a Web App & API with FastAPI and Flask (Netflix Dataset) - YouTube](https://www.youtube.com/watch?v=KKT6VpTfk_0)
+
 ## 分析案
 
 ### 考驗說故事的能力
