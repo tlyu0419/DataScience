@@ -559,6 +559,7 @@
   - VSCODE
   - Jupyter
     - [十大至简规则，用Jupyter Notebook写代码应该这样来](https://zhuanlan.zhihu.com/p/75547694)
+    - [deshaw/jupyterlab-execute-time: Execute Time Plugin for Jupyter Lab (github.com)](https://github.com/deshaw/jupyterlab-execute-time)
   - PyCharm
     - 
 - Ref
@@ -609,10 +610,11 @@
   source dyu_tm_workshop/bin/activate
   pip install jupyterlab
   jupyter lab
+  pip install -r requirements.txt
   ```
-
   
-
+  
+  
   - [12. 虛擬環境與套件 — Python 3.10.0 說明文件](https://docs.python.org/zh-tw/3/tutorial/venv.html)
 
 
