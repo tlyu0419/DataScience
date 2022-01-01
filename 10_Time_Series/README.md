@@ -157,6 +157,7 @@ end="2013-12-31", dynamic=True)
   - [How to Convert a Time Series to a Supervised Learning Problem in Python](https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/)
   - [利用python进行时间序列分析——数据挖掘](https://zhuanlan.zhihu.com/p/35128342)
   - [How to Create an ARIMA Model for Time Series Forecasting in Python](https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/)
+  - [獨家 | 手把手教你用Python的Prophet庫進行時間序列預測_osc_5h5udyht - MdEditor (gushiciku.cn)](https://www.gushiciku.cn/pl/p3om/zh-tw)
   
 - 方法介紹
 - 使用方式

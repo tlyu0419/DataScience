@@ -47,11 +47,16 @@
 
 以下是我自己的觀察和想法，但絕對不會也沒有標準答案
 
-### 商業分析師
+### 數據/商業分析師
+
+- What is Data Analysis
+  - A process of inspecting, cleansing, transforming and modeling data with the goal of discovering useful information, informing conclusion and supporting decision-making.
+  -  
 
 - 核心信念
 
   - AI 只是技術，技術的背後要解決的問題才是重點
+  - 
 
 - 職責
 

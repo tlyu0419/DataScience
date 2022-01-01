@@ -1471,6 +1471,9 @@ def timer(n):
    		time.sleep(1) 
   ```
 
+- Ref
+  - [Network - Analyze Requests](https://ithelp.ithome.com.tw/articles/10247206)
+
 ## 網路爬蟲案例
 
 - ChinaTimes
