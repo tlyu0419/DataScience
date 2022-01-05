@@ -45,3 +45,4 @@ In this technique, the users are recommended the similar content which they have
 
 - Ref
   - [Building A Movie Recommendation Engine Using Pandas | by Nishit Jain | Towards Data Science](https://towardsdatascience.com/building-a-movie-recommendation-engine-using-pandas-e0a105ed6762)
+  - [Similarity Measures — Scoring Textual Articles | by Saif Ali Kheraj | Towards Data Science](https://towardsdatascience.com/similarity-measures-e3dbd4e58660)
