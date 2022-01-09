@@ -47,9 +47,66 @@
 
 以下是我自己的觀察和想法，但絕對不會也沒有標準答案
 
-### 數據/商業分析師
+### Business Analyst
 
+- Responsibilities
+  - Work with the clients a lot to understand what they need and what the problems that they're having.
+  - Use current data to outline problems
+  - Outline and communicate client's requirements to team
+- Qualifications
+  - Bachelor's Degree or higher is preferred
+  - Masters required for some positions(MBA)
+  - Degree in Business Administration, Finance, Economics
+- Skills
+  - SQL
+  - MS Access
+  - Excel
+  - Communication Skills
+  - Presentation Skills
+- Business Analyst
+  - Entry Level: 35k - 50k
+  - Mid Level: 50k-75k
+  - Senior Level: 75k-95k
+
+### Data Analyst
+
+數據/商業分析師 
+
+- Responsibilities
+  - Work with programming team to collect and analyze data.
+  - Use pre-existing data to solve a problem
+  - Create Reports and Dashboards.
+  - Present analytical findings to team.
+  - Help gather incremental data from new sources
+- Qualifcations
+  - Bachelor's Degree or higher is preferred
+  - Masters required for some positions
+  - Degrees in Computer Science, Statistics, Mathematics, Economics, Finance
+- SKILLS
+  - SQL
+  - R
+  - Python
+    - Pandas, Numpy, Matplotlib
+  - Tableau
+  - Power BI
+  - Data Modeling
+  - SAS
+  - SPSS
+  - Excel
+  - AWS
+  - Azure
+- SALARY
+  - Entry Level: 45k-60k
+  - Mid Level: 65k-85k
+  - Senor Level: 85k-110k
+
+- Sample Resume
+  
+  - [Data Analyst Resume | Complete Guide To Creating A Data Analyst Resume | Tips + Templates + Examples - YouTube](https://www.youtube.com/watch?v=Ns-8Jsa3mEM)
+  - [Data Analyst Resume | Everything You Need to Know | Alex The Analyst Show | Episode 16 - YouTube](https://www.youtube.com/watch?v=w25ZjL0OqT4)
+  
 - What is Data Analysis
+
   - A process of inspecting, cleansing, transforming and modeling data with the goal of discovering useful information, informing conclusion and supporting decision-making.
   -  
 
@@ -120,45 +177,63 @@
 
 
 
-### 資料工程師
+### Data Scientist
 
-- 核心信念
-  - 把核心關心的問題解決的話就是好的工具
-  - 找到錯誤debug，其實是非常浪漫的事情(?)
-- 職責
-  - Prepare the data infra to enable others to work with. 
-  - 幫助公司處理資料的流程、維運資料庫
-  - 從APP收集回來的資料沒有比汙水乾淨多少
-  - 最常遇到的問題是，客戶的需求定義不清楚，或者做完又說要改(所以需要商業分析師幫忙診斷)
-  - data 容量夠不夠是很常被忽略的問題
-    - 一天20G，一年下來就很可觀
-- 工具(用星星呈現)
-- 技能(用星星呈現)
-  - 網路爬蟲>>開發一時爽，維護火葬場
-- 職涯規劃(學習路徑)
-- 提醒
-- 給新鮮人的一句話
+- Responsibilities
 
-### 資料科學家
+  - Use current data to discover opportunities
+  - Develop Analytical Methods and Mechine Learning Models
+  - Data Cleaning(Lots of it)
+  - Conduct A/B Testing
 
-- 核心信念
-
-  - 想玩技術
-
-- 職責
+  
 
   - 依情境選擇合適的演算法
   - 當模型的表現不理想時要有能力調整參數甚至優化演算法
   - 要會模型的輸出結果診斷問題
+  - 
+  - Create software to optimize the company's operations
+
+- Qualifcations
+
+  - Masters Degree or higher is preferred
+  - Phd required for some positions
+  - Degrees in Computer Science, Statistics, Mathematics, Economics, Physics
+  - 
+
+- SKILLS
+
+  - SQL
+  - R
+  - Python
+    - Pandas Numy, Numpy, Scikit Learn, TensorFlow
+  - Tableau
+  - Power BI
+  - NLP
+  - Apache Spark
+  - IDE
+    - Jupyter Notebooks
+    - PyCharm
+  - SAS
+  - SPSS
+
+- SALARY
+
+  > Note that the required education level is different from other positions.
+
+  - Entry Level: 85k - 95k
+  - Mid Level: 100k - 120k
+  - Senior Level: 120k - 150k
+
+- Tips:
   - 先跑便宜的實驗，降低不確定性
     - 察覺不確定性
     - 減少一些不必要的心理壓力
     - 有時候我們以為不會錯的事情，犯錯的機會比我們預期的大很多
-  - 
-  - Create software to optimize the company's operations
-  - Attenion & Money is all you need
-    - 有錢有設備很重要XD
-    - 很容易忽略實務面，落地還需資料工程師
+
+- 核心信念
+
+  - 想玩技術
 
 - 工具(用星星呈現)
 
@@ -230,6 +305,29 @@
       - 但要知道是真實的因果關係是什麼
     - Pizza跟50嵐的價格都是正成長
 
+- 給新鮮人的一句話
+
+
+
+### Data Engineer
+
+資料工程師
+
+- 核心信念
+  - 把核心關心的問題解決的話就是好的工具
+  - 找到錯誤debug，其實是非常浪漫的事情(?)
+- 職責
+  - Prepare the data infra to enable others to work with. 
+  - 幫助公司處理資料的流程、維運資料庫
+  - 從APP收集回來的資料沒有比汙水乾淨多少
+  - 最常遇到的問題是，客戶的需求定義不清楚，或者做完又說要改(所以需要商業分析師幫忙診斷)
+  - data 容量夠不夠是很常被忽略的問題
+    - 一天20G，一年下來就很可觀
+- 工具(用星星呈現)
+- 技能(用星星呈現)
+  - 網路爬蟲>>開發一時爽，維護火葬場
+- 職涯規劃(學習路徑)
+- 提醒
 - 給新鮮人的一句話
 
 ### How to choose the right position?
