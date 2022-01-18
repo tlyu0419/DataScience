@@ -309,6 +309,8 @@ Ridge regression uses ridge regularization to prepare a regression model. Ridge 
       L2 正則化。使得每個元素都盡可能的小，但是都不為零。在回歸裡面，有人把他的回歸叫做嶺回歸（Ridge Regression），也有人叫他 “權值衰減”（weight decay） 
 
   - L2 會選擇更多的特徵，這些特徵都會接近於 0(選較多參數，選出的參數影響力小)
+  
+- [L1范数与L2范数的区别 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/28023308)
 
 ### Elastic Net Regression
 
@@ -2567,9 +2569,49 @@ In this technique a subset of features is selected by manual trial. Variables ar
 
 ### Imbalance Data
 
+- Machine Learnings have been well developed and successfully applied to many application domains. However, the imbalanced class distribution of a data set has a problem because the majority of supervised learning techniques developed are for balanced class distribution.
+- The imbalanced class distribution usually happens when we are studying a rare phenomenon such as medical diagnosis, risk management, hoax detection, and many more.
+- Symptom: High Accuracy but low recall!
+
+#### Resample method
+
+- Under sampling
+- Over sampling
+- smote
+- 
+
+#### Optimal Threshold
+
+- ROC curve
+
+- G-Mean
+  $$
+  G-Mean = \sqrt {Recall * Specifivity}\\
+  = \sqrt{TPR*\frac{TN}{FP+TN}} \\
+  = \sqrt{TPR*(1-FPR)}
+  $$
+  
+- Youden’s J statistic
+  $$
+  youdenj = tpr-fpr
+  $$
+
+- precision-Recall curve
+
+- F-Score
+  $$
+  fscore = \frac{(2*precision*recall)}{ (precision + recall)}
+  $$
+  
+- Threshold tuning
+
+
+
+Ref
+
 - [Imbalanced data & why you should NOT use ROC curve](https://www.kaggle.com/lct14558/imbalanced-data-why-you-should-not-use-roc-curve)
 
-
+- [Optimal Threshold for Imbalanced Classification | by Audhi Aprilliant | Towards Data Science](https://towardsdatascience.com/optimal-threshold-for-imbalanced-classification-5884e870c293)
 
 ### DataLeak
 
