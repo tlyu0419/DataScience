@@ -1,6 +1,6 @@
 # Deep Learning
 
-## 簡介
+## Artificial Neural Network
 
 ### 類神經網絡 (Neural Network)
 
@@ -9,20 +9,25 @@
 - 直到近幾年在算法、硬體能力與巨量資料的改善下，多層的類神經網路才重新成為當前人工智慧的應用主流
 - 類神經的應用曾沉寂⼆三⼗年，直到 2012 年 AlexNet 在 ImageNet 圖像分類競賽獲得驚艷表現後，才重回主流舞台
 
-### 類神經網路(NN)與深度學習的比較
+- 類神經網路(NN)與深度學習的比較
 
-- 就基礎要素而⾔，深度學習是比較多層的類神經網路，但就實務應用的層次上，因著設計思路與連結架構的不同，兩者有了很大的差異性。
-- 算法改良
-  - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算力得以用在刀口上
-  - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導力
-  - 計算機硬體能力提升
-  - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可行
-- 巨量資料
+  - 就基礎要素而⾔，深度學習是比較多層的類神經網路，但就實務應用的層次上，因著設計思路與連結架構的不同，兩者有了很大的差異性。
 
-  - 個人行動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
-- 解決問題
-  - NN: 基礎回歸問題
-  - DL:影像、自然語⾔處理等多樣問題
+    - 算法改良
+      - 網路結構：CNN 與 RNN 等結構在神經連結上做有意義的精省，使得計算力得以用在刀口上
+      - 細節改良：DropOut (隨機移除) 同時有節省連結與集成的效果，BatchNormalization (批次正規化) 讓神經層間有更好的傳導力
+      - 計算機硬體能力提升
+      - 圖形處理器 (GPU) 的誕⽣，持續了晶片摩爾定律，讓計算成為可行
+
+    - 巨量資料
+
+      - 個人行動裝置的普及及網路速度的持續提升，帶來巨量的資料量，使得深度學習有了可以學習的素材
+
+
+  - 解決問題
+    - NN: 基礎回歸問題
+    - DL:影像、自然語⾔處理等多樣問題
+
 
 ### 深度學習
 
@@ -92,6 +97,254 @@
 - [神经网络的Python实现（二）全连接网络](https://www.jianshu.com/p/51c92cd4eb67)
 - [神经网络的Python实现（三）卷积神经网络](https://www.jianshu.com/p/b6b9a1b0aabf)
 - [Understanding Neural Networks](https://towardsdatascience.com/understanding-neural-networks-19020b758230)
+
+
+
+## Forward Propagation
+
+- A model is for making predictions, but how do neural network make predictions?
+  - We refer to this as 'going in the forward direction'
+- Important ways to extend the single neuron
+  - The same imputs can be fed to multiple different neurons, each calculating something differnent(more neurons per layer)
+  - Neurons in one layer can act as inputs to another layer
+- Each neural network layer is a 'feature transformation'
+- Making the line more compicated
+  - 2 ways we can make our problem more complicated than 'finding a line'
+    - Add more input dimensions
+    - Make the pattern nonlinear that is what we are concerned with now
+- Feature Engineering
+  - Suppose salary is a quadratic function of years of experence
+  - Problem: Too many  possibility
+    - $x_1, x_1^2, x_1^3, ..., x_2, x_2^2, x_2^3, ....$
+  - But in the neuron network, each neuron computes a differeny nonlinear feature of the input
+  - It's nonlinear because of the activation funcion(ex: sigmoid) 
+- 'Automatic' Feature Engineering
+  - $W^\prime$ and $b^\prime$ are randomly initialized, found iteratively using gradient descent
+  - In the Olden days og machine learning, feature engineering was at times the only way to apply ML successfully
+  - Unfortunately this often requires domain knowledge
+  - Deep learning allows people who are not domain experts to build models
+
+
+
+## Activation Functions
+
+- 激活函數定義了每個節點（神經元）的輸出和輸入關係的函數為神經元提供規模化非線性化能力，讓神經網絡具備強大的擬合能力
+
+  ![](./images/擷取11.jpg)
+
+- 輸出值的範圍
+
+  - 當激活函數輸出值是有限的時候，基於梯度的優化方法會更加穩定，因為特徵的表⽰受有限權值的影響更顯著
+  - 當激活函數的輸出是無限的時候，模型的訓練會更加高效
+
+- 激活函數的作用
+
+  - 深度學習的基本原理是基於人工神經網絡，信號從⼀個神經元進入，經過非線性的 activation function
+  - 如此循環往復，直到輸出層。正是由於這些非線性函數的反覆疊加，才使得神經網絡有⾜夠的 capacity 來抓取複雜的 pattern
+  - 激活函數的最大作用就是非線性化，如果不用激活函數的話，無論神經網絡有多少層，輸出都是輸入的線性組合
+
+  - 激活函數的另⼀個重要特徵是：它應該是可以區分，以便在網絡中向後推進以計算相對於權重的誤差（丟失）梯度時執行反向優化策略，然後相應地使用梯度下降或任何其他優化技術優化權重以減少誤差
+
+- 常用激活函數介紹
+
+  - Threshold Function
+    $$
+    \begin{cases}1, \quad if \quad x >= 0 \\0, \quad if \quad x <  0\end{cases}
+    $$
+
+  - **Sigmoid**
+
+    - 特點是會把輸出限定在 0~1 之間，在 x<0 ，輸出就是 0，在 x>0，輸出就是 1，這樣使得數據在傳遞過程中不容易發散
+
+      - 兩個主要缺點
+        1. Sigmoid 容易過飽和，丟失梯度。這樣在反向傳播時，很容易出現梯度消失的情況，導致訓練無法完整
+        2. Sigmoid 的輸出均值不是 0
+
+    - Sigmoid 將⼀個 real value 映射到（0,1）的區間，用來做⼆分類。
+
+      - 用於二分類的輸出層
+
+      $$
+      f(z) = \frac{1}{1+exp(-z)}
+      $$
+
+      
+
+  - **Softmax**
+
+    - Softmax 把⼀個 k 維的 real value 向量（a1,a2,a3,a4….）映射成⼀個（b1,b2,b3,b4….）其中 bi 是⼀個 0～1 的常數，輸出神經元之和為 1.0，所以可以拿來做多分類的機率預測
+      - 為什麼要取指數
+        1. 第⼀個原因是要模擬 max 的行為，所以要讓大的更大。
+        2. 第⼆個原因是需要⼀個可導的函數
+      - ⼆分類問題時 sigmoid 和 softmax 是⼀樣的，求的都是 cross entropy loss
+
+    $$
+    \sigma (z)_j = \frac {e^{zj}}{\Sigma^K_{k=1}e^{ek}}
+    $$
+
+    
+
+  - **Tanh(Hyperbolic Tangent)**
+
+    - 也稱為雙切正切函數，取值範圍為 [-1,1]。
+
+      - 在特徵相差明顯時的效果會很好，在循環過程中會不斷擴大特徵效果
+
+      - 將輸入值壓縮到 -1~1 的範圍，因此它是 0 均值的，解決了 Sigmoid 函數的非 zero-centered 問題，但是它也存在梯度消失和冪運算的問題。
+
+        - The deeper a neural network is, the more terms have to be multiplied in the gradient due to the **chain rule** of calculus.
+
+        - Because the neural network output is just a bunch of composite functions
+
+        - Output = $\sigma(...\sigma(...\sigma(...\sigma(...\sigma(...)))))$
+
+        - In other words, we end up multiplying by the derivative of the sigmoid over and over again
+
+        - What's wrong with the derivative of the sigmoid?
+
+        - Derivative of sigmoid is very tiny number! Maximun value is only 0.25
+
+          ![](./images/VanishingGradientProblem.png)
+
+      - Why are tiny numbers a problem?
+
+        - What is 0.25(max value) multiplied by itself 5 times?
+          - $0.25^5\approx 0.001$
+        - More realistically, what if we have 0.1 multiplied by itself 5 times?
+          - $0.0^5\approx 0.00001$
+        - Result: The further back we go in a neural network, the smaller the gradient becomes!
+
+      - Modern deep networks have hundreds of layers
+
+    - $tanh(x) = sinh(x)/cosh(x)$ is the same shape as sigmoid, but goes from -1 ... +1
+
+    $$
+    tanh(x)=2sigmoid(2x)-1
+    $$
+
+  - **ReLU**
+
+    - 修正線性單元（Rectified linear unit，ReLU）
+
+      - 在 x>0 時導數恆為1
+        - 對於 x<0，其梯度恆為 0，這時候它也會出現飽和的現象，甚⾄使神經元直接無效，從而其權重無法得到更新（在這種情況下通常稱為 dying ReLU）
+        - Leaky ReLU 和 PReLU 的提出正是為了解決這⼀問題
+        - 使用時機：二分類的問題選擇sigmoid，其餘預設選ReLU
+
+      $$
+      f(x) = max(0, x)
+      $$
+
+    - In deep learning, we care about experimental results
+
+      - It's not a problem if it works!
+
+    - Simple fact: the ReLU works
+
+      - The right side 'not vanishing' appears to be enough
+
+  - **ELU**
+
+    - ELU 函數是針對 ReLU 函數的⼀個改進型，相比於 ReLU 函數，在輸入為負數的情況下，是有⼀定的輸出的
+      - 這樣可以消除 ReLU 死掉的問題
+      - 還是有梯度飽和和指數運算的問題
+
+    $$
+      f(x) =\begin{cases}x\quad \quad \quad, x > 0 \\a(e^x-1),\quad x \leq  0\end{cases}
+    $$
+
+  - **PReLU**
+
+    - 參數化修正線性單元（Parameteric Rectified Linear Unit，PReLU）屬於 ReLU 修正類激活函數的⼀員。
+
+  - **Leaky ReLU**
+
+    - 當 α=0.1 時，我們叫 PReLU 為Leaky ReLU，算是 PReLU 的⼀種特殊情況
+
+    - In order to fix 'Dead Neurons', one solution is the Leaky ReLUU
+
+    - Small positive slope for negative inputs(like 0.1)
+
+      ![](.images/LeakyRelu.png)
+
+    > PReLU 以及 Leaky ReLU 有⼀些共同點，即爲負值輸入添加了⼀個線性項。
+
+  - **Maxout**
+
+    - 是深度學習網絡中的⼀層網絡，就像池化層、卷積層⼀樣，可以看成是網絡的激活函數層
+      - 神經元的激活函數是取得所有這些「函數層」中的最大值
+      - 擬合能力是非常強的，優點是計算簡單，不會過飽和，同時⼜沒有 ReLU 的缺點
+      - 缺點是過程參數相當於多了⼀倍
+
+    $$
+      f(x) = max(wT1x+b1, wT2x+b2)
+    $$
+
+  ![](./images/1_4ZEDRpFuCIpUjNgjDdT2Lg.png)
+
+  - **BRU**
+    - [Deep learning improved by biological activation functions](https://www.researchgate.net/publication/324860573_Deep_learning_improved_by_biological_activation_functions)
+
+- 如何選擇正確的激活函數
+
+  - Default: ReLu
+
+    - Most people still use ReLU as a reasonable default
+    - Sometimes, you'll find that LReLU and ELU offer no benefit
+    - You just have to try it by yourself
+    - Machine learning is experimentation, not philosophy
+
+  - 根據各個函數的優缺點來配置
+
+    - 如果使用 ReLU，要小⼼設置 learning rate，注意不要讓網絡出現很多「dead」 神經元，如果不好解決，可以試試 Leaky ReLU、PReLU 或者Maxout
+
+  - 根據問題的性質
+
+    - 用於分類器時，Sigmoid 函數及其組合通常效果更好
+    - 由於梯度消失問題，有時要避免使用 sigmoid 和 tanh 函數。ReLU 函數是⼀個通用的激活函數，目前在大多數情況下使用
+    - 如果神經網絡中出現死神經元，那麼 PReLU 函數就是最好的選擇
+    - ReLU 函數建議只能在隱藏層中使用
+
+  - 考慮 DNN 損失函數和激活函數
+
+    - 如果使用 sigmoid 激活函數，則交叉熵損失函數⼀般肯定比均方差損失函數好；
+    - 如果是 DNN 用於分類，則⼀般在輸出層使用 softmax 激活函數
+    - ReLU 激活函數對梯度消失問題有⼀定程度的解決，尤其是在CNN模型中。
+
+  - 梯度消失 Vanishing gradient problem
+
+    - 原因：前面的層比後面的層梯度變化更小，故變化更慢
+    - 結果：Output 變化慢 -> Gradient小 -> 學得慢
+    - Sigmoid，Tanh 都有這樣特性
+    - 不適合用在 Layers 多的DNN 架構
+
+    ![](./images/擷取12.jpg)
+
+- 前述流程 / python程式對照
+
+  - 激活函數可以通過設置單獨的激活層實現，也可以在構造層對象時通過傳遞 activation 參數實現：
+
+    ```python
+    from keras.layers import Activation,Dense
+    model.add(Dense(64,activation=‘tanh’))
+    ```
+
+  - 考慮不同Backend support，通過傳遞⼀個元素運算的Theano / TensorFlow / CNTK函數來作為激活函數：
+
+    ```python
+    from keras import backend as k
+    model.add(Dense(64,activation=k.tanh))
+    model.add( Activation(k.tanh))
+    ```
+
+- 參考資料
+
+  1. [神經網絡常用激活函數總結](https://zhuanlan.zhihu.com/p/39673127)
+  2. [Reference 激活函數的圖示及其一階導數](https://dashee87.github.io/data science/deep learning/visualising-activation-functions-in-neural-networks/)
+  3. [Maxout Network](https://arxiv.org/pdf/1302.4389v4.pdf)
+  4. [Activation function](https://en.wikipedia.org/wiki/Activation_function)
+
+
 
 
 
@@ -223,6 +476,11 @@
 
 
 ## Keras 簡介與安裝
+
+### When to ues Keras?
+
+- If you fon't need low-level control of your training process, using Keras's built-in `fit`, `evaluate`, and `predict` methods is recommended.
+- 
 
 ### Keras 簡介
 
@@ -729,171 +987,6 @@
   3. [使用損失函數](https://keras.io/losses/)
 
 
-
-## 激活函數
-
-- 激活函數定義了每個節點（神經元）的輸出和輸入關係的函數為神經元提供規模化非線性化能力，讓神經網絡具備強大的擬合能力
-
-  ![](./images/擷取11.jpg)
-
-- 輸出值的範圍
-
-  - 當激活函數輸出值是有限的時候，基於梯度的優化方法會更加穩定，因為特徵的表⽰受有限權值的影響更顯著
-  - 當激活函數的輸出是無限的時候，模型的訓練會更加高效
-
-- 激活函數的作用
-
-  - 深度學習的基本原理是基於人工神經網絡，信號從⼀個神經元進入，經過非線性的 activation function
-  - 如此循環往復，直到輸出層。正是由於這些非線性函數的反覆疊加，才使得神經網絡有⾜夠的 capacity 來抓取複雜的 pattern
-  - 激活函數的最大作用就是非線性化，如果不用激活函數的話，無論神經網絡有多少層，輸出都是輸入的線性組合
-
-  - 激活函數的另⼀個重要特徵是：它應該是可以區分，以便在網絡中向後推進以計算相對於權重的誤差（丟失）梯度時執行反向優化策略，然後相應地使用梯度下降或任何其他優化技術優化權重以減少誤差
-
-- 常用激活函數介紹
-
-  - Threshold Function
-    $$
-    \begin{cases}1, \quad if \quad x >= 0 \\0, \quad if \quad x <  0\end{cases}
-    $$
-    
-  - **Sigmoid**
-
-    - 特點是會把輸出限定在 0~1 之間，在 x<0 ，輸出就是 0，在 x>0，輸出就是 1，這樣使得數據在傳遞過程中不容易發散
-      - 兩個主要缺點
-        1. Sigmoid 容易過飽和，丟失梯度。這樣在反向傳播時，很容易出現梯度消失的情況，導致訓練無法完整
-        2. Sigmoid 的輸出均值不是 0
-
-    - Sigmoid 將⼀個 real value 映射到（0,1）的區間，用來做⼆分類。
-      - 用於二分類的輸出層
-      
-      $$
-      f(z) = \frac{1}{1+exp(-z)}
-      $$
-      
-      
-
-  - **Softmax**
-
-    - Softmax 把⼀個 k 維的 real value 向量（a1,a2,a3,a4….）映射成⼀個（b1,b2,b3,b4….）其中 bi 是⼀個 0～1 的常數，輸出神經元之和為 1.0，所以可以拿來做多分類的機率預測
-      - 為什麼要取指數
-        1. 第⼀個原因是要模擬 max 的行為，所以要讓大的更大。
-        2. 第⼆個原因是需要⼀個可導的函數
-      - ⼆分類問題時 sigmoid 和 softmax 是⼀樣的，求的都是 cross entropy loss
-
-    $$
-    \sigma (z)_j = \frac {e^{zj}}{\Sigma^K_{k=1}e^{ek}}
-    $$
-
-    
-
-  - **Tanh(Hyperbolic Tangent)**
-
-    - 也稱為雙切正切函數，取值範圍為 [-1,1]。
-      - 在特徵相差明顯時的效果會很好，在循環過程中會不斷擴大特徵效果
-      - 將輸入值壓縮到 -1~1 的範圍，因此它是 0 均值的，解決了 Sigmoid 函數的非 zero-centered 問題，但是它也存在梯度消失和冪運算的問題。
-      - 幾乎所有場合都可以使用
-
-    $$
-      tanh(x)=2sigmoid(2x)-1
-    $$
-
-  - **ReLU**
-
-    - 修正線性單元（Rectified linear unit，ReLU）
-
-      - 在 x>0 時導數恆為1
-        - 對於 x<0，其梯度恆為 0，這時候它也會出現飽和的現象，甚⾄使神經元直接無效，從而其權重無法得到更新（在這種情況下通常稱為 dying ReLU）
-        - Leaky ReLU 和 PReLU 的提出正是為了解決這⼀問題
-        - 使用時機：二分類的問題選擇sigmoid，其餘預設選ReLU
-
-      $$
-        f(x) = max(0, x)
-      $$
-
-  - **ELU**
-
-    - ELU 函數是針對 ReLU 函數的⼀個改進型，相比於 ReLU 函數，在輸入為負數的情況下，是有⼀定的輸出的
-      - 這樣可以消除 ReLU 死掉的問題
-      - 還是有梯度飽和和指數運算的問題
-
-    $$
-      f(x) =\begin{cases}x\quad \quad \quad, x > 0 \\a(e^x-1),\quad x \leq  0\end{cases}
-    $$
-
-  - **PReLU**
-
-    - 參數化修正線性單元（Parameteric Rectified Linear Unit，PReLU）屬於 ReLU 修正類激活函數的⼀員。
-
-  - **Leaky ReLU**
-
-    - 當 α=0.1 時，我們叫 PReLU 為Leaky ReLU，算是 PReLU 的⼀種特殊情況
-
-    > PReLU 以及 Leaky ReLU 有⼀些共同點，即爲負值輸入添加了⼀個線性項。
-
-  - **Maxout**
-
-    - 是深度學習網絡中的⼀層網絡，就像池化層、卷積層⼀樣，可以看成是網絡的激活函數層
-      - 神經元的激活函數是取得所有這些「函數層」中的最大值
-      - 擬合能力是非常強的，優點是計算簡單，不會過飽和，同時⼜沒有 ReLU 的缺點
-      - 缺點是過程參數相當於多了⼀倍
-
-    $$
-      f(x) = max(wT1x+b1, wT2x+b2)
-    $$
-
-  ![](./images/1_4ZEDRpFuCIpUjNgjDdT2Lg.png)
-
-- 如何選擇正確的激活函數
-
-  - 根據各個函數的優缺點來配置
-
-    - 如果使用 ReLU，要小⼼設置 learning rate，注意不要讓網絡出現很多「dead」 神經元，如果不好解決，可以試試 Leaky ReLU、PReLU 或者Maxout
-
-  - 根據問題的性質
-
-    - 用於分類器時，Sigmoid 函數及其組合通常效果更好
-    - 由於梯度消失問題，有時要避免使用 sigmoid 和 tanh 函數。ReLU 函數是⼀個通用的激活函數，目前在大多數情況下使用
-    - 如果神經網絡中出現死神經元，那麼 PReLU 函數就是最好的選擇
-    - ReLU 函數建議只能在隱藏層中使用
-
-  - 考慮 DNN 損失函數和激活函數
-
-    - 如果使用 sigmoid 激活函數，則交叉熵損失函數⼀般肯定比均方差損失函數好；
-    - 如果是 DNN 用於分類，則⼀般在輸出層使用 softmax 激活函數
-    - ReLU 激活函數對梯度消失問題有⼀定程度的解決，尤其是在CNN模型中。
-
-  - 梯度消失 Vanishing gradient problem
-
-    - 原因：前面的層比後面的層梯度變化更小，故變化更慢
-    - 結果：Output 變化慢 -> Gradient小 -> 學得慢
-    - Sigmoid，Tanh 都有這樣特性
-    - 不適合用在 Layers 多的DNN 架構
-
-    ![](./images/擷取12.jpg)
-
-- 前述流程 / python程式對照
-
-  - 激活函數可以通過設置單獨的激活層實現，也可以在構造層對象時通過傳遞 activation 參數實現：
-
-    ```python
-    from keras.layers import Activation,Dense
-    model.add(Dense(64,activation=‘tanh’))
-    ```
-
-  - 考慮不同Backend support，通過傳遞⼀個元素運算的Theano / TensorFlow / CNTK函數來作為激活函數：
-
-    ```python
-    from keras import backend as k
-    model.add(Dense(64,activation=k.tanh))
-    model.add( Activation(k.tanh))
-    ```
-
-- 參考資料
-
-  1. [神經網絡常用激活函數總結](https://zhuanlan.zhihu.com/p/39673127)
-  2. [Reference 激活函數的圖示及其一階導數](https://dashee87.github.io/data science/deep learning/visualising-activation-functions-in-neural-networks/)
-  3. [Maxout Network](https://arxiv.org/pdf/1302.4389v4.pdf)
-  4. [Activation function](https://en.wikipedia.org/wiki/Activation_function)
 
 
 
