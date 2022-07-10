@@ -1157,84 +1157,71 @@ urllib.parse.unquote(string)
     - [Python爬蟲系统學習⼗⼀：常⾒反爬蟲機制與應對⽅法](https://blog.csdn.net/guangyinglanshan/article/details/79043612)
     - [Python爬蟲筆記（六）— 應對反爬策略](https://blog.csdn.net/dhaiuda/article/details/81410535)
 
-#### 編碼
-
-```python
-import requests
-resp = requests.get('http://www.baidu.com')
-resp.status_code
->>>200
-resp.text
->>># 這裡會出現許多亂碼看不懂
-# 修正編碼
-r.encoding
->>> 'ISO-8859-1'
-r.apparent_encoding
->>>'utf-8'
-r.encoding = 'uf-8'
-r.text
->>> # 正常顯示內容
-```
-
 
 
 ### 反爬
 
-- 瀏覽器標頭與基本資訊
+#### headers
 
-  - 檢查 HTTP 的發送請求⽅是否合法
-    - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
-    - 其中 Request ⼜可以分為幾個部分：
-      - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
-      - Body：網⾴服務真正要傳送的資料
-    - Header 包含發送⽅的資訊
-      - ⼀般來說，Header 可能會包含： 
-        - 發送⽅的位址（Host）
-        - 發送⽅的瀏覽器版本（User-Agent） 
-        - 發送⽅的語⾔/格式 … 等等
+瀏覽器標頭與基本資訊
 
-  - 讓爬蟲程式也加上 Header
-    - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
-    - 解法：在爬蟲程式的 Request 加上 Header！
+- 檢查 HTTP 的發送請求⽅是否合法
+  - 前⾯我們在提到網⾴的傳輸有講到 HTTP 協定，HTTP 會將網路的傳輸分為 「Request」和「Response」兩種⾓⾊。
+  - 其中 Request ⼜可以分為幾個部分：
+    - Header：瀏覽器⾃動產⽣，包含跟發送⽅有關的資訊。 
+    - Body：網⾴服務真正要傳送的資料
+  - Header 包含發送⽅的資訊
+    - ⼀般來說，Header 可能會包含： 
+      - 發送⽅的位址（Host）
+      - 發送⽅的瀏覽器版本（User-Agent） 
+      - 發送⽅的語⾔/格式 … 等等
 
-  ```python
-  import requests
-  headers = {'user-agent': 'my-app/0.0.1'}
-  r = requests.get('https://www.zhihu.com/api/v4/questions/55493026/
-  answers',headers=headers)
-  response = r.text 
+- 讓爬蟲程式也加上 Header
+  - 因為 Header 是由瀏覽器⾃動產⽣，因此如果透過程式發出的請求預設是沒有 Header 的。透過檢查 Header 是最基本的反爬機制。
+  - 解法：在爬蟲程式的 Request 加上 Header！
+
+```python
+import requests
+headers = {'user-agent': 'my-app/0.0.1'}
+r = requests.get('https://www.zhihu.com/api/v4/questions/55493026/
+answers',headers=headers)
+response = r.text 
+```
+
+- 怎麼檢查 Request 要帶哪些 Header？
+
+  1. 右鍵點選檢查
+  2. 下方點選 Network
+  3. 找到網址對應的請求
+  4. 切換到 Headers 項目
+  5. 找到 Request 的 Headers
+
+- 在 Request 上加上 Headers
+
+  - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
+
+  ```pythn
+  headers = {
+   'accept': '...',
+   'accept-encoding': '...',
+   'accept-language': '...',
+   ...
+   'user-agent': '...'
+  } 
   ```
 
-  - 怎麼檢查 Request 要帶哪些 Header？
 
-    1. 右鍵點選檢查
-    2. 下方點選 Network
-    3. 找到網址對應的請求
-    4. 切換到 Headers 項目
-    5. 找到 Request 的 Headers
 
-  - 在 Request 上加上 Headers
-
-    - 實際上的 Headers 應該參考瀏覽器的。但範例為了⽅便，我們這邊是先⾃⼰定 義⼀的比較基本的。但不是每⼀個網站都可以通過，比較保險的⽅式建議模仿 瀏覽器所帶出的標頭且整理成 dict 的型態（如下）
-
-    ```pythn
-    headers = {
-     'accept': '...',
-     'accept-encoding': '...',
-     'accept-language': '...',
-     ...
-     'user-agent': '...'
-    } 
-    ```
-
-- Robots協議
+#### Robots協議
 
   - Https://www.jd.com/robots.txt
   - 網頁允許/不允許的爬蟲權限與內容
 
-- 驗證碼處理
 
-  - 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
+
+#### 驗證碼處理
+
+- 驗證碼機制是許多網站再傳送資料的檢查機制，對於非⼈類操作與⼤量頻繁操 作都有不錯的防範機制。
 
   - 驗證碼是⼀種圖靈測試
 
@@ -1272,6 +1259,7 @@ r.text
 
   - [python識別驗證碼](https://www.cnblogs.com/benpao1314/p/9999283.html)
   - [Python 實現識別弱圖片驗證碼](https://cloud.tencent.com/developer/article/1187805)
+
 
 
 #### 登入授權模擬
@@ -1319,6 +1307,8 @@ r.text
   print(soup.text) 
   ```
 
+
+
 #### 代理 IP
 
 - 當我們在對特定網站進行網路爬蟲的任務時，經常會遇到 鎖定IP 的反爬蟲機制，這時候透過代理伺服器來向網站請求資料就是對應的解決方式!
@@ -1342,6 +1332,8 @@ resp = requests.get('http://ip.filefab.com/index.php',
   - 國外：http://spys.one/en/ 、https://free-proxy-list.net/ 、https://www.us-proxy.org/
   - 中國：http://cn-proxy.com/
 
+
+
 #### 滑動圖片
 
 1. 利用python+opencv拆解缺塊位置
@@ -1355,62 +1347,6 @@ resp = requests.get('http://ip.filefab.com/index.php',
 
 
 
-
-
-#### 加速
-
-- 多線程爬蟲
-
-  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-  - 簡單來說就是時間可貴!
-
-  - 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
-
-  ```python
-  import _thread
-  import time
-  def print_time( threadName, data):
-      for d in data:
-          time.sleep(2)
-          print(threadName, ' => ', d)
-  _thread.start_new_thread( print_time, ("Thread-1", range(0, 5, 2), ) )
-  _thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
-  ```
-
-  - 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
-
-  - Ref
-    - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
-
-  
-
-- 非同步爬蟲
-
-  - 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
-
-  - 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
-
-  - Python 中實現非同步
-
-  ```python
-  import aiohttp
-  import asyncio
-  async def fetch(session, url):
-      async with session.get(url) as response:
-          return await response.text()
-  async def main():
-      async with aiohttp.ClientSession() as session:
-          html = await fetch(session, 'http://python.org')
-          print(html)
-  loop = asyncio.get_event_loop()
-  loop.run_until_complete(main()) 
-  ```
-
-- Ref
-
-  - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
-
 #### 搜尋引擎
 
 - 當我們在搜尋資料時，最常想到的就是Google，但是 Google 提供的API卻有時間限制。如果不想一直花時間等待，可以考慮使用其他的搜尋引擎，例如Yahoo，Bing...
@@ -1419,7 +1355,94 @@ resp = requests.get('http://ip.filefab.com/index.php',
   - Yahoo
   - Bing
 
-#### 自動化更新機制(排程)
+#### 編碼
+
+```python
+import requests
+resp = requests.get('http://www.baidu.com')
+resp.status_code
+>>>200
+resp.text
+>>># 這裡會出現許多亂碼看不懂
+# 修正編碼
+r.encoding
+>>> 'ISO-8859-1'
+r.apparent_encoding
+>>>'utf-8'
+r.encoding = 'uf-8'
+r.text
+>>> # 正常顯示內容
+```
+
+
+
+### 加速
+
+- Multi-tasking in python
+- Introduce
+  - ***Multitasking\*** is useful in running functions and code in parallel, such as breaking down mathematical computation into multiple smaller parts, or splitting items in a for-loop if they are independent of each other. 
+- 原理與差異
+  - 使用時機
+  - 風險與注意事項
+    - ex 使用更多記憶體
+    - 互搶資源
+- 如何選擇
+
+#### 多線程爬蟲
+
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+
+- 簡單來說就是時間可貴!
+
+- 第⼀種加速的⽅法是「多線程爬蟲」，多線程爬蟲的意思是⼀次可以多個程式 重複執⾏，因此也可以稱為平⾏處理。
+
+```python
+import _thread
+import time
+def print_time( threadName, data):
+    for d in data:
+        time.sleep(2)
+        print(threadName, ' => ', d)
+_thread.start_new_thread( print_time, ("Thread-1", range(0, 5, 2), ) )
+_thread.start_new_thread( print_time, ("Thread-2", range(1, 5, 2), ) ) 
+```
+
+- 簡單來說，可以想像成 _thread.start_new_thread 會開⼀個分⽀ 執⾏，不⽤等到結束就繼續執⾏下⼀⾏程式。
+
+- Ref
+  - [Multi-threading vs. asyncio](https://www.reddit.com/r/learnpython/comments/5uc4us/multithreading_vs_asyncio/)
+
+
+
+#### 非同步爬蟲
+
+- 當資料量龐⼤或是更新速度較為頻繁的狀況下。依照正常的爬蟲程式，可以會因此受到應⽤上的限制。所以必須⽤程式的⽅法，來思考如何加速爬蟲的處理速度。
+
+- 第⼆種加速的⽅法是「非同步爬蟲」，⼀般程式都需要等前⼀⾏執⾏完畢之後 才會執⾏下⼀⾏，⽽非同步爬蟲的作法則是當某⼀⾏程式開始執⾏時（不⽤等 到結束）就繼續執⾏下⼀⾏。
+
+- Python 中實現非同步
+
+```python
+import aiohttp
+import asyncio
+async def fetch(session, url):
+    async with session.get(url) as response:
+        return await response.text()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        html = await fetch(session, 'http://python.org')
+        print(html)
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main()) 
+```
+
+- Ref
+
+  - [加速爬蟲: 異步加載 Asyncio](https://morvanzhou.github.io/tutorials/data-manipulation/scraping/4-02-asyncio/)
+
+
+
+### 自動化更新機制(排程)
 
 - 真實世界中的資料是瞬息萬變的，也代表資料會有更新的需求。但爬蟲爬的資料只是⼀個片刻，所以必須要思考如何與資料源上的資料做同步或是更新，確保拿到的資料不會是錯誤或是假的。
 
@@ -1472,7 +1495,10 @@ def timer(n):
   ```
 
 - Ref
+
   - [Network - Analyze Requests](https://ithelp.ithome.com.tw/articles/10247206)
+
+
 
 ## 網路爬蟲案例
 
