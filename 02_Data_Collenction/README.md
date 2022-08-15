@@ -130,8 +130,8 @@
 
   - 可以直接將 row over 的排序結果放在篩選條件，不用多做一次子查詢
 
-
-
+- Vacuum
+  - https://www.runoob.com/sqlite/sqlite-vacuum.html
 
 
 
