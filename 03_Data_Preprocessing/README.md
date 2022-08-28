@@ -856,4 +856,5 @@ $$
 
 - [连续特征的离散化：在什么情况下将连续的特征离散化之后可以获得更好的效果？](https://www.zhihu.com/question/31989952)
 - [Is it a good practice to always scale/normalize data for machine learning?](https://stats.stackexchange.com/questions/189652/is-it-a-good-practice-to-always-scale-normalize-data-for-machine-learning)
+- [更加优雅的因子挖掘技术之自动化特征工程-爱代码爱编程](https://icode.best/i/27669139906997)
 
