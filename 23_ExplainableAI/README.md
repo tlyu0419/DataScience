@@ -19,4 +19,6 @@ eli5.show_weights(perm, feature_names = val_X.columns.tolist())
 
 ### Ref
 
-[All Models are Wrong, but Many are Useful Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously](./papers/All Models are Wrong, but Many are Useful Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously.pdf)
+
+
+- [All Models are Wrong, but Many are Useful Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously](https://arxiv.org/pdf/1801.01489.pdf)
