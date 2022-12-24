@@ -1,5 +1,8 @@
 # 其他
 
+## Vscode
+1. [Visual Studio Code Python環境建置](https://www.learncodewithmike.com/2019/11/python2-visual-studio-code-python.html)
+
 ## ubuntu
 
 1. 安裝WSL2

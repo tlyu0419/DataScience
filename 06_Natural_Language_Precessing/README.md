@@ -624,6 +624,39 @@ We can think of this as a powerful version of Regular Expression where we actual
   - [Chat-Bots.ipynb](https://github.com/TLYu0419/DataScience/blob/master/Natural_Language_Processing/Natural_Language_Processing_with_Python/06-Deep-Learning/02-Chat-Bots.ipynb)
 
 
+## Word2vec
+
+## 簡介
+- Ref
+  - [Word2Vec Tutorial - The Skip-Gram Model](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/)
+
+### 原理
+- CBOW
+- Skip Gram
+ 
+### How to measure word2vec's quality?
+#### 內部評價
+從模型本身來評估向量的品質
+- 相關性（Relatedness）：比較生成的詞向量的詞與詞之間的餘弦相似度和人類評價的相似度的關係。具體的方式會是呼叫與某個詞相似度最高的 K 個詞來檢視結果。
+
+- 類比性（Analogy）：對於一個y，去找到一個x，使得x:y的關係要和a:b的關係一樣。詢問模型A:B 會相當於 C: ??。例如詢問模型中國之於北京，相當於台灣之於什麼，理想的詞向量應該要回答台北。
+
+- 分類（Categorization）：把生成的詞向量做聚類，看聚類是否符合領域的認知(可以搭配一些視覺化的技巧處理)
+
+
+#### 外部評價
+通過下游的回歸或分類任務來評估向量的品質
+
+- Ref
+  - [詞向量評估總結與實踐](https://www.gushiciku.cn/pl/g0sC/zh-tw)
+
+### Online-training 再訓練
+通過下游任務的語料庫對原先預訓練的向量進行再訓練，可以獲得更適合下游任務的詞向量，藉以提升模型的效度。
+但是要進行詞向量的再訓練，需要確保證資料集足夠大，能覆蓋到詞庫中的大部分詞。再訓練時會對原先的詞向量做空間的偏移，導致沒有訓練的詞向量與之存在於不同的詞空間，這樣自然會使得效能下降。
+
+## 多篇文本處理
+
+> 針對海量全媒體數據流及時發掘與識別最相關、最負面、最重要及最有價值的資訊情報
 
 ### 關係抽取
 
@@ -640,12 +673,6 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 - 客戶背景調查 (Know Your Customer)：通常的客戶背景調查解決方案缺乏從海量非結構化全媒體數據中提取目標客戶資料構建關係圖的手段。通過開放式關係抽取技術可以自動分析媒體報道，提取目標客戶的相關資訊，探尋關聯關係。
 - 知識圖譜構建與擴充：透過開放式關係抽取可從各式非結構化文本來源（如新聞、社群、年報等）找出更多結構化數據庫中缺乏的實體關係三元組，以最快的速度及豐富的資料更新知識圖譜。
-
-
-
-## 多篇文本處理
-
-> 針對海量全媒體數據流及時發掘與識別最相關、最負面、最重要及最有價值的資訊情報
 
 ### 評論歸納
 
