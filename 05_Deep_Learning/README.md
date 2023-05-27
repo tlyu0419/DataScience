@@ -343,7 +343,7 @@
   2. [Reference 激活函數的圖示及其一階導數](https://dashee87.github.io/data science/deep learning/visualising-activation-functions-in-neural-networks/)
   3. [Maxout Network](https://arxiv.org/pdf/1302.4389v4.pdf)
   4. [Activation function](https://en.wikipedia.org/wiki/Activation_function)
-
+  5. [整理Sigmoid~Dice常见激活函数，从原理到实现](https://blog.csdn.net/u010412858/article/details/104423623)
 
 
 

@@ -326,3 +326,4 @@
 - [gitignore.io - 为你的项目创建必要的 .gitignore 文件 (toptal.com)](https://www.toptal.com/developers/gitignore)
 - [Git - Tutorial (vogella.com)](https://www.vogella.com/tutorials/Git/article.html)
 
+- [如何刪除Git中已經被commit的檔案？減少倉庫(Repository)所佔用的檔案空間大小](https://magiclen.org/git-remove-commited-files/)

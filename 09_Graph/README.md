@@ -174,8 +174,6 @@ PageRank
 
 Summary
 
-
-
 ## Community Detection Algorithms
 
 Example Graph Data: The Software Dependency Graph
@@ -450,7 +448,6 @@ Wrapping Things Up
   - The number of the cycles in a wheel graphs is given by $n^2 - 3n + 3$
   - Lollipop Graph is graph constructed form joining a complete graph with a path graph
 - Planar, Cubic and Random Graphs
-  - 
 
 - Ladder and Prism Graphs
 
@@ -992,13 +989,14 @@ Once the centrality of nodes have been determined, it is possible to make a rank
   - K. Sugiyama, S. Tagawa and M. Toda, "Methods for Visual Understanding of Hierarchical Systems". IEEE Transactions on Systems, Man and Cybernetics 11(2):109-125, 1981.
 
 
+## Graph Attendation
+- [pyGAT](https://github.com/Diego999/pyGAT)
+- [pytorch-GAT](https://github.com/gordicaleksa/pytorch-GAT)
 
 ## Packages
-
 - NetworkX
 - igraph
 - [graph-tool](https://graph-tool.skewed.de/performance)
-
 - Ref
   - [用python分析《三国演义》中的社交网络.ipynb](https://github.com/blmoistawinde/hello_world/blob/master/sanguo_network/用python分析《三国演义》中的社交网络.ipynb)
   - [PageRank 簡介](http://jpndbs.lib.ntu.edu.tw/DB/PageRank.pdf)
