@@ -1,5 +1,82 @@
 # Deep Learning
 
+## Neural Networks
+
+A neural network is an artificial model based on the human brain. These systems learn tasks by example without being told any specific rules. 
+
+### Perceptron
+
+A perceptron is a basic processing unit. The output of a perceptron is the the weighted sum of it's inputs and a bias unit, which acts as an intercept. A perceptron can define a decision boundary to separate two classes from each other. Multiple layers of perceptrons are combined to make much more powerful Artificial Neural Networks.
+
+- [R Example](https://rpubs.com/FaiHas/197581)
+
+
+
+### Multilayer Perceptron (MLP)
+
+A single layer of perceptrons can only approximate a linear boundry in the data and cannot learn complex functions. A multilayer perceptron, besides input and output layers, also has hidden layers. This stack of layers allows it to learn non-linear decision boundaries in the data.MLP is considered a universal approximator because any arbitrary function can be learned from it using different assortments of layers and number of perceptrons in each layer. However, 'long and thin' networks are preferred over 'short and fat' networks.
+
+- [Python Example](https://medium.com/technology-invention-and-more/how-to-build-a-multi-layered-neural-network-in-python-53ec3d1d326a)
+
+### Recurrent Neural Network (RNN)
+
+RNNs are used to learn sequences and temporal patterns. They achieve this by having self-connections, the perceptrons are connected to themselves, along with feed forward connections. These two types of connections allow them to learn both recurrency and a non-linear decision boundary.
+
+![Fig.9: MLP and Partial Recurrency](https://datasciencedojo.com/wp-content/uploads/Introduction-to-machine-learning-recurrent-nn-by-Ethem-Alpaydin-2004.png)
+
+- [R Example](https://cran.r-project.org/web/packages/rnn/vignettes/rnn.html)
+- [Python Example](https://www.youtube.com/watch?v=BSpXCRTOLJA)
+
+### Convolutional Neural Network (CNN)
+
+Convolutional Neural Networks, AKA CNN or ConvNet, are very similar to traditional Neural Networks with minimal differences. The architechture for ConvNet assumes that images are to be encoded due to which the properties of the framework constructed are different from that of a plain vanilla neural network. Simple Neural Networks don’t scale well to full images because of their architectural design. A ConvNet is able to successfully capture the spatial and temporal information in an image just because of it's design and properties. Moreover, unlike a regular Neural Network, the layers of a ConvNet have neurons arranged in 3 dimensions: width, height, and depth. Each layer takes 3D data as input and transforms it to an output through a series of functions.These artificial neural networks are able to perform image classification, image recongnition, object detection and much more. These powerful algorithms can identify and label street signs, types of cancer, human faces, and many other aspects of life. CNN can also be applied in the field of text analytics to draw useful insights from the data.	
+
+![Fig.10: Convolutional Neural Network Architecture](https://datasciencedojo.com/wp-content/uploads/convolutional-neural-network-architecture.png)
+
+- [Python Example](https://www.kdnuggets.com/2018/04/building-convolutional-neural-network-numpy-scratch.html)
+
+### Deep Belief Network (DBN)
+
+DBN is a category of deep neural network which is comprised of multiple layers of graphical models having both directed and undirected edges. It is composed of multiple layers of hidden units, where each layer is connected with each other, but units are not. DBNs can learn the underlying structure of input and probabilistically reconstruct it. DBN does not use any labels. In other words, DBNs are generative models. In the training process of DBN, one layer is trained at a time. The first RBM is trained to re-construct its input as accurately as possible.The hidden layer of the first RBM is treated as the visible layer for the second layer and the second RBM is trained using the outputs from the first RBM. All these steps continue until all the layers of the DBN are trained. One thing to note about a DBN is that each RBM layer learns the entire input unlike convolutional nets, in which each layer detects unique patterns and later aggregates the result. A DBN fine-tunes the entire input in a sequence as the model is trained.Deep Belief Networks can be used in the field of Image Recognition, Video Sequence recognition, and Motion-capture data. 
+
+![Fig. 11: Architecture of a Deep Belief Network](https://datasciencedojo.com/wp-content/uploads/DBN.png)
+
+- [Python Example](https://medium.com/analytics-army/deep-belief-networks-an-introduction-1d52bb867a25)
+
+### Hopfield Networks
+
+Hopfield Networks are used to regain lost or distorted data. It is trained to memorize a pattern in data and reproduce it using a partial input. Each perceptron is an indivisible piece of information and will be connected to each other neuron. Thus all the neurons in it can be both input and output neurons.Hopfield networks are very computationally expensive as n inputs have n^2 weights. The network has to be trained till the weights stop changing.
+
+- [Python Example](https://www.bonaccorso.eu/2017/09/20/ml-algorithms-addendum-hopfield-networks/)
+
+### Learning Vector Quantization (LVQ)
+
+LVQ addresses the drawback of KNN in that it needs to memorize the entire dataset for classification. LVQ uses a winner-takes-all strategy to identify representative vectors that are an approximation of the input space. The representatives are a form of low dimensionality compression.The model is prepared by using an input pattern to adjust the vectors most similar to it. Repeated performance of this procedure results in a distribution of vectors which provide a fair representation of the input space. Classification is performed by finding the Best Matching Unit (BMU) to the unlabeled input. The BMU has the least Euclidean distance to the input data, but other distance may also be used.The advantage of LVQ is that it is non-parametric - it does not make any assumptions about the data. However, the more complex the structure of the data, the more vectors and training iterations are required. It is recommended for robustness that the learning rate decays as training progresses and the number of passes for each learning rate is increased.
+
+- [Python Tutorial](https://machinelearningmastery.com/implement-learning-vector-quantization-scratch-python/)
+
+### Stacked Autoencoder
+
+Stacked Autoeconders are mulitple layers of autoencoders that are trained in an unsupervised fashion individually. After this one final softmax layer is trained. These layers are combined after training to form a classifier which is trained a final time.
+
+- [Python Example](http://deeplearning.net/tutorial/SdA.html)
+
+### Boltzmann Machine
+
+Boltzmann Machines are two layer neural networks which make stochastic decisions about the state of a system. A Boltzmann Machine does not discriminate between neurons, they are connected to each other. It was because of this they did not have much success.A Boltzmann Machine learns the distribution of data using the input and makes inferences on unseen data. It is a generative model - it does not expect input, it rather creates it.	
+
+### Restricted Boltzmann Machine (RBM)
+
+A Restricted Boltzmann Machine is called restricted because it has intra-layer communication. It can be used for feature selection, topic modelling and dimensionality reduction. In feed forward it learns the probability of neuron a being 1 given input x, and in back propagation it learns probability of x given a.It takes an input and tries to reconstruct it in forward and backward passes. Imagine a dataset of product purchases at a store. An RBM can be designed to take input of the products and connect them to nodes representing their categories. Thus, the RBM will learn a pattern between the category and purchase and make recommendations of the product.
+
+- [Python Example](https://rubikscode.net/2018/10/22/implementing-restricted-boltzmann-machine-with-python-and-tensorflow/)
+
+### Generative Adversarial Networks (GANs)
+
+GANs are used for generating new data. A GAN comprises of 2 parts, a discriminator and a generator. The generator is like a reverse Convolutional Neural Network, it takes a small amount of data (random noise) and up scales it to generate input. The discriminator takes this input and predicts whether it belongs to the dataset.The two components are engaged in a zero-sum game to come up with new data, for example, GANs have been used to generate paintings.Python Tutorial
+
+- [Python Tutorial](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
+
 ## Artificial Neural Network
 
 ### 類神經網絡 (Neural Network)

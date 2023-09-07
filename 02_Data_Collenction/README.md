@@ -288,6 +288,8 @@ Shuffle
 - [Spark常见报错与问题解决方法](https://blog.csdn.net/qq_33588730/article/details/105643030?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0.no_search_link&spm=1001.2101.3001.4242)
 - [Pyspark: Exception: Java gateway process exited before sending the driver its port number — SparkByExamples](https://sparkbyexamples.com/pyspark/pyspark-exception-java-gateway-process-exited-before-sending-the-driver-its-port-number/)
 - [Apache Spark Tutorial | Spark tutorial | Python Spark - YouTube](https://www.youtube.com/watch?v=IQfG0faDrzE)
+- [Spark性能优化指南——基础篇](https://endymecy.gitbooks.io/spark-config-and-tuning/content/meituan/spark-tuning-basic.html)
+- [Spark性能优化指南——高级篇](https://endymecy.gitbooks.io/spark-config-and-tuning/content/meituan/spark-tuning-pro.html)
 
 ## 公開資料集
 

@@ -61,9 +61,7 @@
 
 
 
-## Regression
-
-Regression Analysis is a statistical method for examining the relationship between two or more variables. There are many different types of Regression analysis, of which a few algorithms can be found below.
+## Supervised learning
 
 ### Linear Regression
 
@@ -376,31 +374,7 @@ Partial least squares regression (PLS regression) is developed from principal co
 
 - [R Example](https://rpubs.com/omicsdata/pls)
 
-# 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Classification
-
-Any of these classification algorithms can be used to build a model that predicts the outcome class for a given dataset. The datasets can come from a variety of domains. Depending upon the dimensionality of the dataset, the attribute types, sparsity, and missing values, etc., one algorithm might give better predictive accuracy than most others. Let's briefly discuss these algorithms.
 
 ### Decision Tree
 
@@ -654,8 +628,8 @@ Fisher's Linear Discriminant improves upon LDA by maximizing the ratio between c
 
 
 
-
-## Dimensionality reduction
+## Unsupervised learning
+### Dimensionality reduction
 
 With some problems, especially classification, there can be so many variables, or features, that it is difficult to visualize your data. The correlation amongst your features creates redundancies, and that's where dimensionality reduction comes in. Dimensionality Reduction reduces the number of random variables you're working with. 
 
@@ -666,8 +640,6 @@ This is a form of matrix analysis that leads to a low-dimensional representation
 ![Fig. 14: SVD](https://datasciencedojo.com/wp-content/uploads/singular-value-decomposition-svd.png)
 
 - [R Example](https://www.displayr.com/singular-value-decomposition-in-r/)
-
-## 
 
 ### CA
 
@@ -952,7 +924,7 @@ Sammon Mapping creates a projection of the data such that geometric relations be
 - [Paul Henderson](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910/henderson.pdf)
 - [Python Example](https://datawarrior.wordpress.com/2016/10/23/sammon-embedding/)
 
-## Clustering
+### Clustering
 
 In supervised learning, we know the labels of the data points and their distribution. However, the labels may not always be known. Clustering is the practice of assigning labels to unlabeled data using the patterns that exist in it. Clustering can either be semi-parametric or probabilistic. 
 
@@ -1150,84 +1122,252 @@ Spectral clustering has become a promising alternative to traditional clustering
 
 - [Python Tutorial](https://medium.com/@tomernahshon/spectral-clustering-from-scratch-38c68968eae0)
 
+## Ensemble learning
+
+Ensemble learning methods are meta-algorithms that combine several machine learning methods into a single predictive model to increase the overall performance. 
+
+### Random Forest
+
+A random forest is comprised of a set of decision trees, each of which is trained on a random subset of the training data. These trees predictions can then be aggregated to provide a single prediction from a series of predictions.To build a random forest, you need to choose the total number of trees and the number of samples for each individual tree. Later, for each tree, the set number of samples with replacement and features are selected to train the decision tree using this data.The outputs from all the seperate models are aggregated into a single prediction as part of the final model. In terms of regression, the output is simply the average of predicted outcome values. In terms of classification, the category with the highest frequency output is chosen.The bootstrapping and feature bagging process outputs varieties of different decision trees rather than just a single tree applied to all of the data.Using this approach, the models that were trained without some features will be able to make predictions in aggregated models even with missing data. Moreover, each model trained with different subsets of data will be able to make decisions based on different structure of the underlysing data/population. Hence, in aggregated model they will be able to make prediction even when the training data doesn’t look exactly like what we’re trying to predict. 
+
+- 決策樹的缺點
+
+  - 若不對決策樹進⾏限制 (樹深度、葉⼦上⾄少要有多少樣本等)，決策樹非常容易 Overfitting
+  - 為了解決決策樹的缺點，後續發展出了隨機森林的概念，以決策樹為基底延伸出的模型
+
+- 集成模型
+
+  - 集成 (Ensemble) 是將多個模型的結果組合在⼀起，透過投票或是加權的⽅式得到最終結果
+  - 透過多棵複雜的決策樹來投票得到結果，緩解原本決策樹容易過擬和的問題，實務上的結果通常都會比決策樹來得好
+
+- 隨機森林 (Random Forest), 隨機在哪？
+
+  - 訓練樣本選擇方面的 Bootstrap方法隨機選擇子樣本
+  - 特徵選擇方面隨機選擇 k 個屬性，每個樹節點分裂時，從這隨機的 k 個屬性，選擇最優的。
+  - 隨機森林是個集成模型，透過多棵複雜的決策樹來投票得到結果，緩解原本決策樹容易過擬和的問題。
+
+- 訓練流程
+
+  1. 從原始訓練集中使用bootstrap方法隨機有放回採樣選出 m 個樣本，與m2 個 column，共進行 n_tree 次採樣，生成 n_tree 個訓練集
+
+  2. 對於 n_tree 個訓練集，我們分別訓練 n_tree 個決策樹模型
+
+  3. 對於單個決策樹模型，假設訓練樣本特徵的個數為 n_tree，那麼每次分裂時根據資訊增益/資訊增益比/基尼指數選擇最好的特徵進行分裂
+
+  4. 每棵樹都一直這樣分裂下去，直到該節點的所有訓練樣例都屬於同一類。在決策樹的分裂過程中不需要剪枝
+
+  5. 將生成的多棵決策樹組成隨機森林。
+
+     - 對於分類問題，按多棵樹分類器投票決定最終分類結果
+     - 對於回歸問題，由多棵樹預測值的均值決定最終預測結果
+
+- 使⽤ Sklearn 中的隨機森林
+
+  ```python
+  from sklearn.ensemble import RandomForestRegressor
+  reg = RandomForestRegressor()
+  from sklearn.ensemble import RandomForestClassifier
+  clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
+  clf.fit(X_train, y_train)
+  ```
+
+  - n_estimators:決策樹的數量
+    - max_features:如何選取 features
+
+- Ref:
+
+  - [隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
+
+### Bagging (Bootstrap Aggregation)
+
+Bagging (Bootstrap Aggregation) is used when we want to reduce the variance (over fitting) of a decision tree. Bagging comprises of the following steps:Bootstrap SamplingSeveral subsets of data can be obtained from the training data chosen randomly with replacement. This collection of data will be used to train decision trees. Bagging will construct n decision trees using bootstrap sampling of the training data. As a result, we will have an ensemble of different models at the end.AggregationThe outputs from all the seperate models are aggregated into a single prediction as part of the final model. In terms of regression, the output is simply the average of predicted outcome values. In terms of classification, the category with the highest frequency output is chosen. Unlike boosting, bagging involves the training a bunch of individual models in a parallel way. The advantage of using Bootstrap aggregation is that it allows the variance of the model to be reduced by averaging multiple estimates that are measured from random samples of a population data.
+
+- [R Example](http://rpubs.com/kangrinboqe/268745)
+
+### AdaBoost
+
+AdaBoost is an iterative ensemble method. It builds a strong classifier by combining multiple weak performing classifiers.The final classifier is the weighted combination of several weak classifiers. It fits a sequence of weak learners on different weighted training data. If prediction is incorrect using the first learner, then it gives higher weight to observation which have been predicted incorrectly. Being an iterative process, it continues to add learner(s) until a limit is reached in the number of models or accuracy. You can see this process represented in the AdaBoost Figure.Initially, AdaBoost selects a training subset randomly and gives equal weight to each observation. If prediction is incorrect using the first learner then it gives higher weight to observation which have been predicted incorrectly. The model is iteratively training by selecting the training set based on the accurate prediction of the last training. Being an iterative process, the model continues to add multiple learners until a limit is reached in the number of models or accuracy.It is possible to use any base classifier with AdaBoost. This algorithm is not prone to overfitting. AdaBoost is easy to implement. One of the downsides of AdaBoost is that it is highly affected by outliers because it tries to fit each point perfectly. It is computationally slower as compared to XGBoost. You can use it both for classification and regression problem. 
+
+![Fig. 17: AdaBoost](https://datasciencedojo.com/wp-content/uploads/adaboost.png)
+
+- [R Tutorial](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+
+### Gradient Boosting
+
+Gradient boosting is a method in which we re-imagine the boosting problem as an optimisation problem, where we take up a loss function and try to optimise it.Gradient boosting involves 3 core elements: a weak learner to make predictions, a loss function to be optimized, and an additive model to add to the weak learners to minimize the loss function.This algorithm trains various models sequentially. Decision trees are used as the base weak learner in gradient boosting. Trees are added one at a time, and existing trees in the model are not changed. Each new tree helps to correct errors made by previously trained tree. A gradient descent procedure is used to minimize the loss when adding trees. After calculating error or loss, the parameters of the tree are modified to minimize that error. Gradient Boosting often provides predictive accuracy that cannot be surpassed. These machines can optimize different loss functions depending on the problem type which makes it felxible. There is no data pre-processing required as it also handles missing data.One of the applications of Gradient Boosting Machine is anomaly detection in supervised learning settings where data is often highly unbalanced such as DNA sequences, credit card transactions or cyber security. One of the drawbacks of GBMs is that they are more sensitive to overfitting if the data is noisy and are also computationally expensive which can be time and memory exhaustive.
+
+- 隨機森林使⽤的集成⽅法稱為 Bagging (Bootstrap aggregating)，⽤抽樣的資料與 features ⽣成每⼀棵樹，最後再取平均
+
+- 訓練流程
+
+  1. 將訓練資料集中的每個樣本賦予一個權值，開始的時候，權重都初始化為相等值
+  2. 在整個資料集上訓練一個弱分類器，並計算錯誤率
+  3. 在同一個資料集上再次訓練一個弱分類器，在訓練的過程中，權值重新調整，其中在上一次分類中分對的樣本權值將會降低，分錯的樣本權值將會提高
+  4. 重複上述過程，串列的生成多個分類器，為了從所有弱分類器中得到多個分類結果
+  5. 反覆運算完成後，最後的分類器是由反覆運算過程中選擇的弱分類器線性加權得到的
+
+- Boosting 則是另⼀種集成⽅法，希望能夠由後⾯⽣成的樹，來修正前⾯樹學不好的地⽅
+
+- 要怎麼修正前⾯學錯的地⽅呢？計算 Gradient!
+
+- 每次⽣成樹都是要修正前⾯樹預測的錯誤，並乘上 learning rate 讓後⾯的樹能有更多學習的空間，緩解原本決策樹容易過擬和的問題，實務上的結果通常也會比決策樹來得好
+
+- Bagging 與 Boosting 的差別
+
+  - 樣本選擇上
+
+    - Bagging：訓練集是在原始集中有放回選取的，從原始集中選出的各輪訓練集之間是獨立的。
+    - Boosting：每一輪的訓練集不變，只是訓練集中每個樣例在分類器中的權重發生變化。而權值是根據上一輪的分類結果進行調整。
+
+  - 樣例權重
+
+    - Bagging：使用均勻取樣，每個樣例的權重相等。 
+    - Boosting：根據錯誤率不斷調整樣例的權值，錯誤率越大則權重越大。
+
+  - 預測函數
+
+    - Bagging：所有預測函數的權重相等。
+    - Boosting：每個弱分類器都有相應的權重，對於分類誤差小的分類器會有更大的權重。
+
+  - 使用時機
+
+    - Bagging：模型本身已經很複雜，一下就Overfit了，需要降低複雜度時
+    - Boosting:模型無法fit資料時，透過Boosting來增加模型的複雜度
+
+  - 主要目標：
+
+    - Bagging：降低Variance
+    - Boosting：降低bias
+
+  - 平行計算： Bagging：各個預測函數可以並行生成。 Boosting：各個預測函數只能順序生成，因為後一個模型參數需要前一輪模型的結果。
+
+  - 使⽤ Sklearn 中的梯度提升機
+
+    ```python
+    from sklearn.ensemble import GradientBoostingClassifier
+    from sklearn.ensemble import GradientBoostingRegressor
+    clf = GradientBoostingClassifier()
+    ```
+
+  - 可決定要⽣成數的數量，越多越不容易過擬和，但是運算時間會變長
+
+  - Loss 的選擇，若改為 exponential 則會變成Adaboosting 演算法，概念相同但實作稍微不同
+
+  - learning_rate是每棵樹對最終結果的影響，應與，n_estimators 成反比
+
+  - n_estimators: 決策樹的數量
+
+[純乾貨｜機器學習中梯度下降法的分類及對比分析（附源碼）](https://kknews.cc/tech/mmr8kag.html)
+
+- 參考資料
+  - [機器/深度學習-基礎數學(二):梯度下降法(gradient descent)](https://medium.com/@chih.sheng.huang821/機器學習-基礎數學-二-梯度下降法-gradient-descent-406e1fd001f)
+  - [GBDT调优详解](https://7125messi.github.io/post/gbdt%E8%B0%83%E4%BC%98%E8%AF%A6%E8%A7%A3/)
+  - [R Tutorial](https://towardsdatascience.com/understanding-gradient-boosting-machines-9be756fe76ab)
+
+### Gradient Boosted Regression Trees
+
+Gradient Boosted Regression Trees (GBRT) are a flexible, non-parametric learning technique for classification and regression, and are one of the most effective machine learning models for predictive analytics. Boosted regression trees combine the strengths of two algorithms which include regression trees and boosting methods. Boosted regression trees incorporate important advantages of tree-based methods, handling different types of predictor variables and accommodating missing data. They have no need for prior data transformation or elimination of outliers, can fit complex nonlinear relationships, and automatically handle interaction effects between predictors. 
+
+- [Python Example](https://scikit-learn.org/stable/modules/ensemble.html)
+
+### XGBoost(Extreme Gradient Boosting)
+
+"XGBoost is similar to gradient boosting framework but it improves upon the base GBM architechture by using system optimization and algorithmic improvements.System optimizations:
+Parallelization: It executes the sequential tree building using parallelized implementation. 
+Hardware: It uses the hardware resources efficiently by allocating internal buffers in each thread to store gradient statistics.Tree Pruning: XGBoost uses ‘max_depth’ parameter instead of criterion first, and starts pruning trees backward. This ‘depth-first’ approach improves computational performance significantly.Algorithmic Improvements:
+Regularization: It penalizes more complex models through both LASSO (L1) and Ridge (L2) regularization to prevent overfitting.Sparsity Awareness: Handles different types of sparsity patterns in the data more efficiently.Cross-validation: The algorithm comes with built-in cross-validation method at each iteration, taking away the need to explicitly program this search and to specify the exact number of boosting iterations required in a single run.Due to it's computational complexity and ease of implementation, XGBoost is used widely over Gradient Boosting."
+
+https://zhuanlan.zhihu.com/p/31182879
+
+- 簡介
+
+  - XGB的建立在GBDT的基礎上,經過目標函數、模型演算法、運算架構等等的優化,使XGB成為速度快、效果好的Boosting模型
+
+    - 目標函數的優化:
+
+      模型的通則是追求目標函數的「極小化」,其中損失函數會隨模型複雜度增加而減少,而XGB將模型的目標函數加入正則化項,其將隨模型複雜度增加而增加,故XGB會在模型準確度和模型複雜度間取捨(trade-off),避免為了追求準確度導致模型過於複雜,造成overfitting
+
+- 訓練流程
+
+  ```python
+  from xgboost import XGBClassifier
+  classifier = XGBClassifier()
+  classifier.fit(X_train, y_train)
+  ```
+
+  
+
+- 調參順序
+
+  1. 設置一些初始值。
+
+     ```python
+     - learning_rate: 0.1
+     - n_estimators: 500
+     - max_depth: 5
+     - min_child_weight: 1
+     - subsample: 0.8
+     - colsample_bytree:0.8
+     - gamma: 0
+     - reg_alpha: 0
+     - reg_lambda: 1
+     ```
+
+  2. estimdators
+
+  3. min_child_weight 及 max_depth
+
+  4. gamma
+
+  5. subsample 及 colsample_bytree
+
+  6. reg_alpha 及 reg_lambda
+
+  7. learning_rate， 這時候要調小測試
+
+- Ref
+  - [R Tutorial](https://www.hackerearth.com/practice/machine-learning/machine-learning-algorithms/beginners-tutorial-on-xgboost-parameter-tuning-r/tutorial/)
+
+### Voting Classifier
+
+A voting classifier combines the results of several classifiers to predict the class labels. It is one of the simplest ensemble methods. The voting classifier usually achieves better results than the best classifier in the ensemble. A hard-voting classifier uses the majority vote to predict the class labels. Whereas, a soft-voting classifier will use the average predicted probabilities to predict the labels, however, this can only be possible if all individual classifiers can predict class probabilities.The voting classifier can balance out the individual weakness of each classifier used. It will be beneficial to include diverse classifiers so that models which fall prey to similar types of errors do not aggregate the errors. As an example, one can train a logistic regression, a random forest classifier a naïve bayes classifier and a support vector classifier. To predict the label, the class that receives the highest number of votes from all of the 4 classifiers will be the predicted class of the ensemble (Voting classifier).
+
+- [Python Tutorial](http://rasbt.github.io/mlxtend/user_guide/classifier/EnsembleVoteClassifier/)
+
+### Extremely Randomized Trees
+
+Extremely Randomized Trees (also known as Extra-Trees) increases the randomness of Random Forest algorithms and moves a step further. As in random forests, a random subset of candidate features is used, but instead of looking for the most discriminating thresholds, thresholds are drawn at random for each candidate feature and the best of these randomly-generated thresholds is picked as the splitting rule.This trades more bias for a lower variance. It also makes Extra-Trees much faster to train than regular Random Forests since finding the best possible threshold for each feature at every node is one of the most time-consuming tasks of growing a tree. One can use it for both regression and classification.
+
+- [R Example](https://daviddalpiaz.github.io/stat432sp18/lab/enslab/enslab.html)
+
+### Boosted Decision Tree
+
+Boosted Decision Trees are a collection of weak decision trees which are used in congregation to make a strong learner. The other decision trees are called weak because they have lesser ability than the full model and use a simpler model. Each weak decision tree is trained to address the error of the previous tree to finally come up with a robust model.
+
+- [R Example](https://www.r-bloggers.com/gradient-boosting-in-r/)
 
 
-## Neural Networks
 
-A neural network is an artificial model based on the human brain. These systems learn tasks by example without being told any specific rules. 
+### lightgbm
 
-### Perceptron
+https://zhuanlan.zhihu.com/p/52583923
 
-A perceptron is a basic processing unit. The output of a perceptron is the the weighted sum of it's inputs and a bias unit, which acts as an intercept. A perceptron can define a decision boundary to separate two classes from each other. Multiple layers of perceptrons are combined to make much more powerful Artificial Neural Networks.
+The LightGBM boosting algorithm is becoming more popular by the day due to its speed and efficiency. LightGBM is able to handle huge amounts of data with ease. But keep in mind that this algorithm does not perform well with a small number of data points.
 
-- [R Example](https://rpubs.com/FaiHas/197581)
+### Category Boosting (CatBoost)
+
+CatBoost is a fast, scalable, high performance algorithm for gradient boosting on decision trees. It can work with diverse data types to help solve a wide range of problems that businesses face today. Catboost achieves the best results on the benchmark.Catboost is built with a similar approach and attributes as with Gradient Boost Decision Tree models. The feature that separates CatBoost algorithm from rest is its unbiased boosting with categorical variables. Its power lies in its categorical features preprocessing, prediction time and model analysis.Catboost introduces two critical algorithmic advances - the implementation of ordered boosting, a permutation-driven alternative to the classic algorithm, and an innovative algorithm for processing categorical features.CatBoost handles data very efficiently, few tweaks can be made to increase efficiency like choosing the mode according to data. However, Catboost’s training and optimization times is considerably high.
+
+- [R Tutorial](https://www.kaggle.com/slickwilly/simple-catboost-in-r)
 
 
+As the name suggests, CatBoost is a boosting algorithm that can handle categorical variables in the data. Most [machine learning algorithms](https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/?utm_source=blog&utm_medium=4-boosting-algorithms-machine-learning) cannot work with strings or categories in the data. Thus, converting categorical variables into numerical values is an essential preprocessing step.
 
-### Multilayer Perceptron (MLP)
+CatBoost can internally handle categorical variables in the data. These variables are transformed to numerical ones using various statistics on combinations of features.
 
-A single layer of perceptrons can only approximate a linear boundry in the data and cannot learn complex functions. A multilayer perceptron, besides input and output layers, also has hidden layers. This stack of layers allows it to learn non-linear decision boundaries in the data.MLP is considered a universal approximator because any arbitrary function can be learned from it using different assortments of layers and number of perceptrons in each layer. However, 'long and thin' networks are preferred over 'short and fat' networks.
+If you want to understand the math behind how these categories are converted into numbers, you can go through this article:
 
-- [Python Example](https://medium.com/technology-invention-and-more/how-to-build-a-multi-layered-neural-network-in-python-53ec3d1d326a)
-
-### Recurrent Neural Network (RNN)
-
-RNNs are used to learn sequences and temporal patterns. They achieve this by having self-connections, the perceptrons are connected to themselves, along with feed forward connections. These two types of connections allow them to learn both recurrency and a non-linear decision boundary.
-
-![Fig.9: MLP and Partial Recurrency](https://datasciencedojo.com/wp-content/uploads/Introduction-to-machine-learning-recurrent-nn-by-Ethem-Alpaydin-2004.png)
-
-- [R Example](https://cran.r-project.org/web/packages/rnn/vignettes/rnn.html)
-- [Python Example](https://www.youtube.com/watch?v=BSpXCRTOLJA)
-
-### Convolutional Neural Network (CNN)
-
-Convolutional Neural Networks, AKA CNN or ConvNet, are very similar to traditional Neural Networks with minimal differences. The architechture for ConvNet assumes that images are to be encoded due to which the properties of the framework constructed are different from that of a plain vanilla neural network. Simple Neural Networks don’t scale well to full images because of their architectural design. A ConvNet is able to successfully capture the spatial and temporal information in an image just because of it's design and properties. Moreover, unlike a regular Neural Network, the layers of a ConvNet have neurons arranged in 3 dimensions: width, height, and depth. Each layer takes 3D data as input and transforms it to an output through a series of functions.These artificial neural networks are able to perform image classification, image recongnition, object detection and much more. These powerful algorithms can identify and label street signs, types of cancer, human faces, and many other aspects of life. CNN can also be applied in the field of text analytics to draw useful insights from the data.	
-
-![Fig.10: Convolutional Neural Network Architecture](https://datasciencedojo.com/wp-content/uploads/convolutional-neural-network-architecture.png)
-
-- [Python Example](https://www.kdnuggets.com/2018/04/building-convolutional-neural-network-numpy-scratch.html)
-
-### Deep Belief Network (DBN)
-
-DBN is a category of deep neural network which is comprised of multiple layers of graphical models having both directed and undirected edges. It is composed of multiple layers of hidden units, where each layer is connected with each other, but units are not. DBNs can learn the underlying structure of input and probabilistically reconstruct it. DBN does not use any labels. In other words, DBNs are generative models. In the training process of DBN, one layer is trained at a time. The first RBM is trained to re-construct its input as accurately as possible.The hidden layer of the first RBM is treated as the visible layer for the second layer and the second RBM is trained using the outputs from the first RBM. All these steps continue until all the layers of the DBN are trained. One thing to note about a DBN is that each RBM layer learns the entire input unlike convolutional nets, in which each layer detects unique patterns and later aggregates the result. A DBN fine-tunes the entire input in a sequence as the model is trained.Deep Belief Networks can be used in the field of Image Recognition, Video Sequence recognition, and Motion-capture data. 
-
-![Fig. 11: Architecture of a Deep Belief Network](https://datasciencedojo.com/wp-content/uploads/DBN.png)
-
-- [Python Example](https://medium.com/analytics-army/deep-belief-networks-an-introduction-1d52bb867a25)
-
-### Hopfield Networks
-
-Hopfield Networks are used to regain lost or distorted data. It is trained to memorize a pattern in data and reproduce it using a partial input. Each perceptron is an indivisible piece of information and will be connected to each other neuron. Thus all the neurons in it can be both input and output neurons.Hopfield networks are very computationally expensive as n inputs have n^2 weights. The network has to be trained till the weights stop changing.
-
-- [Python Example](https://www.bonaccorso.eu/2017/09/20/ml-algorithms-addendum-hopfield-networks/)
-
-### Learning Vector Quantization (LVQ)
-
-LVQ addresses the drawback of KNN in that it needs to memorize the entire dataset for classification. LVQ uses a winner-takes-all strategy to identify representative vectors that are an approximation of the input space. The representatives are a form of low dimensionality compression.The model is prepared by using an input pattern to adjust the vectors most similar to it. Repeated performance of this procedure results in a distribution of vectors which provide a fair representation of the input space. Classification is performed by finding the Best Matching Unit (BMU) to the unlabeled input. The BMU has the least Euclidean distance to the input data, but other distance may also be used.The advantage of LVQ is that it is non-parametric - it does not make any assumptions about the data. However, the more complex the structure of the data, the more vectors and training iterations are required. It is recommended for robustness that the learning rate decays as training progresses and the number of passes for each learning rate is increased.
-
-- [Python Tutorial](https://machinelearningmastery.com/implement-learning-vector-quantization-scratch-python/)
-
-### Stacked Autoencoder
-
-Stacked Autoeconders are mulitple layers of autoencoders that are trained in an unsupervised fashion individually. After this one final softmax layer is trained. These layers are combined after training to form a classifier which is trained a final time.
-
-- [Python Example](http://deeplearning.net/tutorial/SdA.html)
-
-### Boltzmann Machine
-
-Boltzmann Machines are two layer neural networks which make stochastic decisions about the state of a system. A Boltzmann Machine does not discriminate between neurons, they are connected to each other. It was because of this they did not have much success.A Boltzmann Machine learns the distribution of data using the input and makes inferences on unseen data. It is a generative model - it does not expect input, it rather creates it.	
-
-### Restricted Boltzmann Machine (RBM)
-
-A Restricted Boltzmann Machine is called restricted because it has intra-layer communication. It can be used for feature selection, topic modelling and dimensionality reduction. In feed forward it learns the probability of neuron a being 1 given input x, and in back propagation it learns probability of x given a.It takes an input and tries to reconstruct it in forward and backward passes. Imagine a dataset of product purchases at a store. An RBM can be designed to take input of the products and connect them to nodes representing their categories. Thus, the RBM will learn a pattern between the category and purchase and make recommendations of the product.
-
-- [Python Example](https://rubikscode.net/2018/10/22/implementing-restricted-boltzmann-machine-with-python-and-tensorflow/)
-
-### Generative Adversarial Networks (GANs)
-
-GANs are used for generating new data. A GAN comprises of 2 parts, a discriminator and a generator. The generator is like a reverse Convolutional Neural Network, it takes a small amount of data (random noise) and up scales it to generate input. The discriminator takes this input and predicts whether it belongs to the dataset.The two components are engaged in a zero-sum game to come up with new data, for example, GANs have been used to generate paintings.Python Tutorial
-
-- [Python Tutorial](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
+- [Transforming categorical features to numerical features](https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html#algorithm-main-stages_cat-to-numberic)
 
 ## Evaluation Method
 
@@ -1555,253 +1695,7 @@ LOF is an unsupervised algorithm and is used for anomaly/outlier detection which
 
 - [Python Tutorial](https://medium.com/@mtngt/local-outlier-factor-simple-python-example-8925dad97fe6)
 
-## Ensemble
 
-Ensemble learning methods are meta-algorithms that combine several machine learning methods into a single predictive model to increase the overall performance. 
-
-### Random Forest
-
-A random forest is comprised of a set of decision trees, each of which is trained on a random subset of the training data. These trees predictions can then be aggregated to provide a single prediction from a series of predictions.To build a random forest, you need to choose the total number of trees and the number of samples for each individual tree. Later, for each tree, the set number of samples with replacement and features are selected to train the decision tree using this data.The outputs from all the seperate models are aggregated into a single prediction as part of the final model. In terms of regression, the output is simply the average of predicted outcome values. In terms of classification, the category with the highest frequency output is chosen.The bootstrapping and feature bagging process outputs varieties of different decision trees rather than just a single tree applied to all of the data.Using this approach, the models that were trained without some features will be able to make predictions in aggregated models even with missing data. Moreover, each model trained with different subsets of data will be able to make decisions based on different structure of the underlysing data/population. Hence, in aggregated model they will be able to make prediction even when the training data doesn’t look exactly like what we’re trying to predict. 
-
-- 決策樹的缺點
-
-  - 若不對決策樹進⾏限制 (樹深度、葉⼦上⾄少要有多少樣本等)，決策樹非常容易 Overfitting
-  - 為了解決決策樹的缺點，後續發展出了隨機森林的概念，以決策樹為基底延伸出的模型
-
-- 集成模型
-
-  - 集成 (Ensemble) 是將多個模型的結果組合在⼀起，透過投票或是加權的⽅式得到最終結果
-  - 透過多棵複雜的決策樹來投票得到結果，緩解原本決策樹容易過擬和的問題，實務上的結果通常都會比決策樹來得好
-
-- 隨機森林 (Random Forest), 隨機在哪？
-
-  - 訓練樣本選擇方面的 Bootstrap方法隨機選擇子樣本
-  - 特徵選擇方面隨機選擇 k 個屬性，每個樹節點分裂時，從這隨機的 k 個屬性，選擇最優的。
-  - 隨機森林是個集成模型，透過多棵複雜的決策樹來投票得到結果，緩解原本決策樹容易過擬和的問題。
-
-- 訓練流程
-
-  1. 從原始訓練集中使用bootstrap方法隨機有放回採樣選出 m 個樣本，與m2 個 column，共進行 n_tree 次採樣，生成 n_tree 個訓練集
-
-  2. 對於 n_tree 個訓練集，我們分別訓練 n_tree 個決策樹模型
-
-  3. 對於單個決策樹模型，假設訓練樣本特徵的個數為 n_tree，那麼每次分裂時根據資訊增益/資訊增益比/基尼指數選擇最好的特徵進行分裂
-
-  4. 每棵樹都一直這樣分裂下去，直到該節點的所有訓練樣例都屬於同一類。在決策樹的分裂過程中不需要剪枝
-
-  5. 將生成的多棵決策樹組成隨機森林。
-
-     - 對於分類問題，按多棵樹分類器投票決定最終分類結果
-     - 對於回歸問題，由多棵樹預測值的均值決定最終預測結果
-
-- 使⽤ Sklearn 中的隨機森林
-
-  ```python
-  from sklearn.ensemble import RandomForestRegressor
-  reg = RandomForestRegressor()
-  from sklearn.ensemble import RandomForestClassifier
-  clf = RandomForestClassifier(n_estimators = 500, criterion = 'entropy', random_state = 0)
-  clf.fit(X_train, y_train)
-  ```
-
-  - n_estimators:決策樹的數量
-    - max_features:如何選取 features
-
-- Ref:
-
-  - [隨機森林（Random forest,RF）的生成方法以及優缺點](https://www.itread01.com/content/1547100921.html)
-
-### Bagging (Bootstrap Aggregation)
-
-Bagging (Bootstrap Aggregation) is used when we want to reduce the variance (over fitting) of a decision tree. Bagging comprises of the following steps:Bootstrap SamplingSeveral subsets of data can be obtained from the training data chosen randomly with replacement. This collection of data will be used to train decision trees. Bagging will construct n decision trees using bootstrap sampling of the training data. As a result, we will have an ensemble of different models at the end.AggregationThe outputs from all the seperate models are aggregated into a single prediction as part of the final model. In terms of regression, the output is simply the average of predicted outcome values. In terms of classification, the category with the highest frequency output is chosen. Unlike boosting, bagging involves the training a bunch of individual models in a parallel way. The advantage of using Bootstrap aggregation is that it allows the variance of the model to be reduced by averaging multiple estimates that are measured from random samples of a population data.
-
-- [R Example](http://rpubs.com/kangrinboqe/268745)
-
-### AdaBoost
-
-AdaBoost is an iterative ensemble method. It builds a strong classifier by combining multiple weak performing classifiers.The final classifier is the weighted combination of several weak classifiers. It fits a sequence of weak learners on different weighted training data. If prediction is incorrect using the first learner, then it gives higher weight to observation which have been predicted incorrectly. Being an iterative process, it continues to add learner(s) until a limit is reached in the number of models or accuracy. You can see this process represented in the AdaBoost Figure.Initially, AdaBoost selects a training subset randomly and gives equal weight to each observation. If prediction is incorrect using the first learner then it gives higher weight to observation which have been predicted incorrectly. The model is iteratively training by selecting the training set based on the accurate prediction of the last training. Being an iterative process, the model continues to add multiple learners until a limit is reached in the number of models or accuracy.It is possible to use any base classifier with AdaBoost. This algorithm is not prone to overfitting. AdaBoost is easy to implement. One of the downsides of AdaBoost is that it is highly affected by outliers because it tries to fit each point perfectly. It is computationally slower as compared to XGBoost. You can use it both for classification and regression problem. 
-
-![Fig. 17: AdaBoost](https://datasciencedojo.com/wp-content/uploads/adaboost.png)
-
-- [R Tutorial](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
-
-### Gradient Boosting
-
-Gradient boosting is a method in which we re-imagine the boosting problem as an optimisation problem, where we take up a loss function and try to optimise it.Gradient boosting involves 3 core elements: a weak learner to make predictions, a loss function to be optimized, and an additive model to add to the weak learners to minimize the loss function.This algorithm trains various models sequentially. Decision trees are used as the base weak learner in gradient boosting. Trees are added one at a time, and existing trees in the model are not changed. Each new tree helps to correct errors made by previously trained tree. A gradient descent procedure is used to minimize the loss when adding trees. After calculating error or loss, the parameters of the tree are modified to minimize that error. Gradient Boosting often provides predictive accuracy that cannot be surpassed. These machines can optimize different loss functions depending on the problem type which makes it felxible. There is no data pre-processing required as it also handles missing data.One of the applications of Gradient Boosting Machine is anomaly detection in supervised learning settings where data is often highly unbalanced such as DNA sequences, credit card transactions or cyber security. One of the drawbacks of GBMs is that they are more sensitive to overfitting if the data is noisy and are also computationally expensive which can be time and memory exhaustive.
-
-- 隨機森林使⽤的集成⽅法稱為 Bagging (Bootstrap aggregating)，⽤抽樣的資料與 features ⽣成每⼀棵樹，最後再取平均
-
-- 訓練流程
-
-  1. 將訓練資料集中的每個樣本賦予一個權值，開始的時候，權重都初始化為相等值
-  2. 在整個資料集上訓練一個弱分類器，並計算錯誤率
-  3. 在同一個資料集上再次訓練一個弱分類器，在訓練的過程中，權值重新調整，其中在上一次分類中分對的樣本權值將會降低，分錯的樣本權值將會提高
-  4. 重複上述過程，串列的生成多個分類器，為了從所有弱分類器中得到多個分類結果
-  5. 反覆運算完成後，最後的分類器是由反覆運算過程中選擇的弱分類器線性加權得到的
-
-- Boosting 則是另⼀種集成⽅法，希望能夠由後⾯⽣成的樹，來修正前⾯樹學不好的地⽅
-
-- 要怎麼修正前⾯學錯的地⽅呢？計算 Gradient!
-
-- 每次⽣成樹都是要修正前⾯樹預測的錯誤，並乘上 learning rate 讓後⾯的樹能有更多學習的空間，緩解原本決策樹容易過擬和的問題，實務上的結果通常也會比決策樹來得好
-
-- Bagging 與 Boosting 的差別
-
-  - 樣本選擇上
-
-    - Bagging：訓練集是在原始集中有放回選取的，從原始集中選出的各輪訓練集之間是獨立的。
-    - Boosting：每一輪的訓練集不變，只是訓練集中每個樣例在分類器中的權重發生變化。而權值是根據上一輪的分類結果進行調整。
-
-  - 樣例權重
-
-    - Bagging：使用均勻取樣，每個樣例的權重相等。 
-    - Boosting：根據錯誤率不斷調整樣例的權值，錯誤率越大則權重越大。
-
-  - 預測函數
-
-    - Bagging：所有預測函數的權重相等。
-    - Boosting：每個弱分類器都有相應的權重，對於分類誤差小的分類器會有更大的權重。
-
-  - 使用時機
-
-    - Bagging：模型本身已經很複雜，一下就Overfit了，需要降低複雜度時
-    - Boosting:模型無法fit資料時，透過Boosting來增加模型的複雜度
-
-  - 主要目標：
-
-    - Bagging：降低Variance
-    - Boosting：降低bias
-
-  - 平行計算： Bagging：各個預測函數可以並行生成。 Boosting：各個預測函數只能順序生成，因為後一個模型參數需要前一輪模型的結果。
-
-  - 使⽤ Sklearn 中的梯度提升機
-
-    ```python
-    from sklearn.ensemble import GradientBoostingClassifier
-    from sklearn.ensemble import GradientBoostingRegressor
-    clf = GradientBoostingClassifier()
-    ```
-
-  - 可決定要⽣成數的數量，越多越不容易過擬和，但是運算時間會變長
-
-  - Loss 的選擇，若改為 exponential 則會變成Adaboosting 演算法，概念相同但實作稍微不同
-
-  - learning_rate是每棵樹對最終結果的影響，應與，n_estimators 成反比
-
-  - n_estimators: 決策樹的數量
-
-[純乾貨｜機器學習中梯度下降法的分類及對比分析（附源碼）](https://kknews.cc/tech/mmr8kag.html)
-
-- 參考資料
-  - [機器/深度學習-基礎數學(二):梯度下降法(gradient descent)](https://medium.com/@chih.sheng.huang821/機器學習-基礎數學-二-梯度下降法-gradient-descent-406e1fd001f)
-  - [GBDT调优详解](https://7125messi.github.io/post/gbdt%E8%B0%83%E4%BC%98%E8%AF%A6%E8%A7%A3/)
-  - [R Tutorial](https://towardsdatascience.com/understanding-gradient-boosting-machines-9be756fe76ab)
-
-### Gradient Boosted Regression Trees
-
-Gradient Boosted Regression Trees (GBRT) are a flexible, non-parametric learning technique for classification and regression, and are one of the most effective machine learning models for predictive analytics. Boosted regression trees combine the strengths of two algorithms which include regression trees and boosting methods. Boosted regression trees incorporate important advantages of tree-based methods, handling different types of predictor variables and accommodating missing data. They have no need for prior data transformation or elimination of outliers, can fit complex nonlinear relationships, and automatically handle interaction effects between predictors. 
-
-- [Python Example](https://scikit-learn.org/stable/modules/ensemble.html)
-
-### XGBoost(Extreme Gradient Boosting)
-
-"XGBoost is similar to gradient boosting framework but it improves upon the base GBM architechture by using system optimization and algorithmic improvements.System optimizations:
-Parallelization: It executes the sequential tree building using parallelized implementation. 
-Hardware: It uses the hardware resources efficiently by allocating internal buffers in each thread to store gradient statistics.Tree Pruning: XGBoost uses ‘max_depth’ parameter instead of criterion first, and starts pruning trees backward. This ‘depth-first’ approach improves computational performance significantly.Algorithmic Improvements:
-Regularization: It penalizes more complex models through both LASSO (L1) and Ridge (L2) regularization to prevent overfitting.Sparsity Awareness: Handles different types of sparsity patterns in the data more efficiently.Cross-validation: The algorithm comes with built-in cross-validation method at each iteration, taking away the need to explicitly program this search and to specify the exact number of boosting iterations required in a single run.Due to it's computational complexity and ease of implementation, XGBoost is used widely over Gradient Boosting."
-
-https://zhuanlan.zhihu.com/p/31182879
-
-- 簡介
-
-  - XGB的建立在GBDT的基礎上,經過目標函數、模型演算法、運算架構等等的優化,使XGB成為速度快、效果好的Boosting模型
-
-    - 目標函數的優化:
-
-      模型的通則是追求目標函數的「極小化」,其中損失函數會隨模型複雜度增加而減少,而XGB將模型的目標函數加入正則化項,其將隨模型複雜度增加而增加,故XGB會在模型準確度和模型複雜度間取捨(trade-off),避免為了追求準確度導致模型過於複雜,造成overfitting
-
-- 訓練流程
-
-  ```python
-  from xgboost import XGBClassifier
-  classifier = XGBClassifier()
-  classifier.fit(X_train, y_train)
-  ```
-
-  
-
-- 調參順序
-
-  1. 設置一些初始值。
-
-     ```python
-     - learning_rate: 0.1
-     - n_estimators: 500
-     - max_depth: 5
-     - min_child_weight: 1
-     - subsample: 0.8
-     - colsample_bytree:0.8
-     - gamma: 0
-     - reg_alpha: 0
-     - reg_lambda: 1
-     ```
-
-  2. estimdators
-
-  3. min_child_weight 及 max_depth
-
-  4. gamma
-
-  5. subsample 及 colsample_bytree
-
-  6. reg_alpha 及 reg_lambda
-
-  7. learning_rate， 這時候要調小測試
-
-- Ref
-  - [R Tutorial](https://www.hackerearth.com/practice/machine-learning/machine-learning-algorithms/beginners-tutorial-on-xgboost-parameter-tuning-r/tutorial/)
-
-### Voting Classifier
-
-A voting classifier combines the results of several classifiers to predict the class labels. It is one of the simplest ensemble methods. The voting classifier usually achieves better results than the best classifier in the ensemble. A hard-voting classifier uses the majority vote to predict the class labels. Whereas, a soft-voting classifier will use the average predicted probabilities to predict the labels, however, this can only be possible if all individual classifiers can predict class probabilities.The voting classifier can balance out the individual weakness of each classifier used. It will be beneficial to include diverse classifiers so that models which fall prey to similar types of errors do not aggregate the errors. As an example, one can train a logistic regression, a random forest classifier a naïve bayes classifier and a support vector classifier. To predict the label, the class that receives the highest number of votes from all of the 4 classifiers will be the predicted class of the ensemble (Voting classifier).
-
-- [Python Tutorial](http://rasbt.github.io/mlxtend/user_guide/classifier/EnsembleVoteClassifier/)
-
-### Extremely Randomized Trees
-
-Extremely Randomized Trees (also known as Extra-Trees) increases the randomness of Random Forest algorithms and moves a step further. As in random forests, a random subset of candidate features is used, but instead of looking for the most discriminating thresholds, thresholds are drawn at random for each candidate feature and the best of these randomly-generated thresholds is picked as the splitting rule.This trades more bias for a lower variance. It also makes Extra-Trees much faster to train than regular Random Forests since finding the best possible threshold for each feature at every node is one of the most time-consuming tasks of growing a tree. One can use it for both regression and classification.
-
-- [R Example](https://daviddalpiaz.github.io/stat432sp18/lab/enslab/enslab.html)
-
-### Boosted Decision Tree
-
-Boosted Decision Trees are a collection of weak decision trees which are used in congregation to make a strong learner. The other decision trees are called weak because they have lesser ability than the full model and use a simpler model. Each weak decision tree is trained to address the error of the previous tree to finally come up with a robust model.
-
-- [R Example](https://www.r-bloggers.com/gradient-boosting-in-r/)
-
-
-
-### lightgbm
-
-https://zhuanlan.zhihu.com/p/52583923
-
-The LightGBM boosting algorithm is becoming more popular by the day due to its speed and efficiency. LightGBM is able to handle huge amounts of data with ease. But keep in mind that this algorithm does not perform well with a small number of data points.
-
-### Category Boosting (CatBoost)
-
-CatBoost is a fast, scalable, high performance algorithm for gradient boosting on decision trees. It can work with diverse data types to help solve a wide range of problems that businesses face today. Catboost achieves the best results on the benchmark.Catboost is built with a similar approach and attributes as with Gradient Boost Decision Tree models. The feature that separates CatBoost algorithm from rest is its unbiased boosting with categorical variables. Its power lies in its categorical features preprocessing, prediction time and model analysis.Catboost introduces two critical algorithmic advances - the implementation of ordered boosting, a permutation-driven alternative to the classic algorithm, and an innovative algorithm for processing categorical features.CatBoost handles data very efficiently, few tweaks can be made to increase efficiency like choosing the mode according to data. However, Catboost’s training and optimization times is considerably high.
-
-- [R Tutorial](https://www.kaggle.com/slickwilly/simple-catboost-in-r)
-
-## 
-
-As the name suggests, CatBoost is a boosting algorithm that can handle categorical variables in the data. Most [machine learning algorithms](https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/?utm_source=blog&utm_medium=4-boosting-algorithms-machine-learning) cannot work with strings or categories in the data. Thus, converting categorical variables into numerical values is an essential preprocessing step.
-
-CatBoost can internally handle categorical variables in the data. These variables are transformed to numerical ones using various statistics on combinations of features.
-
-If you want to understand the math behind how these categories are converted into numbers, you can go through this article:
-
-- [Transforming categorical features to numerical features](https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html#algorithm-main-stages_cat-to-numberic)
 
 
 
@@ -2236,6 +2130,12 @@ pipr_lr.score(x_test, y_test)
 - Ref
   - [机器学习老中医：利用学习曲线诊断模型的偏差和方差 ](https://www.sohu.com/a/218382300_465975)
 
+### Bias and Variance
+- [偏差（Bias）与方差（Variance)](https://cloud.tencent.com/developer/article/1012465)
+- [为什么说bagging是减少variance，而boosting是减少bias?](https://www.zhihu.com/question/26760839)
+- [机器学习老中医：利用学习曲线诊断模型的偏差和方差](https://cloud.tencent.com/developer/article/1119597?areaSource=106002.15)
+- [【機器學習】偏差與方差之權衡 Bias-Variance Tradeoff](https://jason-chen-1992.weebly.com/home/-bias-variance-tradeoff)
+
 ### OverFit
 
 - 過擬合 (Over-fitting)
@@ -2467,7 +2367,7 @@ In this technique a subset of features is selected by manual trial. Variables ar
 
 
 
-### Underfit
+#### Underfit
 
 - 如果經過調整模型參數還是無法擬合模型，還可以嘗試 錯誤分析來提升模型效度
 - 人無完人，每個模型不可能都是完美的，它總會犯一些錯誤。為瞭解某個模型在犯什麼錯誤，我們可以觀察被模型誤判的樣本，總結它們的共同特徵，我們就可以再訓練一個效果更好的模型。這種做法有點像後面Ensemble時提到的Boosting，但是我們是人為地觀察錯誤樣本，而Boosting是交給了機器。通過錯誤分析->發現新特徵->訓練新模型->錯誤分析，可以不斷地反覆運算出更好的效果，並且這種方式還可以培養我們對資料的嗅覺。
@@ -2480,7 +2380,7 @@ In this technique a subset of features is selected by manual trial. Variables ar
 
 
 
-#### Feature Construction
+##### Feature Construction
 
 > - 「數據和特徵決定了機器學習的上限，而模型和算法只是逼近這個上限而已」
 > - 特徵工程是針對數據進行加工處理，讓模型能最大限度的從原始數據中找出變數之間的關聯性，進而提升模型的效度。
@@ -2497,13 +2397,13 @@ In this technique a subset of features is selected by manual trial. Variables ar
 
 
 
-#### Features Interaction
+##### Features Interaction
 
 - 假設你有 `A` 和 `B` 兩個 continuous 特徵，你可以用 `A + B`、`A - B`、`A * B` 或 `A / B` 之類的方式建立新的特徵。
 - 有些特徵需要一起考慮才有意義，如在分析計程車的運輸資料時，會有起點的經緯度與終點的經緯度等4個變項。
 - 單獨各自使用「起點經度」、「起點緯度」、「終點經度」或「終點緯度」都是沒有意義的。必須要將這四個變數進行組合，並計算實際距離。或更細緻的處理每個緯度長度不一致的問題後計算實際距離，能夠再進一步提高預測的精準度。
 
-#### Feature Combination 
+##### Feature Combination 
 
 - 特徵組合主要是針對 categorical 特徵，特徵交互則是適用於 continuous 特徵。但是兩者的概念是差不多的，就是把兩個以上的特徵透過某種方式結合在一起，變成新的特徵。通常用來解決一般的線性模型沒辦法學到非線性特徵的問題。
 
@@ -2530,7 +2430,7 @@ In this technique a subset of features is selected by manual trial. Variables ar
 
 
 
-#### Feature Extraction
+##### Feature Extraction
 
 通常就是指 dimensionality reduction。
 
@@ -2538,7 +2438,7 @@ In this technique a subset of features is selected by manual trial. Variables ar
 - Latent Dirichlet Allocation (LDA)
 - Latent Semantic Analysis (LSA)
 
-#### Feature Learning
+##### Feature Learning
 
 - 葉編碼 (leaf encoding) 顧名思義，是採⽤決策樹的葉點作為編碼依據重新編碼
 
@@ -2656,34 +2556,10 @@ Ref
 
   這類資料可能會導致過擬合。
 
-### 解釋模型
-
-- Ref
-  - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
   - [为什么我们要重视机器学习模型的调试？](https://zhuanlan.zhihu.com/p/110754325)
 
 
 
-
-## 模型儲存
-
-```python
-from sklearn import svm
-from sklearn import datasets
-from sklearn.externals import joblib
-clf = svm.SVC()
-iris = datasets.load_iris()
-X,y = iris.data , iris.target
-clf.fit(X,y)
-
-# 保存建好的模型
-joblib.dump(clf,'clf.pkl')
-# 讀取建好的模型
-clf2 = joblib.load('clf.pkl')
-# 預測
-print(clf2.predict(X[0:1]))
-
-```
 
 
 

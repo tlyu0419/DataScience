@@ -81,3 +81,8 @@ eli5.show_weights(perm, feature_names = val_X.columns.tolist())
   - [slundberg/shap: A game theoretic approach to explain the output of any machine learning model. (github.com)](https://github.com/slundberg/shap)
   
   - [机器学习模型可解释性进行到底 —— SHAP值理论（一）_悟乙己的博客-CSDN博客_shap原理](https://blog.csdn.net/sinat_26917383/article/details/115400327)
+
+### 解釋模型
+
+- Ref
+  - [DALEX: Explainers for Complex Predictive Models in R](https://www.jmlr.org/papers/volume19/18-416/18-416.pdf)
