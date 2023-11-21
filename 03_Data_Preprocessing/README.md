@@ -615,6 +615,7 @@ sort_values()
     - 從分位數的角度來偵測，IQR=Q3 - Q1，將(Q1 - 1.5 * IQR)與 (Q3 + 1.5 * IQR)視為離群值
 
   - Box-plot
+    - [Why “1.5” in IQR Method of Outlier Detection?](https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097)
 
   - **平均絕對離差(Mean Absolute Deviation, MAD)**:
     $$MAD = \frac{\Sigma^n_1|x_i- \bar x|}{n}$$
