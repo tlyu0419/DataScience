@@ -775,3 +775,7 @@ We can think of this as a powerful version of Regular Expression where we actual
 - [自然语言处理中句向量获取方式的简要综述 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/350957155)
 
 - [ownthink/Jiagu: Jiagu深度学习自然语言处理工具 知识图谱关系抽取 中文分词 词性标注 命名实体识别 情感分析 新词发现 关键词 文本摘要 文本聚类 (github.com)](https://github.com/ownthink/Jiagu)
+
+
+## 中文分詞
+- [python简单实现新词发现](https://zhuanlan.zhihu.com/p/45745963)
