@@ -779,3 +779,4 @@ We can think of this as a powerful version of Regular Expression where we actual
 
 ## 中文分詞
 - [python简单实现新词发现](https://zhuanlan.zhihu.com/p/45745963)
+- [大模型词表扩充必备工具SentencePiece](https://zhuanlan.zhihu.com/p/630696264)
